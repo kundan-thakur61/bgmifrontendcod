@@ -1,7 +1,7 @@
 'use client';
 
 import { api, API_BASE_URL } from '@/lib/api';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
