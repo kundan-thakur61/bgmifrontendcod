@@ -23,9 +23,14 @@ export default async function sitemap() {
   const getBaseUrl = () => {
     if (process.env.NEXT_PUBLIC_API_URL) {
       let url = process.env.NEXT_PUBLIC_API_URL;
-      if (url.endsWith('/')) url = url.slice(0, -1);
-      if (!url.endsWith('/api')) url += '/api';
-      return url;
+      // Safety check for localhost in production
+      if (process.env.NODE_ENV === 'production' && url.includes('localhost') && !process.env.ALLOW_LOCAL_API) {
+        // Fallback or ignore
+      } else {
+        if (url.endsWith('/')) url = url.slice(0, -1);
+        if (!url.endsWith('/api')) url += '/api';
+        return url;
+      }
     }
 
     if (process.env.NODE_ENV === 'production') {
