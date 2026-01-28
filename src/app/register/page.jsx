@@ -21,6 +21,20 @@ function RegisterContent() {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [googleUrl, setGoogleUrl] = useState(`${API_BASE_URL}/auth/google`);
+
+  useEffect(() => {
+    // Client-side safety: ensure we don't send prod users to localhost
+    if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname;
+      const isProduction = hostname !== 'localhost' && hostname !== '127.0.0.1';
+
+      if (isProduction && API_BASE_URL.includes('localhost')) {
+        // Force production backend if we are on a real domain but API is localhost
+        setGoogleUrl('https://bgmibackend-5gu6.onrender.com/api/auth/google');
+      }
+    }
+  }, []);
 
   useEffect(() => {
     // If phone is passed from login page (new user)
@@ -189,7 +203,7 @@ function RegisterContent() {
 
               {/* Google Sign In */}
               <a
-                href={`${API_BASE_URL}/auth/google`}
+                href={googleUrl}
                 className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-dark-600 rounded-lg hover:bg-dark-700 transition-colors"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
