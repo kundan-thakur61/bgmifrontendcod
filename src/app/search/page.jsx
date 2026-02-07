@@ -1,313 +1,186 @@
-'use client';
-
-import { useState, useEffect, useCallback, Suspense } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { Navbar, Footer } from '@/components/layout';
-import { api } from '@/lib/api';
-import { formatDate } from '@/lib/utils';
+import { PAGE_SEO } from '@/lib/seo-config';
+import { BreadcrumbSchema } from '@/components/seo';
+import { Suspense } from 'react';
 
-const GAME_ICONS = {
-    pubg_mobile: '🎯',
-    free_fire: '🔥',
-    bgmi: '🎮',
-};
+export const metadata = PAGE_SEO.search;
 
-const STATUS_COLORS = {
-    upcoming: 'bg-blue-500/20 text-blue-400',
-    registration_open: 'bg-green-500/20 text-green-400',
-    live: 'bg-red-500/20 text-red-400',
-    completed: 'bg-gray-500/20 text-gray-400',
-};
+const searchData = [
+  // Matches & Tournaments
+  { title: 'BGMI Tournaments', url: '/tournaments', category: 'Tournaments', description: 'Compete in BGMI tournaments and win real money' },
+  { title: 'Free Fire Tournaments', url: '/tournaments', category: 'Tournaments', description: 'Join Free Fire tournaments with cash prizes' },
+  { title: 'Live Matches', url: '/matches', category: 'Matches', description: 'Browse ongoing and upcoming matches' },
+  { title: 'My Matches', url: '/profile/history', category: 'Profile', description: 'View your match history and results' },
+  
+  // Guides
+  { title: 'BGMI Tournament Guide 2026', url: '/blog/bgmi-tournament-guide-2026', category: 'Guide', description: 'Complete guide to winning BGMI tournaments' },
+  { title: 'Free Fire Tournament Tips', url: '/blog/free-fire-tournament-tips', category: 'Guide', description: 'Pro strategies for Free Fire tournaments' },
+  { title: 'How to Earn Money Gaming', url: '/blog/how-to-earn-money-gaming-india', category: 'Guide', description: 'Earn real money playing games in India' },
+  { title: 'BGMI vs Free Fire', url: '/blog/bgmi-vs-free-fire-which-is-better', category: 'Guide', description: 'Which game is better for tournaments' },
+  { title: 'How to Win BGMI Tournaments', url: '/blog/how-to-win-bgmi-tournaments-2024', category: 'Guide', description: 'Expert tips for winning BGMI' },
+  
+  // Cities
+  { title: 'Mumbai Tournaments', url: '/locations/mumbai-tournaments', category: 'City', description: 'BGMI & Free Fire tournaments in Mumbai' },
+  { title: 'Delhi NCR Tournaments', url: '/locations/delhi-tournaments', category: 'City', description: 'Gaming tournaments in Delhi, Noida, Gurgaon' },
+  { title: 'Bangalore Tournaments', url: '/locations/bangalore-tournaments', category: 'City', description: 'Esports tournaments in Bangalore' },
+  { title: 'All Cities', url: '/locations', category: 'City', description: 'Find tournaments in your city' },
+  
+  // Pages
+  { title: 'How It Works', url: '/how-it-works', category: 'Info', description: 'Learn how BattleZone works' },
+  { title: 'Leaderboard', url: '/leaderboard', category: 'Info', description: 'Top players and rankings' },
+  { title: 'Wallet', url: '/wallet', category: 'Account', description: 'Add money and withdraw winnings' },
+  { title: 'KYC Verification', url: '/kyc', category: 'Account', description: 'Verify your identity' },
+  { title: 'Fair Play Policy', url: '/fair-play', category: 'Info', description: 'Our anti-cheat systems' },
+  { title: 'Tournament Rules', url: '/rules', category: 'Info', description: 'Official tournament guidelines' },
+  { title: 'FAQ', url: '/faq', category: 'Info', description: 'Frequently asked questions' },
+  { title: 'Blog', url: '/blog', category: 'Info', description: 'Gaming tips and news' },
+  { title: 'Contact Us', url: '/contact', category: 'Info', description: 'Get in touch with support' },
+];
 
-export default function SearchPage() {
-    return (
-        <Suspense fallback={
-            <div className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
-                <div className="max-w-4xl mx-auto px-4 py-8 text-center">
-                    <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-gray-400">Loading search...</p>
-                </div>
-            </div>
-        }>
-            <SearchPageContent />
-        </Suspense>
-    );
+function SearchContent() {
+  return (
+    <div className="min-h-[400px] flex items-center justify-center">
+      <div className="text-center">
+        <div className="text-6xl mb-4">🔍</div>
+        <p className="text-dark-400">Enter a search term to find tournaments, guides, and more...</p>
+      </div>
+    </div>
+  );
 }
 
-function SearchPageContent() {
-    const searchParams = useSearchParams();
-    const initialQuery = searchParams.get('q') || '';
+export default function SearchPage({ searchParams }) {
+  const query = searchParams?.q?.toLowerCase() || '';
+  
+  const results = query 
+    ? searchData.filter(item => 
+        item.title.toLowerCase().includes(query) ||
+        item.description.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query)
+      )
+    : [];
 
-    const [query, setQuery] = useState(initialQuery);
-    const [results, setResults] = useState({ matches: [], tournaments: [], players: [] });
-    const [counts, setCounts] = useState({ matches: 0, tournaments: 0, players: 0, total: 0 });
-    const [loading, setLoading] = useState(false);
-    const [activeTab, setActiveTab] = useState('all');
-    const [searched, setSearched] = useState(false);
+  return (
+    <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://battlezone.com' },
+        { name: 'Search', url: 'https://battlezone.com/search' },
+      ]} />
+      <Navbar />
+      <main className="min-h-screen pt-20">
+        {/* Hero Search */}
+        <section className="py-12 px-4 bg-gradient-to-b from-primary-900/30 to-dark-900">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-3xl sm:text-4xl font-bold font-display mb-6">
+              Search <span className="gradient-text">BattleZone</span>
+            </h1>
+            
+            <form action="/search" method="GET" className="relative max-w-xl mx-auto">
+              <input
+                type="text"
+                name="q"
+                defaultValue={query}
+                placeholder="Search tournaments, guides, cities..."
+                className="w-full px-6 py-4 bg-dark-800 border border-dark-700 rounded-xl text-white placeholder-dark-500 focus:outline-none focus:border-primary-500 pr-14"
+                autoFocus
+              />
+              <button 
+                type="submit"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors"
+              >
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </section>
 
-    // Debounced search
-    useEffect(() => {
-        if (initialQuery) {
-            handleSearch(initialQuery);
-        }
-    }, [initialQuery]);
+        {/* Results */}
+        <section className="py-12 px-4">
+          <div className="max-w-3xl mx-auto">
+            {query ? (
+              <>
+                <p className="text-dark-400 mb-6">
+                  Found {results.length} result{results.length !== 1 ? 's' : ''} for &quot;{query}&quot;
+                </p>
 
-    const handleSearch = async (searchQuery) => {
-        if (!searchQuery || searchQuery.length < 2) {
-            setResults({ matches: [], tournaments: [], players: [] });
-            setCounts({ matches: 0, tournaments: 0, players: 0, total: 0 });
-            return;
-        }
-
-        setLoading(true);
-        setSearched(true);
-        try {
-            const data = await api.search(searchQuery, activeTab === 'all' ? 'all' : activeTab);
-            setResults(data.results || { matches: [], tournaments: [], players: [] });
-            setCounts(data.counts || { matches: 0, tournaments: 0, players: 0, total: 0 });
-        } catch (err) {
-            console.error('Search failed:', err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        handleSearch(query);
-    };
-
-    const getLevelBadge = (level) => {
-        const levels = {
-            bronze: 'bg-orange-900/50 text-orange-400',
-            silver: 'bg-gray-700/50 text-gray-300',
-            gold: 'bg-yellow-900/50 text-yellow-400',
-            platinum: 'bg-cyan-900/50 text-cyan-400',
-            diamond: 'bg-purple-900/50 text-purple-400',
-        };
-        return levels[level] || levels.bronze;
-    };
-
-    return (
-        <>
-            <Navbar />
-
-            <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
-                <div className="max-w-4xl mx-auto px-4 py-8">
-                    {/* Header */}
-                    <div className="text-center mb-8">
-                        <h1 className="text-3xl font-bold text-white mb-4">Search</h1>
-                        <p className="text-gray-400">Find matches, tournaments, and players</p>
+                {results.length > 0 ? (
+                  <div className="space-y-4">
+                    {results.map((result, index) => (
+                      <Link
+                        key={index}
+                        href={result.url}
+                        className="block bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-primary-500 transition-all hover:transform hover:-translate-x-1"
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <h3 className="text-lg font-semibold text-white hover:text-primary-400 transition-colors">
+                            {result.title}
+                          </h3>
+                          <span className="text-xs px-2 py-1 bg-dark-700 rounded text-dark-400">
+                            {result.category}
+                          </span>
+                        </div>
+                        <p className="text-dark-400 text-sm">{result.description}</p>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <div className="text-6xl mb-4">😕</div>
+                    <h2 className="text-xl font-bold text-white mb-2">No results found</h2>
+                    <p className="text-dark-400 mb-6">Try searching for: tournaments, BGMI, Free Fire, Mumbai, Delhi...</p>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {['tournaments', 'BGMI', 'Free Fire', 'Mumbai', 'earn money', 'guides'].map((term) => (
+                        <Link
+                          key={term}
+                          href={`/search?q=${encodeURIComponent(term)}`}
+                          className="px-3 py-1 bg-dark-800 hover:bg-dark-700 rounded-lg text-sm text-dark-300 transition-colors"
+                        >
+                          {term}
+                        </Link>
+                      ))}
                     </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              <Suspense fallback={<div className="text-center py-12">Loading...</div>}>
+                <SearchContent />
+              </Suspense>
+            )}
+          </div>
+        </section>
 
-                    {/* Search Bar */}
-                    <form onSubmit={handleSubmit} className="mb-8">
-                        <div className="relative">
-                            <input
-                                type="text"
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                                placeholder="Search for matches, tournaments, or players..."
-                                className="w-full px-6 py-4 pl-14 bg-gray-900/50 backdrop-blur-xl border border-gray-700 rounded-2xl text-white text-lg focus:outline-none focus:border-cyan-500 transition-colors"
-                            />
-                            <svg
-                                className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                            <button
-                                type="submit"
-                                className="absolute right-3 top-1/2 -translate-y-1/2 px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white rounded-xl font-semibold"
-                            >
-                                Search
-                            </button>
-                        </div>
-                    </form>
-
-                    {/* Tabs */}
-                    {searched && (
-                        <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-                            {[
-                                { id: 'all', label: 'All', count: counts.total },
-                                { id: 'matches', label: 'Matches', count: counts.matches },
-                                { id: 'tournaments', label: 'Tournaments', count: counts.tournaments },
-                                { id: 'players', label: 'Players', count: counts.players },
-                            ].map((tab) => (
-                                <button
-                                    key={tab.id}
-                                    onClick={() => {
-                                        setActiveTab(tab.id);
-                                        handleSearch(query);
-                                    }}
-                                    className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all flex items-center gap-2 ${activeTab === tab.id
-                                        ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/50'
-                                        : 'bg-gray-800/30 text-gray-400 hover:text-white border border-transparent'
-                                        }`}
-                                >
-                                    {tab.label}
-                                    <span className="text-xs bg-gray-800 px-2 py-0.5 rounded-full">{tab.count}</span>
-                                </button>
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Results */}
-                    {loading ? (
-                        <div className="space-y-4">
-                            {[...Array(5)].map((_, i) => (
-                                <div key={i} className="bg-gray-900/50 rounded-xl p-6 border border-gray-800 animate-pulse">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 bg-gray-700 rounded-lg" />
-                                        <div className="flex-1 space-y-2">
-                                            <div className="h-5 w-3/4 bg-gray-700 rounded" />
-                                            <div className="h-4 w-1/2 bg-gray-700 rounded" />
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : !searched ? (
-                        <div className="text-center py-16 bg-gray-900/30 rounded-2xl border border-gray-800">
-                            <div className="text-5xl mb-4">🔍</div>
-                            <h3 className="text-xl font-bold text-white mb-2">Start Searching</h3>
-                            <p className="text-gray-400">Enter at least 2 characters to search</p>
-                        </div>
-                    ) : counts.total === 0 ? (
-                        <div className="text-center py-16 bg-gray-900/30 rounded-2xl border border-gray-800">
-                            <div className="text-5xl mb-4">😕</div>
-                            <h3 className="text-xl font-bold text-white mb-2">No Results Found</h3>
-                            <p className="text-gray-400">Try a different search term</p>
-                        </div>
-                    ) : (
-                        <div className="space-y-8">
-                            {/* Matches */}
-                            {(activeTab === 'all' || activeTab === 'matches') && results.matches?.length > 0 && (
-                                <div>
-                                    <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                                        🎮 Matches
-                                        <span className="text-sm text-gray-400 font-normal">({results.matches.length})</span>
-                                    </h2>
-                                    <div className="space-y-3">
-                                        {results.matches.map((match) => (
-                                            <Link
-                                                key={match._id}
-                                                href={`/matches/${match._id}`}
-                                                className="block bg-gray-900/50 backdrop-blur-xl rounded-xl p-5 border border-gray-800 hover:border-cyan-500/30 transition-all"
-                                            >
-                                                <div className="flex items-center gap-4">
-                                                    <span className="text-3xl">{GAME_ICONS[match.gameType] || '🎮'}</span>
-                                                    <div className="flex-1">
-                                                        <div className="flex items-center gap-2 mb-1">
-                                                            <h3 className="font-bold text-white">{match.title}</h3>
-                                                            {match.isChallenge && (
-                                                                <span className="text-xs bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded">Challenge</span>
-                                                            )}
-                                                        </div>
-                                                        <div className="flex flex-wrap gap-3 text-sm text-gray-400">
-                                                            <span className="capitalize">{match.gameType?.replace('_', ' ')}</span>
-                                                            <span>•</span>
-                                                            <span className="capitalize">{match.matchType}</span>
-                                                            <span>•</span>
-                                                            <span>{formatDate(match.scheduledAt)}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div className="text-right">
-                                                        <div className="text-green-400 font-bold">₹{match.prizePool}</div>
-                                                        <span className={`text-xs px-2 py-1 rounded-full ${STATUS_COLORS[match.status]}`}>
-                                                            {match.status?.replace('_', ' ')}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Tournaments */}
-                            {(activeTab === 'all' || activeTab === 'tournaments') && results.tournaments?.length > 0 && (
-                                <div>
-                                    <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                                        🏆 Tournaments
-                                        <span className="text-sm text-gray-400 font-normal">({results.tournaments.length})</span>
-                                    </h2>
-                                    <div className="space-y-3">
-                                        {results.tournaments.map((tournament) => (
-                                            <Link
-                                                key={tournament._id}
-                                                href={`/tournaments/${tournament._id}`}
-                                                className="block bg-gray-900/50 backdrop-blur-xl rounded-xl p-5 border border-gray-800 hover:border-cyan-500/30 transition-all"
-                                            >
-                                                <div className="flex items-center gap-4">
-                                                    <span className="text-3xl">🏆</span>
-                                                    <div className="flex-1">
-                                                        <h3 className="font-bold text-white mb-1">{tournament.title}</h3>
-                                                        <div className="flex flex-wrap gap-3 text-sm text-gray-400">
-                                                            <span className="capitalize">{tournament.gameType?.replace('_', ' ')}</span>
-                                                            <span>•</span>
-                                                            <span className="capitalize">{tournament.format?.replace('_', ' ')}</span>
-                                                            <span>•</span>
-                                                            <span>{formatDate(tournament.startAt)}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div className="text-right">
-                                                        <div className="text-green-400 font-bold">₹{tournament.prizePool}</div>
-                                                        <div className="text-sm text-gray-400">
-                                                            {tournament.registeredTeams}/{tournament.maxTeams} teams
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Players */}
-                            {(activeTab === 'all' || activeTab === 'players') && results.players?.length > 0 && (
-                                <div>
-                                    <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                                        👤 Players
-                                        <span className="text-sm text-gray-400 font-normal">({results.players.length})</span>
-                                    </h2>
-                                    <div className="grid sm:grid-cols-2 gap-3">
-                                        {results.players.map((player) => (
-                                            <div
-                                                key={player._id}
-                                                className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-5 border border-gray-800"
-                                            >
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                                                        {(player.name || 'U')[0].toUpperCase()}
-                                                    </div>
-                                                    <div className="flex-1">
-                                                        <div className="flex items-center gap-2 mb-1">
-                                                            <h3 className="font-bold text-white">{player.name}</h3>
-                                                            <span className={`text-xs px-2 py-0.5 rounded-full capitalize ${getLevelBadge(player.level)}`}>
-                                                                {player.level}
-                                                            </span>
-                                                        </div>
-                                                        <div className="flex gap-4 text-sm text-gray-400">
-                                                            <span>{player.matchesPlayed || 0} matches</span>
-                                                            <span className="text-green-400">₹{player.totalEarnings || 0} earned</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
-            </main>
-
-            <Footer />
-        </>
-    );
+        {/* Quick Links */}
+        <section className="py-12 px-4 border-t border-dark-700 bg-dark-800/30">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-xl font-bold mb-6 text-center">Popular Searches</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+              {[
+                { label: 'BGMI Tournaments', url: '/tournaments' },
+                { label: 'Free Fire Tips', url: '/blog/free-fire-tournament-tips' },
+                { label: 'How to Earn Money', url: '/blog/how-to-earn-money-gaming-india' },
+                { label: 'Mumbai Tournaments', url: '/locations/mumbai-tournaments' },
+                { label: 'Live Matches', url: '/matches' },
+                { label: 'Tournament Rules', url: '/rules' },
+              ].map((item) => (
+                <Link
+                  key={item.url}
+                  href={item.url}
+                  className="flex items-center justify-between p-4 bg-dark-800 rounded-xl border border-dark-700 hover:border-primary-500 transition-colors group"
+                >
+                  <span className="text-dark-300 group-hover:text-white transition-colors">{item.label}</span>
+                  <svg className="w-4 h-4 text-dark-500 group-hover:text-primary-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
 }

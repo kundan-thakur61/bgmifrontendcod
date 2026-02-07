@@ -1,9 +1,6 @@
 import { Navbar, Footer } from '@/components/layout';
-import { pageMetadata } from '@/lib/metadata';
-import { FAQSchema } from '@/components/seo';
+import { FAQSchema, BreadcrumbSchema } from '@/components/seo';
 import TournamentList from '@/components/tournaments/TournamentList';
-
-export const metadata = pageMetadata.tournaments;
 
 // FAQ data for tournaments page
 const tournamentFAQs = [
@@ -29,6 +26,10 @@ export default function TournamentsPage() {
   return (
     <>
       <FAQSchema faqs={tournamentFAQs} />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://battlezone.com' },
+        { name: 'Tournaments', url: 'https://battlezone.com/tournaments' },
+      ]} />
       <Navbar />
       
       <main className="min-h-screen pt-20">

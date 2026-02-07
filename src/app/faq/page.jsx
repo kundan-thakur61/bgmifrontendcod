@@ -1,13 +1,8 @@
 import { Navbar, Footer } from '@/components/layout';
-import { createMetadata } from '@/lib/metadata';
-import { FAQSchema } from '@/components/seo';
+import { PAGE_SEO } from '@/lib/seo-config';
+import { FAQSchema, BreadcrumbSchema } from '@/components/seo';
 
-export const metadata = createMetadata(
-  'Frequently Asked Questions',
-  'Find answers to common questions about BattleZone esports platform. Learn about matches, tournaments, payments, withdrawals, and more.',
-  ['FAQ', 'help', 'questions', 'esports help', 'gaming support'],
-  'https://battlezone.com/faq'
-);
+export const metadata = PAGE_SEO.faq;
 
 export default function FAQPage() {
   const faqs = [
@@ -56,6 +51,10 @@ export default function FAQPage() {
   return (
     <>
       <FAQSchema />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://battlezone.com' },
+        { name: 'FAQ', url: 'https://battlezone.com/faq' },
+      ]} />
       <Navbar />
       
       <main className="min-h-screen pt-20">

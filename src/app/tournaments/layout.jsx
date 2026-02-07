@@ -1,12 +1,16 @@
-import { generateMetadata } from '@/lib/seo';
+import { PAGE_SEO } from '@/lib/seo-config';
+import { BreadcrumbSchema } from '@/components/seo';
 
-export const metadata = generateMetadata({
-  title: 'BGMI & Free Fire Tournaments - Daily Competitions',
-  description: 'Join daily BGMI and Free Fire tournaments. Compete with top players, win massive cash prizes. Solo, Duo, Squad formats. Register now and start winning!',
-  keywords: 'BGMI tournaments, Free Fire tournaments, daily competitions, esports tournaments India, gaming competitions, online tournaments',
-  url: '/tournaments',
-});
+export const metadata = PAGE_SEO.tournaments;
 
 export default function TournamentsLayout({ children }) {
-  return children;
+  return (
+    <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://battlezone.com' },
+        { name: 'Tournaments', url: 'https://battlezone.com/tournaments' },
+      ]} />
+      {children}
+    </>
+  );
 }

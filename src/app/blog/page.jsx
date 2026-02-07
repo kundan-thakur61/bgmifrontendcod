@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import { Navbar, Footer } from '@/components/layout';
-import { pageMetadata } from '@/lib/metadata';
-
-export const metadata = pageMetadata.blog;
+import { BreadcrumbSchema } from '@/components/seo';
 
 const blogPosts = [
   {
@@ -14,6 +12,33 @@ const blogPosts = [
     date: '2026-01-15',
     readTime: '15 min read',
     featured: true,
+  },
+  {
+    slug: 'free-fire-tournament-tips',
+    title: 'Free Fire Tournament Tips 2026 - Pro Strategies to Win Real Money',
+    excerpt: 'Master Free Fire tournaments with expert tips. Learn character combos, weapon choices, and winning strategies for 1vs1 matches. Win cash prizes daily.',
+    image: '/blog/free-fire-tips.jpg',
+    category: 'Pro Guide',
+    date: '2026-01-20',
+    readTime: '12 min read',
+  },
+  {
+    slug: 'how-to-earn-money-gaming-india',
+    title: 'How to Earn Money Playing Games in India 2026 - Complete Guide',
+    excerpt: 'Learn how to earn real money playing BGMI, Free Fire, and other games in India. Discover tournament platforms, earning methods, and income potential.',
+    image: '/blog/earn-money-gaming.jpg',
+    category: 'Earning Guide',
+    date: '2026-01-22',
+    readTime: '15 min read',
+  },
+  {
+    slug: 'bgmi-vs-free-fire-which-is-better',
+    title: 'BGMI vs Free Fire 2026 - Which is Better for Tournaments & Earning?',
+    excerpt: 'Complete comparison of BGMI vs Free Fire. Graphics, gameplay, earning potential, tournaments, and which game is better for you.',
+    image: '/blog/bgmi-vs-free-fire.jpg',
+    category: 'Comparison',
+    date: '2026-01-25',
+    readTime: '10 min read',
   },
   {
     slug: 'pubg-mobile-tips-for-beginners',
@@ -76,6 +101,10 @@ const categories = ['All', 'Tips & Tricks', 'Strategy', 'Guides', 'Esports', 'Ne
 export default function BlogPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://battlezone.com' },
+        { name: 'Blog', url: 'https://battlezone.com/blog' },
+      ]} />
       <Navbar />
       
       <main className="min-h-screen pt-20">

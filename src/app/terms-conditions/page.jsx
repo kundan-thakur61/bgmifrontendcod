@@ -1,16 +1,16 @@
 import { Navbar, Footer } from '@/components/layout';
-import { createMetadata } from '@/lib/metadata';
+import { PAGE_SEO } from '@/lib/seo-config';
+import { BreadcrumbSchema } from '@/components/seo';
 
-export const metadata = createMetadata(
-  'Terms and Conditions',
-  'Read the Terms and Conditions for using BattleZone esports gaming platform. Understand our rules, policies, and user agreements.',
-  ['terms and conditions', 'user agreement', 'platform rules', 'legal'],
-  'https://battlezone.com/terms-conditions'
-);
+export const metadata = PAGE_SEO.termsConditions;
 
 export default function TermsConditionsPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://battlezone.com' },
+        { name: 'Terms & Conditions', url: 'https://battlezone.com/terms-conditions' },
+      ]} />
       <Navbar />
       
       <main className="min-h-screen pt-20">

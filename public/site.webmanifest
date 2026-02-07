@@ -1,26 +1,46 @@
 {
-  "name": "BattleZone - Competitive Esports Platform",
+  "name": "BattleZone — India's #1 BGMI Esports Tournament Platform",
   "short_name": "BattleZone",
-  "description": "Play PUBG Mobile and Free Fire tournaments for real money on India's fastest-growing esports platform.",
+  "description": "Play BGMI, PUBG Mobile & Free Fire tournaments for real money. Join 50,000+ players. Entry from ₹10. Instant UPI withdrawals.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
-  "categories": ["games", "sports"],
+  "categories": ["games", "sports", "entertainment"],
+  "lang": "en-IN",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
   "shortcuts": [
     {
-      "name": "Browse Matches",
+      "name": "Browse BGMI Matches",
       "short_name": "Matches",
-      "description": "View available competitive matches",
-      "url": "/matches"
+      "description": "Join live BGMI matches and win cash prizes",
+      "url": "/matches",
+      "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "View Tournaments",
+      "name": "BGMI Tournaments",
       "short_name": "Tournaments",
-      "description": "Browse esports tournaments",
-      "url": "/tournaments"
+      "description": "Register for BGMI tournaments with huge prize pools",
+      "url": "/tournaments",
+      "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Leaderboard",
+      "short_name": "Rankings",
+      "description": "See top BGMI players and rankings",
+      "url": "/leaderboard",
+      "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }

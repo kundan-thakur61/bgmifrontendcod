@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Navbar, Footer } from '@/components/layout';
+import { generateArticleMetadata, SITE } from '@/lib/seo-config';
+import { ArticleSchema, BreadcrumbSchema } from '@/components/seo';
 
 // Sample blog posts data - in production this would come from a CMS or database
 const blogPosts = {
@@ -382,19 +384,21 @@ export async function generateMetadata({ params }) {
   if (!post) {
     return {
       title: 'Post Not Found | BattleZone Blog',
+      robots: { index: false, follow: true },
     };
   }
 
-  return {
-    title: `${post.title} | BattleZone Blog`,
-    description: post.excerpt,
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      type: 'article',
-      publishedTime: post.date,
-    },
-  };
+  return generateArticleMetadata({
+    title: post.title,
+    excerpt: post.excerpt,
+    slug,
+    image: post.image || `${SITE.baseUrl}/images/og-default.jpg`,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: post.author || 'BattleZone Team',
+    category: post.category,
+    tags: [post.category, 'BGMI', 'esports', 'gaming'],
+  });
 }
 
 export async function generateStaticParams() {
@@ -413,6 +417,22 @@ export default async function BlogPostPage({ params }) {
 
   return (
     <>
+      <ArticleSchema article={{
+        title: post.title,
+        excerpt: post.excerpt,
+        datePublished: post.date,
+        dateModified: post.date,
+        author: post.author || 'BattleZone Team',
+        category: post.category,
+        url: `${SITE.baseUrl}/blog/${slug}`,
+        keywords: [post.category, 'BGMI', 'esports', 'gaming'],
+        wordCount: post.content?.split(/\s+/).length || 1500,
+      }} />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: `${SITE.baseUrl}` },
+        { name: 'Blog', url: `${SITE.baseUrl}/blog` },
+        { name: post.title, url: `${SITE.baseUrl}/blog/${slug}` },
+      ]} />
       <Navbar />
       
       <main className="min-h-screen pt-20">

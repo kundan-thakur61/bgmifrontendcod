@@ -1,51 +1,72 @@
+'use client';
+
 import { Suspense } from 'react';
 import { Navbar, Footer } from '@/components/layout';
-import { pageMetadata } from '@/lib/metadata';
-import { FAQSchema } from '@/components/seo';
 import MatchList from '@/components/matches/MatchList';
-
-export const dynamic = 'force-dynamic';
-export const metadata = pageMetadata.matches;
-
-// FAQ data for matches page
-const matchesFAQs = [
-  {
-    question: 'How do I join a match on BattleZone?',
-    answer: 'Browse available matches, select one that fits your budget and game mode preference, click Join, and pay the entry fee. Room ID and password are shared 15 minutes before the match starts.',
-  },
-  {
-    question: 'What is the minimum entry fee for matches?',
-    answer: 'Entry fees start from just ₹10 for basic matches. We offer various entry levels: ₹10, ₹25, ₹50, ₹100, ₹200, and ₹500 to suit all budgets.',
-  },
-  {
-    question: 'When do I receive the room ID and password?',
-    answer: 'Room credentials are shared 15 minutes before the match start time via in-app notification and on your dashboard. Make sure to join on time.',
-  },
-  {
-    question: 'How are match results verified?',
-    answer: 'After the match, upload your result screenshot. Our system verifies using EXIF data analysis and duplicate detection. Admin review ensures fair play.',
-  },
-];
+import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 
 export default function MatchesPage() {
+  const { user } = useAuth();
+  const isAdmin = user?.role && ['admin', 'super_admin'].includes(user.role);
+
   return (
     <>
-      <FAQSchema faqs={matchesFAQs} />
       <Navbar />
 
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-20 bg-gradient-to-b from-dark-900 to-dark-800">
         <div className="max-w-7xl mx-auto px-4 py-8">
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl sm:text-4xl font-bold font-display mb-2">
-              Competitive PUBG Mobile & Free Fire Matches
-            </h1>
-            <p className="text-dark-400">
-              Browse and join our latest matches with real prizes
-            </p>
+          <div className="mb-8 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/30 rounded-2xl p-6">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  {isAdmin && <span className="text-2xl">👑</span>}
+                  <h1 className="text-3xl sm:text-4xl font-bold font-display">
+                    {isAdmin ? 'Match Management' : 'Official Matches'}
+                  </h1>
+                </div>
+                <p className="text-dark-400">
+                  {isAdmin
+                    ? 'Manage all admin-created matches and tournaments'
+                    : 'Browse and join official admin-created matches'
+                  }
+                </p>
+              </div>
+
+              {/* Create Match Button */}
+              <Link
+                href="/create-match"
+                className="btn-primary flex items-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                Create Challenge
+              </Link>
+            </div>
           </div>
 
-          <Suspense fallback={<div className="text-center py-12">Loading matches...</div>}>
+          {/* Info Banner - Only for non-admins */}
+          {!isAdmin && (
+            <div className="mb-6 bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 flex items-start gap-3">
+              <span className="text-2xl">ℹ️</span>
+              <div className="flex-1">
+                <h3 className="font-semibold text-blue-400 mb-1">Looking for user challenges?</h3>
+                <p className="text-sm text-dark-300">
+                  Visit the <Link href="/" className="text-blue-400 hover:text-blue-300 underline">homepage</Link> to browse and join user-created challenges, or create your own!
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Match List */}
+          <Suspense fallback={
+            <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
+              <p className="mt-4 text-dark-400">Loading matches...</p>
+            </div>
+          }>
             <MatchList />
           </Suspense>
         </div>

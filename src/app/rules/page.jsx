@@ -1,14 +1,17 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { PAGE_SEO } from '@/lib/seo-config';
+import { BreadcrumbSchema } from '@/components/seo';
 
-export const metadata = {
-  title: 'Game Rules | BattleZone',
-  description: 'Official rules and guidelines for participating in BattleZone BGMI tournaments and matches.',
-};
+export const metadata = PAGE_SEO.rules;
 
 export default function RulesPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://battlezone.com' },
+        { name: 'Tournament Rules', url: 'https://battlezone.com/rules' },
+      ]} />
       <Navbar />
       <main className="min-h-screen bg-dark-900 py-12">
         <div className="container mx-auto px-4 max-w-4xl">

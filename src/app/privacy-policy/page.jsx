@@ -1,16 +1,16 @@
 import { Navbar, Footer } from '@/components/layout';
-import { createMetadata } from '@/lib/metadata';
+import { PAGE_SEO } from '@/lib/seo-config';
+import { BreadcrumbSchema } from '@/components/seo';
 
-export const metadata = createMetadata(
-  'Privacy Policy',
-  'Read the Privacy Policy for BattleZone. Learn how we collect, use, and protect your personal information on our esports gaming platform.',
-  ['privacy policy', 'data protection', 'personal information', 'user privacy'],
-  'https://battlezone.com/privacy-policy'
-);
+export const metadata = PAGE_SEO.privacyPolicy;
 
 export default function PrivacyPolicyPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://battlezone.com' },
+        { name: 'Privacy Policy', url: 'https://battlezone.com/privacy-policy' },
+      ]} />
       <Navbar />
       
       <main className="min-h-screen pt-20">

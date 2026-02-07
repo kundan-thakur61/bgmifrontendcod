@@ -1,14 +1,17 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { PAGE_SEO } from '@/lib/seo-config';
+import { BreadcrumbSchema } from '@/components/seo';
 
-export const metadata = {
-  title: 'Fair Play Policy | BattleZone',
-  description: 'BattleZone fair play policy - ensuring a fair and competitive gaming environment for all players.',
-};
+export const metadata = PAGE_SEO.fairPlay;
 
 export default function FairPlayPage() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://battlezone.com' },
+        { name: 'Fair Play Policy', url: 'https://battlezone.com/fair-play' },
+      ]} />
       <Navbar />
       <main className="min-h-screen bg-dark-900 py-12">
         <div className="container mx-auto px-4 max-w-4xl">

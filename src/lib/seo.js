@@ -1,13 +1,18 @@
-import { SITE_CONFIG } from './metadata';
+/**
+ * ⚠️ DEPRECATED — Use '@/lib/seo-config' instead.
+ * This file is kept for backward compatibility only.
+ * All new code should import from seo-config.js
+ */
+import { SITE, generateSeoMetadata } from './seo-config';
 
 export const seoConfig = {
-  siteName: 'BattleZone',
-  siteUrl: SITE_CONFIG.baseUrl || 'https://battlezone.com',
-  defaultTitle: 'BattleZone - India\'s #1 BGMI & Free Fire Esports Platform',
-  defaultDescription: 'Join India\'s premier esports platform. Play BGMI, Free Fire tournaments, win real cash prizes. 100% secure, instant withdrawals, 24/7 support.',
-  keywords: 'BGMI tournaments, Free Fire tournaments, esports India, gaming tournaments, online gaming, cash prizes, PUBG Mobile India, competitive gaming, esports platform',
-  twitterHandle: '@battlezone',
-  ogImage: '/images/og-image.jpg',
+  siteName: SITE.name,
+  siteUrl: SITE.baseUrl,
+  defaultTitle: SITE.defaultTitle,
+  defaultDescription: SITE.defaultDescription,
+  keywords: SITE.defaultKeywords.join(', '),
+  twitterHandle: SITE.twitterHandle,
+  ogImage: SITE.ogImage,
 };
 
 export function generateMetadata({ title, description, keywords, image, url, type = 'website' }) {

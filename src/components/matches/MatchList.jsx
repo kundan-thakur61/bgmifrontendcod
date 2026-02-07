@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { api, getMatches } from '@/lib/api';
 import { formatCurrency, formatDateTime, getMatchStatusColor, getGameIcon } from '@/lib/utils';
-import { generateStructuredData } from '@/lib/seo';
+import { getItemListSchema } from '@/lib/schema-graph';
 import { useAuth } from '@/context/AuthContext';
 
 export default function MatchList() {
@@ -20,7 +20,7 @@ export default function MatchList() {
     gameType: '',
     matchType: '',
     status: 'upcoming',
-    isChallenge: searchParams.get('isChallenge') || 'false',
+    isChallenge: false, // Only show admin-created matches
   });
 
   useEffect(() => {
@@ -214,8 +214,8 @@ export default function MatchList() {
                     {/* Creator Info Badge */}
                     <div className="flex items-center gap-2 mb-3">
                       <span className={`text-xs px-2 py-1 rounded-full ${creatorInfo.isAdmin
-                          ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
-                          : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                        ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
+                        : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
                         }`}>
                         {creatorInfo.isAdmin ? '👑 Admin' : '👤 User'}: {creatorInfo.name}
                       </span>

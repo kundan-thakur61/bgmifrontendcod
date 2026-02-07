@@ -74,7 +74,7 @@ export default function LeaderboardPage() {
         <>
             <Navbar />
 
-            <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
+            <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900" suppressHydrationWarning>
                 <div className="max-w-6xl mx-auto px-4 py-8">
                     {/* Header */}
                     <div className="text-center mb-12">
@@ -118,8 +118,8 @@ export default function LeaderboardPage() {
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${activeTab === tab.id
-                                        ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg shadow-cyan-500/30'
-                                        : 'bg-gray-800/50 text-gray-400 hover:bg-gray-700/50 hover:text-white'
+                                    ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg shadow-cyan-500/30'
+                                    : 'bg-gray-800/50 text-gray-400 hover:bg-gray-700/50 hover:text-white'
                                     }`}
                             >
                                 <span>{tab.icon}</span>
@@ -135,8 +135,8 @@ export default function LeaderboardPage() {
                                 key={filter.id}
                                 onClick={() => setGameFilter(filter.id)}
                                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${gameFilter === filter.id
-                                        ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/50'
-                                        : 'bg-gray-800/30 text-gray-400 hover:text-white border border-transparent'
+                                    ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/50'
+                                    : 'bg-gray-800/30 text-gray-400 hover:text-white border border-transparent'
                                     }`}
                             >
                                 {filter.label}

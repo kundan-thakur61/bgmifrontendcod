@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { Navbar, Footer } from '@/components/layout';
-import { pageMetadata } from '@/lib/metadata';
-import { HowToSchema, FAQSchema } from '@/components/seo';
+import { PAGE_SEO } from '@/lib/seo-config';
+import { HowToSchema, FAQSchema, BreadcrumbSchema } from '@/components/seo';
 
-export const metadata = pageMetadata.howItWorks;
+export const metadata = PAGE_SEO.howItWorks;
 
 // HowTo Schema data
 const howToData = {
@@ -110,6 +110,10 @@ export default function HowItWorksPage() {
     <>
       <HowToSchema howTo={howToData} />
       <FAQSchema faqs={howItWorksFAQs} />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://battlezone.com' },
+        { name: 'How It Works', url: 'https://battlezone.com/how-it-works' },
+      ]} />
       <Navbar />
       
       <main className="min-h-screen pt-20">

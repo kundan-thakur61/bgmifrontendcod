@@ -1,265 +1,216 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Navbar, Footer } from '@/components/layout';
-import { api } from '@/lib/api';
-import { useAuth } from '@/context/AuthContext';
-import { formatDate } from '@/lib/utils';
+import { WhatsappShareButton, TwitterShareButton, FacebookShareButton, TelegramShareButton } from 'react-share';
+import axios from 'axios';
 
-export default function ReferralsPage() {
-    const { user, loading: authLoading } = useAuth();
+export default function EnhancedReferralPage() {
     const [referralData, setReferralData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [copied, setCopied] = useState(false);
 
     useEffect(() => {
-        if (!authLoading && user) {
-            fetchReferralData();
-        }
-    }, [user, authLoading]);
+        fetchReferralData();
+    }, []);
 
     const fetchReferralData = async () => {
         try {
-            const data = await api.getReferralStats();
-            setReferralData(data.referral);
-        } catch (err) {
-            console.error('Failed to fetch referral data:', err);
+            const response = await axios.get('/api/users/referral-stats', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            setReferralData(response.data.data);
+        } catch (error) {
+            console.error('Error fetching referral data:', error);
         } finally {
             setLoading(false);
         }
     };
 
-    const copyReferralCode = () => {
-        if (referralData?.code) {
-            navigator.clipboard.writeText(referralData.code);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        }
+    const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
     };
 
-    const copyReferralLink = () => {
-        if (referralData?.code) {
-            const link = `${window.location.origin}/register?ref=${referralData.code}`;
-            navigator.clipboard.writeText(link);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-        }
+    const getTierInfo = (tier) => {
+        const tiers = {
+            bronze: { name: 'Bronze', color: 'from-amber-700 to-amber-900', icon: '🥉', next: 'Silver', required: 10 },
+            silver: { name: 'Silver', color: 'from-gray-400 to-gray-600', icon: '🥈', next: 'Gold', required: 25 },
+            gold: { name: 'Gold', color: 'from-yellow-400 to-yellow-600', icon: '🥇', next: 'Platinum', required: 50 },
+            platinum: { name: 'Platinum', color: 'from-cyan-400 to-cyan-600', icon: '💎', next: 'Diamond', required: 100 },
+            diamond: { name: 'Diamond', color: 'from-purple-400 to-purple-600', icon: '👑', next: 'Max', required: 0 }
+        };
+        return tiers[tier] || tiers.bronze;
     };
 
-    const shareOnWhatsApp = () => {
-        const link = `${window.location.origin}/register?ref=${referralData.code}`;
-        const message = `🎮 Join me on BattleZone and get ₹50 bonus! Use my referral code: ${referralData.code}\n\n${link}`;
-        window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
-    };
-
-    const shareOnTelegram = () => {
-        const link = `${window.location.origin}/register?ref=${referralData.code}`;
-        const message = `🎮 Join me on BattleZone and get ₹50 bonus! Use my referral code: ${referralData.code}`;
-        window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(message)}`, '_blank');
-    };
-
-    if (authLoading) {
+    if (loading) {
         return (
-            <>
-                <Navbar />
-                <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
-                    <div className="text-xl text-gray-400">Loading...</div>
-                </main>
-                <Footer />
-            </>
+            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center">
+                <div className="animate-spin text-6xl">⚡</div>
+            </div>
         );
     }
 
-    if (!user) {
-        return (
-            <>
-                <Navbar />
-                <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
-                    <div className="text-center">
-                        <h2 className="text-2xl font-bold text-white mb-4">Login Required</h2>
-                        <p className="text-gray-400 mb-6">Please login to view your referrals</p>
-                        <Link href="/login" className="btn-primary px-6 py-3">
-                            Login
-                        </Link>
-                    </div>
-                </main>
-                <Footer />
-            </>
-        );
-    }
+    const tierInfo = getTierInfo(referralData?.stats?.tier);
+    const progress = referralData?.stats?.tierProgress?.current || 0;
+    const required = referralData?.stats?.tierProgress?.required || 10;
+    const progressPercent = (progress / required) * 100;
 
     return (
-        <>
-            <Navbar />
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 py-12 px-4">
+            <div className="max-w-7xl mx-auto">
+                {/* Header */}
+                <div className="text-center mb-12">
+                    <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-4">
+                        Referral Program
+                    </h1>
+                    <p className="text-gray-300 text-lg">
+                        Invite friends and earn rewards together!
+                    </p>
+                </div>
 
-            <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
-                <div className="max-w-4xl mx-auto px-4 py-8">
-                    {/* Header */}
-                    <div className="text-center mb-12">
-                        <h1 className="text-4xl font-bold mb-4">
-                            <span className="text-white">REFER & </span>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">EARN</span>
-                        </h1>
-                        <p className="text-gray-400 text-lg max-w-xl mx-auto">
-                            Invite your friends to BattleZone and earn ₹50 for each friend who plays their first match!
-                        </p>
+                {/* Current Tier */}
+                <div className={`bg-gradient-to-r ${tierInfo.color} rounded-3xl p-8 mb-8 shadow-2xl`}>
+                    <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center gap-4">
+                            <span className="text-6xl">{tierInfo.icon}</span>
+                            <div>
+                                <h2 className="text-3xl font-bold text-white">{tierInfo.name} Tier</h2>
+                                <p className="text-white/80">
+                                    {tierInfo.next !== 'Max' ? `Next: ${tierInfo.next}` : 'Maximum Tier Reached!'}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="text-right">
+                            <div className="text-4xl font-bold text-white">{referralData?.stats?.activeReferrals || 0}</div>
+                            <div className="text-white/80">Active Referrals</div>
+                        </div>
                     </div>
 
-                    {loading ? (
-                        <div className="space-y-6 animate-pulse">
-                            <div className="h-48 bg-gray-800 rounded-2xl" />
-                            <div className="h-32 bg-gray-800 rounded-2xl" />
-                        </div>
-                    ) : referralData ? (
-                        <>
-                            {/* Referral Code Card */}
-                            <div className="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded-2xl p-8 border border-cyan-500/30 mb-8">
-                                <div className="text-center mb-6">
-                                    <h2 className="text-lg text-gray-400 mb-2">Your Referral Code</h2>
-                                    <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 tracking-widest">
-                                        {referralData.code}
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-wrap justify-center gap-4">
-                                    <button
-                                        onClick={copyReferralCode}
-                                        className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-xl font-semibold transition-all flex items-center gap-2"
-                                    >
-                                        {copied ? '✓ Copied!' : '📋 Copy Code'}
-                                    </button>
-                                    <button
-                                        onClick={copyReferralLink}
-                                        className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-xl font-semibold transition-all flex items-center gap-2"
-                                    >
-                                        🔗 Copy Link
-                                    </button>
-                                </div>
-
-                                {/* Share Buttons */}
-                                <div className="flex justify-center gap-4 mt-6">
-                                    <button
-                                        onClick={shareOnWhatsApp}
-                                        className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-semibold transition-all flex items-center gap-2"
-                                    >
-                                        <span className="text-xl">📱</span> WhatsApp
-                                    </button>
-                                    <button
-                                        onClick={shareOnTelegram}
-                                        className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-semibold transition-all flex items-center gap-2"
-                                    >
-                                        <span className="text-xl">✈️</span> Telegram
-                                    </button>
-                                </div>
+                    {tierInfo.next !== 'Max' && (
+                        <div>
+                            <div className="flex justify-between text-white/90 mb-2">
+                                <span>Progress to {tierInfo.next}</span>
+                                <span>{progress} / {required}</span>
                             </div>
-
-                            {/* Stats Cards */}
-                            <div className="grid md:grid-cols-3 gap-6 mb-8">
-                                <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border border-gray-800 text-center">
-                                    <div className="text-4xl font-bold text-cyan-400 mb-2">
-                                        {referralData.totalReferrals || 0}
-                                    </div>
-                                    <div className="text-gray-400">Friends Invited</div>
-                                </div>
-                                <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border border-gray-800 text-center">
-                                    <div className="text-4xl font-bold text-green-400 mb-2">
-                                        ₹{referralData.totalEarnings || 0}
-                                    </div>
-                                    <div className="text-gray-400">Total Earned</div>
-                                </div>
-                                <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border border-gray-800 text-center">
-                                    <div className="text-4xl font-bold text-purple-400 mb-2">₹50</div>
-                                    <div className="text-gray-400">Per Referral</div>
-                                </div>
+                            <div className="w-full bg-white/20 rounded-full h-4">
+                                <div
+                                    className="bg-white rounded-full h-4 transition-all duration-500"
+                                    style={{ width: `${Math.min(progressPercent, 100)}%` }}
+                                />
                             </div>
-
-                            {/* How It Works */}
-                            <div className="bg-gray-900/50 backdrop-blur-xl rounded-2xl p-8 border border-gray-800 mb-8">
-                                <h2 className="text-2xl font-bold text-white mb-6 text-center">How It Works</h2>
-                                <div className="grid md:grid-cols-3 gap-6">
-                                    <div className="text-center">
-                                        <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
-                                            1
-                                        </div>
-                                        <h3 className="font-bold text-white mb-2">Share Your Code</h3>
-                                        <p className="text-gray-400 text-sm">Send your referral code to friends</p>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
-                                            2
-                                        </div>
-                                        <h3 className="font-bold text-white mb-2">Friend Signs Up</h3>
-                                        <p className="text-gray-400 text-sm">They register using your code</p>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
-                                            3
-                                        </div>
-                                        <h3 className="font-bold text-white mb-2">Both Get Rewarded</h3>
-                                        <p className="text-gray-400 text-sm">You get ₹50, they get ₹25 bonus!</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Referred Users */}
-                            {referralData.referredUsers && referralData.referredUsers.length > 0 && (
-                                <div className="bg-gray-900/50 backdrop-blur-xl rounded-2xl p-8 border border-gray-800">
-                                    <h2 className="text-2xl font-bold text-white mb-6">Your Referrals</h2>
-                                    <div className="space-y-4">
-                                        {referralData.referredUsers.map((referredUser, index) => (
-                                            <div key={index} className="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl">
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
-                                                        {(referredUser.name || 'U')[0].toUpperCase()}
-                                                    </div>
-                                                    <div>
-                                                        <div className="font-semibold text-white">{referredUser.name || 'Player'}</div>
-                                                        <div className="text-sm text-gray-400">
-                                                            Joined {formatDate(referredUser.createdAt)}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="text-right">
-                                                    <div className="text-sm text-gray-400">Matches</div>
-                                                    <div className="font-bold text-cyan-400">{referredUser.matchesPlayed || 0}</div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Recent Earnings */}
-                            {referralData.recentEarnings && referralData.recentEarnings.length > 0 && (
-                                <div className="bg-gray-900/50 backdrop-blur-xl rounded-2xl p-8 border border-gray-800 mt-8">
-                                    <h2 className="text-2xl font-bold text-white mb-6">Recent Earnings</h2>
-                                    <div className="space-y-3">
-                                        {referralData.recentEarnings.map((earning, index) => (
-                                            <div key={index} className="flex items-center justify-between p-4 bg-gray-800/30 rounded-lg">
-                                                <div className="flex items-center gap-3">
-                                                    <span className="text-green-400 text-xl">💰</span>
-                                                    <div>
-                                                        <div className="text-white">{earning.description}</div>
-                                                        <div className="text-sm text-gray-400">{formatDate(earning.createdAt)}</div>
-                                                    </div>
-                                                </div>
-                                                <div className="text-lg font-bold text-green-400">+₹{earning.amount}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </>
-                    ) : (
-                        <div className="text-center py-16">
-                            <p className="text-gray-400">Failed to load referral data</p>
                         </div>
                     )}
                 </div>
-            </main>
 
-            <Footer />
-        </>
+                {/* Stats Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                        <div className="text-gray-400 text-sm mb-2">Total Referrals</div>
+                        <div className="text-3xl font-bold text-white">{referralData?.stats?.totalReferrals || 0}</div>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                        <div className="text-gray-400 text-sm mb-2">Total Earnings</div>
+                        <div className="text-3xl font-bold text-green-400">₹{referralData?.stats?.totalEarnings || 0}</div>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                        <div className="text-gray-400 text-sm mb-2">Conversion Rate</div>
+                        <div className="text-3xl font-bold text-blue-400">{referralData?.stats?.conversionRate?.toFixed(1) || 0}%</div>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                        <div className="text-gray-400 text-sm mb-2">This Month</div>
+                        <div className="text-3xl font-bold text-purple-400">
+                            {referralData?.stats?.referralsByMonth?.[0]?.count || 0}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Share Section */}
+                <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 mb-8">
+                    <h3 className="text-2xl font-bold text-white mb-6">Share Your Referral Link</h3>
+
+                    {/* Referral Code */}
+                    <div className="bg-white/5 rounded-xl p-4 mb-6 border border-white/10">
+                        <div className="flex items-center justify-between">
+                            <div className="flex-1">
+                                <div className="text-gray-400 text-sm mb-1">Your Referral Code</div>
+                                <div className="text-2xl font-mono font-bold text-white">{referralData?.referralCode}</div>
+                            </div>
+                            <button
+                                onClick={() => copyToClipboard(referralData?.referralCode)}
+                                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
+                            >
+                                {copied ? '✓ Copied!' : 'Copy Code'}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Referral Link */}
+                    <div className="bg-white/5 rounded-xl p-4 mb-6 border border-white/10">
+                        <div className="flex items-center justify-between">
+                            <div className="flex-1">
+                                <div className="text-gray-400 text-sm mb-1">Referral Link</div>
+                                <div className="text-sm font-mono text-white break-all">{referralData?.shareable?.link}</div>
+                            </div>
+                            <button
+                                onClick={() => copyToClipboard(referralData?.shareable?.link)}
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all ml-4"
+                            >
+                                Copy Link
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Social Share Buttons */}
+                    <div className="flex gap-4 justify-center flex-wrap">
+                        <WhatsappShareButton url={referralData?.shareable?.link} title={referralData?.shareable?.message}>
+                            <div className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all cursor-pointer">
+                                <span>📱</span> WhatsApp
+                            </div>
+                        </WhatsappShareButton>
+
+                        <TwitterShareButton url={referralData?.shareable?.link} title={referralData?.shareable?.message}>
+                            <div className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all cursor-pointer">
+                                <span>🐦</span> Twitter
+                            </div>
+                        </TwitterShareButton>
+
+                        <FacebookShareButton url={referralData?.shareable?.link} quote={referralData?.shareable?.message}>
+                            <div className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all cursor-pointer">
+                                <span>📘</span> Facebook
+                            </div>
+                        </FacebookShareButton>
+
+                        <TelegramShareButton url={referralData?.shareable?.link} title={referralData?.shareable?.message}>
+                            <div className="bg-sky-500 hover:bg-sky-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all cursor-pointer">
+                                <span>✈️</span> Telegram
+                            </div>
+                        </TelegramShareButton>
+                    </div>
+                </div>
+
+                {/* Milestones */}
+                {referralData?.stats?.milestones?.length > 0 && (
+                    <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
+                        <h3 className="text-2xl font-bold text-white mb-6">🏆 Milestones Achieved</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {referralData.stats.milestones.map((milestone, index) => (
+                                <div key={index} className="bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-xl p-4 border border-yellow-400/30">
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-3xl">🎯</span>
+                                        <div>
+                                            <div className="text-white font-semibold">{milestone.type.replace(/_/g, ' ').toUpperCase()}</div>
+                                            <div className="text-green-400 font-bold">+₹{milestone.reward}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
     );
 }
