@@ -118,8 +118,8 @@ export default function TeamDetailPage() {
         return (
             <>
                 <Navbar />
-                <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
-                    <div className="max-w-4xl mx-auto px-4 py-8">
+                <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
+                    <div className="max-w-4xl mx-auto px-3 sm:px-4 py-8">
                         <div className="animate-pulse space-y-6">
                             <div className="h-32 bg-gray-800 rounded-2xl" />
                             <div className="h-48 bg-gray-800 rounded-2xl" />
@@ -135,7 +135,7 @@ export default function TeamDetailPage() {
         return (
             <>
                 <Navbar />
-                <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
+                <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
                     <div className="text-center">
                         <div className="text-5xl mb-4">❌</div>
                         <h2 className="text-2xl font-bold text-white mb-4">Team Not Found</h2>
@@ -153,15 +153,15 @@ export default function TeamDetailPage() {
         <>
             <Navbar />
 
-            <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
-                <div className="max-w-4xl mx-auto px-4 py-8">
+            <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
+                <div className="max-w-4xl mx-auto px-3 sm:px-4 py-8">
                     {/* Back Link */}
                     <Link href="/teams" className="inline-flex items-center text-gray-400 hover:text-white mb-6">
                         ← Back to Teams
                     </Link>
 
                     {/* Team Header */}
-                    <div className="bg-gray-900/50 backdrop-blur-xl rounded-2xl p-8 border border-gray-800 mb-8">
+                    <div className="bg-gray-900/50 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-gray-800 mb-8">
                         <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                             {/* Logo */}
                             {team.logo?.url ? (
@@ -174,7 +174,7 @@ export default function TeamDetailPage() {
 
                             <div className="flex-1">
                                 <div className="flex items-center gap-3 mb-2">
-                                    <h1 className="text-3xl font-bold text-white">{team.name}</h1>
+                                    <h1 className="text-2xl sm:text-3xl font-bold text-white">{team.name}</h1>
                                     <span className="text-xl text-cyan-400 font-semibold">[{team.tag}]</span>
                                 </div>
                                 {team.description && (
@@ -219,7 +219,7 @@ export default function TeamDetailPage() {
                         </div>
 
                         {/* Team Stats */}
-                        <div className="grid grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-800">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-800">
                             <div className="text-center">
                                 <div className="text-2xl font-bold text-cyan-400">{team.stats?.matchesPlayed || 0}</div>
                                 <div className="text-sm text-gray-400">Matches</div>
@@ -240,7 +240,7 @@ export default function TeamDetailPage() {
                     </div>
 
                     {/* Members List */}
-                    <div className="bg-gray-900/50 backdrop-blur-xl rounded-2xl p-6 border border-gray-800 mb-8">
+                    <div className="bg-gray-900/50 backdrop-blur-xl rounded-2xl p-4 sm:p-6 border border-gray-800 mb-8">
                         <h2 className="text-xl font-bold text-white mb-6">Team Members</h2>
                         <div className="space-y-4">
                             {team.members?.map((member) => (
@@ -285,7 +285,7 @@ export default function TeamDetailPage() {
 
                     {/* Danger Zone (Captain only) */}
                     {isCaptain && (
-                        <div className="bg-red-900/20 backdrop-blur-xl rounded-2xl p-6 border border-red-500/30">
+                        <div className="bg-red-900/20 backdrop-blur-xl rounded-2xl p-4 sm:p-6 border border-red-500/30">
                             <h2 className="text-xl font-bold text-red-400 mb-4">Danger Zone</h2>
                             <p className="text-gray-400 mb-4">Once you disband the team, there is no going back.</p>
                             <button
@@ -303,7 +303,7 @@ export default function TeamDetailPage() {
             {/* Share Link Modal */}
             {showShareModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-                    <div className="bg-gray-900 rounded-2xl p-8 max-w-md w-full border border-gray-800">
+                    <div className="bg-gray-900 rounded-2xl p-6 sm:p-8 max-w-md w-full border border-gray-800">
                         <h2 className="text-2xl font-bold text-white mb-2">Share Team Invite</h2>
                         <p className="text-gray-400 mb-6">Share this link with friends to invite them to your team</p>
 

@@ -14,22 +14,37 @@
 .hero-title {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
 }
 
 .body-text {
   font-family: 'Inter', sans-serif;
 }
 
-/* Neon Text Effect */
+/* Neon Text Effect - Reduced on mobile for performance */
 .neon-text {
   color: var(--neon-cyan);
-  text-shadow:
-    0 0 10px var(--neon-cyan),
-    0 0 20px var(--neon-cyan),
-    0 0 40px var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
   animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+@media (min-width: 768px) {
+  .neon-text {
+    text-shadow:
+      0 0 10px var(--neon-cyan),
+      0 0 20px var(--neon-cyan),
+      0 0 40px var(--neon-cyan);
+  }
 }
 
 @keyframes neonPulse {
@@ -65,10 +80,19 @@
 /* Cyber Grid Background */
 .cyber-grid {
   background-image:
-    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
   animation: gridScroll 20s linear infinite;
+}
+
+@media (min-width: 768px) {
+  .cyber-grid {
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
 }
 
 @keyframes gridScroll {
@@ -224,10 +248,16 @@
 /* Feature Card */
 .feature-card {
   background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   position: relative;
+}
+
+@media (min-width: 768px) {
+  .feature-card {
+    backdrop-filter: blur(20px);
+  }
 }
 
 .feature-card::before {
@@ -250,8 +280,15 @@
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(0, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 255, 255, 0.15);
+}
+
+@media (min-width: 768px) {
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 255, 255, 0.2);
+  }
 }
 
 /* Step Indicator */
@@ -282,7 +319,15 @@
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+@media (min-width: 768px) {
+  .cta-button {
+    letter-spacing: 0.1em;
+  }
 }
 
 .cta-button::before {

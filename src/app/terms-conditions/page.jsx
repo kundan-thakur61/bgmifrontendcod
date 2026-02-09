@@ -13,14 +13,14 @@ export default function TermsConditionsPage() {
       ]} />
       <Navbar />
       
-      <main className="min-h-screen pt-20">
-        <div className="max-w-4xl mx-auto px-4 py-8">
+      <main className="min-h-screen pt-16 sm:pt-20">
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-8">
           <h1 className="text-3xl md:text-4xl font-bold font-display mb-4">Terms and Conditions</h1>
           <p className="text-dark-400 mb-8">Last updated: January 1, 2025</p>
 
           <div className="space-y-8 text-dark-300">
             {/* Introduction */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">1. Introduction</h2>
               <p className="mb-4">
                 Welcome to BattleZone (&quot;Platform&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). These Terms and Conditions (&quot;Terms&quot;) govern your use of our website, mobile application, and services (collectively, the &quot;Services&quot;).
@@ -31,7 +31,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Eligibility */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">2. Eligibility</h2>
               <ul className="list-disc list-inside space-y-2">
                 <li>You must be at least 18 years of age to use our paid Services.</li>
@@ -43,7 +43,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Account Registration */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">3. Account Registration</h2>
               <p className="mb-4">To access certain features of our Services, you must create an account. When creating an account:</p>
               <ul className="list-disc list-inside space-y-2">
@@ -56,7 +56,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Gaming Rules */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">4. Gaming Rules and Fair Play</h2>
               <p className="mb-4">By participating in matches and tournaments, you agree to:</p>
               <ul className="list-disc list-inside space-y-2">
@@ -73,7 +73,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Payments */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">5. Payments and Wallet</h2>
               <h3 className="font-semibold text-white mt-4 mb-2">5.1 Deposits</h3>
               <ul className="list-disc list-inside space-y-2 mb-4">
@@ -100,7 +100,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Intellectual Property */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">6. Intellectual Property</h2>
               <p className="mb-4">
                 All content, features, and functionality of the Platform, including but not limited to text, graphics, logos, icons, images, and software, are the exclusive property of BattleZone and are protected by Indian and international copyright, trademark, and other intellectual property laws.
@@ -111,7 +111,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Prohibited Activities */}
-            <section className="card p-6 border border-red-500/20">
+            <section className="card p-4 sm:p-6 border border-red-500/20">
               <h2 className="text-xl font-bold text-red-400 mb-4">7. Prohibited Activities</h2>
               <p className="mb-4">You agree not to:</p>
               <ul className="list-disc list-inside space-y-2">
@@ -127,7 +127,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Disclaimer */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">8. Disclaimer of Warranties</h2>
               <p className="mb-4">
                 THE PLATFORM IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. WE DO NOT WARRANT THAT THE PLATFORM WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE.
@@ -138,7 +138,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Limitation of Liability */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">9. Limitation of Liability</h2>
               <p>
                 TO THE MAXIMUM EXTENT PERMITTED BY LAW, BATTLEZONE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE PLATFORM.
@@ -146,7 +146,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Termination */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">10. Termination</h2>
               <p className="mb-4">
                 We reserve the right to suspend or terminate your account at any time for any reason, including but not limited to:
@@ -161,7 +161,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Governing Law */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">11. Governing Law and Dispute Resolution</h2>
               <p className="mb-4">
                 These Terms shall be governed by and construed in accordance with the laws of India. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the courts in Bangalore, Karnataka.
@@ -172,7 +172,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Changes */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">12. Changes to Terms</h2>
               <p>
                 We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on this page and updating the &quot;Last updated&quot; date. Your continued use of the Platform after such changes constitutes your acceptance of the new Terms.
@@ -180,7 +180,7 @@ export default function TermsConditionsPage() {
             </section>
 
             {/* Contact */}
-            <section className="card p-6 bg-primary-500/5 border border-primary-500/20">
+            <section className="card p-4 sm:p-6 bg-primary-500/5 border border-primary-500/20">
               <h2 className="text-xl font-bold text-white mb-4">13. Contact Us</h2>
               <p className="mb-4">
                 If you have any questions about these Terms, please contact us:

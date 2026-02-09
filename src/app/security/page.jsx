@@ -118,21 +118,21 @@ export default function SecurityPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 py-12 px-4">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 pt-16 sm:pt-20 pb-10 sm:pb-12 px-3 sm:px-4">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-12">
-                    <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-600 mb-4">
+                    <h1 className="text-3xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-600 mb-4">
                         Security Settings
                     </h1>
                     <p className="text-gray-300 text-lg">Protect your account with advanced security features</p>
                 </div>
 
                 {/* Tabs */}
-                <div className="flex gap-4 mb-8 overflow-x-auto pb-2">
+                <div className="flex gap-2 sm:gap-4 mb-8 overflow-x-auto pb-2">
                     <button
                         onClick={() => setActiveTab('2fa')}
-                        className={`px-6 py-3 rounded-xl font-semibold transition-all whitespace-nowrap ${activeTab === '2fa'
+                        className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold transition-all whitespace-nowrap text-sm sm:text-base ${activeTab === '2fa'
                                 ? 'bg-red-600 text-white'
                                 : 'bg-white/10 text-gray-300 hover:bg-white/20'
                             }`}
@@ -141,7 +141,7 @@ export default function SecurityPage() {
                     </button>
                     <button
                         onClick={() => setActiveTab('devices')}
-                        className={`px-6 py-3 rounded-xl font-semibold transition-all whitespace-nowrap ${activeTab === 'devices'
+                        className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold transition-all whitespace-nowrap text-sm sm:text-base ${activeTab === 'devices'
                                 ? 'bg-blue-600 text-white'
                                 : 'bg-white/10 text-gray-300 hover:bg-white/20'
                             }`}
@@ -150,7 +150,7 @@ export default function SecurityPage() {
                     </button>
                     <button
                         onClick={() => setActiveTab('logs')}
-                        className={`px-6 py-3 rounded-xl font-semibold transition-all whitespace-nowrap ${activeTab === 'logs'
+                        className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold transition-all whitespace-nowrap text-sm sm:text-base ${activeTab === 'logs'
                                 ? 'bg-orange-600 text-white'
                                 : 'bg-white/10 text-gray-300 hover:bg-white/20'
                             }`}
@@ -163,19 +163,19 @@ export default function SecurityPage() {
                 {activeTab === '2fa' && (
                     <div className="space-y-6">
                         {/* Status Card */}
-                        <div className={`bg-white/10 backdrop-blur-md rounded-3xl p-8 border-2 ${twoFAData?.isEnabled ? 'border-green-500/50' : 'border-red-500/50'
+                        <div className={`bg-white/10 backdrop-blur-md rounded-3xl p-5 sm:p-8 border-2 ${twoFAData?.isEnabled ? 'border-green-500/50' : 'border-red-500/50'
                             }`}>
-                            <div className="flex items-center justify-between">
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div className="flex items-center gap-4">
-                                    <div className={`w-16 h-16 rounded-full flex items-center justify-center text-3xl ${twoFAData?.isEnabled ? 'bg-green-500/20' : 'bg-red-500/20'
+                                    <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-2xl sm:text-3xl ${twoFAData?.isEnabled ? 'bg-green-500/20' : 'bg-red-500/20'
                                         }`}>
                                         {twoFAData?.isEnabled ? '✓' : '✗'}
                                     </div>
                                     <div>
-                                        <h3 className="text-2xl font-bold text-white mb-1">
+                                        <h3 className="text-lg sm:text-2xl font-bold text-white mb-1">
                                             Two-Factor Authentication
                                         </h3>
-                                        <p className={`${twoFAData?.isEnabled ? 'text-green-400' : 'text-red-400'}`}>
+                                        <p className={`text-sm sm:text-base ${twoFAData?.isEnabled ? 'text-green-400' : 'text-red-400'}`}>
                                             {twoFAData?.isEnabled ? 'Enabled - Your account is protected' : 'Disabled - Enable for better security'}
                                         </p>
                                     </div>
@@ -183,7 +183,7 @@ export default function SecurityPage() {
                                 {!twoFAData?.isEnabled && !qrCode && (
                                     <button
                                         onClick={setup2FA}
-                                        className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-semibold transition-all"
+                                        className="px-5 sm:px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-semibold transition-all min-h-[44px] w-full sm:w-auto"
                                     >
                                         Enable 2FA
                                     </button>
@@ -191,7 +191,7 @@ export default function SecurityPage() {
                                 {twoFAData?.isEnabled && (
                                     <button
                                         onClick={disable2FA}
-                                        className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl font-semibold transition-all"
+                                        className="px-5 sm:px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl font-semibold transition-all min-h-[44px] w-full sm:w-auto"
                                     >
                                         Disable 2FA
                                     </button>
@@ -201,8 +201,8 @@ export default function SecurityPage() {
 
                         {/* Setup Flow */}
                         {qrCode && (
-                            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-                                <h3 className="text-2xl font-bold text-white mb-6">Setup Two-Factor Authentication</h3>
+                            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-5 sm:p-8 border border-white/20">
+                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">Setup Two-Factor Authentication</h3>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     {/* Step 1: Scan QR */}
@@ -247,8 +247,8 @@ export default function SecurityPage() {
 
                         {/* Backup Codes */}
                         {backupCodes.length > 0 && (
-                            <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-md rounded-3xl p-8 border-2 border-yellow-500/50">
-                                <h3 className="text-2xl font-bold text-white mb-4">⚠️ Save Your Backup Codes</h3>
+                            <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-md rounded-3xl p-5 sm:p-8 border-2 border-yellow-500/50">
+                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">⚠️ Save Your Backup Codes</h3>
                                 <p className="text-gray-300 mb-6">
                                     These codes can be used to access your account if you lose your authenticator device.
                                     Each code can only be used once. Store them safely!
@@ -265,7 +265,7 @@ export default function SecurityPage() {
                                         navigator.clipboard.writeText(backupCodes.join('\n'));
                                         alert('Backup codes copied to clipboard!');
                                     }}
-                                    className="px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-xl font-semibold transition-all"
+                                    className="px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-xl font-semibold transition-all min-h-[44px] w-full sm:w-auto"
                                 >
                                     📋 Copy All Codes
                                 </button>
@@ -284,14 +284,14 @@ export default function SecurityPage() {
                             </div>
                         ) : (
                             devices.map((device) => (
-                                <div key={device._id} className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-14 h-14 rounded-full bg-blue-500/20 flex items-center justify-center text-2xl">
+                                <div key={device._id} className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                                        <div className="flex items-center gap-3 sm:gap-4">
+                                            <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-blue-500/20 flex items-center justify-center text-xl sm:text-2xl">
                                                 {device.deviceType === 'mobile' ? '📱' : '💻'}
                                             </div>
                                             <div>
-                                                <h3 className="text-white font-bold text-lg">{device.deviceName}</h3>
+                                                <h3 className="text-white font-bold text-base sm:text-lg">{device.deviceName}</h3>
                                                 <p className="text-gray-400 text-sm">
                                                     Last used: {new Date(device.lastUsed).toLocaleString()}
                                                 </p>
@@ -300,7 +300,7 @@ export default function SecurityPage() {
                                         </div>
                                         <button
                                             onClick={() => removeDevice(device._id)}
-                                            className="px-6 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg font-semibold transition-all"
+                                            className="px-5 sm:px-6 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg font-semibold transition-all min-h-[44px] w-full sm:w-auto"
                                         >
                                             Remove
                                         </button>
@@ -321,12 +321,12 @@ export default function SecurityPage() {
                             </div>
                         ) : (
                             logs.map((log) => (
-                                <div key={log._id} className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
+                                <div key={log._id} className="bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-5 border border-white/20">
                                     <div className="flex items-start justify-between">
                                         <div className="flex items-start gap-4">
-                                            <div className="text-3xl">{getEventIcon(log.eventType)}</div>
-                                            <div className="flex-1">
-                                                <div className="flex items-center gap-3 mb-2">
+                                            <div className="text-2xl sm:text-3xl">{getEventIcon(log.eventType)}</div>
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
                                                     <h4 className="text-white font-semibold">
                                                         {log.eventType.replace(/_/g, ' ').toUpperCase()}
                                                     </h4>
@@ -335,7 +335,7 @@ export default function SecurityPage() {
                                                     </span>
                                                 </div>
                                                 <p className="text-gray-400 text-sm mb-2">{log.description}</p>
-                                                <div className="flex gap-4 text-xs text-gray-500">
+                                                <div className="flex flex-wrap gap-2 sm:gap-4 text-xs text-gray-500">
                                                     <span>🕒 {new Date(log.createdAt).toLocaleString()}</span>
                                                     <span>📍 {log.ipAddress}</span>
                                                 </div>

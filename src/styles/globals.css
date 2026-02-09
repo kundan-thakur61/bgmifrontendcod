@@ -37,10 +37,18 @@
   --font-gaming: 'Rajdhani', sans-serif;
 }
 
-/* Base styles */
+/* Base styles - Mobile First */
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -49,11 +57,53 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  /* Mobile bottom nav spacing */
+  padding-bottom: 72px;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   body {
-    padding-bottom: 64px;
+    padding-bottom: 0;
+  }
+}
+
+/* Prevent horizontal overflow globally */
+main,
+section,
+article,
+div {
+  max-width: 100%;
+}
+
+/* Make all images responsive by default */
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure touch targets are at least 44px */
+button,
+a,
+input,
+select,
+textarea {
+  min-height: 44px;
+}
+
+input,
+select,
+textarea {
+  font-size: 16px; /* Prevents iOS zoom on focus */
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 }
 
@@ -63,10 +113,19 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   font-size: 0.875rem;
   font-weight: 500;
   transition: all 0.2s;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    padding: 0.5rem 1rem;
+  }
 }
 
 .btn:focus {
@@ -136,13 +195,15 @@ body {
 }
 
 .btn-lg {
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 1.5rem;
   font-size: 1rem;
+  min-height: 48px;
 }
 
 .btn-sm {
-  padding: 0.375rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   font-size: 0.75rem;
+  min-height: 36px;
 }
 
 .card {
@@ -170,9 +231,13 @@ body {
   border-radius: 0.5rem;
   border: 1px solid var(--color-dark-600);
   background-color: var(--color-dark-800);
-  padding: 0.625rem 1rem;
+  padding: 0.75rem 1rem;
   color: white;
   transition: border-color 0.2s;
+  font-size: 16px; /* Prevents iOS zoom */
+  min-height: 44px;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .input::placeholder {
@@ -234,7 +299,40 @@ body {
   background-clip: text;
 }
 
-/* Custom Scrollbar */
+/* Responsive typography scale */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 769px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Custom Scrollbar - Hidden on mobile for cleaner look */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

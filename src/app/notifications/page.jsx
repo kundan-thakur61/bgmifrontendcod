@@ -95,8 +95,8 @@ export default function NotificationsPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-dark-900 py-8">
-        <div className="container mx-auto px-4 max-w-2xl">
+      <main className="min-h-screen bg-dark-900 pt-16 sm:pt-20 pb-8">
+        <div className="container mx-auto px-3 sm:px-4 max-w-2xl">
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
             <div>

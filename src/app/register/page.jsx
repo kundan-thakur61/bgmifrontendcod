@@ -125,7 +125,7 @@ function RegisterContent() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-dark-900">
+    <div className="min-h-screen flex items-center justify-center px-3 sm:px-4 py-8 sm:py-12 bg-dark-900">
       <div className="w-full max-w-md">
         {/* Logo */}
         <Link href="/" className="flex items-center justify-center space-x-2 mb-8">
@@ -136,13 +136,13 @@ function RegisterContent() {
         </Link>
 
         {/* Card */}
-        <div className="card p-8">
-          <h1 className="text-2xl font-bold text-center mb-2">
+        <div className="card p-5 sm:p-8">
+          <h1 className="text-xl sm:text-2xl font-bold text-center mb-2">
             {step === 'phone' && 'Create Account'}
             {step === 'otp' && 'Verify OTP'}
             {step === 'details' && 'Complete Profile'}
           </h1>
-          <p className="text-dark-400 text-center mb-8">
+          <p className="text-dark-400 text-center mb-6 sm:mb-8 text-sm sm:text-base">
             {step === 'phone' && 'Enter your mobile number to get started'}
             {step === 'otp' && `Enter the OTP sent to +91 ${phone}`}
             {step === 'details' && 'Just a few more details'}
@@ -371,7 +371,7 @@ export default function RegisterPage() {
             </div>
             <span className="text-2xl font-bold font-display gradient-text">BattleZone</span>
           </div>
-          <div className="card p-8">
+          <div className="card p-5 sm:p-8">
             <div className="text-center">
               <div className="w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
               <h1 className="text-2xl font-bold mb-2">Loading...</h1>

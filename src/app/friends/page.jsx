@@ -110,11 +110,11 @@ export default function FriendsPage() {
     };
 
     const FriendCard = ({ friend, showInvite = true }) => (
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
-            <div className="flex items-center gap-4">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20 hover:bg-white/15 transition-all">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 {/* Avatar */}
-                <div className="relative">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-2xl font-bold">
+                <div className="relative flex-shrink-0">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
                         {friend.username?.charAt(0).toUpperCase() || '?'}
                     </div>
                     {friend.isOnline && (
@@ -132,18 +132,18 @@ export default function FriendsPage() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex gap-2">
+                <div className="flex gap-2 w-full sm:w-auto">
                     {showInvite && (
                         <button
                             onClick={() => inviteToMatch(friend._id, friend.username)}
-                            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all"
+                            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all min-h-[44px] flex-1 sm:flex-none"
                         >
                             🎮 Invite
                         </button>
                     )}
                     <button
                         onClick={() => removeFriend(friend.friendshipId)}
-                        className="px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg font-semibold transition-all"
+                        className="px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg font-semibold transition-all min-h-[44px]"
                     >
                         ✕
                     </button>
@@ -155,25 +155,25 @@ export default function FriendsPage() {
     const RequestCard = ({ request }) => {
         const requester = request.requester;
         return (
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-                <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-2xl font-bold">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
                         {requester.username?.charAt(0).toUpperCase()}
                     </div>
                     <div className="flex-1">
                         <h3 className="text-white font-bold text-lg">{requester.username}</h3>
                         <p className="text-gray-400 text-sm">Sent {new Date(request.requestedAt).toLocaleDateString()}</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 w-full sm:w-auto">
                         <button
                             onClick={() => respondToRequest(request._id, 'accept')}
-                            className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-all"
+                            className="px-4 sm:px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-all min-h-[44px] flex-1 sm:flex-none"
                         >
                             ✓ Accept
                         </button>
                         <button
                             onClick={() => respondToRequest(request._id, 'decline')}
-                            className="px-6 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg font-semibold transition-all"
+                            className="px-4 sm:px-6 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg font-semibold transition-all min-h-[44px] flex-1 sm:flex-none"
                         >
                             ✗ Decline
                         </button>
@@ -184,20 +184,20 @@ export default function FriendsPage() {
     };
 
     const SearchResultCard = ({ user }) => (
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-            <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center text-white text-2xl font-bold">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
                     {user.username?.charAt(0).toUpperCase()}
                 </div>
                 <div className="flex-1">
                     <h3 className="text-white font-bold text-lg">{user.username}</h3>
                     <p className="text-gray-400 text-sm">Game ID: {user.gameId || 'N/A'}</p>
                 </div>
-                <div>
+                <div className="w-full sm:w-auto">
                     {user.friendshipStatus === 'none' && (
                         <button
                             onClick={() => sendFriendRequest(user._id)}
-                            className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition-all"
+                            className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition-all min-h-[44px] w-full sm:w-auto"
                         >
                             + Add Friend
                         </button>
@@ -218,11 +218,11 @@ export default function FriendsPage() {
     );
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 py-12 px-4">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 pt-16 sm:pt-20 pb-10 sm:pb-12 px-3 sm:px-4">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-12">
-                    <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-4">
+                    <h1 className="text-3xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-4">
                         Friends
                     </h1>
                     <p className="text-gray-300 text-lg">Connect with players and team up for matches</p>
@@ -314,18 +314,18 @@ export default function FriendsPage() {
                     <div>
                         {/* Search Input */}
                         <div className="mb-8">
-                            <div className="flex gap-4">
+                            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                                 <input
                                     type="text"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     onKeyPress={(e) => e.key === 'Enter' && searchUsers()}
                                     placeholder="Search by username or Game ID..."
-                                    className="flex-1 px-6 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    className="flex-1 px-4 sm:px-6 py-3 sm:py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
                                 />
                                 <button
                                     onClick={searchUsers}
-                                    className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-semibold transition-all"
+                                    className="px-6 sm:px-8 py-3 sm:py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-semibold transition-all min-h-[44px]"
                                 >
                                     🔍 Search
                                 </button>

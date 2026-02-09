@@ -119,10 +119,10 @@ export default function KYCPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-dark-900 py-8">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <h1 className="text-2xl font-bold mb-2">KYC Verification</h1>
-          <p className="text-dark-400 mb-6">Complete KYC to enable withdrawals</p>
+      <main className="min-h-screen bg-dark-900 pt-16 sm:pt-20 pb-8">
+        <div className="container mx-auto px-3 sm:px-4 max-w-2xl">
+          <h1 className="text-xl sm:text-2xl font-bold mb-2">KYC Verification</h1>
+          <p className="text-dark-400 mb-6 text-sm sm:text-base">Complete KYC to enable withdrawals</p>
 
           {/* KYC Status Banner */}
           {kycStatus && (

@@ -78,7 +78,7 @@ export default function MatchHistoryPage() {
         return (
             <>
                 <Navbar />
-                <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
+                <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
                     <div className="text-xl text-gray-400">Loading...</div>
                 </main>
                 <Footer />
@@ -90,7 +90,7 @@ export default function MatchHistoryPage() {
         return (
             <>
                 <Navbar />
-                <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
+                <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
                     <div className="text-center">
                         <h2 className="text-2xl font-bold text-white mb-4">Login Required</h2>
                         <p className="text-gray-400 mb-6">Please login to view your match history</p>
@@ -110,12 +110,12 @@ export default function MatchHistoryPage() {
         <>
             <Navbar />
 
-            <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
-                <div className="max-w-6xl mx-auto px-4 py-8">
+            <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
+                <div className="max-w-6xl mx-auto px-3 sm:px-4 py-8">
                     {/* Header */}
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                         <div>
-                            <h1 className="text-3xl font-bold text-white mb-2">Match History</h1>
+                            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Match History</h1>
                             <p className="text-gray-400">Track all your matches and results</p>
                         </div>
                         <Link
@@ -129,19 +129,19 @@ export default function MatchHistoryPage() {
                     {/* Stats Summary */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                         <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 border border-gray-800">
-                            <div className="text-3xl font-bold text-cyan-400">{stats.totalMatches}</div>
+                            <div className="text-xl sm:text-3xl font-bold text-cyan-400">{stats.totalMatches}</div>
                             <div className="text-sm text-gray-400">Matches Played</div>
                         </div>
                         <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 border border-gray-800">
-                            <div className="text-3xl font-bold text-green-400">{stats.wins}</div>
+                            <div className="text-xl sm:text-3xl font-bold text-green-400">{stats.wins}</div>
                             <div className="text-sm text-gray-400">Wins</div>
                         </div>
                         <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 border border-gray-800">
-                            <div className="text-3xl font-bold text-orange-400">{stats.totalKills}</div>
+                            <div className="text-xl sm:text-3xl font-bold text-orange-400">{stats.totalKills}</div>
                             <div className="text-sm text-gray-400">Total Kills</div>
                         </div>
                         <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 border border-gray-800">
-                            <div className="text-3xl font-bold text-purple-400">₹{stats.totalWinnings}</div>
+                            <div className="text-xl sm:text-3xl font-bold text-purple-400">₹{stats.totalWinnings}</div>
                             <div className="text-sm text-gray-400">Total Winnings</div>
                         </div>
                     </div>
@@ -169,7 +169,7 @@ export default function MatchHistoryPage() {
                     <div className="space-y-4">
                         {loading ? (
                             [...Array(5)].map((_, i) => (
-                                <div key={i} className="bg-gray-900/50 rounded-xl p-6 border border-gray-800 animate-pulse">
+                                <div key={i} className="bg-gray-900/50 rounded-xl p-4 sm:p-6 border border-gray-800 animate-pulse">
                                     <div className="flex justify-between">
                                         <div className="space-y-2">
                                             <div className="h-5 w-48 bg-gray-700 rounded" />
@@ -204,7 +204,7 @@ export default function MatchHistoryPage() {
                                     <Link
                                         key={match._id}
                                         href={`/matches/${match._id}`}
-                                        className="block bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border border-gray-800 hover:border-cyan-500/30 transition-all hover:shadow-lg hover:shadow-cyan-500/10"
+                                        className="block bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-gray-800 hover:border-cyan-500/30 transition-all hover:shadow-lg hover:shadow-cyan-500/10"
                                     >
                                         <div className="flex flex-col md:flex-row justify-between gap-4">
                                             {/* Match Info */}

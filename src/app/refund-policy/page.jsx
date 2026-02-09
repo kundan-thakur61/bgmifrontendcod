@@ -13,13 +13,13 @@ export default function RefundPolicyPage() {
       ]} />
       <Navbar />
 
-      <main className="min-h-screen pt-20">
-        <div className="max-w-4xl mx-auto px-4 py-8">
+      <main className="min-h-screen pt-16 sm:pt-20">
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-8">
           <h1 className="text-3xl md:text-4xl font-bold font-display mb-4">Refund Policy</h1>
           <p className="text-dark-400 mb-8">Last updated: January 1, 2025</p>
 
           <div className="space-y-8 text-dark-300">
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">1. Eligibility for Refunds</h2>
               <p className="mb-4">
                 BattleZone may issue refunds under the following circumstances:
@@ -32,7 +32,7 @@ export default function RefundPolicyPage() {
               </ul>
             </section>
 
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">2. Non-Refundable Scenarios</h2>
               <ul className="list-disc list-inside space-y-2">
                 <li>Player fails to join the match room on time.</li>
@@ -43,7 +43,7 @@ export default function RefundPolicyPage() {
               </ul>
             </section>
 
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">3. Refund Process</h2>
               <p className="mb-4">
                 Eligible refunds are automatically credited to your BattleZone wallet within 24 hours. For bank/UPI refunds, the processing time is 5–7 business days.
@@ -53,7 +53,7 @@ export default function RefundPolicyPage() {
               </p>
             </section>
 
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">4. Dispute Resolution</h2>
               <p>
                 All refund disputes are reviewed by our admin team within 48 hours. Our decision is final and based on match logs, screenshots, and system data. For further escalation, contact us at support@battlezone.com.

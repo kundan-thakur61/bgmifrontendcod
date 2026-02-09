@@ -104,13 +104,13 @@ export default function MissionsPage() {
         const progressPercent = (currentProgress / mission.requirement.count) * 100;
 
         return (
-            <div className={`bg-white/10 backdrop-blur-md rounded-2xl p-6 border-2 transition-all ${isCompleted
+            <div className={`bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border-2 transition-all ${isCompleted
                     ? 'border-green-500/50 bg-green-500/10'
                     : 'border-white/20 hover:border-purple-500/50'
                 }`}>
                 <div className="flex items-start gap-4">
                     {/* Icon */}
-                    <div className={`w-16 h-16 rounded-xl flex items-center justify-center text-3xl ${isCompleted ? 'bg-green-500/20' : 'bg-purple-500/20'
+                    <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center text-2xl sm:text-3xl ${isCompleted ? 'bg-green-500/20' : 'bg-purple-500/20'
                         }`}>
                         {getMissionIcon(mission.type)}
                     </div>
@@ -251,11 +251,11 @@ export default function MissionsPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 py-12 px-4">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 pt-16 sm:pt-20 pb-10 sm:pb-12 px-3 sm:px-4">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="mb-12">
-                    <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-4">
+                    <h1 className="text-3xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-4">
                         Missions & Rewards
                     </h1>
                     <p className="text-gray-300 text-lg">Complete challenges and unlock exclusive rewards</p>
@@ -263,9 +263,9 @@ export default function MissionsPage() {
 
                 {/* Progress Overview */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div className="bg-gradient-to-br from-blue-500/20 to-blue-700/20 backdrop-blur-md rounded-2xl p-6 border border-blue-500/30">
+                    <div className="bg-gradient-to-br from-blue-500/20 to-blue-700/20 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-blue-500/30">
                         <div className="text-blue-300 text-sm mb-2">Current Level</div>
-                        <div className="text-4xl font-bold text-white mb-1">{userProgress?.level || 1}</div>
+                        <div className="text-2xl sm:text-4xl font-bold text-white mb-1">{userProgress?.level || 1}</div>
                         <div className="text-blue-300 text-xs">
                             {userProgress?.xp || 0} / {userProgress?.xpToNextLevel || 100} XP
                         </div>
@@ -277,17 +277,17 @@ export default function MissionsPage() {
                         </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-500/20 to-purple-700/20 backdrop-blur-md rounded-2xl p-6 border border-purple-500/30">
+                    <div className="bg-gradient-to-br from-purple-500/20 to-purple-700/20 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-purple-500/30">
                         <div className="text-purple-300 text-sm mb-2">Login Streak</div>
-                        <div className="text-4xl font-bold text-white mb-1">🔥 {userProgress?.dailyLoginStreak?.current || 0}</div>
+                        <div className="text-2xl sm:text-4xl font-bold text-white mb-1">🔥 {userProgress?.dailyLoginStreak?.current || 0}</div>
                         <div className="text-purple-300 text-xs">
                             Longest: {userProgress?.dailyLoginStreak?.longest || 0} days
                         </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-700/20 backdrop-blur-md rounded-2xl p-6 border border-yellow-500/30">
+                    <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-700/20 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-yellow-500/30">
                         <div className="text-yellow-300 text-sm mb-2">Season Pass Tier</div>
-                        <div className="text-4xl font-bold text-white mb-1">{userProgress?.seasonPass?.currentTier || 1}</div>
+                        <div className="text-2xl sm:text-4xl font-bold text-white mb-1">{userProgress?.seasonPass?.currentTier || 1}</div>
                         <div className="text-yellow-300 text-xs">
                             {userProgress?.seasonPass?.isPremium ? '👑 Premium' : 'Free Pass'}
                         </div>
@@ -333,10 +333,10 @@ export default function MissionsPage() {
                 {activeTab === 'seasonpass' && (
                     <div>
                         {/* Season Pass Header */}
-                        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 rounded-3xl p-8 mb-8 shadow-2xl">
-                            <div className="flex items-center justify-between">
+                        <div className="bg-gradient-to-r from-yellow-600 to-orange-600 rounded-2xl sm:rounded-3xl p-5 sm:p-8 mb-8 shadow-2xl">
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                                 <div>
-                                    <h2 className="text-3xl font-bold text-white mb-2">
+                                    <h2 className="text-xl sm:text-3xl font-bold text-white mb-2">
                                         {seasonPass?.name || 'Season 1 Pass'}
                                     </h2>
                                     <p className="text-white/80">
@@ -346,13 +346,13 @@ export default function MissionsPage() {
                                 {!userProgress?.seasonPass?.isPremium && (
                                     <button
                                         onClick={purchasePremium}
-                                        className="px-8 py-4 bg-white text-yellow-600 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all"
+                                        className="px-5 sm:px-8 py-3 sm:py-4 bg-white text-yellow-600 rounded-xl font-bold text-sm sm:text-lg hover:bg-gray-100 transition-all min-h-[44px] w-full sm:w-auto"
                                     >
                                         👑 Unlock Premium - 999 Coins
                                     </button>
                                 )}
                                 {userProgress?.seasonPass?.isPremium && (
-                                    <div className="px-8 py-4 bg-white/20 text-white rounded-xl font-bold text-lg">
+                                    <div className="px-5 sm:px-8 py-3 sm:py-4 bg-white/20 text-white rounded-xl font-bold text-sm sm:text-lg text-center">
                                         ✓ Premium Active
                                     </div>
                                 )}

@@ -65,7 +65,7 @@ export default function DisputesPage() {
         return (
             <>
                 <Navbar />
-                <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
+                <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
                     <div className="text-center">
                         <div className="text-5xl mb-4">⚖️</div>
                         <h2 className="text-2xl font-bold text-white mb-4">Login Required</h2>
@@ -84,16 +84,16 @@ export default function DisputesPage() {
         <>
             <Navbar />
 
-            <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
-                <div className="max-w-4xl mx-auto px-4 py-8">
+            <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
+                <div className="max-w-4xl mx-auto px-3 sm:px-4 py-8">
                     {/* Header */}
                     <div className="mb-8">
-                        <h1 className="text-3xl font-bold text-white mb-2">My Disputes</h1>
+                        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">My Disputes</h1>
                         <p className="text-gray-400">Track and manage your result disputes</p>
                     </div>
 
                     {/* Info Card */}
-                    <div className="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded-xl p-6 border border-cyan-500/30 mb-8">
+                    <div className="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded-xl p-4 sm:p-6 border border-cyan-500/30 mb-8">
                         <h3 className="font-bold text-white mb-2">📋 How Disputes Work</h3>
                         <ul className="text-gray-300 text-sm space-y-1">
                             <li>• Submit a dispute within 24 hours of match completion</li>
@@ -126,7 +126,7 @@ export default function DisputesPage() {
                     {loading ? (
                         <div className="space-y-4">
                             {[...Array(3)].map((_, i) => (
-                                <div key={i} className="bg-gray-900/50 rounded-xl p-6 border border-gray-800 animate-pulse">
+                                <div key={i} className="bg-gray-900/50 rounded-xl p-4 sm:p-6 border border-gray-800 animate-pulse">
                                     <div className="space-y-3">
                                         <div className="h-5 w-3/4 bg-gray-700 rounded" />
                                         <div className="h-4 w-1/2 bg-gray-700 rounded" />
@@ -150,7 +150,7 @@ export default function DisputesPage() {
                                 <Link
                                     key={dispute._id}
                                     href={`/disputes/${dispute._id}`}
-                                    className="block bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border border-gray-800 hover:border-cyan-500/30 transition-all"
+                                    className="block bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-gray-800 hover:border-cyan-500/30 transition-all"
                                 >
                                     <div className="flex flex-col md:flex-row justify-between gap-4">
                                         <div className="flex-1">

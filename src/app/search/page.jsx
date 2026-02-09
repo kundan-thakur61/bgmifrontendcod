@@ -67,9 +67,9 @@ export default function SearchPage({ searchParams }) {
         { name: 'Search', url: 'https://battlezone.com/search' },
       ]} />
       <Navbar />
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-16 sm:pt-20">
         {/* Hero Search */}
-        <section className="py-12 px-4 bg-gradient-to-b from-primary-900/30 to-dark-900">
+        <section className="py-12 px-3 sm:px-4 bg-gradient-to-b from-primary-900/30 to-dark-900">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl sm:text-4xl font-bold font-display mb-6">
               Search <span className="gradient-text">BattleZone</span>
@@ -97,7 +97,7 @@ export default function SearchPage({ searchParams }) {
         </section>
 
         {/* Results */}
-        <section className="py-12 px-4">
+        <section className="py-12 px-3 sm:px-4">
           <div className="max-w-3xl mx-auto">
             {query ? (
               <>
@@ -111,7 +111,7 @@ export default function SearchPage({ searchParams }) {
                       <Link
                         key={index}
                         href={result.url}
-                        className="block bg-dark-800 rounded-xl p-5 border border-dark-700 hover:border-primary-500 transition-all hover:transform hover:-translate-x-1"
+                        className="block bg-dark-800 rounded-xl p-4 sm:p-5 border border-dark-700 hover:border-primary-500 transition-all hover:transform hover:-translate-x-1"
                       >
                         <div className="flex items-start justify-between mb-2">
                           <h3 className="text-lg font-semibold text-white hover:text-primary-400 transition-colors">
@@ -153,7 +153,7 @@ export default function SearchPage({ searchParams }) {
         </section>
 
         {/* Quick Links */}
-        <section className="py-12 px-4 border-t border-dark-700 bg-dark-800/30">
+        <section className="py-12 px-3 sm:px-4 border-t border-dark-700 bg-dark-800/30">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-xl font-bold mb-6 text-center">Popular Searches</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">

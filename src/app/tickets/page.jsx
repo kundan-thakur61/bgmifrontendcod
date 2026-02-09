@@ -125,8 +125,8 @@ export default function TicketsPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-dark-900 py-8">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <main className="min-h-screen bg-dark-900 pt-16 sm:pt-20 pb-8">
+        <div className="container mx-auto px-3 sm:px-4 max-w-4xl">
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
             <div>
@@ -140,7 +140,7 @@ export default function TicketsPage() {
 
           {/* Tickets List */}
           {tickets.length === 0 ? (
-            <div className="card p-12 text-center">
+            <div className="card p-8 sm:p-12 text-center">
               <div className="text-4xl mb-4">🎫</div>
               <h2 className="text-xl font-bold mb-2">No tickets yet</h2>
               <p className="text-dark-400 mb-4">Create a ticket if you need help</p>

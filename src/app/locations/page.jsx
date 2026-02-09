@@ -47,9 +47,9 @@ export default function LocationsPage() {
         { name: 'Tournaments by City', url: 'https://battlezone.com/locations' },
       ]} />
 
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-16 sm:pt-20">
         {/* Hero Section */}
-        <section className="py-16 px-4 bg-gradient-to-b from-primary-900/30 to-dark-900">
+        <section className="py-16 px-3 sm:px-4 bg-gradient-to-b from-primary-900/30 to-dark-900">
           <div className="max-w-4xl mx-auto text-center">
             <nav className="text-sm text-dark-400 mb-6">
               <Link href="/" className="hover:text-white">Home</Link>
@@ -78,7 +78,7 @@ export default function LocationsPage() {
         </section>
 
         {/* Active Cities */}
-        <section className="py-16 px-4">
+        <section className="py-16 px-3 sm:px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
               Active Tournament <span className="gradient-text">Cities</span>
@@ -89,7 +89,7 @@ export default function LocationsPage() {
                 <Link 
                   key={city.slug}
                   href={`/locations/${city.slug}`}
-                  className="group bg-dark-800 rounded-xl p-6 border border-dark-700 hover:border-primary-500 transition-all hover:transform hover:-translate-y-1"
+                  className="group bg-dark-800 rounded-xl p-4 sm:p-6 border border-dark-700 hover:border-primary-500 transition-all hover:transform hover:-translate-y-1"
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div>
@@ -140,11 +140,11 @@ export default function LocationsPage() {
         </section>
 
         {/* How It Works */}
-        <section className="py-16 px-4 border-t border-dark-700 bg-dark-800/30">
+        <section className="py-16 px-3 sm:px-4 border-t border-dark-700 bg-dark-800/30">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-8 text-center">How City Tournaments Work</h2>
             
-            <div className="grid sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
                 { step: '1', title: 'Select Your City', desc: 'Choose your city or nearest location' },
                 { step: '2', title: 'Browse Tournaments', desc: 'Find matches for your skill level' },
@@ -164,7 +164,7 @@ export default function LocationsPage() {
         </section>
 
         {/* Upcoming Cities */}
-        <section className="py-16 px-4 border-t border-dark-700">
+        <section className="py-16 px-3 sm:px-4 border-t border-dark-700">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-6 text-center">Coming Soon to More Cities</h2>
             <p className="text-dark-400 text-center mb-8">
@@ -195,7 +195,7 @@ export default function LocationsPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 px-4 bg-gradient-to-t from-primary-900/30 to-dark-900">
+        <section className="py-16 px-3 sm:px-4 bg-gradient-to-t from-primary-900/30 to-dark-900">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Represent Your City?</h2>
             <p className="text-dark-300 mb-8 max-w-2xl mx-auto">

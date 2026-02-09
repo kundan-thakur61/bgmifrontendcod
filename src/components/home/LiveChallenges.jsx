@@ -25,21 +25,21 @@ export default function LiveChallenges() {
     };
 
     return (
-        <section className="py-20 px-4 relative">
+        <section className="py-12 sm:py-20 px-3 sm:px-4 relative">
             <div className="absolute inset-0 bg-gradient-to-b from-cyan-900/10 via-purple-900/10 to-transparent" />
 
             <div className="relative max-w-7xl mx-auto">
-                <div className="flex items-center justify-between mb-12">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 sm:mb-12">
                     <div>
-                        <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-gaming-purple/20 to-gaming-orange/20 rounded-full border border-gaming-purple/30 mb-4">
+                        <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-gaming-purple/20 to-gaming-orange/20 rounded-full border border-gaming-purple/30 mb-3 sm:mb-4">
                             <span className="w-2 h-2 bg-gaming-orange rounded-full mr-2 live-indicator" />
-                            <span className="text-sm font-semibold text-gaming-orange uppercase tracking-wider">Live Challenges</span>
+                            <span className="text-xs sm:text-sm font-semibold text-gaming-orange uppercase tracking-wider">Live Challenges</span>
                         </div>
-                        <h2 className="hero-title text-3xl sm:text-4xl md:text-5xl">
+                        <h2 className="hero-title text-2xl sm:text-4xl md:text-5xl">
                             <span className="text-white">PLAYER VS PLAYER </span>
                             <span className="neon-text">CHALLENGES</span>
                         </h2>
-                        <p className="text-gray-400 mt-3 max-w-xl">
+                        <p className="text-gray-400 mt-2 sm:mt-3 max-w-xl text-sm sm:text-base">
                             Accept a challenge, defeat your opponent, and win the entire prize pool!
                         </p>
                     </div>
@@ -65,7 +65,7 @@ export default function LiveChallenges() {
                         ))}
                     </div>
                 ) : challenges.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         {challenges.map((challenge, index) => (
                             <Link
                                 key={challenge._id}
@@ -73,35 +73,35 @@ export default function LiveChallenges() {
                                 className="group relative"
                                 style={{ animation: `fadeInUp 0.5s ease-out ${index * 0.1}s backwards` }}
                             >
-                                <div className="bg-gray-900/60 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/30 hover:border-cyan-400/50 transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-lg hover:shadow-cyan-500/20 will-change-transform translate-z-0">
+                                <div className="bg-gray-900/60 backdrop-blur-xl rounded-2xl p-4 sm:p-6 border border-purple-500/30 hover:border-cyan-400/50 transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-lg hover:shadow-cyan-500/20 will-change-transform translate-z-0">
                                     {/* Challenge Badge */}
                                     <div className="absolute top-0 right-0 bg-gradient-to-r from-gaming-purple to-gaming-orange text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-2xl">
                                         🎯 CHALLENGE
                                     </div>
 
                                     {/* Header */}
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <span className="text-3xl">
+                                    <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                                        <span className="text-2xl sm:text-3xl">
                                             {challenge.gameType === 'pubg_mobile' ? '🎯' : challenge.gameType === 'free_fire' ? '🔥' : '🎮'}
                                         </span>
-                                        <div>
-                                            <h3 className="font-bold text-lg text-white group-hover:text-cyan-400 transition-colors line-clamp-1">
+                                        <div className="min-w-0 flex-1">
+                                            <h3 className="font-bold text-base sm:text-lg text-white group-hover:text-cyan-400 transition-colors line-clamp-1">
                                                 {challenge.title}
                                             </h3>
-                                            <p className="text-sm text-gray-400 capitalize">{challenge.gameType?.replace('_', ' ')}</p>
+                                            <p className="text-xs sm:text-sm text-gray-400 capitalize">{challenge.gameType?.replace('_', ' ')}</p>
                                         </div>
                                     </div>
 
                                     {/* Prize & Entry */}
-                                    <div className="flex justify-between items-center mb-4 p-3 bg-black/30 rounded-xl">
-                                        <div className="text-center">
-                                            <p className="text-xs text-gray-400 uppercase">Prize Pool</p>
-                                            <p className="text-xl font-bold text-gaming-green">₹{challenge.prizePool}</p>
+                                    <div className="flex justify-between items-center mb-3 sm:mb-4 p-2.5 sm:p-3 bg-black/30 rounded-xl">
+                                        <div className="text-center flex-1">
+                                            <p className="text-[10px] sm:text-xs text-gray-400 uppercase">Prize Pool</p>
+                                            <p className="text-lg sm:text-xl font-bold text-gaming-green">₹{challenge.prizePool}</p>
                                         </div>
-                                        <div className="w-px h-10 bg-gray-700" />
-                                        <div className="text-center">
-                                            <p className="text-xs text-gray-400 uppercase">Entry Fee</p>
-                                            <p className="text-xl font-bold text-gaming-orange">₹{challenge.entryFee}</p>
+                                        <div className="w-px h-8 sm:h-10 bg-gray-700 mx-2" />
+                                        <div className="text-center flex-1">
+                                            <p className="text-[10px] sm:text-xs text-gray-400 uppercase">Entry Fee</p>
+                                            <p className="text-lg sm:text-xl font-bold text-gaming-orange">₹{challenge.entryFee}</p>
                                         </div>
                                     </div>
 

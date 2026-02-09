@@ -126,11 +126,11 @@ export default function MatchList() {
         }} />
       )}
       {/* Filters */}
-      <div className="flex flex-wrap gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
         <select
           value={filters.gameType}
           onChange={(e) => setFilters({ ...filters, gameType: e.target.value })}
-          className="input w-auto min-w-[150px]"
+          className="input w-full sm:w-auto sm:min-w-[150px]"
         >
           <option value="">All Games</option>
           <option value="pubg_mobile">PUBG Mobile</option>
@@ -140,7 +140,7 @@ export default function MatchList() {
         <select
           value={filters.matchType}
           onChange={(e) => setFilters({ ...filters, matchType: e.target.value })}
-          className="input w-auto min-w-[150px]"
+          className="input w-full sm:w-auto sm:min-w-[150px]"
         >
           <option value="">All Types</option>
           <option value="solo">Solo</option>
@@ -151,7 +151,7 @@ export default function MatchList() {
         <select
           value={filters.status}
           onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-          className="input w-auto min-w-[150px]"
+          className="input w-full sm:w-auto sm:min-w-[150px]"
         >
           {statusOptions.map((status) => (
             <option key={status} value={status}>{status.charAt(0).toUpperCase() + status.slice(1)}</option>
@@ -161,7 +161,7 @@ export default function MatchList() {
 
       {/* Match Grid */}
       {loading ? (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div key={i} className="card p-6 animate-pulse">
               <div className="h-6 bg-dark-700 rounded w-3/4 mb-4" />
@@ -178,9 +178,9 @@ export default function MatchList() {
           </button>
         </div>
       ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {displayMatches.length === 0 ? (
-            <div className="col-span-full text-center py-12">
+            <div className="col-span-full text-center py-8 sm:py-12">
               <div className="text-4xl mb-4">🎮</div>
               <h3 className="text-xl font-bold mb-2">No matches available</h3>
               <p className="text-dark-400">Check back later for upcoming matches!</p>
@@ -192,7 +192,7 @@ export default function MatchList() {
 
               return (
                 <Link key={match._id} href={`/matches/${match._id}`}>
-                  <div className="card-hover p-6 h-full relative">
+                  <div className="card-hover p-4 sm:p-6 h-full relative">
                     {/* Challenge Badge */}
                     {match.isChallenge && (
                       <div className="absolute top-0 right-0 bg-linear-to-r from-gaming-purple to-gaming-orange text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">

@@ -159,7 +159,7 @@ export default function BGMIvsFreeFire() {
         { name: 'BGMI vs Free Fire', url: 'https://battlezone.com/blog/bgmi-vs-free-fire-which-is-better' },
       ]} />
 
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-16 sm:pt-20">
         {/* Hero Section */}
         <section className="py-12 px-4 bg-gradient-to-b from-primary-900/30 via-purple-900/20 to-dark-900">
           <div className="max-w-4xl mx-auto">

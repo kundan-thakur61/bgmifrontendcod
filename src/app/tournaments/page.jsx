@@ -32,7 +32,7 @@ export default function TournamentsPage() {
       ]} />
       <Navbar />
       
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-16 sm:pt-20">
         <div className="max-w-7xl mx-auto px-4 py-8">
           {/* Header */}
           <div className="mb-8">

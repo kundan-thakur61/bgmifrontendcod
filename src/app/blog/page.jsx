@@ -107,9 +107,9 @@ export default function BlogPage() {
       ]} />
       <Navbar />
       
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-16 sm:pt-20">
         {/* Hero Section */}
-        <section className="py-12 px-4 bg-gradient-to-b from-primary-900/20 to-dark-900">
+        <section className="py-12 px-3 sm:px-4 bg-gradient-to-b from-primary-900/20 to-dark-900">
           <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display mb-4">
               Gaming <span className="gradient-text">Blog</span>
@@ -121,7 +121,7 @@ export default function BlogPage() {
         </section>
 
         {/* Categories */}
-        <section className="py-6 px-4 border-b border-dark-700">
+        <section className="py-6 px-3 sm:px-4 border-b border-dark-700">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((category) => (
@@ -141,14 +141,14 @@ export default function BlogPage() {
         </section>
 
         {/* Featured Post */}
-        <section className="py-12 px-4">
+        <section className="py-12 px-3 sm:px-4">
           <div className="max-w-7xl mx-auto">
             <Link href={`/blog/${blogPosts[0].slug}`} className="block group">
               <div className="card overflow-hidden md:flex">
                 <div className="md:w-1/2 h-64 md:h-auto bg-gradient-to-br from-primary-600 to-gaming-purple flex items-center justify-center">
                   <span className="text-6xl">🎮</span>
                 </div>
-                <div className="p-6 md:w-1/2 flex flex-col justify-center">
+                <div className="p-4 sm:p-6 md:w-1/2 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="badge badge-primary">{blogPosts[0].category}</span>
                     <span className="text-dark-400 text-sm">{blogPosts[0].date}</span>
@@ -167,7 +167,7 @@ export default function BlogPage() {
         </section>
 
         {/* Blog Grid */}
-        <section className="py-12 px-4 bg-dark-800/50">
+        <section className="py-12 px-3 sm:px-4 bg-dark-800/50">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl font-bold font-display mb-8">Latest Articles</h2>
             
@@ -206,7 +206,7 @@ export default function BlogPage() {
         </section>
 
         {/* Newsletter */}
-        <section className="py-16 px-4">
+        <section className="py-16 px-3 sm:px-4">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl font-bold font-display mb-4">Stay Updated</h2>
             <p className="text-dark-400 mb-6">

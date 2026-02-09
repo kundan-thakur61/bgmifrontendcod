@@ -84,8 +84,8 @@ export default function AchievementsPage() {
         <>
             <Navbar />
 
-            <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
-                <div className="max-w-6xl mx-auto px-4 py-8">
+            <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
+                <div className="max-w-6xl mx-auto px-3 sm:px-4 py-8">
                     {/* Header */}
                     <div className="text-center mb-12">
                         <h1 className="text-4xl sm:text-5xl font-bold mb-4">
@@ -98,17 +98,17 @@ export default function AchievementsPage() {
                     </div>
 
                     {/* Summary Stats */}
-                    <div className="grid grid-cols-3 gap-4 mb-8">
-                        <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border border-gray-800 text-center">
-                            <div className="text-4xl font-bold text-cyan-400">{summary.unlocked}</div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                        <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-gray-800 text-center">
+                            <div className="text-2xl sm:text-4xl font-bold text-cyan-400">{summary.unlocked}</div>
                             <div className="text-gray-400">Unlocked</div>
                         </div>
-                        <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border border-gray-800 text-center">
-                            <div className="text-4xl font-bold text-purple-400">{summary.total}</div>
+                        <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-gray-800 text-center">
+                            <div className="text-2xl sm:text-4xl font-bold text-purple-400">{summary.total}</div>
                             <div className="text-gray-400">Total</div>
                         </div>
-                        <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border border-gray-800 text-center">
-                            <div className="text-4xl font-bold text-yellow-400">{summary.totalXpEarned}</div>
+                        <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-gray-800 text-center">
+                            <div className="text-2xl sm:text-4xl font-bold text-yellow-400">{summary.totalXpEarned}</div>
                             <div className="text-gray-400">XP Earned</div>
                         </div>
                     </div>
@@ -167,7 +167,7 @@ export default function AchievementsPage() {
                     {loading ? (
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {[...Array(6)].map((_, i) => (
-                                <div key={i} className="bg-gray-900/50 rounded-xl p-6 border border-gray-800 animate-pulse">
+                                <div key={i} className="bg-gray-900/50 rounded-xl p-4 sm:p-6 border border-gray-800 animate-pulse">
                                     <div className="flex items-start gap-4">
                                         <div className="w-16 h-16 bg-gray-700 rounded-xl" />
                                         <div className="flex-1 space-y-2">
@@ -203,7 +203,7 @@ export default function AchievementsPage() {
                                     {categoryAchievements.map((achievement) => (
                                         <div
                                             key={achievement._id || achievement.code}
-                                            className={`relative bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border-2 transition-all ${achievement.isUnlocked
+                                            className={`relative bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 sm:p-6 border-2 transition-all ${achievement.isUnlocked
                                                     ? RARITY_COLORS[achievement.rarity] || RARITY_COLORS.common
                                                     : 'border-gray-800 opacity-70'
                                                 } ${achievement.isUnlocked ? 'hover:scale-[1.02]' : ''}`}

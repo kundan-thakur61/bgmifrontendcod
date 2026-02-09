@@ -14,11 +14,11 @@ export default function AboutPage() {
       ]} />
       <Navbar />
 
-      <main className="min-h-screen pt-20 bg-gradient-to-b from-dark-900 to-dark-800">
-        <div className="max-w-4xl mx-auto px-4 py-12">
+      <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-dark-900 to-dark-800">
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-12">
           {/* Hero */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold font-display mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display mb-4">
               About <span className="gradient-text">BattleZone</span>
             </h1>
             <p className="text-lg text-dark-300 max-w-2xl mx-auto">
@@ -27,7 +27,7 @@ export default function AboutPage() {
           </div>
 
           {/* Story */}
-          <section className="card p-8 mb-8">
+          <section className="card p-6 sm:p-8 mb-8">
             <h2 className="text-2xl font-bold text-primary-400 mb-4">🎮 Our Story</h2>
             <p className="text-dark-300 mb-4">
               Founded in 2024 in Dhanbad, Jharkhand, BattleZone was born from a simple idea: make competitive mobile gaming accessible to every Indian gamer. We saw millions of talented BGMI and Free Fire players with no affordable platform to compete and win real money.
@@ -45,16 +45,16 @@ export default function AboutPage() {
               { label: 'Total Prize Pool', value: '₹1Cr+', icon: '💰' },
               { label: 'Cities', value: '100+', icon: '🏙️' },
             ].map((stat) => (
-              <div key={stat.label} className="card p-6 text-center">
+              <div key={stat.label} className="card p-4 sm:p-6 text-center">
                 <div className="text-3xl mb-2">{stat.icon}</div>
-                <div className="text-2xl font-bold text-white">{stat.value}</div>
+                <div className="text-xl sm:text-2xl font-bold text-white">{stat.value}</div>
                 <div className="text-sm text-dark-400">{stat.label}</div>
               </div>
             ))}
           </div>
 
           {/* Values */}
-          <section className="card p-8 mb-8">
+          <section className="card p-6 sm:p-8 mb-8">
             <h2 className="text-2xl font-bold text-primary-400 mb-6">🛡️ Our Values</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
@@ -74,9 +74,9 @@ export default function AboutPage() {
           {/* CTA */}
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4">Ready to Compete?</h2>
-            <div className="flex justify-center gap-4">
-              <Link href="/register" className="btn-primary px-8 py-3">Join BattleZone</Link>
-              <Link href="/matches" className="btn-secondary px-8 py-3">Browse Matches</Link>
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 items-center">
+              <Link href="/register" className="btn-primary px-8 py-3 w-full sm:w-auto text-center">Join BattleZone</Link>
+              <Link href="/matches" className="btn-secondary px-8 py-3 w-full sm:w-auto text-center">Browse Matches</Link>
             </div>
           </div>
         </div>

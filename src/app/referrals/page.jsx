@@ -59,11 +59,11 @@ export default function EnhancedReferralPage() {
     const progressPercent = (progress / required) * 100;
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 py-12 px-4">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 pt-16 sm:pt-20 pb-10 sm:pb-12 px-3 sm:px-4">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-4">
+                    <h1 className="text-3xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-4">
                         Referral Program
                     </h1>
                     <p className="text-gray-300 text-lg">
@@ -73,19 +73,19 @@ export default function EnhancedReferralPage() {
 
                 {/* Current Tier */}
                 <div className={`bg-gradient-to-r ${tierInfo.color} rounded-3xl p-8 mb-8 shadow-2xl`}>
-                    <div className="flex items-center justify-between mb-6">
-                        <div className="flex items-center gap-4">
-                            <span className="text-6xl">{tierInfo.icon}</span>
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                        <div className="flex items-center gap-3 sm:gap-4">
+                            <span className="text-4xl sm:text-6xl">{tierInfo.icon}</span>
                             <div>
-                                <h2 className="text-3xl font-bold text-white">{tierInfo.name} Tier</h2>
+                                <h2 className="text-2xl sm:text-3xl font-bold text-white">{tierInfo.name} Tier</h2>
                                 <p className="text-white/80">
                                     {tierInfo.next !== 'Max' ? `Next: ${tierInfo.next}` : 'Maximum Tier Reached!'}
                                 </p>
                             </div>
                         </div>
-                        <div className="text-right">
-                            <div className="text-4xl font-bold text-white">{referralData?.stats?.activeReferrals || 0}</div>
-                            <div className="text-white/80">Active Referrals</div>
+                        <div className="text-left sm:text-right">
+                            <div className="text-2xl sm:text-4xl font-bold text-white">{referralData?.stats?.activeReferrals || 0}</div>
+                            <div className="text-white/80 text-sm sm:text-base">Active Referrals</div>
                         </div>
                     </div>
 
@@ -107,21 +107,21 @@ export default function EnhancedReferralPage() {
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
                         <div className="text-gray-400 text-sm mb-2">Total Referrals</div>
-                        <div className="text-3xl font-bold text-white">{referralData?.stats?.totalReferrals || 0}</div>
+                        <div className="text-xl sm:text-3xl font-bold text-white">{referralData?.stats?.totalReferrals || 0}</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
                         <div className="text-gray-400 text-sm mb-2">Total Earnings</div>
-                        <div className="text-3xl font-bold text-green-400">₹{referralData?.stats?.totalEarnings || 0}</div>
+                        <div className="text-xl sm:text-3xl font-bold text-green-400">₹{referralData?.stats?.totalEarnings || 0}</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
                         <div className="text-gray-400 text-sm mb-2">Conversion Rate</div>
-                        <div className="text-3xl font-bold text-blue-400">{referralData?.stats?.conversionRate?.toFixed(1) || 0}%</div>
+                        <div className="text-xl sm:text-3xl font-bold text-blue-400">{referralData?.stats?.conversionRate?.toFixed(1) || 0}%</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20">
                         <div className="text-gray-400 text-sm mb-2">This Month</div>
-                        <div className="text-3xl font-bold text-purple-400">
+                        <div className="text-xl sm:text-3xl font-bold text-purple-400">
                             {referralData?.stats?.referralsByMonth?.[0]?.count || 0}
                         </div>
                     </div>
@@ -133,14 +133,14 @@ export default function EnhancedReferralPage() {
 
                     {/* Referral Code */}
                     <div className="bg-white/5 rounded-xl p-4 mb-6 border border-white/10">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                             <div className="flex-1">
                                 <div className="text-gray-400 text-sm mb-1">Your Referral Code</div>
-                                <div className="text-2xl font-mono font-bold text-white">{referralData?.referralCode}</div>
+                                <div className="text-xl sm:text-2xl font-mono font-bold text-white">{referralData?.referralCode}</div>
                             </div>
                             <button
                                 onClick={() => copyToClipboard(referralData?.referralCode)}
-                                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
+                                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all min-h-[44px] w-full sm:w-auto"
                             >
                                 {copied ? '✓ Copied!' : 'Copy Code'}
                             </button>
@@ -149,14 +149,14 @@ export default function EnhancedReferralPage() {
 
                     {/* Referral Link */}
                     <div className="bg-white/5 rounded-xl p-4 mb-6 border border-white/10">
-                        <div className="flex items-center justify-between">
-                            <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                            <div className="flex-1 min-w-0">
                                 <div className="text-gray-400 text-sm mb-1">Referral Link</div>
                                 <div className="text-sm font-mono text-white break-all">{referralData?.shareable?.link}</div>
                             </div>
                             <button
                                 onClick={() => copyToClipboard(referralData?.shareable?.link)}
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all ml-4"
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all min-h-[44px] w-full sm:w-auto"
                             >
                                 Copy Link
                             </button>

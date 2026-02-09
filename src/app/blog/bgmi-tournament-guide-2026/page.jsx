@@ -217,7 +217,7 @@ export default function BGMITournamentGuide2026() {
         { name: 'BGMI Tournament Guide 2026', url: 'https://battlezone.com/blog/bgmi-tournament-guide-2026' },
       ]} />
 
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-16 sm:pt-20">
         {/* Hero Section */}
         <section className="py-12 px-4 bg-gradient-to-b from-primary-900/30 to-dark-900">
           <div className="max-w-4xl mx-auto">

@@ -13,14 +13,14 @@ export default function PrivacyPolicyPage() {
       ]} />
       <Navbar />
       
-      <main className="min-h-screen pt-20">
-        <div className="max-w-4xl mx-auto px-4 py-8">
+      <main className="min-h-screen pt-16 sm:pt-20">
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-8">
           <h1 className="text-3xl md:text-4xl font-bold font-display mb-4">Privacy Policy</h1>
           <p className="text-dark-400 mb-8">Last updated: January 1, 2025</p>
 
           <div className="space-y-8 text-dark-300">
             {/* Introduction */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">1. Introduction</h2>
               <p className="mb-4">
                 BattleZone (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and mobile application (the &quot;Platform&quot;).
@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Information We Collect */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">2. Information We Collect</h2>
               
               <h3 className="font-semibold text-white mt-4 mb-2">2.1 Personal Information</h3>
@@ -59,7 +59,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* How We Use Information */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">3. How We Use Your Information</h2>
               <p className="mb-4">We use the information we collect to:</p>
               <ul className="list-disc list-inside space-y-2">
@@ -77,7 +77,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Information Sharing */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">4. Information Sharing</h2>
               <p className="mb-4">We may share your information with:</p>
               
@@ -105,7 +105,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Data Security */}
-            <section className="card p-6 border border-green-500/20">
+            <section className="card p-4 sm:p-6 border border-green-500/20">
               <h2 className="text-xl font-bold text-green-400 mb-4">5. Data Security</h2>
               <p className="mb-4">We implement industry-standard security measures to protect your data:</p>
               <ul className="list-disc list-inside space-y-2">
@@ -121,7 +121,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Data Retention */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">6. Data Retention</h2>
               <p className="mb-4">We retain your information for as long as:</p>
               <ul className="list-disc list-inside space-y-2">
@@ -136,7 +136,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Your Rights */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">7. Your Rights</h2>
               <p className="mb-4">You have the following rights regarding your personal data:</p>
               <ul className="list-disc list-inside space-y-2">
@@ -153,7 +153,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Cookies */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">8. Cookies and Tracking</h2>
               <p className="mb-4">We use cookies and similar technologies to:</p>
               <ul className="list-disc list-inside space-y-2 mb-4">
@@ -174,7 +174,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Third-Party Links */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">9. Third-Party Links</h2>
               <p>
                 Our Platform may contain links to third-party websites or services. We are not responsible for the privacy practices of these third parties. We encourage you to read the privacy policies of any third-party sites you visit.
@@ -182,7 +182,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Children */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">10. Children&apos;s Privacy</h2>
               <p>
                 Our Platform is not intended for users under 18 years of age. We do not knowingly collect personal information from children. If we become aware that we have collected personal information from a child under 18, we will take steps to delete such information.
@@ -190,7 +190,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* International Users */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">11. International Users</h2>
               <p>
                 Our Platform is operated from India and is intended for users in India only. If you access our Platform from outside India, please be aware that your information may be transferred to, stored, and processed in India where our servers are located.
@@ -198,7 +198,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Changes */}
-            <section className="card p-6">
+            <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">12. Changes to This Policy</h2>
               <p>
                 We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the &quot;Last updated&quot; date. We encourage you to review this Privacy Policy periodically for any changes.
@@ -206,7 +206,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Contact */}
-            <section className="card p-6 bg-primary-500/5 border border-primary-500/20">
+            <section className="card p-4 sm:p-6 bg-primary-500/5 border border-primary-500/20">
               <h2 className="text-xl font-bold text-white mb-4">13. Contact Us</h2>
               <p className="mb-4">
                 If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:
@@ -219,7 +219,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             {/* Summary */}
-            <section className="card p-6 bg-dark-700/50">
+            <section className="card p-4 sm:p-6 bg-dark-700/50">
               <h2 className="text-xl font-bold text-white mb-4">Quick Summary</h2>
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div className="flex items-start gap-2">

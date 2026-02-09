@@ -74,7 +74,7 @@ export default function LeaderboardPage() {
         <>
             <Navbar />
 
-            <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900" suppressHydrationWarning>
+            <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900" suppressHydrationWarning>
                 <div className="max-w-6xl mx-auto px-4 py-8">
                     {/* Header */}
                     <div className="text-center mb-12">

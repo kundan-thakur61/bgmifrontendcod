@@ -79,7 +79,7 @@ export default function TeamsPage() {
         return (
             <>
                 <Navbar />
-                <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
+                <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 flex items-center justify-center">
                     <div className="text-center">
                         <div className="text-5xl mb-4">👥</div>
                         <h2 className="text-2xl font-bold text-white mb-4">Login Required</h2>
@@ -98,12 +98,12 @@ export default function TeamsPage() {
         <>
             <Navbar />
 
-            <main className="min-h-screen pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
-                <div className="max-w-6xl mx-auto px-4 py-8">
+            <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-gray-900 via-black to-gray-900">
+                <div className="max-w-6xl mx-auto px-3 sm:px-4 py-8">
                     {/* Header */}
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                         <div>
-                            <h1 className="text-3xl font-bold text-white mb-2">My Teams</h1>
+                            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">My Teams</h1>
                             <p className="text-gray-400">Create and manage your squads</p>
                         </div>
                         <button
@@ -125,7 +125,7 @@ export default function TeamsPage() {
                             </h2>
                             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {invites.map((invite) => (
-                                    <div key={invite.teamId} className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border border-yellow-500/30">
+                                    <div key={invite.teamId} className="bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-yellow-500/30">
                                         <div className="flex items-center gap-3 mb-4">
                                             <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center text-xl font-bold text-white">
                                                 {invite.teamTag?.[0] || 'T'}
@@ -163,7 +163,7 @@ export default function TeamsPage() {
                     {loading ? (
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {[...Array(3)].map((_, i) => (
-                                <div key={i} className="bg-gray-900/50 rounded-xl p-6 border border-gray-800 animate-pulse">
+                                <div key={i} className="bg-gray-900/50 rounded-xl p-4 sm:p-6 border border-gray-800 animate-pulse">
                                     <div className="flex items-center gap-4 mb-4">
                                         <div className="w-16 h-16 bg-gray-700 rounded-xl" />
                                         <div className="flex-1 space-y-2">
@@ -192,7 +192,7 @@ export default function TeamsPage() {
                                 <Link
                                     key={team._id}
                                     href={`/teams/${team._id}`}
-                                    className="block bg-gray-900/50 backdrop-blur-xl rounded-xl p-6 border border-gray-800 hover:border-cyan-500/50 transition-all hover:shadow-lg hover:shadow-cyan-500/10"
+                                    className="block bg-gray-900/50 backdrop-blur-xl rounded-xl p-4 sm:p-6 border border-gray-800 hover:border-cyan-500/50 transition-all hover:shadow-lg hover:shadow-cyan-500/10"
                                 >
                                     <div className="flex items-center gap-4 mb-4">
                                         {team.logo?.url ? (
@@ -244,7 +244,7 @@ export default function TeamsPage() {
             {/* Create Team Modal */}
             {showCreateModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-                    <div className="bg-gray-900 rounded-2xl p-8 max-w-md w-full border border-gray-800">
+                    <div className="bg-gray-900 rounded-2xl p-6 sm:p-8 max-w-md w-full border border-gray-800">
                         <h2 className="text-2xl font-bold text-white mb-6">Create Team</h2>
 
                         {error && (

@@ -82,7 +82,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-dark-900">
+    <div className="min-h-screen flex items-center justify-center px-3 sm:px-4 py-8 sm:py-12 bg-dark-900">
       <div className="w-full max-w-md">
         {/* Logo */}
         <Link href="/" className="flex items-center justify-center space-x-2 mb-8">
@@ -93,8 +93,8 @@ export default function LoginPage() {
         </Link>
 
         {/* Card */}
-        <div className="card p-8">
-          <h1 className="text-2xl font-bold text-center mb-2">
+        <div className="card p-5 sm:p-8">
+          <h1 className="text-xl sm:text-2xl font-bold text-center mb-2">
             {step === 'phone' ? 'Login / Sign Up' : 'Verify OTP'}
           </h1>
           <p className="text-dark-400 text-center mb-8">
@@ -141,7 +141,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading || phone.length !== 10}
-                className="btn-primary w-full py-3"
+                className="btn-primary w-full py-3 min-h-[48px]"
               >
                 {loading ? 'Sending OTP...' : 'Send OTP'}
               </button>
@@ -159,7 +159,7 @@ export default function LoginPage() {
               {/* Google Sign In */}
               <a
                 href={googleUrl}
-                className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-dark-600 rounded-lg hover:bg-dark-700 transition-colors"
+                className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-dark-600 rounded-lg hover:bg-dark-700 transition-colors min-h-[48px]"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path

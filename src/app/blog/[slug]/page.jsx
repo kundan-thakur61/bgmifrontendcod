@@ -435,8 +435,8 @@ export default async function BlogPostPage({ params }) {
       ]} />
       <Navbar />
       
-      <main className="min-h-screen pt-20">
-        <article className="max-w-3xl mx-auto px-4 py-8">
+      <main className="min-h-screen pt-16 sm:pt-20">
+        <article className="max-w-3xl mx-auto px-3 sm:px-4 py-8">
           {/* Back Button */}
           <Link href="/blog" className="inline-flex items-center text-dark-400 hover:text-white mb-6">
             <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -462,18 +462,18 @@ export default async function BlogPostPage({ params }) {
           </header>
 
           {/* Featured Image Placeholder */}
-          <div className="h-64 md:h-80 bg-gradient-to-br from-primary-600 to-gaming-purple rounded-lg mb-8 flex items-center justify-center">
-            <span className="text-6xl">🎮</span>
+          <div className="h-48 sm:h-64 md:h-80 bg-gradient-to-br from-primary-600 to-gaming-purple rounded-lg mb-8 flex items-center justify-center">
+            <span className="text-4xl sm:text-6xl">🎮</span>
           </div>
 
           {/* Content */}
           <div className="prose prose-invert prose-lg max-w-none">
             {post.content.split('\n').map((line, index) => {
               if (line.startsWith('# ')) {
-                return <h1 key={index} className="text-3xl font-bold mt-8 mb-4">{line.slice(2)}</h1>;
+                return <h1 key={index} className="text-2xl sm:text-3xl font-bold mt-8 mb-4">{line.slice(2)}</h1>;
               }
               if (line.startsWith('## ')) {
-                return <h2 key={index} className="text-2xl font-bold mt-6 mb-3">{line.slice(3)}</h2>;
+                return <h2 key={index} className="text-xl sm:text-2xl font-bold mt-6 mb-3">{line.slice(3)}</h2>;
               }
               if (line.startsWith('### ')) {
                 return <h3 key={index} className="text-xl font-bold mt-4 mb-2">{line.slice(4)}</h3>;
@@ -523,7 +523,7 @@ export default async function BlogPostPage({ params }) {
                 .filter(([postSlug]) => postSlug !== slug)
                 .slice(0, 2)
                 .map(([postSlug, relatedPost]) => (
-                  <Link key={postSlug} href={`/blog/${postSlug}`} className="card-hover p-4 group">
+                  <Link key={postSlug} href={`/blog/${postSlug}`} className="card-hover p-3 sm:p-4 group">
                     <span className="text-xs text-primary-400">{relatedPost.category}</span>
                     <h4 className="font-medium mt-1 group-hover:text-primary-400 transition-colors line-clamp-2">
                       {relatedPost.title}

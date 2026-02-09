@@ -42,12 +42,12 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
     >
       <button
         onClick={onToggle}
-        className="w-full py-5 px-4 flex items-center justify-between text-left hover:bg-dark-800/50 transition-colors rounded-lg"
+        className="w-full py-4 sm:py-5 px-3 sm:px-4 flex items-center justify-between text-left hover:bg-dark-800/50 transition-colors rounded-lg min-h-[48px]"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${index}`}
       >
         <h3 
-          className="text-lg font-semibold text-white pr-4"
+          className="text-base sm:text-lg font-semibold text-white pr-3 sm:pr-4"
           itemProp="name"
         >
           {question}
@@ -71,7 +71,7 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
         itemType="https://schema.org/Answer"
       >
         <div 
-          className="px-4 pb-5 text-dark-300 leading-relaxed"
+          className="px-3 sm:px-4 pb-4 sm:pb-5 text-dark-300 leading-relaxed text-sm sm:text-base"
           itemProp="text"
         >
           {answer}
@@ -97,7 +97,7 @@ export default function FAQ({
 
   return (
     <section 
-      className={`py-16 px-4 ${className}`}
+      className={`py-10 sm:py-16 px-3 sm:px-4 ${className}`}
       itemScope
       itemType="https://schema.org/FAQPage"
     >
@@ -105,8 +105,8 @@ export default function FAQ({
       
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold font-display mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display mb-3 sm:mb-4">
             {title.includes('FAQ') ? (
               <>
                 <span className="gradient-text">FAQ</span> - {title.replace('FAQ', '').replace('-', '').trim() || 'Frequently Asked Questions'}
@@ -116,7 +116,7 @@ export default function FAQ({
             )}
           </h2>
           {subtitle && (
-            <p className="text-lg text-dark-400 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-dark-400 max-w-2xl mx-auto">
               {subtitle}
             </p>
           )}
@@ -137,13 +137,13 @@ export default function FAQ({
         </div>
 
         {/* CTA after FAQ */}
-        <div className="mt-8 text-center">
-          <p className="text-dark-400 mb-4">
+        <div className="mt-6 sm:mt-8 text-center">
+          <p className="text-dark-400 mb-3 sm:mb-4 text-sm sm:text-base">
             Still have questions? We're here to help.
           </p>
           <a
             href="/tickets"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg transition-colors min-h-[44px] text-sm sm:text-base"
           >
             <span>Contact Support</span>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

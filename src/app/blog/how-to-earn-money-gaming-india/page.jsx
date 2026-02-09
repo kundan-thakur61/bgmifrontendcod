@@ -154,9 +154,9 @@ export default function EarnMoneyGamingIndia() {
         { name: 'How to Earn Money Gaming India', url: 'https://battlezone.com/blog/how-to-earn-money-gaming-india' },
       ]} />
 
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-16 sm:pt-20">
         {/* Hero Section */}
-        <section className="py-12 px-4 bg-gradient-to-b from-green-900/30 to-dark-900">
+        <section className="py-12 px-3 sm:px-4 bg-gradient-to-b from-green-900/30 to-dark-900">
           <div className="max-w-4xl mx-auto">
             <nav className="text-sm text-dark-400 mb-6">
               <Link href="/" className="hover:text-white">Home</Link>
@@ -178,7 +178,7 @@ export default function EarnMoneyGamingIndia() {
               How to Earn Money Playing Games in India 2026: <span className="gradient-text">Complete Guide to Gaming Income</span>
             </h1>
 
-            <div className="bg-dark-800 border-l-4 border-green-500 rounded-r-lg p-6 mb-8">
+            <div className="bg-dark-800 border-l-4 border-green-500 rounded-r-lg p-4 sm:p-6 mb-8">
               <p className="text-lg text-white leading-relaxed">
                 <strong>Gaming is now a legitimate income source in India.</strong> From casual players earning 
                 <strong> Rs.5,000-10,000 monthly</strong> to professional gamers making <strong>lakhs per month</strong>, 
@@ -200,7 +200,7 @@ export default function EarnMoneyGamingIndia() {
         </section>
 
         {/* Quick Stats */}
-        <section className="py-8 px-4 border-b border-dark-700 bg-dark-800/30">
+        <section className="py-8 px-3 sm:px-4 border-b border-dark-700 bg-dark-800/30">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center p-4 bg-dark-800 rounded-xl">
@@ -224,7 +224,7 @@ export default function EarnMoneyGamingIndia() {
         </section>
 
         {/* Earning Methods Grid */}
-        <section className="py-16 px-4">
+        <section className="py-16 px-3 sm:px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">
               6 Ways to <span className="gradient-text">Earn Money Gaming</span> in India
@@ -235,7 +235,7 @@ export default function EarnMoneyGamingIndia() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {earningMethods.map((method, index) => (
-                <div key={index} className="bg-dark-800 rounded-xl p-6 border border-dark-700 hover:border-primary-500 transition-all hover:transform hover:-translate-y-1">
+                <div key={index} className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-dark-700 hover:border-primary-500 transition-all hover:transform hover:-translate-y-1">
                   <div className="text-4xl mb-4">{method.icon}</div>
                   <h3 className="text-xl font-bold mb-2 text-white">{method.title}</h3>
                   <p className="text-green-400 font-semibold mb-2">{method.earnings}</p>
@@ -249,7 +249,7 @@ export default function EarnMoneyGamingIndia() {
         </section>
 
         {/* Main Content */}
-        <article className="py-12 px-4 border-t border-dark-700">
+        <article className="py-12 px-3 sm:px-4 border-t border-dark-700">
           <div className="max-w-4xl mx-auto">
 
             {/* Section 1: Tournament Platforms */}
@@ -265,7 +265,7 @@ export default function EarnMoneyGamingIndia() {
                 and other popular games with entry fees starting from just <strong>Rs.10</strong>.
               </p>
 
-              <div className="bg-dark-800 rounded-xl p-6 mb-6">
+              <div className="bg-dark-800 rounded-xl p-4 sm:p-6 mb-6">
                 <h3 className="text-xl font-bold mb-4 text-white">How Tournament Earnings Work:</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
@@ -299,7 +299,7 @@ export default function EarnMoneyGamingIndia() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-green-900/20 to-dark-800 rounded-xl p-6 border border-green-700/30">
+              <div className="bg-gradient-to-r from-green-900/20 to-dark-800 rounded-xl p-4 sm:p-6 border border-green-700/30">
                 <h4 className="font-bold text-green-400 mb-3">💡 Realistic Earnings:</h4>
                 <ul className="space-y-2 text-dark-300">
                   <li>• <strong>Casual (2-3 tournaments/day):</strong> Rs.1,000-3,000/month</li>
@@ -323,7 +323,7 @@ export default function EarnMoneyGamingIndia() {
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6 mb-6">
-                <div className="bg-dark-800 rounded-xl p-6 border border-primary-700/30">
+                <div className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-primary-700/30">
                   <h3 className="text-xl font-bold mb-3 text-primary-400">Esports Income Sources</h3>
                   <ul className="space-y-2 text-dark-300 text-sm">
                     <li>• Tournament winnings (Rs.10K-10L+ per event)</li>
@@ -334,7 +334,7 @@ export default function EarnMoneyGamingIndia() {
                   </ul>
                 </div>
 
-                <div className="bg-dark-800 rounded-xl p-6 border border-yellow-700/30">
+                <div className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-yellow-700/30">
                   <h3 className="text-xl font-bold mb-3 text-yellow-400">Path to Pro</h3>
                   <ul className="space-y-2 text-dark-300 text-sm">
                     <li>• Reach highest rank in-game</li>
@@ -346,7 +346,7 @@ export default function EarnMoneyGamingIndia() {
                 </div>
               </div>
 
-              <div className="bg-dark-800 rounded-xl p-6">
+              <div className="bg-dark-800 rounded-xl p-4 sm:p-6">
                 <h4 className="font-bold text-white mb-3">Top Indian Esports Organizations:</h4>
                 <div className="flex flex-wrap gap-3">
                   {['Team Soul', 'GodLike Esports', 'Team XSpark', 'TSM Entity', 'Orange Rock', 'Velocity Gaming'].map((org) => (
@@ -412,7 +412,7 @@ export default function EarnMoneyGamingIndia() {
                 </div>
               </div>
 
-              <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-6">
+              <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-4 sm:p-6">
                 <h4 className="font-bold text-yellow-400 mb-3">📈 Streaming Growth Tips:</h4>
                 <ul className="space-y-2 text-dark-300">
                   <li>• Stream consistently (minimum 3-4 hours daily)</li>
@@ -437,7 +437,7 @@ export default function EarnMoneyGamingIndia() {
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6">
-                <div className="bg-dark-800 rounded-xl p-6 border border-purple-700/30">
+                <div className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-purple-700/30">
                   <h3 className="text-xl font-bold mb-3 text-purple-400">Content Ideas</h3>
                   <ul className="space-y-2 text-dark-300 text-sm">
                     <li>• Gameplay highlights and clutches</li>
@@ -449,7 +449,7 @@ export default function EarnMoneyGamingIndia() {
                   </ul>
                 </div>
 
-                <div className="bg-dark-800 rounded-xl p-6 border border-dark-700">
+                <div className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-dark-700">
                   <h3 className="text-xl font-bold mb-3 text-white">Revenue Milestones</h3>
                   <ul className="space-y-2 text-dark-300 text-sm">
                     <li><strong>1K subscribers:</strong> Community tab, Memberships</li>
@@ -474,7 +474,7 @@ export default function EarnMoneyGamingIndia() {
                 training to improve their rank, tournament performance, or overall gameplay.
               </p>
 
-              <div className="bg-dark-800 rounded-xl p-6 mb-6">
+              <div className="bg-dark-800 rounded-xl p-4 sm:p-6 mb-6">
                 <h3 className="text-xl font-bold mb-4 text-white">Coaching Rates in India:</h3>
                 <div className="grid sm:grid-cols-3 gap-4">
                   <div className="text-center p-4 bg-dark-900/50 rounded-lg border border-dark-700">
@@ -492,7 +492,7 @@ export default function EarnMoneyGamingIndia() {
                 </div>
               </div>
 
-              <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-6">
+              <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-4 sm:p-6">
                 <h4 className="font-bold text-blue-400 mb-3">Where to Offer Coaching:</h4>
                 <ul className="space-y-2 text-dark-300">
                   <li>• Fiverr, Upwork (international clients, higher rates)</li>
@@ -512,7 +512,7 @@ export default function EarnMoneyGamingIndia() {
               </h2>
 
               <div className="space-y-6">
-                <div className="bg-dark-800 rounded-xl p-6 border border-red-700/30">
+                <div className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-red-700/30">
                   <h3 className="text-xl font-bold mb-3 text-red-400">Tax Obligations</h3>
                   <ul className="space-y-2 text-dark-300">
                     <li>• <strong>Gaming earnings are taxable</strong> under "Income from Other Sources"</li>
@@ -523,7 +523,7 @@ export default function EarnMoneyGamingIndia() {
                   </ul>
                 </div>
 
-                <div className="bg-dark-800 rounded-xl p-6 border border-green-700/30">
+                <div className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-green-700/30">
                   <h3 className="text-xl font-bold mb-3 text-green-400">Legality of Gaming Income</h3>
                   <p className="text-dark-300 mb-3">
                     <strong>Skill-based gaming is 100% legal in India.</strong> The Supreme Court has ruled that games 
@@ -540,7 +540,7 @@ export default function EarnMoneyGamingIndia() {
             </section>
 
             {/* Getting Started CTA */}
-            <div className="bg-gradient-to-r from-primary-900/50 to-green-900/50 rounded-xl p-8 text-center border border-primary-700/50">
+            <div className="bg-gradient-to-r from-primary-900/50 to-green-900/50 rounded-xl p-5 sm:p-8 text-center border border-primary-700/50">
               <h3 className="text-2xl font-bold mb-4">Start Your Gaming Income Journey Today</h3>
               <p className="text-dark-300 mb-6 max-w-2xl mx-auto">
                 Tournament platforms are the easiest way to start earning. Join BattleZone today and compete in your 
@@ -576,21 +576,21 @@ export default function EarnMoneyGamingIndia() {
         </section>
 
         {/* Related Articles */}
-        <section className="py-16 px-4 border-t border-dark-700">
+        <section className="py-16 px-3 sm:px-4 border-t border-dark-700">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-8">Related Earning Guides</h2>
             <div className="grid sm:grid-cols-3 gap-6">
-              <Link href="/blog/free-fire-tournament-tips" className="bg-dark-800 rounded-xl p-6 border border-dark-700 hover:border-primary-500 transition-colors">
+              <Link href="/blog/free-fire-tournament-tips" className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-dark-700 hover:border-primary-500 transition-colors">
                 <span className="text-2xl mb-3 block">🔥</span>
                 <h3 className="font-semibold mb-2">Free Fire Tournament Tips</h3>
                 <p className="text-sm text-dark-400">Master Free Fire and maximize your tournament earnings</p>
               </Link>
-              <Link href="/blog/bgmi-tournament-guide-2026" className="bg-dark-800 rounded-xl p-6 border border-dark-700 hover:border-primary-500 transition-colors">
+              <Link href="/blog/bgmi-tournament-guide-2026" className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-dark-700 hover:border-primary-500 transition-colors">
                 <span className="text-2xl mb-3 block">🎮</span>
                 <h3 className="font-semibold mb-2">BGMI Tournament Guide</h3>
                 <p className="text-sm text-dark-400">Complete guide to winning BGMI tournaments</p>
               </Link>
-              <Link href="/blog/esports-career-india" className="bg-dark-800 rounded-xl p-6 border border-dark-700 hover:border-primary-500 transition-colors">
+              <Link href="/blog/esports-career-india" className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-dark-700 hover:border-primary-500 transition-colors">
                 <span className="text-2xl mb-3 block">💼</span>
                 <h3 className="font-semibold mb-2">Esports Career Guide</h3>
                 <p className="text-sm text-dark-400">Build a full-time career in competitive gaming</p>

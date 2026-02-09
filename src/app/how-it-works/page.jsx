@@ -116,7 +116,7 @@ export default function HowItWorksPage() {
       ]} />
       <Navbar />
       
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-16 sm:pt-20">
         {/* Hero */}
         <section className="py-16 px-4 text-center">
           <div className="max-w-3xl mx-auto">

@@ -122,11 +122,11 @@ export default function HomePage() {
         <HowItWorksSection />
 
         {/* ══ AEO Quick-Answer Section — Targets Featured Snippets + AI Overviews ══ */}
-        <section className="py-16 px-4 bg-gradient-to-b from-black/40 to-gray-900/40" aria-label="What is BattleZone">
+        <section className="py-10 sm:py-16 px-3 sm:px-4 bg-gradient-to-b from-black/40 to-gray-900/40" aria-label="What is BattleZone">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 border-l-4 border-cyan-500 rounded-r-xl p-8">
-              <h2 className="text-xl font-bold text-cyan-400 mb-4">What is BattleZone?</h2>
-              <p className="aeo-answer text-lg text-gray-200 leading-relaxed">
+            <div className="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 border-l-4 border-cyan-500 rounded-r-xl p-4 sm:p-8">
+              <h2 className="text-lg sm:text-xl font-bold text-cyan-400 mb-3 sm:mb-4">What is BattleZone?</h2>
+              <p className="aeo-answer text-base sm:text-lg text-gray-200 leading-relaxed">
                 <strong className="text-white">BattleZone</strong> is India&apos;s premier esports tournament platform for
                 <strong className="text-cyan-400"> BGMI (Battlegrounds Mobile India), PUBG Mobile, and Free Fire</strong>.
                 Players compete in <strong className="text-cyan-400">Solo, Duo &amp; Squad</strong> custom room matches with
@@ -138,8 +138,8 @@ export default function HomePage() {
               </p>
 
               {/* ── Additional AEO paragraphs for long-tail queries ── */}
-              <div className="mt-6 space-y-4 text-gray-300">
-                <h3 className="text-lg font-semibold text-white">How BGMI Tournaments Work on BattleZone</h3>
+              <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4 text-gray-300">
+                <h3 className="text-base sm:text-lg font-semibold text-white">How BGMI Tournaments Work on BattleZone</h3>
                 <p className="aeo-answer">
                   BGMI tournaments on BattleZone use the <strong>custom room format</strong>. After registering and paying
                   the entry fee, players receive the room ID and password 15 minutes before the match.
@@ -147,7 +147,7 @@ export default function HomePage() {
                   Results are verified within 30 minutes and prizes are credited instantly.
                 </p>
 
-                <h3 className="text-lg font-semibold text-white">Why Choose BattleZone for BGMI Esports?</h3>
+                <h3 className="text-base sm:text-lg font-semibold text-white">Why Choose BattleZone for BGMI Esports?</h3>
                 <p className="aeo-answer">
                   BattleZone is trusted by <strong>50,000+ Indian BGMI players</strong> because of instant UPI withdrawals,
                   KYC-verified fair play, 24/7 Discord support, and the lowest entry fees starting at ₹10.

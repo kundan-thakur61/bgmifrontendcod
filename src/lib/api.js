@@ -580,6 +580,21 @@ const api = {
   },
 
   // Wallet
+  getWalletBalance: async () => {
+    const response = await axiosInstance.get('/wallet/balance');
+    return response.data?.balance || response.data;
+  },
+
+  createDeposit: async (amount) => {
+    const response = await axiosInstance.post('/wallet/deposit', { amount });
+    return response.data;
+  },
+
+  verifyPayment: async (paymentData) => {
+    const response = await axiosInstance.post('/wallet/verify-payment', paymentData);
+    return response.data;
+  },
+
   getTransactions: async () => {
     const response = await axiosInstance.get('/wallet/transactions');
     return response.data;

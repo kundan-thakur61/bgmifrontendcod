@@ -73,9 +73,9 @@ export default function DelhiTournaments() {
         { name: 'Delhi NCR Tournaments', url: 'https://battlezone.com/locations/delhi-tournaments' },
       ]} />
 
-      <main className="min-h-screen pt-20">
+      <main className="min-h-screen pt-16 sm:pt-20">
         {/* Hero Section */}
-        <section className="py-12 px-4 bg-gradient-to-b from-red-900/30 to-dark-900">
+        <section className="py-12 px-3 sm:px-4 bg-gradient-to-b from-red-900/30 to-dark-900">
           <div className="max-w-4xl mx-auto">
             <nav className="text-sm text-dark-400 mb-6">
               <Link href="/" className="hover:text-white">Home</Link>
@@ -94,7 +94,7 @@ export default function DelhiTournaments() {
               BGMI & Free Fire Tournaments in <span className="gradient-text">Delhi NCR</span>
             </h1>
 
-            <div className="bg-dark-800 border-l-4 border-red-500 rounded-r-lg p-6 mb-8">
+            <div className="bg-dark-800 border-l-4 border-red-500 rounded-r-lg p-4 sm:p-6 mb-8">
               <p className="text-lg text-white leading-relaxed">
                 Join <strong>daily BGMI and Free Fire tournaments</strong> for Delhi NCR players. 
                 Compete with gamers from Delhi, Noida, Gurgaon, Ghaziabad and win 
@@ -115,7 +115,7 @@ export default function DelhiTournaments() {
         </section>
 
         {/* Delhi NCR Areas */}
-        <section className="py-12 px-4 border-b border-dark-700">
+        <section className="py-12 px-3 sm:px-4 border-b border-dark-700">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-6">Available Across Delhi NCR</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -132,12 +132,12 @@ export default function DelhiTournaments() {
         </section>
 
         {/* Tournament Types */}
-        <section className="py-16 px-4">
+        <section className="py-16 px-3 sm:px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-8 text-center">Tournament Types for Delhi NCR Players</h2>
             
             <div className="grid sm:grid-cols-2 gap-6">
-              <div className="bg-dark-800 rounded-xl p-6 border border-dark-700">
+              <div className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-dark-700">
                 <div className="text-3xl mb-3">🎮</div>
                 <h3 className="text-xl font-bold mb-2 text-white">BGMI Tournaments</h3>
                 <p className="text-dark-400 mb-4">Solo, Duo & Squad formats available</p>
@@ -149,7 +149,7 @@ export default function DelhiTournaments() {
                 </ul>
               </div>
 
-              <div className="bg-dark-800 rounded-xl p-6 border border-dark-700">
+              <div className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-dark-700">
                 <div className="text-3xl mb-3">🔥</div>
                 <h3 className="text-xl font-bold mb-2 text-white">Free Fire Tournaments</h3>
                 <p className="text-dark-400 mb-4">BR & CS modes for all skill levels</p>
@@ -165,11 +165,11 @@ export default function DelhiTournaments() {
         </section>
 
         {/* How to Join */}
-        <section className="py-16 px-4 border-t border-dark-700 bg-dark-800/30">
+        <section className="py-16 px-3 sm:px-4 border-t border-dark-700 bg-dark-800/30">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-8 text-center">How to Join Delhi NCR Tournaments</h2>
             
-            <div className="grid sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
                 { step: '1', title: 'Register', desc: 'Create free account on BattleZone' },
                 { step: '2', title: 'Verify KYC', desc: 'Upload Aadhaar/PAN for verification' },
@@ -189,23 +189,23 @@ export default function DelhiTournaments() {
         </section>
 
         {/* Stats */}
-        <section className="py-12 px-4">
+        <section className="py-12 px-3 sm:px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-dark-800 rounded-xl p-6 text-center">
-                <p className="text-3xl font-bold text-primary-400">1200+</p>
+              <div className="bg-dark-800 rounded-xl p-4 sm:p-6 text-center">
+                <p className="text-2xl sm:text-3xl font-bold text-primary-400">1200+</p>
                 <p className="text-sm text-dark-400">NCR Players</p>
               </div>
-              <div className="bg-dark-800 rounded-xl p-6 text-center">
-                <p className="text-3xl font-bold text-green-400">60+</p>
+              <div className="bg-dark-800 rounded-xl p-4 sm:p-6 text-center">
+                <p className="text-2xl sm:text-3xl font-bold text-green-400">60+</p>
                 <p className="text-sm text-dark-400">Daily Matches</p>
               </div>
-              <div className="bg-dark-800 rounded-xl p-6 text-center">
-                <p className="text-3xl font-bold text-yellow-400">₹6L+</p>
+              <div className="bg-dark-800 rounded-xl p-4 sm:p-6 text-center">
+                <p className="text-2xl sm:text-3xl font-bold text-yellow-400">₹6L+</p>
                 <p className="text-sm text-dark-400">Monthly Prizes</p>
               </div>
-              <div className="bg-dark-800 rounded-xl p-6 text-center">
-                <p className="text-3xl font-bold text-purple-400">24h</p>
+              <div className="bg-dark-800 rounded-xl p-4 sm:p-6 text-center">
+                <p className="text-2xl sm:text-3xl font-bold text-purple-400">24h</p>
                 <p className="text-sm text-dark-400">Withdrawal Time</p>
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function DelhiTournaments() {
         </section>
 
         {/* FAQ */}
-        <section className="py-16 px-4 border-t border-dark-700">
+        <section className="py-16 px-3 sm:px-4 border-t border-dark-700">
           <FAQ 
             faqs={delhiFAQs}
             title="Delhi NCR Tournament FAQs"
@@ -223,7 +223,7 @@ export default function DelhiTournaments() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 px-4 bg-gradient-to-t from-primary-900/30 to-dark-900">
+        <section className="py-16 px-3 sm:px-4 bg-gradient-to-t from-primary-900/30 to-dark-900">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Compete, Delhi?</h2>
             <p className="text-dark-300 mb-8 max-w-2xl mx-auto">
