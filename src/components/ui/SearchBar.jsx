@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
+import { formatCurrency } from '@/lib/utils';
 
 export default function SearchBar({ className = '' }) {
     const router = useRouter();
@@ -86,6 +87,7 @@ export default function SearchBar({ className = '' }) {
                         onFocus={() => query.length >= 2 && setIsOpen(true)}
                         placeholder="Search..."
                         className="w-full px-4 py-2 pl-10 bg-gray-800/50 border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:border-cyan-500 transition-colors"
+                        suppressHydrationWarning
                     />
                     <svg
                         className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
@@ -125,7 +127,7 @@ export default function SearchBar({ className = '' }) {
                                         <div className="text-white font-medium truncate">{match.title}</div>
                                         <div className="text-xs text-gray-400 capitalize">{match.gameType?.replace('_', ' ')} • {match.matchType}</div>
                                     </div>
-                                    <span className="text-green-400 text-sm font-medium">₹{match.prizePool}</span>
+                                    <span className="text-green-400 text-sm font-medium">{formatCurrency(match.prizePool, match.prizePoolCurrency || 'INR')}</span>
                                 </Link>
                             ))}
 
@@ -142,7 +144,7 @@ export default function SearchBar({ className = '' }) {
                                         <div className="text-white font-medium truncate">{tournament.title}</div>
                                         <div className="text-xs text-gray-400 capitalize">{tournament.format?.replace('_', ' ')}</div>
                                     </div>
-                                    <span className="text-green-400 text-sm font-medium">₹{tournament.prizePool}</span>
+                                    <span className="text-green-400 text-sm font-medium">{formatCurrency(tournament.prizePool, tournament.prizePoolCurrency || 'INR')}</span>
                                 </Link>
                             ))}
 

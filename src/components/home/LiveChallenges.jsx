@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getMatches } from '@/lib/api';
+import { formatCurrency, getCurrencySymbol } from '@/lib/utils';
 
 export default function LiveChallenges() {
     const [challenges, setChallenges] = useState([]);
@@ -96,12 +97,12 @@ export default function LiveChallenges() {
                                     <div className="flex justify-between items-center mb-3 sm:mb-4 p-2.5 sm:p-3 bg-black/30 rounded-xl">
                                         <div className="text-center flex-1">
                                             <p className="text-[10px] sm:text-xs text-gray-400 uppercase">Prize Pool</p>
-                                            <p className="text-lg sm:text-xl font-bold text-gaming-green">₹{challenge.prizePool}</p>
+                                            <p className="text-lg sm:text-xl font-bold text-gaming-green">{formatCurrency(challenge.prizePool, challenge.prizePoolCurrency || 'INR')}</p>
                                         </div>
                                         <div className="w-px h-8 sm:h-10 bg-gray-700 mx-2" />
                                         <div className="text-center flex-1">
                                             <p className="text-[10px] sm:text-xs text-gray-400 uppercase">Entry Fee</p>
-                                            <p className="text-lg sm:text-xl font-bold text-gaming-orange">₹{challenge.entryFee}</p>
+                                            <p className="text-lg sm:text-xl font-bold text-gaming-orange">{getCurrencySymbol(challenge.prizePoolCurrency || 'INR')}{challenge.entryFee}</p>
                                         </div>
                                     </div>
 

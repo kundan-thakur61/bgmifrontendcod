@@ -39,7 +39,7 @@ export default function CreateMatchPage() {
 
   // Calculate costs
   const prizePool = parseInt(formData.prizePool) || 0;
-  const creationFee = Math.max(Math.floor(prizePool * 0.10), prizePool > 0 ? 5 : 0);
+  const creationFee = 0; // Free creation fee
   const totalCost = creationFee + prizePool;
   const entryFee = parseInt(formData.entryFee) || 0;
 
@@ -451,7 +451,7 @@ export default function CreateMatchPage() {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {[
-                { num: '1', text: 'You pay', highlight: 'Creation Fee + Prize Pool', sub: 'upfront', color: 'from-blue-500/15 to-blue-500/5 border-blue-500/20' },
+                { num: '1', text: 'You pay only', highlight: 'Prize Pool', sub: '(Creation is FREE!)', color: 'from-blue-500/15 to-blue-500/5 border-blue-500/20' },
                 { num: '2', text: 'Challenge goes', highlight: 'live for everyone', sub: 'to see', color: 'from-green-500/15 to-green-500/5 border-green-500/20' },
                 { num: '3', text: 'Opponent pays', highlight: 'Entry Fee', sub: 'to accept', color: 'from-yellow-500/15 to-yellow-500/5 border-yellow-500/20' },
                 { num: '4', text: '', highlight: 'Room ID & Password', sub: 'revealed to both', color: 'from-purple-500/15 to-purple-500/5 border-purple-500/20' },
@@ -708,10 +708,10 @@ export default function CreateMatchPage() {
                       </div>
                       <div className="flex justify-between items-center text-sm">
                         <span className="text-dark-400 flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-orange-500/60"></span>
-                          Creation Fee <span className="text-dark-600 text-xs">(10%, min ₹5)</span>
+                          <span className="w-2 h-2 rounded-full bg-green-500/60"></span>
+                          Creation Fee <span className="text-dark-600 text-xs">(free)</span>
                         </span>
-                        <span className="text-orange-400 font-semibold">₹{creationFee.toLocaleString()}</span>
+                        <span className="text-green-400 font-semibold">FREE</span>
                       </div>
                       <div className="border-t border-dark-600/60 pt-3">
                         <div className="flex justify-between items-center">

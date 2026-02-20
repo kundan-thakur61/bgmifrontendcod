@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { api, getMatches } from '@/lib/api';
-import { formatCurrency, formatDateTime, debounce } from '@/lib/utils';
+import { formatCurrency, formatDateTime, debounce, getCurrencySymbol } from '@/lib/utils';
 
 // ─── Reusable Components ───────────────────────────────────────
 
@@ -28,6 +28,7 @@ function StatCard({ label, value, sub, icon, trend, color = 'text-white', onClic
     </button>
   );
 }
+
 
 function Badge({ status }) {
   const colors = {
@@ -337,7 +338,7 @@ export default function AdminDashboard() {
         case 'cancelMatch': await api.cancelMatch(item._id, formData.reason); setSuccess('Match cancelled'); setShowModal(null); loadTabData('matches'); break;
         case 'setRoomCredentials':
         case 'roomCredentials':
-          await api.setRoomCredentials(selectedItem._id, formData.roomId, formData.password); setSuccess('Room credentials set'); setShowModal(null); loadTabData('matches'); break;
+          await api.setRoomCredentials(selectedItem._id, formData.roomId, formData.password, formData.revealNow !== false); setSuccess('Room credentials set'); setShowModal(null); loadTabData('matches'); break;
         case 'deleteMatch': await api.deleteMatch(item._id); setSuccess('Match deleted'); setShowModal(null); loadTabData('matches'); break;
         case 'approveWithdrawal': await api.approveWithdrawal(item._id); setSuccess('Withdrawal approved'); loadTabData('withdrawals'); break;
         case 'rejectWithdrawal': await api.rejectWithdrawal(item._id, formData.reason); setSuccess('Withdrawal rejected'); setShowModal(null); loadTabData('withdrawals'); break;
@@ -358,11 +359,16 @@ export default function AdminDashboard() {
         case 'createMatch': {
           if (!formData.title || formData.title.trim().length < 3) throw new Error('Title must be at least 3 characters');
           if (!formData.scheduledAt) throw new Error('Scheduled date is required');
-          const md = { title: formData.title.trim(), gameType: formData.gameType || 'pubg_mobile', matchType: formData.matchType || 'match_win', mode: formData.mode || 'solo', map: formData.map || 'erangel', entryFee: parseInt(formData.entryFee) || 0, prizePool: parseInt(formData.prizePool) || 0, maxSlots: parseInt(formData.maxSlots) || 2, scheduledAt: new Date(formData.scheduledAt).toISOString() };
+          if (formData.prizePool !== undefined && formData.prizePool < 0) throw new Error('Prize pool must be a positive value');
+          const md = { title: formData.title.trim(), gameType: formData.gameType || 'pubg_mobile', matchType: formData.matchType || 'match_win', mode: formData.mode || 'solo', map: formData.map || 'erangel', entryFee: parseInt(formData.entryFee) || 0, prizePool: parseInt(formData.prizePool) || 0, prizePoolCurrency: formData.prizePoolCurrency || 'INR', maxSlots: parseInt(formData.maxSlots) || 2, scheduledAt: new Date(formData.scheduledAt).toISOString() };
           if (new Date(md.scheduledAt) <= new Date()) throw new Error('Scheduled date must be in the future');
           await api.createMatch(md); setSuccess('Match created'); setShowModal(null); setFormData({}); loadTabData('matches'); break;
         }
-        case 'createTournament': await api.createTournament(formData); setSuccess('Tournament created'); setShowModal(null); loadTabData('tournaments'); break;
+        case 'createTournament': {
+          if (formData.prizePool !== undefined && formData.prizePool < 0) throw new Error('Prize pool must be a positive value');
+          const td = { ...formData, prizePoolCurrency: formData.prizePoolCurrency || 'INR' };
+          await api.createTournament(td); setSuccess('Tournament created'); setShowModal(null); loadTabData('tournaments'); break;
+        }
         case 'deleteTournament': await api.deleteTournament(item._id); setSuccess('Tournament deleted'); loadTabData('tournaments'); break;
         case 'completeTournament': await api.completeTournament(item._id); setSuccess('Tournament completed'); setShowModal(null); loadTabData('tournaments'); break;
         case 'cancelTournament': await api.cancelTournament(item._id, formData.reason); setSuccess('Tournament cancelled'); setShowModal(null); loadTabData('tournaments'); break;
@@ -427,6 +433,7 @@ export default function AdminDashboard() {
     { id: 'overview', label: 'Overview', icon: '📊' },
     { id: 'matches', label: 'Matches', icon: '🎮', show: isMatchMgr },
     { id: 'tournaments', label: 'Tournaments', icon: '🏆', show: isMatchMgr },
+    { id: 'prize-rules', label: 'Prize Rules', icon: '💰', show: isMatchMgr, href: '/admin/prize-rules' },
     { id: 'users', label: 'Users', icon: '👥', show: isAdmin },
     { id: 'transactions', label: 'Transactions', icon: '💳', show: isFinance },
     { id: 'withdrawals', label: 'Withdrawals', icon: '💸', show: isFinance },
@@ -464,25 +471,34 @@ export default function AdminDashboard() {
           <ul className="space-y-0.5 px-2">
             {menuItems.map((item) => (
               <li key={item.id}>
-                <button onClick={() => { setActiveTab(item.id); setPagination({ page: 1, pages: 1, total: 0 }); setSearchQuery(''); setFilterStatus(''); }}
-                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all ${activeTab === item.id ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/20' : 'text-dark-300 hover:bg-dark-700 hover:text-white'}`}
-                  title={item.label}>
-                  <span className="text-base flex-shrink-0">{item.icon}</span>
-                  {sidebarOpen && <span className="truncate">{item.label}</span>}
-                  {/* Live badges */}
-                  {sidebarOpen && item.id === 'withdrawals' && dashboard?.withdrawals?.pending > 0 && (
-                    <span className="ml-auto bg-yellow-500 text-dark-900 text-[10px] font-bold px-1.5 py-0.5 rounded-full">{dashboard.withdrawals.pending}</span>
-                  )}
-                  {sidebarOpen && item.id === 'kyc' && dashboard?.support?.pendingKyc > 0 && (
-                    <span className="ml-auto bg-yellow-500 text-dark-900 text-[10px] font-bold px-1.5 py-0.5 rounded-full">{dashboard.support.pendingKyc}</span>
-                  )}
-                  {sidebarOpen && item.id === 'disputes' && dashboard?.support?.pendingDisputes > 0 && (
-                    <span className="ml-auto bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{dashboard.support.pendingDisputes}</span>
-                  )}
-                  {sidebarOpen && item.id === 'tickets' && dashboard?.support?.urgentTickets > 0 && (
-                    <span className="ml-auto bg-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{dashboard.support.urgentTickets}</span>
-                  )}
-                </button>
+                {item.href ? (
+                  <Link href={item.href}
+                    className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all text-dark-300 hover:bg-dark-700 hover:text-white`}
+                    title={item.label}>
+                    <span className="text-base flex-shrink-0">{item.icon}</span>
+                    {sidebarOpen && <span className="truncate">{item.label}</span>}
+                  </Link>
+                ) : (
+                  <button onClick={() => { setActiveTab(item.id); setPagination({ page: 1, pages: 1, total: 0 }); setSearchQuery(''); setFilterStatus(''); }}
+                    className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all ${activeTab === item.id ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/20' : 'text-dark-300 hover:bg-dark-700 hover:text-white'}`}
+                    title={item.label}>
+                    <span className="text-base flex-shrink-0">{item.icon}</span>
+                    {sidebarOpen && <span className="truncate">{item.label}</span>}
+                    {/* Live badges */}
+                    {sidebarOpen && item.id === 'withdrawals' && dashboard?.withdrawals?.pending > 0 && (
+                      <span className="ml-auto bg-yellow-500 text-dark-900 text-[10px] font-bold px-1.5 py-0.5 rounded-full">{dashboard.withdrawals.pending}</span>
+                    )}
+                    {sidebarOpen && item.id === 'kyc' && dashboard?.support?.pendingKyc > 0 && (
+                      <span className="ml-auto bg-yellow-500 text-dark-900 text-[10px] font-bold px-1.5 py-0.5 rounded-full">{dashboard.support.pendingKyc}</span>
+                    )}
+                    {sidebarOpen && item.id === 'disputes' && dashboard?.support?.pendingDisputes > 0 && (
+                      <span className="ml-auto bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{dashboard.support.pendingDisputes}</span>
+                    )}
+                    {sidebarOpen && item.id === 'tickets' && dashboard?.support?.urgentTickets > 0 && (
+                      <span className="ml-auto bg-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{dashboard.support.urgentTickets}</span>
+                    )}
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -576,7 +592,7 @@ export default function AdminDashboard() {
                 <h2 className="text-sm font-semibold text-dark-400 uppercase tracking-wider mb-3">Quick Actions</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2">
                   {[
-                    { icon: '➕', label: 'Create Match', action: () => { setActiveTab('matches'); setShowModal('createMatch'); setFormData({ gameType: 'pubg_mobile', matchType: 'match_win', mode: 'solo', map: 'erangel', entryFee: 50, prizePool: 400, maxSlots: 100 }); } },
+                    { icon: '➕', label: 'Create Match', action: () => { setActiveTab('matches'); setShowModal('createMatch'); setFormData({ gameType: 'pubg_mobile', matchType: 'match_win', mode: 'solo', map: 'erangel', entryFee: 50, prizePool: 400, prizePoolCurrency: 'INR', maxSlots: 100 }); } },
                     { icon: '🏆', label: 'Tournaments', action: () => setActiveTab('tournaments') },
                     { icon: '💸', label: `Withdrawals (${dashboard?.withdrawals?.pending || 0})`, action: () => setActiveTab('withdrawals'), show: isFinance },
                     { icon: '📋', label: `KYC (${dashboard?.support?.pendingKyc || 0})`, action: () => setActiveTab('kyc'), show: isSupport },
@@ -638,7 +654,7 @@ export default function AdminDashboard() {
             <div className="space-y-4">
               <div className="flex flex-wrap justify-between items-center gap-3">
                 <h2 className="text-lg font-bold">Matches ({matches.length})</h2>
-                <button onClick={() => { setShowModal('createMatch'); setFormData({ gameType: 'pubg_mobile', matchType: 'match_win', mode: 'solo', map: 'erangel', entryFee: 50, prizePool: 400, maxSlots: 100 }); }} className="btn-primary text-sm h-9">+ Create Match</button>
+                <button onClick={() => { setShowModal('createMatch'); setFormData({ gameType: 'pubg_mobile', matchType: 'match_win', mode: 'solo', map: 'erangel', entryFee: 50, prizePool: 400, prizePoolCurrency: 'INR', maxSlots: 100 }); }} className="btn-primary text-sm h-9">+ Create Match</button>
               </div>
               <div className="card overflow-x-auto">
                 <table className="w-full text-sm">
@@ -655,7 +671,7 @@ export default function AdminDashboard() {
                       <tr key={m._id} className="border-t border-dark-700/50 hover:bg-dark-700/30 transition-colors">
                         <td className="p-3"><div className="font-medium">{m.title}</div><div className="text-dark-500 text-xs">{formatDateTime(m.scheduledAt)}</div></td>
                         <td className="p-3 capitalize text-dark-300">{m.gameType?.replace('_', ' ')} • {m.matchType}</td>
-                        <td className="p-3">₹{m.entryFee} / ₹{m.prizePool}</td>
+                        <td className="p-3">{getCurrencySymbol(m.prizePoolCurrency || 'INR')}{m.entryFee} / {formatCurrency(m.prizePool, m.prizePoolCurrency || 'INR')}</td>
                         <td className="p-3">{m.participants?.length || m.filledSlots || 0}/{m.maxSlots}</td>
                         <td className="p-3"><Badge status={m.status} /></td>
                         <td className="p-3">
@@ -684,7 +700,7 @@ export default function AdminDashboard() {
             <div className="space-y-4">
               <div className="flex flex-wrap justify-between items-center gap-3">
                 <h2 className="text-lg font-bold">Tournaments ({tournaments.length})</h2>
-                <button onClick={() => { setShowModal('createTournament'); setFormData({ gameType: 'pubg_mobile', format: 'battle_royale', mode: 'squad', entryFee: 100, prizePool: 10000, maxTeams: 100 }); }} className="btn-primary text-sm h-9">+ Create Tournament</button>
+                <button onClick={() => { setShowModal('createTournament'); setFormData({ gameType: 'pubg_mobile', format: 'battle_royale', mode: 'squad', entryFee: 100, prizePool: 10000, prizePoolCurrency: 'INR', maxTeams: 100 }); }} className="btn-primary text-sm h-9">+ Create Tournament</button>
               </div>
               <div className="card overflow-x-auto">
                 <table className="w-full text-sm">
@@ -701,7 +717,7 @@ export default function AdminDashboard() {
                       <tr key={t._id} className="border-t border-dark-700/50 hover:bg-dark-700/30 transition-colors">
                         <td className="p-3"><div className="font-medium">{t.title}</div><div className="text-dark-500 text-xs">{formatDateTime(t.startAt)}</div></td>
                         <td className="p-3 capitalize">{t.format?.replace(/_/g, ' ')}</td>
-                        <td className="p-3 text-gaming-green">{formatCurrency(t.prizePool)}</td>
+                        <td className="p-3 text-gaming-green">{formatCurrency(t.prizePool, t.prizePoolCurrency || 'INR')}</td>
                         <td className="p-3">{t.registeredTeams || 0}/{t.maxTeams}</td>
                         <td className="p-3"><Badge status={t.status} /></td>
                         <td className="p-3">
@@ -863,6 +879,8 @@ export default function AdminDashboard() {
                     <th className="text-right p-3 font-medium text-dark-400">Amount</th>
                     <th className="text-left p-3 font-medium text-dark-400">Method</th>
                     <th className="text-left p-3 font-medium text-dark-400">Details</th>
+                    <th className="text-left p-3 font-medium text-dark-400">Bank Name</th>
+                    <th className="text-left p-3 font-medium text-dark-400">IFSC Code</th>
                     <th className="text-left p-3 font-medium text-dark-400">Requested</th>
                     <th className="text-left p-3 font-medium text-dark-400">Actions</th>
                   </tr></thead>
@@ -872,7 +890,9 @@ export default function AdminDashboard() {
                         <td className="p-3"><div className="font-medium">{w.user?.name}</div><div className="text-dark-500 text-xs">{w.user?.phone}</div></td>
                         <td className="p-3 text-right font-bold text-gaming-green">{formatCurrency(w.amount)}</td>
                         <td className="p-3 capitalize">{w.method}</td>
-                        <td className="p-3 text-dark-400 text-xs">{w.upiId || w.accountDetails?.upiId || w.accountDetails?.accountNumber || w.bankDetails?.accountNumber || '—'}</td>
+                        <td className="p-3 text-dark-400 text-xs">{w.upiId || w.accountDetails?.upiId || w.accountDetails?.accountNumber || w.bankDetails?.accountNumber || 'â'}</td>
+                        <td className="p-3 text-dark-300 text-xs">{w.bankDetails?.bankName || 'â'}</td>
+                        <td className="p-3 text-dark-300 text-xs font-mono">{w.bankDetails?.ifscCode || 'â'}</td>
                         <td className="p-3 text-dark-500 text-xs">{formatDateTime(w.createdAt)}</td>
                         <td className="p-3">
                           <div className="flex gap-1">
@@ -1490,10 +1510,13 @@ export default function AdminDashboard() {
                   <div><label className="label">Mode</label><select className="input" value={formData.mode || 'solo'} onChange={(e) => setFormData({ ...formData, mode: e.target.value })}><option value="solo">Solo</option><option value="duo">Duo</option><option value="squad">Squad</option></select></div>
                   <div><label className="label">Map</label><select className="input" value={formData.map || 'erangel'} onChange={(e) => setFormData({ ...formData, map: e.target.value })}><option value="erangel">Erangel</option><option value="miramar">Miramar</option><option value="sanhok">Sanhok</option><option value="vikendi">Vikendi</option><option value="livik">Livik</option></select></div>
                 </div>
-                <div className="grid grid-cols-3 gap-3">
-                  <div><label className="label">Entry ₹</label><input type="number" className="input" value={formData.entryFee || ''} onChange={(e) => setFormData({ ...formData, entryFee: parseInt(e.target.value) })} /></div>
-                  <div><label className="label">Prize ₹</label><input type="number" className="input" value={formData.prizePool || ''} onChange={(e) => setFormData({ ...formData, prizePool: parseInt(e.target.value) })} /></div>
-                  <div><label className="label">Slots</label><input type="number" className="input" value={formData.maxSlots || ''} onChange={(e) => setFormData({ ...formData, maxSlots: parseInt(e.target.value) })} /></div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div><label className="label">Entry Fee</label><input type="number" className="input" value={formData.entryFee || ''} onChange={(e) => setFormData({ ...formData, entryFee: parseInt(e.target.value) })} min="0" /></div>
+                  <div><label className="label">Slots</label><input type="number" className="input" value={formData.maxSlots || ''} onChange={(e) => setFormData({ ...formData, maxSlots: parseInt(e.target.value) })} min="2" max="100" /></div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div><label className="label">Prize Pool Amount</label><input type="number" className="input" value={formData.prizePool || ''} onChange={(e) => setFormData({ ...formData, prizePool: parseInt(e.target.value) })} min="0" placeholder="Enter amount" /></div>
+                  <div><label className="label">Currency</label><select className="input" value={formData.prizePoolCurrency || 'INR'} onChange={(e) => setFormData({ ...formData, prizePoolCurrency: e.target.value })}><option value="INR">₹ INR (Indian Rupee)</option><option value="USD">$ USD (US Dollar)</option><option value="EUR">€ EUR (Euro)</option><option value="GBP">£ GBP (British Pound)</option></select></div>
                 </div>
                 <div><label className="label">Scheduled At</label><input type="datetime-local" className="input" value={formData.scheduledAt || ''} onChange={(e) => setFormData({ ...formData, scheduledAt: e.target.value })} /></div>
               </div>
@@ -1509,10 +1532,13 @@ export default function AdminDashboard() {
                   <div><label className="label">Game</label><select className="input" value={formData.gameType || 'pubg_mobile'} onChange={(e) => setFormData({ ...formData, gameType: e.target.value })}><option value="pubg_mobile">PUBG Mobile</option><option value="free_fire">Free Fire</option></select></div>
                   <div><label className="label">Format</label><select className="input" value={formData.format || 'battle_royale'} onChange={(e) => setFormData({ ...formData, format: e.target.value })}><option value="battle_royale">Battle Royale</option><option value="single_elimination">Single Elimination</option><option value="double_elimination">Double Elimination</option><option value="round_robin">Round Robin</option><option value="swiss">Swiss</option></select></div>
                 </div>
-                <div className="grid grid-cols-3 gap-3">
-                  <div><label className="label">Entry ₹</label><input type="number" className="input" value={formData.entryFee || ''} onChange={(e) => setFormData({ ...formData, entryFee: parseInt(e.target.value) || 0 })} /></div>
-                  <div><label className="label">Prize ₹</label><input type="number" className="input" value={formData.prizePool || ''} onChange={(e) => setFormData({ ...formData, prizePool: parseInt(e.target.value) || 0 })} /></div>
-                  <div><label className="label">Max Teams</label><input type="number" className="input" value={formData.maxTeams || ''} onChange={(e) => setFormData({ ...formData, maxTeams: parseInt(e.target.value) || 0 })} /></div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div><label className="label">Entry Fee</label><input type="number" className="input" value={formData.entryFee || ''} onChange={(e) => setFormData({ ...formData, entryFee: parseInt(e.target.value) || 0 })} min="0" /></div>
+                  <div><label className="label">Max Teams</label><input type="number" className="input" value={formData.maxTeams || ''} onChange={(e) => setFormData({ ...formData, maxTeams: parseInt(e.target.value) || 0 })} min="4" max="500" /></div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div><label className="label">Prize Pool Amount</label><input type="number" className="input" value={formData.prizePool || ''} onChange={(e) => setFormData({ ...formData, prizePool: parseInt(e.target.value) || 0 })} min="0" placeholder="Enter amount" /></div>
+                  <div><label className="label">Currency</label><select className="input" value={formData.prizePoolCurrency || 'INR'} onChange={(e) => setFormData({ ...formData, prizePoolCurrency: e.target.value })}><option value="INR">₹ INR (Indian Rupee)</option><option value="USD">$ USD (US Dollar)</option><option value="EUR">€ EUR (Euro)</option><option value="GBP">£ GBP (British Pound)</option></select></div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div><label className="label">Reg Start</label><input type="datetime-local" className="input" value={formData.registrationStartAt || ''} onChange={(e) => setFormData({ ...formData, registrationStartAt: e.target.value })} /></div>
@@ -1528,6 +1554,15 @@ export default function AdminDashboard() {
               <div className="space-y-3">
                 <div><label className="label">Room ID</label><input type="text" className="input" value={formData.roomId || ''} onChange={(e) => setFormData({ ...formData, roomId: e.target.value })} /></div>
                 <div><label className="label">Password</label><input type="text" className="input" value={formData.password || ''} onChange={(e) => setFormData({ ...formData, password: e.target.value })} /></div>
+                <div className="flex items-center gap-2 pt-2">
+                  <input type="checkbox" id="revealNow" checked={formData.revealNow !== false} onChange={(e) => setFormData({ ...formData, revealNow: e.target.checked })} className="w-4 h-4 rounded border-dark-600 bg-dark-700 text-primary-500 focus:ring-primary-500" />
+                  <label htmlFor="revealNow" className="text-sm text-dark-300">Reveal to participants immediately</label>
+                </div>
+                {formData.revealNow !== false && (
+                  <div className="bg-green-500/10 border border-green-500/20 p-2 rounded-lg">
+                    <p className="text-green-400 text-xs">Credentials will be visible to all joined participants immediately.</p>
+                  </div>
+                )}
               </div>
             </>)}
 

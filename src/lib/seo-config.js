@@ -26,28 +26,62 @@ const resolveBaseUrl = () => {
 
 // ─── Site-Wide Constants ────────────────────────────────────
 export const SITE = {
-  name: 'BattleZone',
-  tagline: "India's #1 BGMI Esports Tournament Platform",
+  name: 'BattleXZone',
+  tagline: "India's #1 BGMI Esports Tournament Platform - Win Real Cash",
   baseUrl: resolveBaseUrl(),
-  defaultTitle: 'BattleZone — Play BGMI Tournaments, Win Real Money | India\'s #1 Esports Platform',
+  // Optimized title for CTR: Primary keyword + benefit + brand (under 60 chars)
+  defaultTitle: 'BGMI Tournament Online India | Win ₹10,000 Cash | Entry ₹10',
+  // Optimized description with CTA (under 160 chars)
   defaultDescription:
-    'Join 50,000+ BGMI players on BattleZone. Play Solo, Duo & Squad tournaments starting ₹10. Win real cash prizes with instant UPI withdrawals. Anti-cheat verified. Fair play guaranteed.',
+    'Join BGMI & Free Fire tournaments online. Win real cash prizes starting ₹10 entry. 50,000+ players. Instant UPI withdrawal. Register Free Now!',
+  // Comprehensive keywords from SEO Master Strategy - PILLAR 1
   defaultKeywords: [
+    // Primary Keywords (High Priority)
+    'BGMI win match online',
+    'BGMI tournament online India',
+    'PUBG tournament earn money India',
+    'Free Fire online earning tournament',
+    'online gaming earn money India',
+    // BGMI Tournament Cluster (LSI Keywords)
     'BGMI tournament',
+    'BGMI tournament registration India',
+    'BGMI cash tournament app',
+    'BGMI prize money match',
+    'BGMI esports competition India',
+    'BGMI solo tournament entry',
+    'BGMI squad tournament join',
+    'BGMI tournament prize pool',
     'BGMI tournament app',
-    'BGMI esports',
-    'BGMI tournament India',
-    'play BGMI for money',
-    'BGMI cash tournament',
     'BGMI custom room',
-    'BGMI match',
-    'PUBG Mobile tournament India',
+    // Free Fire Earning Cluster (LSI Keywords)
     'Free Fire tournament',
-    'esports platform India',
-    'mobile esports',
+    'Free Fire tournament app India',
+    'Free Fire diamond tournament',
+    'Free Fire cash prize game',
+    'Free Fire esports India',
+    'Free Fire tournament registration free',
+    // PUBG/Online Earning Cluster (LSI Keywords)
+    'PUBG Mobile tournament India',
+    'earn money playing PUBG',
+    'PUBG cash match app',
+    'online gaming income India',
+    'mobile game earn paytm cash',
+    'gaming tournament app India',
+    'esports earning platform',
     'real money gaming India',
-    'competitive gaming India',
-    'BattleZone',
+    // Long-Tail Keywords (High Intent)
+    'BGMI tournament with entry fee 10 rupees',
+    'Free Fire tournament free entry real money',
+    'how to join BGMI tournament and win money',
+    'BGMI tournament app with instant withdrawal',
+    'best BGMI tournament app for beginners',
+    'PUBG tournament earn Paytm cash instant',
+    'BGMI tournament without investment India',
+    // Location & Language Keywords
+    'game khelke paise kaise kamaye',
+    'esports platform India',
+    'mobile esports tournament India',
+    'BattleXZone',
     'online tournament app',
     'esports app India',
   ],
@@ -231,33 +265,57 @@ export const PAGE_SEO = {
   home: generateSeoMetadata({}),
 
   matches: generateSeoMetadata({
-    title: 'Live BGMI & Free Fire Matches — Join & Win Cash Prizes',
+    // Optimized title: Keyword + benefit + CTA (under 60 chars)
+    title: 'BGMI Win Match Online | Join Live Tournament & Win Cash ₹10,000',
+    // Optimized description with numbers and CTA (under 160 chars)
     description:
-      'Browse 500+ daily BGMI matches. Entry from ₹10. Solo, Duo & Squad formats. Anti-cheat verified results. Fair play guaranteed. Instant UPI withdrawals.',
+      'Join BGMI match online & win real cash. Entry ₹10. 500+ daily matches. Solo, Duo, Squad. Instant UPI withdrawal. Play Now →',
     keywords: [
+      // Primary keyword targeting
+      'BGMI win match online',
       'BGMI matches today',
       'BGMI custom room match',
       'BGMI live matches',
+      // LSI keywords
+      'BGMI cash match',
+      'BGMI prize money match',
+      'join BGMI match',
+      'BGMI match registration',
       'PUBG Mobile match join',
       'Free Fire match online',
       'esports matches India',
-      'BGMI cash match',
+      // Long-tail keywords
+      'BGMI tournament with entry fee 10 rupees',
+      'BGMI match win cash',
+      'play BGMI and earn money',
     ],
     url: '/matches',
   }),
 
   tournaments: generateSeoMetadata({
-    title: 'BGMI Tournaments India — ₹50,000+ Daily Prizes | Register Free',
+    // Optimized title: Primary keyword + benefit (under 60 chars)
+    title: 'BGMI Tournament Online India | Win ₹50,000+ | Entry ₹10',
+    // Optimized description with CTA (under 160 chars)
     description:
-      'Join daily & weekly BGMI tournaments with massive prize pools. Solo, Duo & Squad formats. Free registration. Compete against India\'s best players.',
+      'Join BGMI tournament online India. Solo, Duo & Squad matches. Entry fee ₹10. Win up to ₹50,000 cash. Instant UPI withdrawal. Register Free!',
     keywords: [
+      // Primary keyword targeting
+      'BGMI tournament online India',
       'BGMI tournament registration',
       'BGMI tournament 2026',
       'BGMI esports tournament',
+      // LSI keywords
+      'BGMI tournament prize pool',
+      'BGMI solo tournament entry',
+      'BGMI squad tournament join',
       'PUBG Mobile tournament India',
       'Free Fire tournament',
       'online gaming tournament',
-      'BGMI squad tournament',
+      // Long-tail keywords
+      'how to join BGMI tournament and win money',
+      'BGMI tournament without investment India',
+      'best BGMI tournament app for beginners',
+      'Free Fire tournament free entry real money',
     ],
     url: '/tournaments',
   }),
@@ -271,30 +329,54 @@ export const PAGE_SEO = {
   }),
 
   blog: generateSeoMetadata({
-    title: 'BGMI Tips, Strategies & Esports News — Gaming Blog',
+    // Optimized for gaming content discovery
+    title: 'BGMI Tips, Tournament Strategies & Online Earning Guides',
     description:
-      'Expert BGMI tips, tournament strategies, sensitivity settings, weapon guides, and Indian esports news. Level up your BGMI gameplay.',
+      'Expert BGMI tips, tournament strategies, how to earn money playing BGMI in India. Pro player guides, sensitivity settings, weapon tips. Level up!',
     keywords: [
+      // Primary content keywords
       'BGMI tips and tricks',
       'BGMI sensitivity settings',
       'BGMI weapon guide',
       'BGMI strategy',
       'esports news India',
       'BGMI pro player tips',
+      // Earning-focused keywords (PILLAR 1)
+      'how to earn money playing BGMI',
+      'online gaming earn money India',
+      'BGMI earning guide',
+      'earn money playing PUBG',
+      'mobile game earn paytm cash',
+      // Tournament strategy keywords
+      'BGMI tournament tips',
+      'how to win BGMI tournament',
+      'BGMI tournament strategy',
+      'Free Fire tournament tips',
     ],
     url: '/blog',
     type: 'website',
   }),
 
   howItWorks: generateSeoMetadata({
-    title: 'How to Join BGMI Tournaments & Win Real Money — Step by Step',
+    // Optimized for "how to" search intent
+    title: 'How to Join BGMI Tournament & Earn Money Online - Step by Step',
     description:
-      'Learn how BattleZone works in 4 simple steps: Sign up → Add money → Join match → Win prizes. Complete guide with screenshots.',
+      'Learn how to earn money playing BGMI in 4 steps: Sign up → Add ₹10 → Join match → Win cash. Complete guide with screenshots. Start earning today!',
     keywords: [
+      // Primary "how to" keywords
       'how to play BGMI tournament',
       'how to join BGMI custom room',
       'how to earn money playing BGMI',
       'BGMI tournament guide',
+      // Step-by-step intent keywords
+      'how to join BGMI tournament and win money',
+      'BGMI tournament registration process',
+      'how to start BGMI tournament',
+      'BGMI earning tutorial',
+      // Related earning keywords
+      'online gaming earn money India',
+      'PUBG tournament earn money India',
+      'Free Fire online earning tournament',
     ],
     url: '/how-it-works',
   }),

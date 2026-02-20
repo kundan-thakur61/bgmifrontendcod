@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
+import { formatCurrency, getCurrencySymbol } from '@/lib/utils';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Chat from '@/components/chat/Chat';
@@ -161,7 +162,7 @@ export default function TournamentDetailPage() {
                 <h1 className="text-2xl md:text-3xl font-bold">{tournament.title}</h1>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-bold text-gaming-green">₹{tournament.prizePool}</div>
+                <div className="text-3xl font-bold text-gaming-green">{formatCurrency(tournament.prizePool, tournament.prizePoolCurrency || 'INR')}</div>
                 <div className="text-dark-400 text-sm">Total Prize Pool</div>
               </div>
             </div>

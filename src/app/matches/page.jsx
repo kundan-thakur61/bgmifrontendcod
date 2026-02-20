@@ -5,6 +5,8 @@ import { Navbar, Footer } from '@/components/layout';
 import MatchList from '@/components/matches/MatchList';
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
+import PrizeBanner from '@/components/ui/PrizeBanner';
+import StickyJoinCTA from '@/components/ui/StickyJoinCTA';
 
 export default function MatchesPage() {
   const { user } = useAuth();
@@ -16,20 +18,25 @@ export default function MatchesPage() {
 
       <main className="min-h-screen pt-16 sm:pt-20 bg-gradient-to-b from-dark-900 to-dark-800">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
-          {/* Header */}
+          {/* Prize Banner — above-the-fold mobile CTA */}
+          <div className="mb-4 sm:hidden">
+            <PrizeBanner />
+          </div>
+
+          {/* Header - H1 optimized for "BGMI win match online" keyword */}
           <div className="mb-6 sm:mb-8 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/30 rounded-xl sm:rounded-2xl p-4 sm:p-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
               <div>
                 <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
                   {isAdmin && <span className="text-xl sm:text-2xl">👑</span>}
                   <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display">
-                    {isAdmin ? 'Match Management' : 'Official Matches'}
+                    {isAdmin ? 'Match Management' : 'BGMI Win Match Online - Join Live & Win Cash ₹10,000'}
                   </h1>
                 </div>
                 <p className="text-dark-400 text-sm sm:text-base">
                   {isAdmin
                     ? 'Manage all admin-created matches and tournaments'
-                    : 'Browse and join official admin-created matches'
+                    : 'Join BGMI match online & win real cash. Entry ₹10. Solo, Duo, Squad. 500+ daily matches. Instant UPI withdrawal.'
                   }
                 </p>
               </div>
@@ -46,6 +53,28 @@ export default function MatchesPage() {
               </Link>
             </div>
           </div>
+
+          {/* Quick Stats for Trust Signals */}
+          {!isAdmin && (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div className="bg-dark-800/50 rounded-lg p-3 text-center border border-dark-700">
+                <div className="text-xl sm:text-2xl font-bold text-primary-500">500+</div>
+                <div className="text-xs sm:text-sm text-dark-400">Daily Matches</div>
+              </div>
+              <div className="bg-dark-800/50 rounded-lg p-3 text-center border border-dark-700">
+                <div className="text-xl sm:text-2xl font-bold text-green-500">₹10</div>
+                <div className="text-xs sm:text-sm text-dark-400">Min Entry</div>
+              </div>
+              <div className="bg-dark-800/50 rounded-lg p-3 text-center border border-dark-700">
+                <div className="text-xl sm:text-2xl font-bold text-blue-500">5 min</div>
+                <div className="text-xs sm:text-sm text-dark-400">Withdrawal</div>
+              </div>
+              <div className="bg-dark-800/50 rounded-lg p-3 text-center border border-dark-700">
+                <div className="text-xl sm:text-2xl font-bold text-yellow-500">24/7</div>
+                <div className="text-xs sm:text-sm text-dark-400">Support</div>
+              </div>
+            </div>
+          )}
 
           {/* Info Banner - Only for non-admins */}
           {!isAdmin && (
@@ -71,6 +100,9 @@ export default function MatchesPage() {
           </Suspense>
         </div>
       </main>
+
+      {/* Sticky CTA — only shown on mobile, floats above bottom nav */}
+      <StickyJoinCTA href="/matches" label="🎮 Join BGMI Match Now" />
 
       <Footer />
     </>

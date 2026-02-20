@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
+import { formatCurrency, getCurrencySymbol } from '@/lib/utils';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import MatchChat from '@/components/matches/MatchChat';
@@ -225,9 +226,11 @@ export default function MatchDetailPage() {
       }
     });
 
-    // Join the current user's personal room
+    // Join the match room to receive room_revealed events
     socket.on('connect', () => {
       console.log('Socket connected for room credentials');
+      // Join the match room to receive updates
+      socket.emit('join_match', params.id);
     });
 
     // Listen for room_revealed event
@@ -341,7 +344,8 @@ export default function MatchDetailPage() {
 
   const handleShare = async () => {
     const url = window.location.href;
-    const text = `🎮 Join "${match.title}" on BattleZone! Prize Pool: ₹${match.prizePool} | Entry: ${match.entryFee === 0 ? 'FREE' : `₹${match.entryFee}`}`;
+    const currencySymbol = getCurrencySymbol(match.prizePoolCurrency || 'INR');
+    const text = `🎮 Join "${match.title}" on BattleZone! Prize Pool: ${formatCurrency(match.prizePool, match.prizePoolCurrency || 'INR')} | Entry: ${match.entryFee === 0 ? 'FREE' : `${currencySymbol}${match.entryFee}`}`;
     if (navigator.share) {
       try {
         await navigator.share({ title: match.title, text, url });
@@ -455,7 +459,7 @@ export default function MatchDetailPage() {
                 )}
               </div>
               <div className="text-right shrink-0">
-                <div className="text-3xl font-bold text-gaming-green">₹{match.prizePool?.toLocaleString()}</div>
+                <div className="text-3xl font-bold text-gaming-green">{formatCurrency(match.prizePool, match.prizePoolCurrency || 'INR')}</div>
                 <div className="text-dark-400 text-xs mt-0.5">Prize Pool</div>
               </div>
             </div>

@@ -96,6 +96,46 @@ const getTournamentMessages = async (tournamentId) => {
   return response.data;
 };
 
+// Direct Message API
+const startConversation = async (userId) => {
+  const response = await axiosInstance.post('/chat/conversations', { userId });
+  return response.data;
+};
+
+const getConversations = async (params = {}) => {
+  const query = new URLSearchParams(params).toString();
+  const response = await axiosInstance.get(`/chat/conversations${query ? `?${query}` : ''}`);
+  return response.data;
+};
+
+const getConversationMessages = async (conversationId, params = {}) => {
+  const query = new URLSearchParams(params).toString();
+  const response = await axiosInstance.get(`/chat/conversations/${conversationId}/messages${query ? `?${query}` : ''}`);
+  return response.data;
+};
+
+const sendDirectMessage = async (conversationId, content) => {
+  const response = await axiosInstance.post('/chat/send', { conversationId, content });
+  return response.data;
+};
+
+const markConversationAsRead = async (conversationId) => {
+  const response = await axiosInstance.post(`/chat/conversations/${conversationId}/read`);
+  return response.data;
+};
+
+// Get total unread message count
+const getUnreadCount = async () => {
+  const response = await axiosInstance.get('/chat/unread');
+  return response.data;
+};
+
+// Get available admin users to contact
+const getAdmins = async () => {
+  const response = await axiosInstance.get('/chat/admins');
+  return response.data;
+};
+
 // Match API with caching
 const getMatches = async (filters = {}) => {
   const params = new URLSearchParams();
@@ -297,8 +337,8 @@ const api = {
     return response.data;
   },
 
-  setRoomCredentials: async (matchId, roomId, password) => {
-    const response = await axiosInstance.post(`/matches/${matchId}/room-credentials`, { roomId, password });
+  setRoomCredentials: async (matchId, roomId, password, revealNow = true) => {
+    const response = await axiosInstance.post(`/matches/${matchId}/room-credentials`, { roomId, roomPassword: password, revealNow });
     clearCache();
     return response.data;
   },
@@ -615,6 +655,37 @@ const api = {
     return response.data;
   },
 
+  // Saved Payment Methods
+  getSavedPaymentMethods: async () => {
+    const response = await axiosInstance.get('/saved-payment-methods');
+    return response.data;
+  },
+
+  getSavedPaymentMethod: async (id) => {
+    const response = await axiosInstance.get(`/saved-payment-methods/${id}`);
+    return response.data;
+  },
+
+  createSavedPaymentMethod: async (data) => {
+    const response = await axiosInstance.post('/saved-payment-methods', data);
+    return response.data;
+  },
+
+  updateSavedPaymentMethod: async (id, data) => {
+    const response = await axiosInstance.put(`/saved-payment-methods/${id}`, data);
+    return response.data;
+  },
+
+  deleteSavedPaymentMethod: async (id) => {
+    const response = await axiosInstance.delete(`/saved-payment-methods/${id}`);
+    return response.data;
+  },
+
+  setDefaultPaymentMethod: async (id) => {
+    const response = await axiosInstance.post(`/saved-payment-methods/${id}/set-default`);
+    return response.data;
+  },
+
   // Leaderboard
   getLeaderboard: async (type = 'global', params = {}) => {
     const query = new URLSearchParams(params).toString();
@@ -834,6 +905,114 @@ const api = {
   },
 };
 
+// ============================================
+// POPULARITY MARKETPLACE API
+// ============================================
+
+// Get marketplace overview
+export const getPopularityOverview = async () => {
+  const response = await axiosInstance.get('/popularity/overview');
+  return response.data;
+};
+
+// Get all listings
+export const getPopularityListings = async (params = {}) => {
+  const queryString = new URLSearchParams(params).toString();
+  const response = await axiosInstance.get(`/popularity/listings${queryString ? `?${queryString}` : ''}`);
+  return response.data;
+};
+
+// Get single listing
+export const getPopularityListing = async (id) => {
+  const response = await axiosInstance.get(`/popularity/listings/${id}`);
+  return response.data;
+};
+
+// Get user's listings
+export const getMyPopularityListings = async () => {
+  const response = await axiosInstance.get('/popularity/my-listings');
+  return response.data;
+};
+
+// Create a new listing (Sell)
+export const createPopularityListing = async (data) => {
+  const response = await axiosInstance.post('/popularity/listings', data);
+  return response.data;
+};
+
+// Update listing
+export const updatePopularityListing = async (id, data) => {
+  const response = await axiosInstance.put(`/popularity/listings/${id}`, data);
+  return response.data;
+};
+
+// Delete listing
+export const deletePopularityListing = async (id) => {
+  const response = await axiosInstance.delete(`/popularity/listings/${id}`);
+  return response.data;
+};
+
+// Calculate price for points
+export const calculatePopularityPrice = async (data) => {
+  const response = await axiosInstance.post('/popularity/calculate', data);
+  return response.data;
+};
+
+// Purchase popularity points (Buy)
+export const buyPopularity = async (data) => {
+  const response = await axiosInstance.post('/popularity/buy', data);
+  return response.data;
+};
+
+// Get user's transactions
+export const getPopularityTransactions = async (params = {}) => {
+  const queryString = new URLSearchParams(params).toString();
+  const response = await axiosInstance.get(`/popularity/transactions${queryString ? `?${queryString}` : ''}`);
+  return response.data;
+};
+
+// Get single transaction
+export const getPopularityTransaction = async (id) => {
+  const response = await axiosInstance.get(`/popularity/transactions/${id}`);
+  return response.data;
+};
+
+// Mark payment as done
+export const markPopularityPaymentDone = async (id) => {
+  const response = await axiosInstance.post(`/popularity/transactions/${id}/payment-done`);
+  return response.data;
+};
+
+// Confirm popularity transfer (Seller)
+export const confirmPopularityTransfer = async (id, data) => {
+  const response = await axiosInstance.post(`/popularity/transactions/${id}/confirm-transfer`, data);
+  return response.data;
+};
+
+// Confirm receipt (Buyer)
+export const confirmPopularityReceipt = async (id) => {
+  const response = await axiosInstance.post(`/popularity/transactions/${id}/confirm-receipt`);
+  return response.data;
+};
+
+// Cancel transaction
+export const cancelPopularityTransaction = async (id, data) => {
+  const response = await axiosInstance.post(`/popularity/transactions/${id}/cancel`, data);
+  return response.data;
+};
+
+// Raise dispute
+export const raisePopularityDispute = async (id, data) => {
+  const response = await axiosInstance.post(`/popularity/transactions/${id}/dispute`, data);
+  return response.data;
+};
+
+// Rate transaction
+export const ratePopularityTransaction = async (id, data) => {
+  const response = await axiosInstance.post(`/popularity/transactions/${id}/rate`, data);
+  return response.data;
+};
+
 export {
   api,
   getMe,
@@ -843,4 +1022,11 @@ export {
   getTournamentMessages,
   getMatches,
   clearCache,
+  startConversation,
+  getConversations,
+  getConversationMessages,
+  sendDirectMessage,
+  markConversationAsRead,
+  getUnreadCount,
+  getAdmins,
 };

@@ -241,7 +241,7 @@ export default function MatchList() {
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-dark-400">Prize Pool</span>
-                        <span className="font-medium text-green-400">{formatCurrency(match.prizePool)}</span>
+                        <span className="font-medium text-green-400">{formatCurrency(match.prizePool, match.prizePoolCurrency || 'INR')}</span>
                       </div>
                     </div>
 

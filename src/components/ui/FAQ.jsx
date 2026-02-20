@@ -45,6 +45,7 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
         className="w-full py-4 sm:py-5 px-3 sm:px-4 flex items-center justify-between text-left hover:bg-dark-800/50 transition-colors rounded-lg min-h-[48px]"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${index}`}
+        suppressHydrationWarning
       >
         <h3 
           className="text-base sm:text-lg font-semibold text-white pr-3 sm:pr-4"

@@ -5,12 +5,31 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-export function formatCurrency(amount) {
-  return new Intl.NumberFormat('en-IN', {
+export function formatCurrency(amount, currency = 'INR') {
+  const currencyConfig = {
+    INR: { locale: 'en-IN', symbol: '₹' },
+    USD: { locale: 'en-US', symbol: '$' },
+    EUR: { locale: 'de-DE', symbol: '€' },
+    GBP: { locale: 'en-GB', symbol: '£' },
+  };
+  
+  const config = currencyConfig[currency] || currencyConfig.INR;
+  
+  return new Intl.NumberFormat(config.locale, {
     style: 'currency',
-    currency: 'INR',
+    currency: currency,
     maximumFractionDigits: 0,
   }).format(amount);
+}
+
+export function getCurrencySymbol(currency = 'INR') {
+  const symbols = {
+    INR: '₹',
+    USD: '$',
+    EUR: '€',
+    GBP: '£',
+  };
+  return symbols[currency] || symbols.INR;
 }
 
 export function formatDate(date) {

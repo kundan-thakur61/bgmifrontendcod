@@ -101,7 +101,7 @@ export default function TournamentList() {
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-dark-400">Prize Pool</span>
-                        <span className="font-bold text-green-400 text-lg">{formatCurrency(tournament.prizePool)}</span>
+                        <span className="font-bold text-green-400 text-lg">{formatCurrency(tournament.prizePool, tournament.prizePoolCurrency || 'INR')}</span>
                       </div>
                     </div>
 
