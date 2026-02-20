@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/hooks/useAuth';
+import useAuth from '@/hooks/useAuth';
 import PerformanceChart from '@/components/analytics/PerformanceChart';
 import MapPerformance from '@/components/analytics/MapPerformance';
 import ModePerformance from '@/components/analytics/ModePerformance';

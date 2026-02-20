@@ -7,18 +7,18 @@ const getBaseUrl = () => {
 
     // Safety check: if production build but URL is localhost, ignore it unless intentionally creating a local prod build
     if (process.env.NODE_ENV === 'production' && url.includes('localhost') && !process.env.ALLOW_LOCAL_API) {
-      console.warn('Blocked localhost API URL in production environment');
-    } else {
-      // Remove trailing slash if present
-      if (url.endsWith('/')) {
-        url = url.slice(0, -1);
-      }
-      // Append /api if not present
-      if (!url.endsWith('/api')) {
-        url += '/api';
-      }
-      return url;
+      console.warn('Warning: Using localhost API URL in production environment');
     }
+
+    // Remove trailing slash if present
+    if (url.endsWith('/')) {
+      url = url.slice(0, -1);
+    }
+    // Append /api if not present
+    if (!url.endsWith('/api')) {
+      url += '/api';
+    }
+    return url;
   }
 
   // Production fallback

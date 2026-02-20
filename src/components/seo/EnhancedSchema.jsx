@@ -55,18 +55,37 @@ export function WebApplicationSchema() {
   );
 }
 
-export function ArticleSchema({ article }) {
+export function ArticleSchema({ article, title, description, datePublished, dateModified, author, url, image, category, keywords, wordCount }) {
+  // Support both article object and individual props
+  const articleData = article || {
+    title,
+    description,
+    datePublished,
+    dateModified,
+    author,
+    url,
+    image,
+    category,
+    keywords,
+    wordCount
+  };
+
+  // Return null if no title provided
+  if (!articleData?.title) {
+    return null;
+  }
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: article.title,
-    description: article.excerpt || article.description,
-    image: article.image || 'https://battlezone.com/og-image.jpg',
-    datePublished: article.datePublished,
-    dateModified: article.dateModified || article.datePublished,
+    headline: articleData.title,
+    description: articleData.excerpt || articleData.description,
+    image: articleData.image || 'https://battlezone.com/og-image.jpg',
+    datePublished: articleData.datePublished,
+    dateModified: articleData.dateModified || articleData.datePublished,
     author: {
       '@type': 'Organization',
-      name: article.author || 'BattleZone Team',
+      name: articleData.author || 'BattleZone Team',
       url: 'https://battlezone.com',
       logo: 'https://battlezone.com/logo.png',
     },
@@ -83,11 +102,11 @@ export function ArticleSchema({ article }) {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': article.url,
+      '@id': articleData.url,
     },
-    articleSection: article.category || 'Gaming',
-    keywords: article.keywords?.join(', ') || 'BGMI, PUBG Mobile, esports, tournaments',
-    wordCount: article.wordCount || 2000,
+    articleSection: articleData.category || 'Gaming',
+    keywords: Array.isArray(articleData.keywords) ? articleData.keywords.join(', ') : (articleData.keywords || 'BGMI, PUBG Mobile, esports, tournaments'),
+    wordCount: articleData.wordCount || 2000,
     inLanguage: 'en-IN',
   };
 

@@ -1,7 +1,6 @@
 import { Navbar, Footer } from '@/components/layout';
 import { FAQSchema, BreadcrumbSchema, ArticleSchema } from '@/components/seo';
 import Link from 'next/link';
-import { Metadata } from 'next';
 
 // Metadata optimized for "how to earn money playing BGMI" keyword
 export const metadata = {
