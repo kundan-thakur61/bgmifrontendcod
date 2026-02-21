@@ -9,8 +9,8 @@ export default function FairPlayPage() {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Fair Play Policy', url: 'https://battlezone.com/fair-play' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Fair Play Policy', url: 'https://www.battlexzone.com/fair-play' },
       ]} />
       <Navbar />
       <main className="min-h-screen bg-dark-900 pt-16 sm:pt-20 pb-12">

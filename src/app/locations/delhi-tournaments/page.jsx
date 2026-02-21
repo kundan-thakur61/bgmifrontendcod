@@ -13,8 +13,8 @@ const articleData = {
   datePublished: '2026-01-26T00:00:00+05:30',
   dateModified: '2026-01-26T00:00:00+05:30',
   author: 'BattleZone Team',
-  url: 'https://battlezone.com/locations/delhi-tournaments',
-  image: 'https://battlezone.com/locations/delhi-tournaments.jpg',
+  url: 'https://www.battlexzone.com/locations/delhi-tournaments',
+  image: 'https://www.battlexzone.com/locations/delhi-tournaments.jpg',
   category: 'Local',
   keywords: ['BGMI tournaments Delhi', 'Free Fire tournaments Delhi', 'gaming Delhi NCR', 'esports Delhi'],
   wordCount: 2500,
@@ -23,7 +23,7 @@ const articleData = {
 const localBusinessData = {
   name: 'BattleZone Delhi NCR',
   description: 'Join BGMI and Free Fire tournaments in Delhi NCR. Play daily online gaming tournaments in Delhi, Noida, and Gurgaon.',
-  url: 'https://battlezone.com/locations/delhi-tournaments',
+  url: 'https://www.battlexzone.com/locations/delhi-tournaments',
   areaServed: {
     '@type': 'City',
     name: 'Delhi',
@@ -69,8 +69,8 @@ export default function DelhiTournaments() {
       <ArticleSchema article={articleData} />
       <LocalBusinessSchema business={localBusinessData} />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Delhi NCR Tournaments', url: 'https://battlezone.com/locations/delhi-tournaments' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Delhi NCR Tournaments', url: 'https://www.battlexzone.com/locations/delhi-tournaments' },
       ]} />
 
       <main className="min-h-screen pt-16 sm:pt-20">

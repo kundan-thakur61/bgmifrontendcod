@@ -9,8 +9,8 @@ export default function AboutPage() {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'About Us', url: 'https://battlezone.com/about' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'About Us', url: 'https://www.battlexzone.com/about' },
       ]} />
       <Navbar />
 

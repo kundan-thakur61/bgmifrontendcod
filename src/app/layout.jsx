@@ -62,7 +62,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://bgmibackend-5gu6.onrender.com" />
+        <link rel="dns-prefetch" href="https://api.battlexzone.com" />
 
         {/* ── Fonts (display=swap for CLS optimization) ── */}
         <link

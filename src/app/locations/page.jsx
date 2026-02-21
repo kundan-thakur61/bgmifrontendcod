@@ -43,8 +43,8 @@ export default function LocationsPage() {
       <Navbar />
       
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Tournaments by City', url: 'https://battlezone.com/locations' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Tournaments by City', url: 'https://www.battlexzone.com/locations' },
       ]} />
 
       <main className="min-h-screen pt-16 sm:pt-20">

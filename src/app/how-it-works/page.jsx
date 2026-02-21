@@ -111,8 +111,8 @@ export default function HowItWorksPage() {
       <HowToSchema howTo={howToData} />
       <FAQSchema faqs={howItWorksFAQs} />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'How It Works', url: 'https://battlezone.com/how-it-works' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'How It Works', url: 'https://www.battlexzone.com/how-it-works' },
       ]} />
       <Navbar />
       

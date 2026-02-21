@@ -27,7 +27,7 @@ export const metadata = {
       'Free Fire earning app',
       'Free Fire money earning',
     ],
-    'https://battlezone.com/blog/free-fire-tournament-tips',
+    'https://www.battlexzone.com/blog/free-fire-tournament-tips',
     '/api/og?title=Free+Fire+Tournament+Tips&subtitle=Pro+Strategies+2026&category=Guide',
     'article'
   ),
@@ -50,8 +50,8 @@ const articleData = {
   datePublished: '2026-01-20T00:00:00+05:30',
   dateModified: '2026-01-20T00:00:00+05:30',
   author: 'BattleZone Team',
-  url: 'https://battlezone.com/blog/free-fire-tournament-tips',
-  image: 'https://battlezone.com/blog/free-fire-tournament-tips.jpg',
+  url: 'https://www.battlexzone.com/blog/free-fire-tournament-tips',
+  image: 'https://www.battlexzone.com/blog/free-fire-tournament-tips.jpg',
   category: 'Guides',
   keywords: ['Free Fire tournament tips', 'Free Fire tournament India', 'Free Fire cash prize', 'Free Fire pro guide'],
   wordCount: 3500,
@@ -128,9 +128,9 @@ export default function FreeFireTournamentTips() {
       <ArticleSchema article={articleData} />
       <HowToSchema howTo={howToData} />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Blog', url: 'https://battlezone.com/blog' },
-        { name: 'Free Fire Tournament Tips', url: 'https://battlezone.com/blog/free-fire-tournament-tips' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Blog', url: 'https://www.battlexzone.com/blog' },
+        { name: 'Free Fire Tournament Tips', url: 'https://www.battlexzone.com/blog/free-fire-tournament-tips' },
       ]} />
 
       <main className="min-h-screen pt-16 sm:pt-20">

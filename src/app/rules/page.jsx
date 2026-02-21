@@ -9,8 +9,8 @@ export default function RulesPage() {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Tournament Rules', url: 'https://battlezone.com/rules' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Tournament Rules', url: 'https://www.battlexzone.com/rules' },
       ]} />
       <Navbar />
       <main className="min-h-screen bg-dark-900 pt-16 sm:pt-20 pb-12">

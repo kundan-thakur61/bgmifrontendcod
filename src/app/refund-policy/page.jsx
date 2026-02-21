@@ -8,8 +8,8 @@ export default function RefundPolicyPage() {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Refund Policy', url: 'https://battlezone.com/refund-policy' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Refund Policy', url: 'https://www.battlexzone.com/refund-policy' },
       ]} />
       <Navbar />
 
@@ -49,14 +49,14 @@ export default function RefundPolicyPage() {
                 Eligible refunds are automatically credited to your BattleZone wallet within 24 hours. For bank/UPI refunds, the processing time is 5–7 business days.
               </p>
               <p>
-                To request a refund, raise a support ticket at <a href="/tickets" className="text-primary-400 hover:underline">Support Tickets</a> or email <a href="mailto:support@battlezone.com" className="text-primary-400 hover:underline">support@battlezone.com</a>.
+                To request a refund, raise a support ticket at <a href="/tickets" className="text-primary-400 hover:underline">Support Tickets</a> or email <a href="mailto:support@battlexzone.com" className="text-primary-400 hover:underline">support@battlexzone.com</a>.
               </p>
             </section>
 
             <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">4. Dispute Resolution</h2>
               <p>
-                All refund disputes are reviewed by our admin team within 48 hours. Our decision is final and based on match logs, screenshots, and system data. For further escalation, contact us at support@battlezone.com.
+                All refund disputes are reviewed by our admin team within 48 hours. Our decision is final and based on match logs, screenshots, and system data. For further escalation, contact us at support@battlexzone.com.
               </p>
             </section>
           </div>

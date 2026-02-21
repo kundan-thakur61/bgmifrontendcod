@@ -8,8 +8,8 @@ export default function TermsConditionsPage() {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Terms & Conditions', url: 'https://battlezone.com/terms-conditions' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Terms & Conditions', url: 'https://www.battlexzone.com/terms-conditions' },
       ]} />
       <Navbar />
       
@@ -186,7 +186,7 @@ export default function TermsConditionsPage() {
                 If you have any questions about these Terms, please contact us:
               </p>
               <ul className="space-y-2">
-                <li><strong>Email:</strong> legal@battlezone.com</li>
+                <li><strong>Email:</strong> legal@battlexzone.com</li>
                 <li><strong>Support:</strong> <a href="/tickets" className="text-primary-400 hover:underline">Create a support ticket</a></li>
               </ul>
             </section>

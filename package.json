@@ -1,5 +1,5 @@
 {
-  "name": "battlezone-frontend",
+  "name": "battlexzone-frontend",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -12,11 +12,11 @@
     "esports",
     "gaming",
     "tournament",
-    "battlezone"
+    "battlexzone"
   ],
-  "author": "BattleZone",
+  "author": "BattleXZone",
   "license": "MIT",
-  "description": "BattleZone - India's premier esports gaming platform",
+  "description": "BattleXZone - India's premier esports gaming platform",
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
     "axios": "^1.13.2",

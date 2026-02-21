@@ -10,7 +10,7 @@ export default function BlogPost() {
     '@type': 'Article',
     headline: 'How to Win BGMI Tournaments in 2024 - Expert Guide',
     author: { '@type': 'Organization', name: 'BattleZone' },
-    publisher: { '@type': 'Organization', name: 'BattleZone', logo: { '@type': 'ImageObject', url: 'https://battlezone.com/images/logo.png' } },
+    publisher: { '@type': 'Organization', name: 'BattleZone', logo: { '@type': 'ImageObject', url: 'https://www.battlexzone.com/images/logo.png' } },
     datePublished: '2024-01-15',
     dateModified: '2024-01-15',
     description: 'Master BGMI tournaments with pro tips and winning strategies',

@@ -23,7 +23,7 @@ const howToJoinData = {
   steps: [
     {
       name: 'Create Your BattleZone Account',
-      text: 'Visit battlezone.com and sign up with your mobile number or Google account. Verification takes under 1 minute.',
+      text: 'Visit battlexzone.com and sign up with your mobile number or Google account. Verification takes under 1 minute.',
       url: '/register',
     },
     {
@@ -88,12 +88,12 @@ export default function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'BattleZone',
-    url: 'https://battlezone.com',
+    url: 'https://www.battlexzone.com',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://battlezone.com/search?q={search_term_string}',
+        urlTemplate: 'https://www.battlexzone.com/search?q={search_term_string}',
       },
       'query-input': 'required name=search_term_string',
     },

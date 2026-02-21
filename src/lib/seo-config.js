@@ -21,7 +21,7 @@ const resolveBaseUrl = () => {
   if (process.env.NEXT_PUBLIC_VERCEL_URL) {
     return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
   }
-  return 'https://battlezone.com';
+  return 'https://www.battlexzone.com';
 };
 
 // ─── Site-Wide Constants ────────────────────────────────────
@@ -85,14 +85,14 @@ export const SITE = {
     'online tournament app',
     'esports app India',
   ],
-  author: 'BattleZone',
-  twitterHandle: '@BattleZone',
+  author: 'BattleXZone',
+  twitterHandle: '@BattleXZone',
   ogImage: '/images/og-default.jpg',
   locale: 'en_IN',
   language: 'en-IN',
   themeColor: '#0f172a',
   contact: {
-    email: 'support@battlezone.com',
+    email: 'support@battlexzone.com',
     phone: '+91-XXXXXXXXXX',
   },
   location: {
@@ -104,11 +104,11 @@ export const SITE = {
     lng: 86.4304,
   },
   social: {
-    twitter: 'https://twitter.com/BattleZone',
-    facebook: 'https://facebook.com/BattleZone',
-    instagram: 'https://instagram.com/BattleZone',
-    youtube: 'https://youtube.com/@BattleZone',
-    discord: 'https://discord.gg/BattleZone',
+    twitter: 'https://twitter.com/BattleXZone',
+    facebook: 'https://facebook.com/BattleXZone',
+    instagram: 'https://instagram.com/BattleXZone',
+    youtube: 'https://youtube.com/@BattleXZone',
+    discord: 'https://discord.gg/BattleXZone',
   },
 };
 
@@ -117,14 +117,14 @@ export const getApiBaseUrl = () => {
   if (process.env.NEXT_PUBLIC_API_URL) {
     let url = process.env.NEXT_PUBLIC_API_URL;
     if (process.env.NODE_ENV === 'production' && url.includes('localhost')) {
-      return 'https://bgmibackend-5gu6.onrender.com/api';
+      return 'https://api.battlexzone.com/api';
     }
     if (url.endsWith('/')) url = url.slice(0, -1);
     if (!url.endsWith('/api')) url += '/api';
     return url;
   }
   return process.env.NODE_ENV === 'production'
-    ? 'https://bgmibackend-5gu6.onrender.com/api'
+    ? 'https://api.battlexzone.com/api'
     : 'http://localhost:5000/api';
 };
 

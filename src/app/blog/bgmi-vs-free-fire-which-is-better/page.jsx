@@ -23,7 +23,7 @@ export const metadata = {
       'BGMI tournaments India',
       'Free Fire tournaments India',
     ],
-    'https://battlezone.com/blog/bgmi-vs-free-fire-which-is-better',
+    'https://www.battlexzone.com/blog/bgmi-vs-free-fire-which-is-better',
     '/api/og?title=BGMI+vs+Free+Fire&subtitle=Which+is+Better+2026&category=Comparison',
     'article'
   ),
@@ -46,8 +46,8 @@ const articleData = {
   datePublished: '2026-01-25T00:00:00+05:30',
   dateModified: '2026-01-25T00:00:00+05:30',
   author: 'BattleZone Team',
-  url: 'https://battlezone.com/blog/bgmi-vs-free-fire-which-is-better',
-  image: 'https://battlezone.com/blog/bgmi-vs-free-fire.jpg',
+  url: 'https://www.battlexzone.com/blog/bgmi-vs-free-fire-which-is-better',
+  image: 'https://www.battlexzone.com/blog/bgmi-vs-free-fire.jpg',
   category: 'Comparison',
   keywords: ['BGMI vs Free Fire', 'BGMI comparison', 'Free Fire comparison', 'best battle royale India'],
   wordCount: 3200,
@@ -154,9 +154,9 @@ export default function BGMIvsFreeFire() {
       
       <ArticleSchema article={articleData} />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Blog', url: 'https://battlezone.com/blog' },
-        { name: 'BGMI vs Free Fire', url: 'https://battlezone.com/blog/bgmi-vs-free-fire-which-is-better' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Blog', url: 'https://www.battlexzone.com/blog' },
+        { name: 'BGMI vs Free Fire', url: 'https://www.battlexzone.com/blog/bgmi-vs-free-fire-which-is-better' },
       ]} />
 
       <main className="min-h-screen pt-16 sm:pt-20">

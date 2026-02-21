@@ -26,7 +26,7 @@ export default function LoginPage() {
       if (isProduction && API_BASE_URL.includes('localhost')) {
         // Force production backend if we are on a real domain but API is localhost
         // This fixes the issue if Vercel env vars are missing
-        setGoogleUrl('https://bgmibackend-5gu6.onrender.com/api/auth/google');
+        setGoogleUrl('https://api.battlexzone.com/api/auth/google');
       }
     }
   }, []);

@@ -6,9 +6,9 @@ export function OrganizationSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'BattleZone',
-    url: 'https://battlezone.com',
-    logo: 'https://battlezone.com/logo.png',
+    name: 'BattleXZone',
+    url: 'https://www.battlexzone.com',
+    logo: 'https://www.battlexzone.com/logo.png',
     description: "India's premier esports gaming platform for PUBG Mobile and Free Fire tournaments.",
     foundingDate: '2024',
     foundingLocation: {
@@ -24,15 +24,15 @@ export function OrganizationSchema() {
     contact: {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
-      email: 'support@battlezone.com',
-      url: 'https://battlezone.com/contact',
+      email: 'support@battlexzone.com',
+      url: 'https://www.battlexzone.com/contact',
     },
     sameAs: [
-      'https://twitter.com/BattleZone',
-      'https://facebook.com/BattleZone',
-      'https://instagram.com/BattleZone',
-      'https://youtube.com/@BattleZone',
-      'https://discord.gg/BattleZone',
+      'https://twitter.com/BattleXZone',
+      'https://facebook.com/BattleXZone',
+      'https://instagram.com/BattleXZone',
+      'https://youtube.com/@BattleXZone',
+      'https://discord.gg/BattleXZone',
     ],
   };
 

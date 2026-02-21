@@ -9,17 +9,17 @@ export function WebApplicationSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'BattleZone',
+    name: 'BattleXZone',
     applicationCategory: 'GameApplication',
     operatingSystem: 'Android, iOS, Web',
     description: "India's premier esports platform for BGMI, PUBG Mobile, and Free Fire tournaments with real money prizes.",
-    url: 'https://battlezone.com',
+    url: 'https://www.battlexzone.com',
     browserRequirements: 'Requires JavaScript. Requires HTML5.',
     softwareVersion: '2.0.0',
     author: {
       '@type': 'Organization',
-      name: 'BattleZone',
-      url: 'https://battlezone.com',
+      name: 'BattleXZone',
+      url: 'https://www.battlexzone.com',
     },
     offers: {
       '@type': 'Offer',
@@ -80,22 +80,22 @@ export function ArticleSchema({ article, title, description, datePublished, date
     '@type': 'Article',
     headline: articleData.title,
     description: articleData.excerpt || articleData.description,
-    image: articleData.image || 'https://battlezone.com/og-image.jpg',
+    image: articleData.image || 'https://www.battlexzone.com/og-image.jpg',
     datePublished: articleData.datePublished,
     dateModified: articleData.dateModified || articleData.datePublished,
     author: {
       '@type': 'Organization',
-      name: articleData.author || 'BattleZone Team',
-      url: 'https://battlezone.com',
-      logo: 'https://battlezone.com/logo.png',
+      name: articleData.author || 'BattleXZone Team',
+      url: 'https://www.battlexzone.com',
+      logo: 'https://www.battlexzone.com/logo.png',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'BattleZone',
-      url: 'https://battlezone.com',
+      name: 'BattleXZone',
+      url: 'https://www.battlexzone.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://battlezone.com/logo.png',
+        url: 'https://www.battlexzone.com/logo.png',
         width: '512',
         height: '512',
       },
@@ -125,7 +125,7 @@ export function HowToSchema({ howTo }) {
     '@type': 'HowTo',
     name: howTo.name,
     description: howTo.description,
-    image: howTo.image || 'https://battlezone.com/og-image.jpg',
+    image: howTo.image || 'https://www.battlexzone.com/og-image.jpg',
     totalTime: howTo.totalTime || 'PT10M',
     estimatedCost: {
       '@type': 'MonetaryAmount',
@@ -138,7 +138,7 @@ export function HowToSchema({ howTo }) {
       { '@type': 'HowToSupply', name: 'Valid ID for KYC (Aadhaar/PAN)' },
     ],
     tool: howTo.tools || [
-      { '@type': 'HowToTool', name: 'BattleZone account' },
+      { '@type': 'HowToTool', name: 'BattleXZone account' },
       { '@type': 'HowToTool', name: 'UPI payment app' },
     ],
     step: howTo.steps.map((step, index) => ({
@@ -164,13 +164,13 @@ export function LocalBusinessSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': 'https://battlezone.com/#business',
-    name: 'BattleZone',
-    image: 'https://battlezone.com/logo.png',
+    '@id': 'https://www.battlexzone.com/#business',
+    name: 'BattleXZone',
+    image: 'https://www.battlexzone.com/logo.png',
     description: "India's fastest-growing esports platform for BGMI, PUBG Mobile, and Free Fire tournaments.",
-    url: 'https://battlezone.com',
+    url: 'https://www.battlexzone.com',
     telephone: '+91-XXXXXXXXXX',
-    email: 'support@battlezone.com',
+    email: 'support@battlexzone.com',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Dhanbad',
@@ -196,10 +196,10 @@ export function LocalBusinessSchema() {
       closes: '23:59',
     },
     sameAs: [
-      'https://twitter.com/BattleZone',
-      'https://facebook.com/BattleZone',
-      'https://instagram.com/BattleZone',
-      'https://youtube.com/@BattleZone',
+      'https://twitter.com/BattleXZone',
+      'https://facebook.com/BattleXZone',
+      'https://instagram.com/BattleXZone',
+      'https://youtube.com/@BattleXZone',
     ],
   };
 
@@ -216,7 +216,7 @@ export function SoftwareApplicationSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'BattleZone - BGMI & PUBG Tournament App',
+    name: 'BattleXZone - BGMI & PUBG Tournament App',
     applicationCategory: 'GameApplication',
     operatingSystem: 'Android 6.0+, iOS 12.0+',
     offers: {
@@ -231,8 +231,8 @@ export function SoftwareApplicationSchema() {
       bestRating: '5',
       worstRating: '1',
     },
-    screenshot: 'https://battlezone.com/app-screenshot.jpg',
-    downloadUrl: 'https://battlezone.com/download',
+    screenshot: 'https://www.battlexzone.com/app-screenshot.jpg',
+    downloadUrl: 'https://www.battlexzone.com/download',
     featureList: 'BGMI Tournaments, PUBG Mobile Matches, Free Fire, Real Money Prizes, Instant Withdrawals',
     releaseNotes: 'Latest version with improved anti-cheat and faster withdrawals',
   };
@@ -259,10 +259,10 @@ export function VideoObjectSchema({ video }) {
     embedUrl: video.embedUrl,
     publisher: {
       '@type': 'Organization',
-      name: 'BattleZone',
+      name: 'BattleXZone',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://battlezone.com/logo.png',
+        url: 'https://www.battlexzone.com/logo.png',
       },
     },
   };
@@ -280,11 +280,11 @@ export function ReviewSchema({ reviews }) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: 'BattleZone Esports Platform',
+    name: 'BattleXZone Esports Platform',
     description: 'Play BGMI, PUBG Mobile & Free Fire tournaments for real money',
     brand: {
       '@type': 'Brand',
-      name: 'BattleZone',
+      name: 'BattleXZone',
     },
     aggregateRating: {
       '@type': 'AggregateRating',

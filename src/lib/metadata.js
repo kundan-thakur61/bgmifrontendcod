@@ -25,18 +25,18 @@ const getBaseUrl = () => {
   }
 
   // 4. Default fallback for production
-  return 'https://battlezone.com';
+  return 'https://www.battlexzone.com';
 };
 
 export const SITE_CONFIG = {
-  name: 'BattleZone',
+  name: 'BattleXZone',
   baseUrl: getBaseUrl(),
   description: 'Play BGMI, PUBG Mobile & Free Fire tournaments for real money. Join 50,000+ players. Entry from ₹10. Instant withdrawals.',
-  author: 'BattleZone',
-  twitterHandle: '@BattleZone',
+  author: 'BattleXZone',
+  twitterHandle: '@BattleXZone',
   ogImage: '/og-image.jpg',
   phone: '+91-XXXXXXXXXX',
-  email: 'support@battlezone.com',
+  email: 'support@battlexzone.com',
   location: {
     city: 'Dhanbad',
     state: 'Jharkhand',

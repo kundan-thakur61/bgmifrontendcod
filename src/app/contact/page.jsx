@@ -45,8 +45,8 @@ export default function ContactPage() {
                             <p className="text-dark-400 mb-6">
                                 For business inquiries, partnerships, or general questions, you can reach us via email.
                             </p>
-                            <a href="mailto:support@battlezone.com" className="btn-secondary w-full text-center block">
-                                support@battlezone.com
+                            <a href="mailto:support@battlexzone.com" className="btn-secondary w-full text-center block">
+                                support@battlexzone.com
                             </a>
                         </div>
 

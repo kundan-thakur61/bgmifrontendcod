@@ -7,8 +7,8 @@ export default function TournamentsLayout({ children }) {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Tournaments', url: 'https://battlezone.com/tournaments' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Tournaments', url: 'https://www.battlexzone.com/tournaments' },
       ]} />
       {children}
     </>

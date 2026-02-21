@@ -132,9 +132,9 @@ export default function TournamentDetailPage() {
         <>
           <TournamentSchema tournament={tournament} />
           <BreadcrumbSchema items={[
-            { name: 'Home', url: 'https://battlezone.com' },
-            { name: 'Tournaments', url: 'https://battlezone.com/tournaments' },
-            { name: tournament.title || tournament.name, url: `https://battlezone.com/tournaments/${params.id}` },
+            { name: 'Home', url: 'https://www.battlexzone.com' },
+            { name: 'Tournaments', url: 'https://www.battlexzone.com/tournaments' },
+            { name: tournament.title || tournament.name, url: `https://www.battlexzone.com/tournaments/${params.id}` },
           ]} />
         </>
       )}

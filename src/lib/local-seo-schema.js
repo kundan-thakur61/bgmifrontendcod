@@ -1,9 +1,9 @@
 export const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'BattleZone',
+  name: 'BattleXZone',
   description: 'India\'s premier esports platform for BGMI and Free Fire tournaments',
-  url: 'https://battlezone.com',
+  url: 'https://www.battlexzone.com',
   telephone: '+91-XXXXXXXXXX',
   address: {
     '@type': 'PostalAddress',
@@ -30,7 +30,7 @@ export const localBusinessSchema = {
 export const videoGameSchema = {
   '@context': 'https://schema.org',
   '@type': 'VideoGame',
-  name: 'BattleZone Esports Platform',
+  name: 'BattleXZone Esports Platform',
   gamePlatform: ['Android', 'iOS'],
   genre: ['Esports', 'Battle Royale', 'Competitive Gaming'],
   aggregateRating: {

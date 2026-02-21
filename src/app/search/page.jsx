@@ -63,8 +63,8 @@ export default function SearchPage({ searchParams }) {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Search', url: 'https://battlezone.com/search' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Search', url: 'https://www.battlexzone.com/search' },
       ]} />
       <Navbar />
       <main className="min-h-screen pt-16 sm:pt-20">

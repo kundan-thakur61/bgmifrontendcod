@@ -26,7 +26,7 @@ export const metadata = {
       'play and earn real money',
       'gaming freelancer India',
     ],
-    'https://battlezone.com/blog/how-to-earn-money-gaming-india',
+    'https://www.battlexzone.com/blog/how-to-earn-money-gaming-india',
     '/api/og?title=Earn+Money+Gaming+India&subtitle=Complete+Guide+2026&category=Guide',
     'article'
   ),
@@ -49,8 +49,8 @@ const articleData = {
   datePublished: '2026-01-22T00:00:00+05:30',
   dateModified: '2026-01-22T00:00:00+05:30',
   author: 'BattleZone Team',
-  url: 'https://battlezone.com/blog/how-to-earn-money-gaming-india',
-  image: 'https://battlezone.com/blog/how-to-earn-money-gaming-india.jpg',
+  url: 'https://www.battlexzone.com/blog/how-to-earn-money-gaming-india',
+  image: 'https://www.battlexzone.com/blog/how-to-earn-money-gaming-india.jpg',
   category: 'Earning Guide',
   keywords: ['earn money gaming India', 'play games earn money', 'BGMI earning', 'Free Fire earning', 'esports India'],
   wordCount: 4000,
@@ -149,9 +149,9 @@ export default function EarnMoneyGamingIndia() {
       
       <ArticleSchema article={articleData} />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Blog', url: 'https://battlezone.com/blog' },
-        { name: 'How to Earn Money Gaming India', url: 'https://battlezone.com/blog/how-to-earn-money-gaming-india' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Blog', url: 'https://www.battlexzone.com/blog' },
+        { name: 'How to Earn Money Gaming India', url: 'https://www.battlexzone.com/blog/how-to-earn-money-gaming-india' },
       ]} />
 
       <main className="min-h-screen pt-16 sm:pt-20">

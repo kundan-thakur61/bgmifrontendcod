@@ -31,7 +31,7 @@ function RegisterContent() {
 
       if (isProduction && API_BASE_URL.includes('localhost')) {
         // Force production backend if we are on a real domain but API is localhost
-        setGoogleUrl('https://bgmibackend-5gu6.onrender.com/api/auth/google');
+        setGoogleUrl('https://api.battlexzone.com/api/auth/google');
       }
     }
   }, []);

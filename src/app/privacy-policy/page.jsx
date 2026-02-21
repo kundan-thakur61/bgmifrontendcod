@@ -8,8 +8,8 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Privacy Policy', url: 'https://battlezone.com/privacy-policy' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Privacy Policy', url: 'https://www.battlexzone.com/privacy-policy' },
       ]} />
       <Navbar />
       
@@ -148,7 +148,7 @@ export default function PrivacyPolicyPage() {
                 <li><strong>Withdraw Consent:</strong> Withdraw previously given consent</li>
               </ul>
               <p className="mt-4">
-                To exercise these rights, please contact us at privacy@battlezone.com or through our support system.
+                To exercise these rights, please contact us at privacy@battlexzone.com or through our support system.
               </p>
             </section>
 
@@ -212,8 +212,8 @@ export default function PrivacyPolicyPage() {
                 If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:
               </p>
               <ul className="space-y-2">
-                <li><strong>Email:</strong> privacy@battlezone.com</li>
-                <li><strong>Data Protection Officer:</strong> dpo@battlezone.com</li>
+                <li><strong>Email:</strong> privacy@battlexzone.com</li>
+                <li><strong>Data Protection Officer:</strong> dpo@battlexzone.com</li>
                 <li><strong>Support:</strong> <a href="/tickets" className="text-primary-400 hover:underline">Create a support ticket</a></li>
               </ul>
             </section>

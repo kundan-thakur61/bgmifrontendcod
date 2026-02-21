@@ -70,7 +70,7 @@ export function generateStructuredData(type, data) {
       name: seoConfig.siteName,
       url: seoConfig.siteUrl,
       logo: `${seoConfig.siteUrl}/images/logo.png`,
-      sameAs: ['https://twitter.com/battlezone', 'https://facebook.com/battlezone', 'https://instagram.com/battlezone'],
+      sameAs: ['https://twitter.com/battlexzone', 'https://facebook.com/battlexzone', 'https://instagram.com/battlexzone'],
     },
     webSite: {
       '@context': 'https://schema.org',

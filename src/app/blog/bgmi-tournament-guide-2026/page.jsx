@@ -64,7 +64,7 @@ export const metadata = {
       'BGMI tournament app',
       'BGMI tournament tips',
     ],
-    'https://battlezone.com/blog/bgmi-tournament-guide-2026',
+    'https://www.battlexzone.com/blog/bgmi-tournament-guide-2026',
     '/api/og?title=PUBG+FREE+FIRE+BGMI+TOURNAMENT+MATCH&subtitle=1VS+1,2,3,4+India+2026+Guide&category=Guide',
     'article'
   ),
@@ -94,8 +94,8 @@ const articleData = {
   datePublished: '2026-01-15T00:00:00+05:30',
   dateModified: '2026-01-17T00:00:00+05:30',
   author: 'BattleZone Team',
-  url: 'https://battlezone.com/blog/bgmi-tournament-guide-2026',
-  image: 'https://battlezone.com/blog/bgmi-tournament-guide-2026.jpg',
+  url: 'https://www.battlexzone.com/blog/bgmi-tournament-guide-2026',
+  image: 'https://www.battlexzone.com/blog/bgmi-tournament-guide-2026.jpg',
   category: 'Guides',
   keywords: ['PUBG FREE FIRE BGMI TOURNAMENT MATCH 1VS 1,2,3,4', 'BGMI tournament match India', 'BGMI tournament match online', 'BGMI tournament match 2026', 'BGMI tournament registration India', 'BGMI cash prize tournament India', 'BGMI paid tournament India', 'BGMI free tournament India', 'BGMI custom room tournament India', 'BGMI scrims India', 'BGMI esports tournament India', 'PUBG tournament match India', 'PUBG Mobile tournament match India', 'BGMI online tournament India', 'BGMI solo tournament India', 'BGMI duo tournament India', 'BGMI squad tournament India', 'BGMI daily tournament India', 'BGMI weekly tournament India', 'BGMI monthly tournament India', 'BGMI private room match India', 'BGMI earning tournament India', 'BGMI money earning match India', 'PUBG cash prize tournament India', 'PUBG paid tournament India', 'PUBG free tournament India', 'tournament', 'esports', 'guide', 'competitive gaming'],
   wordCount: 4500,
@@ -105,39 +105,39 @@ const articleData = {
 const howToData = {
   name: 'How to Join PUBG FREE FIRE BGMI Tournament Matches and Win Real Money',
   description: 'Step-by-step guide to joining PUBG FREE FIRE BGMI tournament matches on BattleZone and winning real cash prizes in India.',
-  image: 'https://battlezone.com/blog/bgmi-tournament-guide-2026.jpg',
+  image: 'https://www.battlexzone.com/blog/bgmi-tournament-guide-2026.jpg',
   totalTime: 'PT15M',
   cost: '10',
   steps: [
     {
       name: 'Create BattleZone Account',
       text: 'Sign up on BattleZone using your mobile number. Verify with OTP. Takes less than 30 seconds.',
-      url: 'https://battlezone.com/register',
+      url: 'https://www.battlexzone.com/register',
     },
     {
       name: 'Complete KYC Verification',
       text: 'Upload your Aadhaar card or PAN card for identity verification. This ensures secure transactions and prevents fraud.',
-      url: 'https://battlezone.com/kyc',
+      url: 'https://www.battlexzone.com/kyc',
     },
     {
       name: 'Add Money to Wallet',
       text: 'Deposit funds using UPI, Paytm, or bank transfer. Minimum deposit is Rs.50. Choose an amount you are comfortable with.',
-      url: 'https://battlezone.com/wallet',
+      url: 'https://www.battlexzone.com/wallet',
     },
     {
       name: 'Browse Available Tournaments',
       text: 'Go to the Matches or Tournaments page. Filter by game (BGMI), entry fee, and match type (Solo/Duo/Squad).',
-      url: 'https://battlezone.com/matches',
+      url: 'https://www.battlexzone.com/matches',
     },
     {
       name: 'Join a Tournament',
       text: 'Click Join on your preferred tournament. Pay the entry fee from your wallet. Confirm your slot.',
-      url: 'https://battlezone.com/tournaments',
+      url: 'https://www.battlexzone.com/tournaments',
     },
     {
       name: 'Get Room Credentials',
       text: 'Room ID and password are shared 15 minutes before match time via app notification and dashboard.',
-      url: 'https://battlezone.com/how-it-works',
+      url: 'https://www.battlexzone.com/how-it-works',
     },
     {
       name: 'Play and Compete',
@@ -150,7 +150,7 @@ const howToData = {
     {
       name: 'Receive Winnings',
       text: 'Once results are verified, winnings are credited to your wallet. Withdraw via UPI or bank transfer within 24-48 hours.',
-      url: 'https://battlezone.com/wallet',
+      url: 'https://www.battlexzone.com/wallet',
     },
   ],
 };
@@ -212,9 +212,9 @@ export default function BGMITournamentGuide2026() {
       <ArticleSchema article={articleData} />
       <HowToSchema howTo={howToData} />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Blog', url: 'https://battlezone.com/blog' },
-        { name: 'BGMI Tournament Guide 2026', url: 'https://battlezone.com/blog/bgmi-tournament-guide-2026' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Blog', url: 'https://www.battlexzone.com/blog' },
+        { name: 'BGMI Tournament Guide 2026', url: 'https://www.battlexzone.com/blog/bgmi-tournament-guide-2026' },
       ]} />
 
       <main className="min-h-screen pt-16 sm:pt-20">

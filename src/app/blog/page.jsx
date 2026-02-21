@@ -102,8 +102,8 @@ export default function BlogPage() {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Blog', url: 'https://battlezone.com/blog' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Blog', url: 'https://www.battlexzone.com/blog' },
       ]} />
       <Navbar />
       

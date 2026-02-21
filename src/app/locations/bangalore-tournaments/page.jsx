@@ -13,8 +13,8 @@ const articleData = {
   datePublished: '2026-01-26T00:00:00+05:30',
   dateModified: '2026-01-26T00:00:00+05:30',
   author: 'BattleZone Team',
-  url: 'https://battlezone.com/locations/bangalore-tournaments',
-  image: 'https://battlezone.com/locations/bangalore-tournaments.jpg',
+  url: 'https://www.battlexzone.com/locations/bangalore-tournaments',
+  image: 'https://www.battlexzone.com/locations/bangalore-tournaments.jpg',
   category: 'Local',
   keywords: ['BGMI tournaments Bangalore', 'Free Fire tournaments Bangalore', 'gaming Bangalore', 'esports Bangalore'],
   wordCount: 2500,
@@ -23,7 +23,7 @@ const articleData = {
 const localBusinessData = {
   name: 'BattleZone Bangalore',
   description: 'Join BGMI and Free Fire tournaments in Bangalore - India Silicon Valley. Play daily online gaming tournaments and win real cash prizes.',
-  url: 'https://battlezone.com/locations/bangalore-tournaments',
+  url: 'https://www.battlexzone.com/locations/bangalore-tournaments',
   areaServed: {
     '@type': 'City',
     name: 'Bangalore',
@@ -69,8 +69,8 @@ export default function BangaloreTournaments() {
       <ArticleSchema article={articleData} />
       <LocalBusinessSchema business={localBusinessData} />
       <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://battlezone.com' },
-        { name: 'Bangalore Tournaments', url: 'https://battlezone.com/locations/bangalore-tournaments' },
+        { name: 'Home', url: 'https://www.battlexzone.com' },
+        { name: 'Bangalore Tournaments', url: 'https://www.battlexzone.com/locations/bangalore-tournaments' },
       ]} />
 
       <main className="min-h-screen pt-16 sm:pt-20">

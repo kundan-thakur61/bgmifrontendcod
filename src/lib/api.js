@@ -23,7 +23,7 @@ const getBaseUrl = () => {
 
   // Production fallback
   if (process.env.NODE_ENV === 'production') {
-    return 'https://bgmibackend-5gu6.onrender.com/api';
+    return 'https://api.battlexzone.com/api';
   }
 
   // Development fallback
