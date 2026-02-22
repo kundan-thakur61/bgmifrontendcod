@@ -606,21 +606,4 @@ export function generateLocationMetadata(city, state) {
   });
 }
 
-// ─── Dynamic Blog Article Metadata ──────────────────────────
-export function generateArticleMetadata(article) {
-  return generateSeoMetadata({
-    title: article.title,
-    description: article.excerpt || article.description,
-    keywords: article.tags || [],
-    url: `/blog/${article.slug}`,
-    image: article.image,
-    type: 'article',
-    article: {
-      publishedTime: article.datePublished,
-      modifiedTime: article.dateModified || article.datePublished,
-      author: article.author || SITE.name,
-      section: article.category || 'BGMI',
-      tags: article.tags || [],
-    },
-  });
-}
+
