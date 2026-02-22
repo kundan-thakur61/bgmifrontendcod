@@ -1,12 +1,19 @@
+import { generateArticleMetadata } from '@/lib/seo-config';
 import { Navbar, Footer } from '@/components/layout';
 import { FAQSchema, BreadcrumbSchema, ArticleSchema } from '@/components/seo';
 import Link from 'next/link';
 
-// Metadata optimized for "how to earn money playing BGMI" keyword
-export const metadata = {
-  title: 'How to Earn Money Playing BGMI in India - Complete Guide 2024 | BattleXZone',
-  description: 'Learn how to earn money playing BGMI in India. Join tournaments with ₹10 entry, win up to ₹50,000 cash prizes. Step-by-step guide for beginners. Instant UPI withdrawal.',
-  keywords: [
+// SEO Metadata — canonical auto-set via generateArticleMetadata → generateSeoMetadata
+export const metadata = generateArticleMetadata({
+  title: 'How to Earn Money Playing BGMI in India - Complete Guide 2026',
+  excerpt: 'Learn how to earn money playing BGMI in India. Join tournaments with ₹10 entry, win up to ₹50,000 cash prizes. Step-by-step guide for beginners. Instant UPI withdrawal.',
+  slug: 'how-to-earn-money-playing-bgmi',
+  image: '/images/og-earn-money-bgmi.jpg',
+  datePublished: '2024-01-15T00:00:00+05:30',
+  dateModified: '2026-02-22T00:00:00+05:30',
+  author: 'BattleXZone Team',
+  category: 'BGMI Guides',
+  tags: [
     'how to earn money playing BGMI',
     'earn money playing BGMI',
     'BGMI earning guide',
@@ -16,13 +23,7 @@ export const metadata = {
     'play BGMI earn money',
     'BGMI tournament India',
   ],
-  openGraph: {
-    title: 'How to Earn Money Playing BGMI in India - Complete Guide 2024',
-    description: 'Learn how to earn ₹10,000-₹50,000 monthly playing BGMI tournaments. Entry fee ₹10. Instant UPI withdrawal.',
-    type: 'article',
-    url: 'https://battlexzone.com/blog/how-to-earn-money-playing-bgmi',
-  },
-};
+});
 
 // FAQ data optimized for PAA questions
 const earningFAQs = [
@@ -57,7 +58,7 @@ export default function HowToEarnMoneyPlayingBGMI() {
         { name: 'Blog', url: 'https://battlexzone.com/blog' },
         { name: 'How to Earn Money Playing BGMI', url: 'https://battlexzone.com/blog/how-to-earn-money-playing-bgmi' },
       ]} />
-      <ArticleSchema 
+      <ArticleSchema
         title="How to Earn Money Playing BGMI in India - Complete Guide 2024"
         description="Learn how to earn ₹10,000-₹50,000 monthly playing BGMI tournaments. Entry fee ₹10. Instant UPI withdrawal."
         datePublished="2024-01-15"
@@ -65,7 +66,7 @@ export default function HowToEarnMoneyPlayingBGMI() {
         author="BattleXZone Team"
       />
       <Navbar />
-      
+
       <main className="min-h-screen pt-16 sm:pt-20 bg-dark-900">
         <article className="max-w-4xl mx-auto px-4 py-8">
           {/* Header */}
@@ -74,7 +75,7 @@ export default function HowToEarnMoneyPlayingBGMI() {
               How to Earn Money Playing BGMI in India - Complete Guide 2024
             </h1>
             <p className="text-dark-400 text-lg mb-4">
-              Learn how to earn ₹10,000-₹50,000 monthly playing BGMI tournaments. 
+              Learn how to earn ₹10,000-₹50,000 monthly playing BGMI tournaments.
               Entry fee ₹10. Instant UPI withdrawal. Step-by-step guide for beginners.
             </p>
             <div className="flex items-center gap-4 text-sm text-dark-500">
@@ -100,19 +101,19 @@ export default function HowToEarnMoneyPlayingBGMI() {
 
           {/* Content */}
           <div className="prose prose-invert max-w-none">
-            
+
             {/* Section 1: Introduction */}
             <section id="introduction" className="mb-8">
               <h2 className="text-2xl font-bold mb-4 text-white">Introduction to BGMI Earning</h2>
               <p className="text-dark-300 mb-4">
-                BGMI (Battlegrounds Mobile India) has become more than just a game - it's now a legitimate way to 
-                <strong className="text-white"> earn real money online in India</strong>. With over 50 million players, 
-                the competitive gaming scene has exploded, creating opportunities for skilled players to 
+                BGMI (Battlegrounds Mobile India) has become more than just a game - it's now a legitimate way to
+                <strong className="text-white"> earn real money online in India</strong>. With over 50 million players,
+                the competitive gaming scene has exploded, creating opportunities for skilled players to
                 <strong className="text-white"> win cash prizes ranging from ₹100 to ₹50,000+</strong>.
               </p>
               <p className="text-dark-300 mb-4">
-                Whether you're a student looking for pocket money, a gaming enthusiast wanting to monetize your skills, 
-                or someone exploring online earning opportunities, BGMI tournaments offer a genuine way to 
+                Whether you're a student looking for pocket money, a gaming enthusiast wanting to monetize your skills,
+                or someone exploring online earning opportunities, BGMI tournaments offer a genuine way to
                 <strong className="text-white"> earn ₹10,000-₹50,000 monthly</strong> depending on your skill level.
               </p>
               <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4 my-4">
@@ -130,10 +131,10 @@ export default function HowToEarnMoneyPlayingBGMI() {
             {/* Section 2: Ways to Earn */}
             <section id="ways-to-earn" className="mb-8">
               <h2 className="text-2xl font-bold mb-4 text-white">Top Ways to Earn Money Playing BGMI</h2>
-              
+
               <h3 className="text-xl font-semibold mb-3 text-primary-400">1. Join Online BGMI Tournaments (Most Popular)</h3>
               <p className="text-dark-300 mb-4">
-                The most direct way to earn money is by participating in BGMI tournaments on platforms like BattleXZone. 
+                The most direct way to earn money is by participating in BGMI tournaments on platforms like BattleXZone.
                 These are organized competitive matches where players pay a small entry fee and compete for cash prizes.
               </p>
               <div className="bg-dark-800 rounded-xl p-4 mb-4 border border-dark-700">
@@ -148,25 +149,25 @@ export default function HowToEarnMoneyPlayingBGMI() {
 
               <h3 className="text-xl font-semibold mb-3 text-primary-400">2. Participate in Custom Rooms</h3>
               <p className="text-dark-300 mb-4">
-                Custom rooms are private BGMI matches organized by tournament platforms. Entry fees are lower 
+                Custom rooms are private BGMI matches organized by tournament platforms. Entry fees are lower
                 (₹5-₹20), and matches run throughout the day. Perfect for quick earnings.
               </p>
 
               <h3 className="text-xl font-semibold mb-3 text-primary-400">3. BGMI Esports Competitions</h3>
               <p className="text-dark-300 mb-4">
-                For highly skilled players, professional esports tournaments offer massive prize pools 
+                For highly skilled players, professional esports tournaments offer massive prize pools
                 (₹1 lakh to ₹1 crore). These require qualification through smaller tournaments.
               </p>
 
               <h3 className="text-xl font-semibold mb-3 text-primary-400">4. Streaming & Content Creation</h3>
               <p className="text-dark-300 mb-4">
-                Stream your BGMI gameplay on YouTube or create gaming content. Once you build an audience, 
+                Stream your BGMI gameplay on YouTube or create gaming content. Once you build an audience,
                 you can earn through ads, sponsorships, and donations.
               </p>
 
               <h3 className="text-xl font-semibold mb-3 text-primary-400">5. BGMI Coaching Services</h3>
               <p className="text-dark-300 mb-4">
-                If you're an expert player, offer coaching services to beginners. Many players pay 
+                If you're an expert player, offer coaching services to beginners. Many players pay
                 ₹500-₹2,000 per session for training and tips.
               </p>
             </section>
@@ -174,7 +175,7 @@ export default function HowToEarnMoneyPlayingBGMI() {
             {/* Section 3: Best Platforms */}
             <section id="best-platforms" className="mb-8">
               <h2 className="text-2xl font-bold mb-4 text-white">Best Platforms for BGMI Tournament Earning</h2>
-              
+
               <div className="bg-dark-800 rounded-xl p-4 mb-4 border border-primary-500/30">
                 <h3 className="text-xl font-semibold mb-2 text-primary-400">🏆 BattleXZone - Best for Beginners</h3>
                 <div className="grid sm:grid-cols-2 gap-4 mt-3">
@@ -235,10 +236,10 @@ export default function HowToEarnMoneyPlayingBGMI() {
             <section id="how-much-earn" className="mb-8">
               <h2 className="text-2xl font-bold mb-4 text-white">How Much Can You Earn from BGMI?</h2>
               <p className="text-dark-300 mb-4">
-                Your earnings depend on your skill level, time invested, and tournament participation. 
+                Your earnings depend on your skill level, time invested, and tournament participation.
                 Here's a realistic breakdown:
               </p>
-              
+
               <div className="grid sm:grid-cols-3 gap-4 mb-4">
                 <div className="bg-dark-800 rounded-xl p-4 border border-dark-700">
                   <h4 className="font-semibold text-green-400 mb-2">🌱 Beginner</h4>
@@ -276,7 +277,7 @@ export default function HowToEarnMoneyPlayingBGMI() {
             {/* Section 5: Tips to Win */}
             <section id="tips-to-win" className="mb-8">
               <h2 className="text-2xl font-bold mb-4 text-white">Tips to Win BGMI Tournaments</h2>
-              
+
               <h3 className="text-xl font-semibold mb-3 text-primary-400">Improve Your Gameplay</h3>
               <ul className="text-dark-300 space-y-2 mb-4">
                 <li>• <strong className="text-white">Practice daily:</strong> Spend at least 1 hour in training mode</li>
@@ -287,7 +288,7 @@ export default function HowToEarnMoneyPlayingBGMI() {
 
               <h3 className="text-xl font-semibold mb-3 text-primary-400">Choose Right Landing Spots</h3>
               <p className="text-dark-300 mb-4">
-                For tournament play, survival is key. Avoid hot drops like Pochinki or Georgopol. 
+                For tournament play, survival is key. Avoid hot drops like Pochinki or Georgopol.
                 Instead, land at medium-loot areas like:
               </p>
               <ul className="text-dark-300 space-y-2 mb-4">
@@ -319,52 +320,52 @@ export default function HowToEarnMoneyPlayingBGMI() {
             {/* Section 6: Step-by-Step Guide */}
             <section id="step-by-step" className="mb-8">
               <h2 className="text-2xl font-bold mb-4 text-white">Step-by-Step: Join Your First BGMI Tournament</h2>
-              
+
               <div className="space-y-4">
                 <div className="bg-dark-800 rounded-xl p-4 border border-dark-700">
                   <h4 className="font-semibold text-primary-400 mb-2">Step 1: Register on BattleXZone</h4>
                   <p className="text-dark-300 text-sm">
-                    Visit battlexzone.com and sign up with your mobile number. Verify with OTP. 
+                    Visit battlexzone.com and sign up with your mobile number. Verify with OTP.
                     Registration is free and takes less than 1 minute.
                   </p>
                 </div>
-                
+
                 <div className="bg-dark-800 rounded-xl p-4 border border-dark-700">
                   <h4 className="font-semibold text-primary-400 mb-2">Step 2: Complete KYC Verification</h4>
                   <p className="text-dark-300 text-sm">
-                    Upload your Aadhaar card or PAN card. This is required for withdrawals. 
+                    Upload your Aadhaar card or PAN card. This is required for withdrawals.
                     Verification is processed within 24 hours.
                   </p>
                 </div>
-                
+
                 <div className="bg-dark-800 rounded-xl p-4 border border-dark-700">
                   <h4 className="font-semibold text-primary-400 mb-2">Step 3: Add Money to Wallet</h4>
                   <p className="text-dark-300 text-sm">
-                    Add funds using UPI (Google Pay, PhonePe, Paytm), net banking, or debit card. 
+                    Add funds using UPI (Google Pay, PhonePe, Paytm), net banking, or debit card.
                     Minimum deposit is ₹10. Instant processing via Razorpay.
                   </p>
                 </div>
-                
+
                 <div className="bg-dark-800 rounded-xl p-4 border border-dark-700">
                   <h4 className="font-semibold text-primary-400 mb-2">Step 4: Browse & Join Tournament</h4>
                   <p className="text-dark-300 text-sm">
-                    Go to Tournaments page. Filter by game (BGMI), mode (Solo/Duo/Squad), and entry fee. 
+                    Go to Tournaments page. Filter by game (BGMI), mode (Solo/Duo/Squad), and entry fee.
                     Click "Join Now" and pay the entry fee.
                   </p>
                 </div>
-                
+
                 <div className="bg-dark-800 rounded-xl p-4 border border-dark-700">
                   <h4 className="font-semibold text-primary-400 mb-2">Step 5: Get Room ID & Play</h4>
                   <p className="text-dark-300 text-sm">
-                    Room ID and password are shared 10-15 minutes before match start via notification. 
+                    Room ID and password are shared 10-15 minutes before match start via notification.
                     Join the custom room in BGMI, play the match, and submit your result screenshot.
                   </p>
                 </div>
-                
+
                 <div className="bg-dark-800 rounded-xl p-4 border border-green-500/30">
                   <h4 className="font-semibold text-green-400 mb-2">Step 6: Win & Withdraw! 🎉</h4>
                   <p className="text-dark-300 text-sm">
-                    Results are declared within 30 minutes. Winners receive prize money in wallet instantly. 
+                    Results are declared within 30 minutes. Winners receive prize money in wallet instantly.
                     Withdraw to UPI within 5-10 minutes!
                   </p>
                 </div>
@@ -380,7 +381,7 @@ export default function HowToEarnMoneyPlayingBGMI() {
             {/* Section 7: Withdrawal */}
             <section id="withdrawal" className="mb-8">
               <h2 className="text-2xl font-bold mb-4 text-white">BGMI Tournament Payment & Withdrawal</h2>
-              
+
               <h3 className="text-xl font-semibold mb-3 text-primary-400">UPI Withdrawal Process</h3>
               <ol className="text-dark-300 space-y-2 mb-4 list-decimal list-inside">
                 <li>Go to Wallet section in BattleXZone</li>
@@ -405,7 +406,7 @@ export default function HowToEarnMoneyPlayingBGMI() {
             {/* Section 8: FAQ */}
             <section id="faq" className="mb-8">
               <h2 className="text-2xl font-bold mb-4 text-white">Frequently Asked Questions</h2>
-              
+
               <div className="space-y-4">
                 {earningFAQs.map((faq, index) => (
                   <div key={index} className="bg-dark-800 rounded-xl p-4 border border-dark-700">

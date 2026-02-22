@@ -282,15 +282,21 @@ export function getItemListSchema(items, type = 'match') {
 
 // ─── FAQPage Schema (AEO — Answer Engine Optimization) ──────
 export function getFaqSchema(faqs) {
+  // Filter out entries missing required fields to prevent Google Rich Results
+  // "Unnamed item / 1 critical issue" errors in the Rich Results Test.
+  const validFaqs = (faqs || []).filter(
+    (faq) => faq && faq.question && faq.question.trim() && faq.answer && faq.answer.trim()
+  );
+
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: (faqs || []).map(faq => ({
+    mainEntity: validFaqs.map(faq => ({
       '@type': 'Question',
-      name: faq.question,
+      name: faq.question.trim(),
       acceptedAnswer: {
         '@type': 'Answer',
-        text: faq.answer,
+        text: faq.answer.trim(),
       },
     })),
   };

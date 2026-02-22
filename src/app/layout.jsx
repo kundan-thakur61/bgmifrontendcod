@@ -8,6 +8,11 @@ import PerformanceMonitor from '@/components/seo/PerformanceMonitor';
 // ── Unified SEO Metadata (single source of truth) ──
 export const metadata = generateSeoMetadata({});
 
+/**
+ * Viewport — exported separately per Next.js App Router spec.
+ * This emits the <meta name="viewport"> and <meta name="theme-color"> tags.
+ * DO NOT add these manually in the <head> JSX — that would duplicate them.
+ */
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -29,32 +34,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en-IN" dir="ltr">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="theme-color" content="#0f172a" />
-        <meta name="msapplication-TileColor" content="#0f172a" />
-        <meta name="color-scheme" content="dark" />
-
-        {/* ── PWA / Mobile App Meta ── */}
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="BattleZone" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="application-name" content="BattleZone" />
-
-        {/* ── Geo / Regional Targeting (India) ── */}
-        <meta name="geo.region" content="IN" />
-        <meta name="geo.placename" content="India" />
-        <meta name="geo.position" content="23.7957;86.4304" />
-        <meta name="ICBM" content="23.7957, 86.4304" />
-        <meta name="content-language" content="en-IN" />
-
-        {/* ── AI / SGE / AEO Hints ── */}
-        <meta name="subject" content="BGMI Esports Tournament Platform India" />
-        <meta name="classification" content="Gaming, Esports, Tournaments" />
-        <meta name="topic" content="BGMI Tournaments, Mobile Esports, Competitive Gaming India" />
-        <meta name="summary" content={SITE.defaultDescription} />
-        <meta name="abstract" content="BattleZone is India's leading BGMI esports platform where players compete in Solo, Duo & Squad tournaments for real cash prizes starting ₹10." />
-        <meta name="pagetype" content="Gaming Platform" />
+        {/*
+         * NOTE: <meta charset>, <meta name="viewport">, <meta name="theme-color">,
+         * and all icons/manifest are emitted automatically by Next.js from the
+         * `metadata` and `viewport` exports above. Do NOT add them here manually.
+         *
+         * Apple PWA tags (apple-mobile-web-app-capable etc.) are handled by
+         * metadata.appleWebApp in generateSeoMetadata — no manual tags needed.
+         */}
 
         {/* ── Performance: Preconnect & DNS Prefetch ── */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -64,16 +51,25 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://api.battlexzone.com" />
 
-        {/* ── Fonts (display=swap for CLS optimization) ── */}
+        {/*
+         * Fonts — display=swap prevents invisible text during load (FOIT fix).
+         * Rajdhani + Exo 2 are used by the Navbar; Inter + Poppins for body/display.
+         * All four combined in one request to minimise connection overhead.
+         */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&family=Rajdhani:wght@500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&family=Rajdhani:wght@500;600;700&family=Exo+2:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
 
         {/* ── RSS Feed Discovery ── */}
-        <link rel="alternate" type="application/rss+xml" title="BattleZone Blog RSS Feed" href="/rss.xml" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="BattleZone Blog RSS Feed"
+          href="/rss.xml"
+        />
 
-        {/* ══ Entity SEO: Knowledge Graph (Organization + WebSite + WebApp + BGMI) ══ */}
+        {/* ── Entity SEO: Knowledge Graph (Organization + WebSite + WebApp + BGMI) ── */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(knowledgeGraph) }}

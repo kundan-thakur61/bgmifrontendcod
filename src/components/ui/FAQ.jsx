@@ -7,17 +7,25 @@ import { useState } from 'react';
  * Designed for Featured Snippets, People Also Ask, and Voice Search
  */
 
-// FAQ Schema Component
+// FAQ Schema Component (JSON-LD only — do NOT also use itemScope/itemProp microdata)
 export function FAQPageSchema({ faqs }) {
+  // Defensively filter out entries missing required fields to avoid Google
+  // "Unnamed item" / "Missing field" critical errors in Rich Results Test.
+  const validFaqs = (faqs || []).filter(
+    (faq) => faq && faq.question && faq.question.trim() && faq.answer && faq.answer.trim()
+  );
+
+  if (!validFaqs.length) return null;
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: validFaqs.map((faq) => ({
       '@type': 'Question',
-      name: faq.question,
+      name: faq.question.trim(),
       acceptedAnswer: {
         '@type': 'Answer',
-        text: faq.answer,
+        text: faq.answer.trim(),
       },
     })),
   };
@@ -34,46 +42,36 @@ export function FAQPageSchema({ faqs }) {
 // Single FAQ Item Component
 function FAQItem({ question, answer, isOpen, onToggle, index }) {
   return (
-    <div 
+    <div
       className="border-b border-dark-700 last:border-b-0"
-      itemScope
-      itemProp="mainEntity"
-      itemType="https://schema.org/Question"
     >
-      <button
-        onClick={onToggle}
-        className="w-full py-4 sm:py-5 px-3 sm:px-4 flex items-center justify-between text-left hover:bg-dark-800/50 transition-colors rounded-lg min-h-[48px]"
-        aria-expanded={isOpen}
-        aria-controls={`faq-answer-${index}`}
-        suppressHydrationWarning
+      <h3
+        className="text-base sm:text-lg font-semibold text-white pr-3 sm:pr-4"
       >
-        <h3 
-          className="text-base sm:text-lg font-semibold text-white pr-3 sm:pr-4"
-          itemProp="name"
+        <button
+          onClick={onToggle}
+          className="w-full py-4 sm:py-5 px-3 sm:px-4 flex items-center justify-between text-left hover:bg-dark-800/50 transition-colors rounded-lg min-h-[48px]"
+          aria-expanded={isOpen}
+          aria-controls={`faq-answer-${index}`}
+          suppressHydrationWarning
         >
-          {question}
-        </h3>
-        <span 
-          className={`text-2xl text-primary-400 transform transition-transform duration-300 flex-shrink-0 ${
-            isOpen ? 'rotate-45' : ''
-          }`}
-        >
-          +
-        </span>
-      </button>
-      
+          <span>{question}</span>
+          <span
+            className={`text-2xl text-primary-400 transform transition-transform duration-300 flex-shrink-0 ${isOpen ? 'rotate-45' : ''
+              }`}
+          >
+            +
+          </span>
+        </button>
+      </h3>
+
       <div
         id={`faq-answer-${index}`}
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-        }`}
-        itemScope
-        itemProp="acceptedAnswer"
-        itemType="https://schema.org/Answer"
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
-        <div 
+        <div
           className="px-3 sm:px-4 pb-4 sm:pb-5 text-dark-300 leading-relaxed text-sm sm:text-base"
-          itemProp="text"
         >
           {answer}
         </div>
@@ -83,8 +81,8 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
 }
 
 // Main FAQ Section Component
-export default function FAQ({ 
-  faqs, 
+export default function FAQ({
+  faqs,
   title = 'Frequently Asked Questions',
   subtitle = 'Find answers to common questions about BattleZone',
   showSchema = true,
@@ -97,13 +95,12 @@ export default function FAQ({
   };
 
   return (
-    <section 
+    <section
       className={`py-10 sm:py-16 px-3 sm:px-4 ${className}`}
-      itemScope
-      itemType="https://schema.org/FAQPage"
+      aria-label="Frequently Asked Questions"
     >
       {showSchema && <FAQPageSchema faqs={faqs} />}
-      
+
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-12">

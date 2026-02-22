@@ -68,10 +68,10 @@ export default function HeroSection() {
                         animation: 'fadeInUp 0.8s ease-out',
                         textShadow: '0 0 30px rgba(255,255,255,0.5)'
                     }}>
-                        PLAY COMPETITIVE
+                        PLAY DAILY
                     </span>
                     <span className="block neon-text mb-1 sm:mb-2" style={{ animationDelay: '0.2s' }}>
-                        ESPORTS MATCHES
+                        BGMI TOURNAMENTS
                     </span>
                     <span className="block text-white" style={{
                         animation: 'fadeInUp 0.8s ease-out 0.4s backwards',
@@ -80,7 +80,7 @@ export default function HeroSection() {
                         WebkitTextFillColor: 'transparent',
                         backgroundClip: 'text'
                     }}>
-                        FOR REAL MONEY
+                        & WIN REAL CASH
                     </span>
                 </h1>
 
@@ -88,8 +88,7 @@ export default function HeroSection() {
                 <p className="text-base sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 sm:mb-12 font-light leading-relaxed px-2" style={{
                     animation: 'fadeInUp 0.8s ease-out 0.6s backwards'
                 }}>
-                    Join <span className="text-cyan-400 font-semibold">BattleZone</span>, India&apos;s fastest-growing esports platform for
-                    PUBG Mobile and Free Fire tournaments. <span className="text-purple-400">Compete, win, and withdraw instantly.</span>
+                    Join daily <span className="text-cyan-400 font-semibold">BGMI tournaments</span> and custom rooms on BattleXZone. <span className="text-purple-400">Compete with top players in India, showcase your skills, and win real cash prizes today!</span>
                 </p>
 
                 {/* CTA Buttons */}
@@ -100,8 +99,9 @@ export default function HeroSection() {
                         href="/register"
                         className="cta-button w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 text-center min-h-[48px]"
                         style={{ boxShadow: '0 0 30px rgba(0, 255, 255, 0.4)' }}
+                        data-track="register"
                     >
-                        Start Playing Now
+                        Register & Play Now
                     </Link>
                     <Link
                         href="/how-it-works"

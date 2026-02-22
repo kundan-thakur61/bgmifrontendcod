@@ -607,15 +607,17 @@ const api = {
   exportAdminData: async (type, params = {}) => {
     const query = new URLSearchParams({ type, ...params }).toString();
     const response = await axiosInstance.get(`/admin/export?${query}`, { responseType: 'blob' });
-    // Trigger download
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `${type}_export_${new Date().toISOString().split('T')[0]}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.URL.revokeObjectURL(url);
+    // Trigger download (client-side only)
+    if (typeof window !== 'undefined') {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${type}_export_${new Date().toISOString().split('T')[0]}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    }
     return { success: true };
   },
 
@@ -635,8 +637,8 @@ const api = {
     return response.data;
   },
 
-  getTransactions: async () => {
-    const response = await axiosInstance.get('/wallet/transactions');
+  getTransactions: async (page = 1, limit = 20) => {
+    const response = await axiosInstance.get(`/wallet/transactions?page=${page}&limit=${limit}`);
     return response.data;
   },
 

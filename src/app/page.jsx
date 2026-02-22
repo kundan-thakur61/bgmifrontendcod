@@ -9,7 +9,7 @@ import SupportedGames from '@/components/home/SupportedGames';
 import FeaturesSection from '@/components/home/FeaturesSection';
 import CTASection from '@/components/home/CTASection';
 import HowItWorksSection from '@/components/home/HowItWorksSection';
-import { bgmiPlatformFaqs, getFaqSchema, getSpeakableSchema, getHowToSchema } from '@/lib/schema-graph';
+import { getSpeakableSchema, getHowToSchema } from '@/lib/schema-graph';
 
 // Import external CSS for performance (enables browser caching)
 import '@/styles/hero-styles.css';
@@ -83,31 +83,17 @@ export default function HomePage() {
     return handlePerformance();
   }, []);
 
-  // ── Schema: WebSite SearchAction + FAQ + HowTo + Speakable ──
-  const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'BattleZone',
-    url: 'https://www.battlexzone.com',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://www.battlexzone.com/search?q={search_term_string}',
-      },
-      'query-input': 'required name=search_term_string',
-    },
-  };
-
-  const faqSchema = getFaqSchema(bgmiPlatformFaqs);
+  // ── Schema: HowTo + Speakable only ──
+  // NOTE: WebSite + SearchAction is emitted by layout.jsx via getKnowledgeGraph().
+  // NOTE: FAQPage schema is emitted by the <FAQ showSchema={true}> component below.
+  // Adding them here AGAIN causes duplicate / conflicting schemas → Google reports
+  // "3 invalid items" in Rich Results Test. Keep only HowTo + Speakable here.
   const howToSchema = getHowToSchema(howToJoinData);
   const speakableSchema = getSpeakableSchema('/', ['h1', '.aeo-answer', '.faq-answer']);
 
   return (
     <>
-      {/* ══ Structured Data: SearchAction + FAQ (AEO) + HowTo + Speakable ══ */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      {/* ══ Structured Data: HowTo + Speakable ══ */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
 
@@ -122,37 +108,27 @@ export default function HomePage() {
         <HowItWorksSection />
 
         {/* ══ AEO Quick-Answer Section — Targets Featured Snippets + AI Overviews ══ */}
-        <section className="py-10 sm:py-16 px-3 sm:px-4 bg-gradient-to-b from-black/40 to-gray-900/40" aria-label="What is BattleZone">
+        <section className="py-10 sm:py-16 px-3 sm:px-4 bg-gradient-to-b from-black/40 to-gray-900/40" aria-label="What is BattleXZone">
           <div className="max-w-4xl mx-auto">
             <div className="bg-gradient-to-r from-cyan-900/30 to-purple-900/30 border-l-4 border-cyan-500 rounded-r-xl p-4 sm:p-8">
-              <h2 className="text-lg sm:text-xl font-bold text-cyan-400 mb-3 sm:mb-4">What is BattleZone?</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-cyan-400 mb-3 sm:mb-4">Why Choose BattleXZone for BGMI Esports?</h2>
               <p className="aeo-answer text-base sm:text-lg text-gray-200 leading-relaxed">
-                <strong className="text-white">BattleZone</strong> is India&apos;s premier esports tournament platform for
-                <strong className="text-cyan-400"> BGMI (Battlegrounds Mobile India), PUBG Mobile, and Free Fire</strong>.
-                Players compete in <strong className="text-cyan-400">Solo, Duo &amp; Squad</strong> custom room matches with
-                real money prizes. Join <strong className="text-cyan-400">50,000+ active players</strong> competing daily
-                with entry fees starting from <strong className="text-cyan-400">₹10</strong>. Winners receive prizes directly
-                to their wallet and can withdraw via <strong className="text-cyan-400">UPI within 5–10 minutes</strong>.
-                Every match is verified through our advanced <strong className="text-cyan-400">anti-cheat system</strong> ensuring
-                fair play for all participants.
+                <strong className="text-white">BattleXZone</strong> is India&apos;s premier platform for competitive mobile gaming. If you are looking to <strong className="text-cyan-400">play BGMI tournaments</strong> and turn your gaming skills into real cash, you are in the right place. We host <strong className="text-cyan-400">BGMI daily scrims</strong>, paid custom rooms, and massive prize pool events for squads, duos, and solo players.
               </p>
 
               {/* ── Additional AEO paragraphs for long-tail queries ── */}
               <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4 text-gray-300">
-                <h3 className="text-base sm:text-lg font-semibold text-white">How BGMI Tournaments Work on BattleZone</h3>
+                <h3 className="text-base sm:text-lg font-semibold text-white">Upcoming BGMI Custom Rooms & Scrims</h3>
                 <p className="aeo-answer">
-                  BGMI tournaments on BattleZone use the <strong>custom room format</strong>. After registering and paying
-                  the entry fee, players receive the room ID and password 15 minutes before the match.
-                  All players join the same BGMI custom room, play the match, and submit screenshots.
-                  Results are verified within 30 minutes and prizes are credited instantly.
+                  We provide a seamless experience for gamers. From instant registration to automated result verification and lightning-fast payouts, our platform is built by gamers, for gamers. Whether you are an underdog squad looking for exposure or seasoned pros dominating the <strong>BGMI esports platform</strong> scene, we have a tournament for you.
                 </p>
 
-                <h3 className="text-base sm:text-lg font-semibold text-white">Why Choose BattleZone for BGMI Esports?</h3>
+                <h3 className="text-base sm:text-lg font-semibold text-white">How to Register and Play</h3>
                 <p className="aeo-answer">
-                  BattleZone is trusted by <strong>50,000+ Indian BGMI players</strong> because of instant UPI withdrawals,
-                  KYC-verified fair play, 24/7 Discord support, and the lowest entry fees starting at ₹10.
-                  We host <strong>500+ daily matches</strong> across Solo, Duo, and Squad formats with prize pools
-                  up to ₹50,000.
+                  1. Create your free account.<br/>
+                  2. Browse our list of <strong>upcoming BGMI custom rooms</strong>.<br/>
+                  3. Register your squad and get the Room ID and Password 15 minutes before the match.<br/>
+                  4. Drop into Erangel, secure the chicken dinner, and claim your winnings!
                 </p>
               </div>
             </div>

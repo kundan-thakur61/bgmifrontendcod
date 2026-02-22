@@ -49,11 +49,10 @@ export default function TournamentsPage() {
           {/* Header - H1 optimized for primary keyword */}
           <div className="mb-8">
             <h1 className="text-3xl sm:text-4xl font-bold font-display mb-2">
-              BGMI Tournament Online India - Win Cash Prizes Starting ₹10
+              BGMI Daily Scrims & Custom Room Tournaments
             </h1>
             <p className="text-dark-400 text-lg">
-              Join BGMI, Free Fire & PUBG Mobile tournaments. Solo, Duo & Squad formats. 
-              Entry fee ₹10. Prize pools up to ₹50,000. Instant UPI withdrawal.
+              Ready to test your skills? Browse our schedule of <strong>BGMI daily scrims</strong> and paid tournaments. We offer a variety of match types including classic battle royale on Erangel and Miramar, as well as intense TDM matchups. Check the entry fee, prize pool, and match timings below. Make sure to read the rules carefully before you <a href="/register" className="text-cyan-400 hover:underline">register for BGMI tournament</a> matches to avoid disqualification.
             </p>
           </div>
           

@@ -1,47 +1,30 @@
 import Link from 'next/link';
 import { Navbar, Footer } from '@/components/layout';
-import { createMetadata } from '@/lib/metadata';
+import { generateArticleMetadata } from '@/lib/seo-config';
 import FAQ from '@/components/ui/FAQ';
 import { ArticleSchema, BreadcrumbSchema } from '@/components/seo';
 
-// SEO Metadata
-export const metadata = {
-  ...createMetadata(
-    'How to Earn Money Playing Games in India 2026 - Complete Guide',
-    'Learn how to earn real money playing BGMI, Free Fire, and other games in India. Discover tournament platforms, earning methods, and income potential.',
-    [
-      'earn money playing games India',
-      'play games earn money',
-      'gaming earning app India',
-      'BGMI earn money',
-      'Free Fire earning',
-      'esports earnings India',
-      'gaming tournaments money',
-      'online gaming income',
-      'professional gamer India',
-      'gaming side hustle',
-      'mobile gaming earnings',
-      'win cash playing games',
-      'gaming prizes India',
-      'play and earn real money',
-      'gaming freelancer India',
-    ],
-    'https://www.battlexzone.com/blog/how-to-earn-money-gaming-india',
-    '/api/og?title=Earn+Money+Gaming+India&subtitle=Complete+Guide+2026&category=Guide',
-    'article'
-  ),
-  openGraph: {
-    type: 'article',
-    title: 'How to Earn Money Playing Games in India 2026 - Complete Guide',
-    description: 'Learn how to earn real money playing BGMI, Free Fire, and other games in India. Tournament platforms, methods, and income potential.',
-    images: [{
-      url: '/api/og?title=Earn+Money+Gaming+India&subtitle=Complete+Guide+2026&category=Guide',
-      width: 1200,
-      height: 630,
-      alt: 'Earn Money Gaming India Guide 2026',
-    }],
-  },
-};
+// SEO Metadata — canonical auto-set via generateArticleMetadata → generateSeoMetadata
+export const metadata = generateArticleMetadata({
+  title: 'How to Earn Money Playing Games in India 2026 - Complete Guide',
+  excerpt: 'Learn how to earn real money playing BGMI, Free Fire, and other games in India. Discover tournament platforms, earning methods, and income potential.',
+  slug: 'how-to-earn-money-gaming-india',
+  image: '/api/og?title=Earn+Money+Gaming+India&subtitle=Complete+Guide+2026&category=Guide',
+  datePublished: '2026-01-22T00:00:00+05:30',
+  dateModified: '2026-01-22T00:00:00+05:30',
+  author: 'BattleXZone Team',
+  category: 'Earning Guide',
+  tags: [
+    'earn money playing games India',
+    'play games earn money',
+    'gaming earning app India',
+    'BGMI earn money',
+    'esports earnings India',
+    'gaming tournaments money',
+    'mobile gaming earnings',
+    'win cash playing games',
+  ],
+});
 
 const articleData = {
   title: 'How to Earn Money Playing Games in India 2026 - Complete Guide',
@@ -146,7 +129,7 @@ export default function EarnMoneyGamingIndia() {
   return (
     <>
       <Navbar />
-      
+
       <ArticleSchema article={articleData} />
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://www.battlexzone.com' },
@@ -180,9 +163,9 @@ export default function EarnMoneyGamingIndia() {
 
             <div className="bg-dark-800 border-l-4 border-green-500 rounded-r-lg p-4 sm:p-6 mb-8">
               <p className="text-lg text-white leading-relaxed">
-                <strong>Gaming is now a legitimate income source in India.</strong> From casual players earning 
-                <strong> Rs.5,000-10,000 monthly</strong> to professional gamers making <strong>lakhs per month</strong>, 
-                the opportunities are real. This guide covers 6 proven methods to earn money playing BGMI, Free Fire, 
+                <strong>Gaming is now a legitimate income source in India.</strong> From casual players earning
+                <strong> Rs.5,000-10,000 monthly</strong> to professional gamers making <strong>lakhs per month</strong>,
+                the opportunities are real. This guide covers 6 proven methods to earn money playing BGMI, Free Fire,
                 and other games - including tournament platforms, esports, streaming, and more.
               </p>
             </div>
@@ -260,8 +243,8 @@ export default function EarnMoneyGamingIndia() {
               </h2>
 
               <p className="text-dark-300 leading-relaxed mb-6">
-                Tournament platforms like <Link href="/" className="text-primary-400 hover:underline">BattleZone</Link> are the 
-                easiest way to start earning from gaming. These platforms host daily tournaments for BGMI, Free Fire, 
+                Tournament platforms like <Link href="/" className="text-primary-400 hover:underline">BattleZone</Link> are the
+                easiest way to start earning from gaming. These platforms host daily tournaments for BGMI, Free Fire,
                 and other popular games with entry fees starting from just <strong>Rs.10</strong>.
               </p>
 
@@ -317,8 +300,8 @@ export default function EarnMoneyGamingIndia() {
               </h2>
 
               <p className="text-dark-300 leading-relaxed mb-6">
-                Professional esports is the pinnacle of gaming income in India. Top players earn through tournament 
-                winnings, team salaries, sponsorships, and streaming. However, this path requires exceptional skill 
+                Professional esports is the pinnacle of gaming income in India. Top players earn through tournament
+                winnings, team salaries, sponsorships, and streaming. However, this path requires exceptional skill
                 and dedication.
               </p>
 
@@ -364,7 +347,7 @@ export default function EarnMoneyGamingIndia() {
               </h2>
 
               <p className="text-dark-300 leading-relaxed mb-6">
-                Streaming allows you to earn while playing games, regardless of tournament performance. 
+                Streaming allows you to earn while playing games, regardless of tournament performance.
                 Popular Indian streamers earn through donations, subscriptions, sponsorships, and ad revenue.
               </p>
 
@@ -432,7 +415,7 @@ export default function EarnMoneyGamingIndia() {
               </h2>
 
               <p className="text-dark-300 leading-relaxed mb-6">
-                YouTube gaming content offers multiple revenue streams: ad revenue, sponsorships, affiliate marketing, 
+                YouTube gaming content offers multiple revenue streams: ad revenue, sponsorships, affiliate marketing,
                 and channel memberships. Short-form content (Shorts, Reels) can grow your audience rapidly.
               </p>
 
@@ -470,7 +453,7 @@ export default function EarnMoneyGamingIndia() {
               </h2>
 
               <p className="text-dark-300 leading-relaxed mb-6">
-                If you're skilled at a particular game, coaching others can be lucrative. Players pay for personalized 
+                If you're skilled at a particular game, coaching others can be lucrative. Players pay for personalized
                 training to improve their rank, tournament performance, or overall gameplay.
               </p>
 
@@ -526,7 +509,7 @@ export default function EarnMoneyGamingIndia() {
                 <div className="bg-dark-800 rounded-xl p-4 sm:p-6 border border-green-700/30">
                   <h3 className="text-xl font-bold mb-3 text-green-400">Legality of Gaming Income</h3>
                   <p className="text-dark-300 mb-3">
-                    <strong>Skill-based gaming is 100% legal in India.</strong> The Supreme Court has ruled that games 
+                    <strong>Skill-based gaming is 100% legal in India.</strong> The Supreme Court has ruled that games
                     requiring skill (like BGMI, Free Fire, Valorant) are protected business activities.
                   </p>
                   <ul className="space-y-2 text-dark-300 text-sm">
@@ -543,17 +526,17 @@ export default function EarnMoneyGamingIndia() {
             <div className="bg-gradient-to-r from-primary-900/50 to-green-900/50 rounded-xl p-5 sm:p-8 text-center border border-primary-700/50">
               <h3 className="text-2xl font-bold mb-4">Start Your Gaming Income Journey Today</h3>
               <p className="text-dark-300 mb-6 max-w-2xl mx-auto">
-                Tournament platforms are the easiest way to start earning. Join BattleZone today and compete in your 
+                Tournament platforms are the easiest way to start earning. Join BattleZone today and compete in your
                 first tournament within minutes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
+                <Link
                   href="/register"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-lg transition-colors text-lg"
                 >
                   Start Earning Now
                 </Link>
-                <Link 
+                <Link
                   href="/matches"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-dark-700 hover:bg-dark-600 text-white font-bold rounded-lg transition-colors text-lg border border-dark-600"
                 >
@@ -567,7 +550,7 @@ export default function EarnMoneyGamingIndia() {
 
         {/* FAQ Section */}
         <section className="bg-dark-800/30 py-16">
-          <FAQ 
+          <FAQ
             faqs={articleFAQs}
             title="Gaming Earnings FAQs"
             subtitle="Common questions about earning money from gaming in India"

@@ -87,6 +87,7 @@ export default function WalletOverview() {
   const [transactions, setTransactions] = useState([]);
   const [withdrawals, setWithdrawals] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [animateIn, setAnimateIn] = useState(false);
 
@@ -103,8 +104,10 @@ export default function WalletOverview() {
       ]);
       setTransactions(txData.transactions || []);
       setWithdrawals((wdData.withdrawals || []).filter((w) => w.status === 'pending'));
+      setError(null);
     } catch (err) {
       console.error('Failed to fetch wallet data:', err);
+      setError('Failed to load wallet data. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -178,6 +181,16 @@ export default function WalletOverview() {
 
   return (
     <div className={`space-y-6 transition-all duration-500 ${animateIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+      {/* Error Banner */}
+      {error && (
+        <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg text-sm flex items-center justify-between">
+          <span>{error}</span>
+          <button onClick={() => { setError(null); fetchData(); }} className="ml-4 px-3 py-1 bg-red-500/20 hover:bg-red-500/30 rounded text-xs font-medium transition-colors">
+            Retry
+          </button>
+        </div>
+      )}
+
       {/* Balance Card - Enhanced */}
       <div className="relative overflow-hidden rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-primary-600/20 via-gaming-purple/20 to-primary-900/30 border border-primary-500/20">
         {/* Background decoration */}

@@ -1,91 +1,32 @@
 import Link from 'next/link';
 import { Navbar, Footer } from '@/components/layout';
-import { createMetadata } from '@/lib/metadata';
+import { generateArticleMetadata } from '@/lib/seo-config';
 import FAQ from '@/components/ui/FAQ';
 import { ArticleSchema, HowToSchema, BreadcrumbSchema } from '@/components/seo';
 
-// SEO Metadata with Dynamic OG Image
-export const metadata = {
-  ...createMetadata(
-    'PUBG FREE FIRE BGMI TOURNAMENT MATCH 1VS 1,2,3,4 | India 2026 Guide',
-    'Complete guide to PUBG FREE FIRE BGMI tournament matches in India. Join 1vs1, 1vs2, 1vs3, 1vs4 matches, earn real cash prizes. Register now for 2026 tournaments.',
-    [
-      'PUBG FREE FIRE BGMI TOURNAMENT MATCH 1VS 1,2,3,4',
-      'BGMI tournament match India',
-      'BGMI tournament match online',
-      'BGMI tournament match 2026',
-      'BGMI tournament registration India',
-      'BGMI cash prize tournament India',
-      'BGMI paid tournament India',
-      'BGMI free tournament India',
-      'BGMI custom room tournament India',
-      'BGMI scrims India',
-      'BGMI esports tournament India',
-      'PUBG tournament match India',
-      'PUBG Mobile tournament match India',
-      'BGMI online tournament India',
-      'BGMI solo tournament India',
-      'BGMI duo tournament India',
-      'BGMI squad tournament India',
-      'BGMI daily tournament India',
-      'BGMI weekly tournament India',
-      'BGMI monthly tournament India',
-      'BGMI private room match India',
-      'BGMI earning tournament India',
-      'BGMI money earning match India',
-      'BGMI practice scrims India',
-      'BGMI official tournament India',
-      'PUBG cash prize tournament India',
-      'PUBG paid tournament India',
-      'PUBG free tournament India',
-      'PUBG custom room tournament India',
-      'PUBG scrims India',
-      'PUBG esports tournament India',
-      'PUBG online tournament India',
-      'PUBG solo tournament India',
-      'PUBG duo tournament India',
-      'PUBG squad tournament India',
-      'PUBG daily tournament India',
-      'PUBG weekly tournament India',
-      'PUBG monthly tournament India',
-      'PUBG private room match India',
-      'PUBG earning tournament India',
-      'PUBG money earning match India',
-      'PUBG practice scrims India',
-      'PUBG official tournament India',
-      'BGMI tournament guide',
-      'BGMI tournament 2026',
-      'how to join BGMI tournament',
-      'BGMI tournament registration',
-      'win money playing BGMI',
-      'BGMI esports India',
-      'Battlegrounds Mobile India tournament',
-      'BGMI competitive guide',
-      'BGMI tournament app',
-      'BGMI tournament tips',
-    ],
-    'https://www.battlexzone.com/blog/bgmi-tournament-guide-2026',
-    '/api/og?title=PUBG+FREE+FIRE+BGMI+TOURNAMENT+MATCH&subtitle=1VS+1,2,3,4+India+2026+Guide&category=Guide',
-    'article'
-  ),
-  openGraph: {
-    type: 'article',
-    title: 'PUBG FREE FIRE BGMI TOURNAMENT MATCH 1VS 1,2,3,4 | India 2026 Guide',
-    description: 'Complete guide to PUBG FREE FIRE BGMI tournament matches in India. Join 1vs1, 1vs2, 1vs3, 1vs4 matches, earn real cash prizes. Register now for 2026 tournaments.',
-    images: [{
-      url: '/api/og?title=PUBG+FREE+FIRE+BGMI+TOURNAMENT+MATCH&subtitle=1VS+1,2,3,4+India+2026+Guide&category=Guide',
-      width: 1200,
-      height: 630,
-      alt: 'PUBG FREE FIRE BGMI TOURNAMENT MATCH 1VS 1,2,3,4',
-    }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'PUBG FREE FIRE BGMI TOURNAMENT MATCH 1VS 1,2,3,4 | India 2026 Guide',
-    description: 'Complete guide to PUBG FREE FIRE BGMI tournament matches in India. Join 1vs1, 1vs2, 1vs3, 1vs4 matches, earn real cash prizes.',
-    images: ['/api/og?title=PUBG+FREE+FIRE+BGMI+TOURNAMENT+MATCH&subtitle=1VS+1,2,3,4+India+2026+Guide&category=Guide'],
-  },
-};
+// SEO Metadata — canonical auto-set via generateArticleMetadata → generateSeoMetadata
+export const metadata = generateArticleMetadata({
+  title: 'PUBG FREE FIRE BGMI TOURNAMENT MATCH 1VS 1,2,3,4 | India 2026 Guide',
+  excerpt: 'Complete guide to PUBG FREE FIRE BGMI tournament matches in India. Join 1vs1, 1vs2, 1vs3, 1vs4 matches, earn real cash prizes. Register now for 2026 tournaments.',
+  slug: 'bgmi-tournament-guide-2026',
+  image: '/api/og?title=PUBG+FREE+FIRE+BGMI+TOURNAMENT+MATCH&subtitle=1VS+1,2,3,4+India+2026+Guide&category=Guide',
+  datePublished: '2026-01-15T00:00:00+05:30',
+  dateModified: '2026-01-17T00:00:00+05:30',
+  author: 'BattleXZone Team',
+  category: 'Guides',
+  tags: [
+    'PUBG FREE FIRE BGMI TOURNAMENT MATCH 1VS 1,2,3,4',
+    'BGMI tournament match India',
+    'BGMI tournament registration India',
+    'BGMI cash prize tournament India',
+    'BGMI custom room tournament India',
+    'BGMI esports tournament India',
+    'BGMI tournament guide',
+    'BGMI tournament 2026',
+    'how to join BGMI tournament',
+    'win money playing BGMI',
+  ],
+});
 
 // Article data for schema
 const articleData = {
@@ -207,7 +148,7 @@ export default function BGMITournamentGuide2026() {
   return (
     <>
       <Navbar />
-      
+
       {/* Schema Markup */}
       <ArticleSchema article={articleData} />
       <HowToSchema howTo={howToData} />
@@ -247,9 +188,9 @@ export default function BGMITournamentGuide2026() {
             {/* AEO Quick Answer Box - For Featured Snippets */}
             <div className="bg-dark-800 border-l-4 border-primary-500 rounded-r-lg p-6 mb-8">
               <p className="text-lg text-white leading-relaxed">
-                <strong>PUBG FREE FIRE BGMI tournament matches</strong> are competitive gaming events where players compete for real cash prizes. 
-                Join 1vs1, 1vs2, 1vs3, 1vs4 matches in India's top tournaments. Register on platforms like <strong>BattleZone</strong>, complete KYC verification, 
-                add funds to your wallet, and participate in matches starting from <strong>Rs.10 entry fee</strong>. 
+                <strong>PUBG FREE FIRE BGMI tournament matches</strong> are competitive gaming events where players compete for real cash prizes.
+                Join 1vs1, 1vs2, 1vs3, 1vs4 matches in India's top tournaments. Register on platforms like <strong>BattleZone</strong>, complete KYC verification,
+                add funds to your wallet, and participate in matches starting from <strong>Rs.10 entry fee</strong>.
                 Winners receive prizes directly to their wallet and can withdraw via <strong>UPI within 24-48 hours</strong>.
               </p>
             </div>
@@ -307,16 +248,16 @@ export default function BGMITournamentGuide2026() {
         {/* Main Content */}
         <article className="py-12 px-4">
           <div className="max-w-4xl mx-auto">
-            
+
             {/* Section 1: What Are BGMI Tournaments */}
             <section id="what-are-bgmi-tournaments" className="mb-16">
               <h2 className="text-2xl sm:text-3xl font-bold mb-6 flex items-center gap-3">
                 <span className="text-primary-400">1.</span> What Are PUBG FREE FIRE BGMI Tournament Matches?
               </h2>
-              
+
               <p className="text-dark-300 leading-relaxed mb-6">
-                <strong className="text-white">PUBG FREE FIRE BGMI tournament matches</strong> are organized competitive gaming events 
-                where players compete against each other in custom room matches for real money prizes. These 1vs1, 1vs2, 1vs3, 1vs4 matches 
+                <strong className="text-white">PUBG FREE FIRE BGMI tournament matches</strong> are organized competitive gaming events
+                where players compete against each other in custom room matches for real money prizes. These 1vs1, 1vs2, 1vs3, 1vs4 matches
                 in India offer substantial prize pools to winners. Unlike casual gameplay, tournaments follow structured rules and have entry fees.
               </p>
 
@@ -347,10 +288,10 @@ export default function BGMITournamentGuide2026() {
               </div>
 
               <p className="text-dark-300 leading-relaxed">
-                In 2026, PUBG FREE FIRE BGMI tournament matches have become a legitimate way for skilled players to earn money while doing what they love. 
-                Platforms like <Link href="/" className="text-primary-400 hover:underline">BattleZone</Link> host thousands of 
-                daily BGMI tournament matches, making it accessible for players of all skill levels to participate and win. 
-                For more information on <Link href="/tournaments" className="text-primary-400 hover:underline">BGMI tournament match India</Link> options and 
+                In 2026, PUBG FREE FIRE BGMI tournament matches have become a legitimate way for skilled players to earn money while doing what they love.
+                Platforms like <Link href="/" className="text-primary-400 hover:underline">BattleZone</Link> host thousands of
+                daily BGMI tournament matches, making it accessible for players of all skill levels to participate and win.
+                For more information on <Link href="/tournaments" className="text-primary-400 hover:underline">BGMI tournament match India</Link> options and
                 <Link href="/tournaments" className="text-primary-400 hover:underline">BGMI cash prize tournament India</Link> events.
               </p>
             </section>
@@ -384,7 +325,7 @@ export default function BGMITournamentGuide2026() {
               <div className="bg-gradient-to-r from-primary-900/50 to-purple-900/50 rounded-xl p-8 mt-8 text-center border border-primary-700/50">
                 <h3 className="text-2xl font-bold mb-4">Ready to Start Winning?</h3>
                 <p className="text-dark-300 mb-6">Join BattleZone today and compete in your first BGMI tournament</p>
-                <Link 
+                <Link
                   href="/register"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-lg transition-colors text-lg"
                 >
@@ -523,7 +464,7 @@ export default function BGMITournamentGuide2026() {
               </h2>
 
               <p className="text-dark-300 leading-relaxed mb-8">
-                Tournament gameplay differs from casual matches. Here are battle-tested strategies used by top players in 1vs1, 1vs2, 1vs3, 1vs4 matches. 
+                Tournament gameplay differs from casual matches. Here are battle-tested strategies used by top players in 1vs1, 1vs2, 1vs3, 1vs4 matches.
                 Also check our <Link href="/blog/bgmi-tournament-guide-2026" className="text-primary-400 hover:underline">BGMI tournament match online</Link> guide for more tips.
               </p>
 
@@ -532,11 +473,11 @@ export default function BGMITournamentGuide2026() {
                 <div className="bg-dark-800 rounded-xl p-6 border-l-4 border-yellow-500">
                   <h3 className="text-xl font-bold mb-3 text-white">🎯 Landing Strategy</h3>
                   <p className="text-dark-300 mb-4">
-                    In tournaments, survival matters more than kills in early game. Choose medium-loot locations like 
+                    In tournaments, survival matters more than kills in early game. Choose medium-loot locations like
                     Georgopol Crates, Primorsk, or Farm for consistent loot without heavy early fights.
                   </p>
                   <p className="text-sm text-dark-400">
-                    <strong>Pro tip:</strong> Avoid hot drops unless you are confident in early-game fights. Consistent 
+                    <strong>Pro tip:</strong> Avoid hot drops unless you are confident in early-game fights. Consistent
                     top-10 finishes earn more than risky hot drops.
                   </p>
                 </div>
@@ -544,11 +485,11 @@ export default function BGMITournamentGuide2026() {
                 <div className="bg-dark-800 rounded-xl p-6 border-l-4 border-blue-500">
                   <h3 className="text-xl font-bold mb-3 text-white">🗺️ Rotation and Positioning</h3>
                   <p className="text-dark-300 mb-4">
-                    Move early to favorable positions. Compound buildings near zone center give you cover and 
+                    Move early to favorable positions. Compound buildings near zone center give you cover and
                     multiple angles. Never get caught rotating late in the blue zone.
                   </p>
                   <p className="text-sm text-dark-400">
-                    <strong>Pro tip:</strong> Use vehicles strategically - they are loud but essential for 
+                    <strong>Pro tip:</strong> Use vehicles strategically - they are loud but essential for
                     long rotations. Abandon vehicles before final circles.
                   </p>
                 </div>
@@ -556,11 +497,11 @@ export default function BGMITournamentGuide2026() {
                 <div className="bg-dark-800 rounded-xl p-6 border-l-4 border-green-500">
                   <h3 className="text-xl font-bold mb-3 text-white">🔫 Combat Tips</h3>
                   <p className="text-dark-300 mb-4">
-                    Pick your fights wisely. Third-partying weakened enemies is more effective than initiating 
+                    Pick your fights wisely. Third-partying weakened enemies is more effective than initiating
                     fights. Master spray control for M416, AKM, and SMGs.
                   </p>
                   <p className="text-sm text-dark-400">
-                    <strong>Pro tip:</strong> Always carry smokes and throwables. Smokes save lives during 
+                    <strong>Pro tip:</strong> Always carry smokes and throwables. Smokes save lives during
                     revives and zone rotations.
                   </p>
                 </div>
@@ -568,11 +509,11 @@ export default function BGMITournamentGuide2026() {
                 <div className="bg-dark-800 rounded-xl p-6 border-l-4 border-purple-500">
                   <h3 className="text-xl font-bold mb-3 text-white">👥 Team Coordination (Squad)</h3>
                   <p className="text-dark-300 mb-4">
-                    Assign roles: IGL (shot-caller), Fragger (aggressor), Support (cover fire), and Scout 
+                    Assign roles: IGL (shot-caller), Fragger (aggressor), Support (cover fire), and Scout
                     (information gathering). Clear communication wins tournaments.
                   </p>
                   <p className="text-sm text-dark-400">
-                    <strong>Pro tip:</strong> Use compass directions and map markers for callouts. 
+                    <strong>Pro tip:</strong> Use compass directions and map markers for callouts.
                     Say Enemy 270, behind the tree, 100 meters instead of Over there!
                   </p>
                 </div>
@@ -673,7 +614,7 @@ export default function BGMITournamentGuide2026() {
               <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-6">
                 <h4 className="font-bold text-yellow-400 mb-2">Important Note:</h4>
                 <p className="text-dark-300">
-                  Bank account name must match KYC documents. Mismatches may delay withdrawals. 
+                  Bank account name must match KYC documents. Mismatches may delay withdrawals.
                   If you face issues, contact <Link href="/tickets" className="text-primary-400 hover:underline">support</Link> with your transaction ID.
                 </p>
               </div>
@@ -762,7 +703,7 @@ export default function BGMITournamentGuide2026() {
 
         {/* FAQ Section */}
         <section id="faq" className="bg-dark-800/30">
-          <FAQ 
+          <FAQ
             faqs={articleFAQs}
             title="FAQ - PUBG FREE FIRE BGMI Tournament Matches India"
             subtitle="Common questions about PUBG FREE FIRE BGMI tournament matches answered"

@@ -1,44 +1,30 @@
 import Link from 'next/link';
 import { Navbar, Footer } from '@/components/layout';
-import { createMetadata } from '@/lib/metadata';
+import { generateArticleMetadata } from '@/lib/seo-config';
 import FAQ from '@/components/ui/FAQ';
 import { ArticleSchema, BreadcrumbSchema } from '@/components/seo';
 
-// SEO Metadata
-export const metadata = {
-  ...createMetadata(
-    'BGMI vs Free Fire 2026 - Which is Better for Tournaments & Earning?',
-    'Complete comparison of BGMI vs Free Fire. Graphics, gameplay, earning potential, tournaments, and which game is better for you.',
-    [
-      'BGMI vs Free Fire',
-      'BGMI or Free Fire which is better',
-      'Free Fire vs BGMI comparison',
-      'BGMI vs Free Fire tournaments',
-      'which game pays more',
-      'BGMI earning vs Free Fire',
-      'best battle royale India',
-      'BGMI vs Free Fire 2026',
-      'PUBG vs Free Fire',
-      'best esports game India',
-      'BGMI tournaments India',
-      'Free Fire tournaments India',
-    ],
-    'https://www.battlexzone.com/blog/bgmi-vs-free-fire-which-is-better',
-    '/api/og?title=BGMI+vs+Free+Fire&subtitle=Which+is+Better+2026&category=Comparison',
-    'article'
-  ),
-  openGraph: {
-    type: 'article',
-    title: 'BGMI vs Free Fire 2026 - Which is Better for Tournaments & Earning?',
-    description: 'Complete comparison of BGMI vs Free Fire. Graphics, gameplay, earning potential, tournaments, and which game is better for you.',
-    images: [{
-      url: '/api/og?title=BGMI+vs+Free+Fire&subtitle=Which+is+Better+2026&category=Comparison',
-      width: 1200,
-      height: 630,
-      alt: 'BGMI vs Free Fire Comparison 2026',
-    }],
-  },
-};
+// SEO Metadata — canonical auto-set via generateArticleMetadata → generateSeoMetadata
+export const metadata = generateArticleMetadata({
+  title: 'BGMI vs Free Fire 2026 - Which is Better for Tournaments & Earning?',
+  excerpt: 'Complete comparison of BGMI vs Free Fire. Graphics, gameplay, earning potential, tournaments, and which game is better for you.',
+  slug: 'bgmi-vs-free-fire-which-is-better',
+  image: '/api/og?title=BGMI+vs+Free+Fire&subtitle=Which+is+Better+2026&category=Comparison',
+  datePublished: '2026-01-25T00:00:00+05:30',
+  dateModified: '2026-01-25T00:00:00+05:30',
+  author: 'BattleXZone Team',
+  category: 'Comparison',
+  tags: [
+    'BGMI vs Free Fire',
+    'BGMI or Free Fire which is better',
+    'Free Fire vs BGMI comparison',
+    'BGMI vs Free Fire tournaments',
+    'which game pays more',
+    'best battle royale India',
+    'BGMI vs Free Fire 2026',
+    'best esports game India',
+  ],
+});
 
 const articleData = {
   title: 'BGMI vs Free Fire 2026 - Which is Better for Tournaments & Earning?',
@@ -151,7 +137,7 @@ export default function BGMIvsFreeFire() {
   return (
     <>
       <Navbar />
-      
+
       <ArticleSchema article={articleData} />
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://www.battlexzone.com' },
@@ -185,9 +171,9 @@ export default function BGMIvsFreeFire() {
 
             <div className="bg-dark-800 border-l-4 border-primary-500 rounded-r-lg p-6 mb-8">
               <p className="text-lg text-white leading-relaxed">
-                <strong>BGMI and Free Fire</strong> are India's top battle royale games, but which is better for you? 
-                BGMI offers <strong>realistic gameplay and higher prize pools</strong>, while Free Fire provides 
-                <strong> faster matches and runs on any device</strong>. This detailed comparison covers graphics, 
+                <strong>BGMI and Free Fire</strong> are India's top battle royale games, but which is better for you?
+                BGMI offers <strong>realistic gameplay and higher prize pools</strong>, while Free Fire provides
+                <strong> faster matches and runs on any device</strong>. This detailed comparison covers graphics,
                 gameplay, tournaments, and earning potential to help you decide.
               </p>
             </div>
@@ -288,11 +274,10 @@ export default function BGMIvsFreeFire() {
                       <td className="p-4 text-sm">{item.bgmi}</td>
                       <td className="p-4 text-sm">{item.freeFire}</td>
                       <td className="p-4">
-                        <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-bold ${
-                          item.winner === 'BGMI' ? 'bg-yellow-900/30 text-yellow-400' :
-                          item.winner === 'Free Fire' ? 'bg-orange-900/30 text-orange-400' :
-                          'bg-dark-700 text-dark-300'
-                        }`}>
+                        <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-bold ${item.winner === 'BGMI' ? 'bg-yellow-900/30 text-yellow-400' :
+                            item.winner === 'Free Fire' ? 'bg-orange-900/30 text-orange-400' :
+                              'bg-dark-700 text-dark-300'
+                          }`}>
                           {item.winner}
                         </span>
                         <p className="text-xs text-dark-500 mt-1">{item.reason}</p>
@@ -341,8 +326,8 @@ export default function BGMIvsFreeFire() {
               </div>
 
               <p className="text-dark-300 leading-relaxed">
-                <strong>Verdict:</strong> BGMI wins for players who prefer realistic, immersive visuals. 
-                Free Fire's cartoon style is more accessible and runs better on low-end devices. 
+                <strong>Verdict:</strong> BGMI wins for players who prefer realistic, immersive visuals.
+                Free Fire's cartoon style is more accessible and runs better on low-end devices.
                 For competitive play, some prefer Free Fire's clarity, while others prefer BGMI's realism.
               </p>
             </section>
@@ -385,8 +370,8 @@ export default function BGMIvsFreeFire() {
               <div className="bg-blue-900/20 border border-blue-700/50 rounded-xl p-6">
                 <h4 className="font-bold text-blue-400 mb-3">Which Gameplay is Better?</h4>
                 <p className="text-dark-300">
-                  <strong>BGMI</strong> offers deeper, more tactical gameplay that rewards practice and skill mastery. 
-                  <strong> Free Fire</strong> provides faster, more accessible action with unique character abilities 
+                  <strong>BGMI</strong> offers deeper, more tactical gameplay that rewards practice and skill mastery.
+                  <strong> Free Fire</strong> provides faster, more accessible action with unique character abilities
                   adding strategic variety. Choose based on whether you prefer realism or arcade-style action.
                 </p>
               </div>
@@ -541,27 +526,27 @@ export default function BGMIvsFreeFire() {
 
               <div className="bg-gradient-to-r from-primary-900/30 to-purple-900/30 rounded-xl p-8 border border-primary-700/30">
                 <p className="text-lg text-white leading-relaxed mb-6">
-                  Both BGMI and Free Fire are excellent games with thriving tournament scenes in India. 
+                  Both BGMI and Free Fire are excellent games with thriving tournament scenes in India.
                   Your choice should depend on:
                 </p>
 
                 <div className="grid sm:grid-cols-3 gap-6 mb-6">
                   <div className="bg-dark-800/50 rounded-lg p-4">
                     <h4 className="font-bold text-primary-400 mb-2">Your Device</h4>
-                    <p className="text-sm text-dark-300">Budget phone → Free Fire<br/>Mid-range/Flagship → BGMI</p>
+                    <p className="text-sm text-dark-300">Budget phone → Free Fire<br />Mid-range/Flagship → BGMI</p>
                   </div>
                   <div className="bg-dark-800/50 rounded-lg p-4">
                     <h4 className="font-bold text-primary-400 mb-2">Your Style</h4>
-                    <p className="text-sm text-dark-300">Fast & Casual → Free Fire<br/>Tactical & Realistic → BGMI</p>
+                    <p className="text-sm text-dark-300">Fast & Casual → Free Fire<br />Tactical & Realistic → BGMI</p>
                   </div>
                   <div className="bg-dark-800/50 rounded-lg p-4">
                     <h4 className="font-bold text-primary-400 mb-2">Your Goals</h4>
-                    <p className="text-sm text-dark-300">Quick earnings → Free Fire<br/>Highest potential → BGMI</p>
+                    <p className="text-sm text-dark-300">Quick earnings → Free Fire<br />Highest potential → BGMI</p>
                   </div>
                 </div>
 
                 <p className="text-dark-300 text-center">
-                  <strong>Pro Tip:</strong> Many successful gamers play both! Start with the game that suits your device, 
+                  <strong>Pro Tip:</strong> Many successful gamers play both! Start with the game that suits your device,
                   then expand to the other as you upgrade.
                 </p>
               </div>
@@ -572,13 +557,13 @@ export default function BGMIvsFreeFire() {
               <h3 className="text-2xl font-bold mb-4">Ready to Compete?</h3>
               <p className="text-white/90 mb-6">Join tournaments for both BGMI and Free Fire on BattleZone</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
+                <Link
                   href="/matches"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary-600 font-bold rounded-lg transition-colors text-lg hover:bg-gray-100"
                 >
                   Browse All Tournaments
                 </Link>
-                <Link 
+                <Link
                   href="/register"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-dark-800 text-white font-bold rounded-lg transition-colors text-lg hover:bg-dark-700 border border-white/20"
                 >
@@ -592,7 +577,7 @@ export default function BGMIvsFreeFire() {
 
         {/* FAQ Section */}
         <section className="bg-dark-800/30 py-16">
-          <FAQ 
+          <FAQ
             faqs={articleFAQs}
             title="BGMI vs Free Fire FAQs"
             subtitle="Common questions about choosing between BGMI and Free Fire"

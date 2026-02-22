@@ -27,6 +27,61 @@ export function GoogleAnalytics({ gaId }) {
           `,
         }}
       />
+      {/* GA4 Event Tracking Helpers */}
+      <Script
+        id="ga4-event-helpers"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            // Track registration button clicks
+            document.addEventListener('click', function(e) {
+              var target = e.target.closest('a[href="/register"], button[data-track="register"]');
+              if (target && window.gtag) {
+                gtag('event', 'registration_click', {
+                  event_category: 'engagement',
+                  event_label: 'BGMI_Tournament_Signup',
+                  page_location: window.location.href,
+                });
+              }
+              // Track tournament join clicks
+              var joinTarget = e.target.closest('button[data-track="join-match"], a[data-track="join-match"]');
+              if (joinTarget && window.gtag) {
+                gtag('event', 'join_match_click', {
+                  event_category: 'engagement',
+                  event_label: joinTarget.dataset.matchId || 'unknown',
+                  page_location: window.location.href,
+                });
+              }
+              // Track blog article clicks
+              var blogTarget = e.target.closest('a[href^="/blog/"]');
+              if (blogTarget && window.gtag) {
+                gtag('event', 'blog_click', {
+                  event_category: 'content',
+                  event_label: blogTarget.getAttribute('href'),
+                });
+              }
+            });
+
+            // Track scroll depth
+            var scrollMarks = [25, 50, 75, 100];
+            var scrollTracked = {};
+            window.addEventListener('scroll', function() {
+              var scrollPct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+              scrollMarks.forEach(function(mark) {
+                if (scrollPct >= mark && !scrollTracked[mark] && window.gtag) {
+                  scrollTracked[mark] = true;
+                  gtag('event', 'scroll_depth', {
+                    event_category: 'engagement',
+                    event_label: mark + '%',
+                    value: mark,
+                    non_interaction: true,
+                  });
+                }
+              });
+            }, { passive: true });
+          `,
+        }}
+      />
     </>
   );
 }

@@ -148,8 +148,8 @@ function RegisterContent() {
             {step === 'details' && 'Just a few more details'}
           </p>
 
-          {/* Development OTP Display */}
-          {devOtp && step === 'otp' && (
+          {/* Development OTP Display — only in dev mode */}
+          {process.env.NODE_ENV === 'development' && devOtp && step === 'otp' && (
             <div className="bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 px-4 py-3 rounded-lg mb-6 text-sm">
               <strong>Dev Mode:</strong> Your OTP is <span className="font-mono text-lg">{devOtp}</span>
               <p className="text-xs mt-1 text-yellow-500/70">This will be removed in production</p>
@@ -333,6 +333,14 @@ function RegisterContent() {
                 type="submit"
                 disabled={loading}
                 className="btn-primary w-full py-3"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && window.gtag) {
+                    window.gtag('event', 'registration_click', {
+                      'event_category': 'engagement',
+                      'event_label': 'BGMI_Tournament_Signup'
+                    });
+                  }
+                }}
               >
                 {loading ? 'Creating account...' : 'Create Account'}
               </button>

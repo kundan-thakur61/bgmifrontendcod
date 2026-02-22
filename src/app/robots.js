@@ -25,9 +25,11 @@ export default function robots() {
           '/profile/settings',
           '/kyc/',
           '/login',
-          '/register',
           '/forgot-password',
           '/room/',        // Room credentials are private
+          '/user/dashboard/',
+          '/*?sort=',
+          '/*&filter=',
           '/_next/',       // Next.js internals
           '/test/',
           '/staging/',

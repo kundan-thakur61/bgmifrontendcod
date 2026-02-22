@@ -103,8 +103,8 @@ export default function LoginPage() {
               : `Enter the OTP sent to +91 ${phone}`}
           </p>
 
-          {/* Development OTP Display */}
-          {devOtp && step === 'otp' && (
+          {/* Development OTP Display — only in dev mode */}
+          {process.env.NODE_ENV === 'development' && devOtp && step === 'otp' && (
             <div className="bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 px-4 py-3 rounded-lg mb-6 text-sm">
               <strong>Dev Mode:</strong> Your OTP is <span className="font-mono text-lg">{devOtp}</span>
               <p className="text-xs mt-1 text-yellow-500/70">This will be removed in production</p>
@@ -196,6 +196,8 @@ export default function LoginPage() {
                   maxLength={6}
                   required
                   autoFocus
+                  autoComplete="one-time-code"
+                  inputMode="numeric"
                 />
               </div>
 

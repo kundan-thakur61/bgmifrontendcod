@@ -23,6 +23,7 @@ export default async function sitemap() {
     { path: '/leaderboard', changeFrequency: 'daily', priority: 0.85 },
     { path: '/how-it-works', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/search', changeFrequency: 'weekly', priority: 0.6 },
+    { path: '/register', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/blog', changeFrequency: 'daily', priority: 0.85 },
     { path: '/blog/bgmi-tournament-guide-2026', changeFrequency: 'monthly', priority: 0.9 },
     { path: '/blog/how-to-win-bgmi-tournaments-2024', changeFrequency: 'monthly', priority: 0.8 },

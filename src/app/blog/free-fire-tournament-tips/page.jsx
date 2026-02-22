@@ -1,48 +1,31 @@
 import Link from 'next/link';
 import { Navbar, Footer } from '@/components/layout';
-import { createMetadata } from '@/lib/metadata';
+import { generateArticleMetadata } from '@/lib/seo-config';
 import FAQ from '@/components/ui/FAQ';
 import { ArticleSchema, HowToSchema, BreadcrumbSchema } from '@/components/seo';
 
-// SEO Metadata
-export const metadata = {
-  ...createMetadata(
-    'Free Fire Tournament Tips 2026 - Pro Strategies to Win Real Money',
-    'Master Free Fire tournaments with expert tips. Learn character combos, weapon choices, and winning strategies for 1vs1, 1vs2, 1vs3, 1vs4 matches. Win cash prizes daily.',
-    [
-      'Free Fire tournament tips',
-      'Free Fire tournament India',
-      'Free Fire tournament match',
-      'Free Fire cash prize tournament',
-      'Free Fire 1vs1 tips',
-      'Free Fire pro strategies',
-      'Free Fire character guide',
-      'Free Fire weapon guide',
-      'Free Fire tournament tricks',
-      'win Free Fire tournament',
-      'Free Fire esports India',
-      'Free Fire ranked tips',
-      'Free Fire BR tips',
-      'Free Fire CS tips',
-      'Free Fire earning app',
-      'Free Fire money earning',
-    ],
-    'https://www.battlexzone.com/blog/free-fire-tournament-tips',
-    '/api/og?title=Free+Fire+Tournament+Tips&subtitle=Pro+Strategies+2026&category=Guide',
-    'article'
-  ),
-  openGraph: {
-    type: 'article',
-    title: 'Free Fire Tournament Tips 2026 - Pro Strategies to Win Real Money',
-    description: 'Master Free Fire tournaments with expert tips. Learn character combos, weapon choices, and winning strategies for 1vs1 matches.',
-    images: [{
-      url: '/api/og?title=Free+Fire+Tournament+Tips&subtitle=Pro+Strategies+2026&category=Guide',
-      width: 1200,
-      height: 630,
-      alt: 'Free Fire Tournament Tips 2026',
-    }],
-  },
-};
+// SEO Metadata — canonical auto-set via generateArticleMetadata → generateSeoMetadata
+export const metadata = generateArticleMetadata({
+  title: 'Free Fire Tournament Tips 2026 - Pro Strategies to Win Real Money',
+  excerpt: 'Master Free Fire tournaments with expert tips. Learn character combos, weapon choices, and winning strategies for 1vs1, 1vs2, 1vs3, 1vs4 matches. Win cash prizes daily.',
+  slug: 'free-fire-tournament-tips',
+  image: '/api/og?title=Free+Fire+Tournament+Tips&subtitle=Pro+Strategies+2026&category=Guide',
+  datePublished: '2026-01-20T00:00:00+05:30',
+  dateModified: '2026-01-20T00:00:00+05:30',
+  author: 'BattleXZone Team',
+  category: 'Guides',
+  tags: [
+    'Free Fire tournament tips',
+    'Free Fire tournament India',
+    'Free Fire cash prize tournament',
+    'Free Fire 1vs1 tips',
+    'Free Fire pro strategies',
+    'Free Fire character guide',
+    'Free Fire weapon guide',
+    'win Free Fire tournament',
+    'Free Fire esports India',
+  ],
+});
 
 const articleData = {
   title: 'Free Fire Tournament Tips 2026 - Pro Strategies to Win Real Money',
@@ -124,7 +107,7 @@ export default function FreeFireTournamentTips() {
   return (
     <>
       <Navbar />
-      
+
       <ArticleSchema article={articleData} />
       <HowToSchema howTo={howToData} />
       <BreadcrumbSchema items={[
@@ -159,9 +142,9 @@ export default function FreeFireTournamentTips() {
 
             <div className="bg-dark-800 border-l-4 border-primary-500 rounded-r-lg p-6 mb-8">
               <p className="text-lg text-white leading-relaxed">
-                <strong>Free Fire tournaments</strong> are competitive gaming events where players compete for real money. 
-                Master <strong>character combos, weapon loadouts, and positioning</strong> to win 1vs1, 1vs2, 1vs3, 1vs4 matches. 
-                With entry fees starting from <strong>Rs.10</strong>, top players earn thousands monthly. 
+                <strong>Free Fire tournaments</strong> are competitive gaming events where players compete for real money.
+                Master <strong>character combos, weapon loadouts, and positioning</strong> to win 1vs1, 1vs2, 1vs3, 1vs4 matches.
+                With entry fees starting from <strong>Rs.10</strong>, top players earn thousands monthly.
                 This guide covers everything you need to dominate Free Fire tournament India events.
               </p>
             </div>
@@ -210,15 +193,15 @@ export default function FreeFireTournamentTips() {
         {/* Main Content */}
         <article className="py-12 px-4">
           <div className="max-w-4xl mx-auto">
-            
+
             {/* Section 1: Character Selection */}
             <section id="character-selection" className="mb-16">
               <h2 className="text-2xl sm:text-3xl font-bold mb-6 flex items-center gap-3">
                 <span className="text-primary-400">1.</span> Free Fire Character Selection for Tournaments
               </h2>
-              
+
               <p className="text-dark-300 leading-relaxed mb-6">
-                Character selection is crucial in Free Fire tournaments. The right combination can give you significant 
+                Character selection is crucial in Free Fire tournaments. The right combination can give you significant
                 advantages in 1vs1 situations and team fights. Here are the top character combinations for tournament play:
               </p>
 
@@ -271,7 +254,7 @@ export default function FreeFireTournamentTips() {
               <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-xl p-6">
                 <h4 className="font-bold text-yellow-400 mb-2">💡 Pro Tip:</h4>
                 <p className="text-dark-300">
-                  Always upgrade your characters to level 6 before tournaments. Higher levels provide better skill 
+                  Always upgrade your characters to level 6 before tournaments. Higher levels provide better skill
                   stats and shorter cooldown times. Use character fragments from daily missions and events.
                 </p>
               </div>
@@ -284,7 +267,7 @@ export default function FreeFireTournamentTips() {
               </h2>
 
               <p className="text-dark-300 leading-relaxed mb-6">
-                Your weapon choice determines your effectiveness in different combat ranges. Here are the optimal 
+                Your weapon choice determines your effectiveness in different combat ranges. Here are the optimal
                 loadouts for Free Fire tournament matches:
               </p>
 
@@ -549,8 +532,8 @@ export default function FreeFireTournamentTips() {
               </div>
 
               <p className="text-dark-300 leading-relaxed mb-6">
-                Free Fire tournaments on <Link href="/" className="text-primary-400 hover:underline">BattleZone</Link> offer 
-                multiple earning opportunities. Entry fees range from <strong>Rs.10 to Rs.500</strong>, with prize pools 
+                Free Fire tournaments on <Link href="/" className="text-primary-400 hover:underline">BattleZone</Link> offer
+                multiple earning opportunities. Entry fees range from <strong>Rs.10 to Rs.500</strong>, with prize pools
                 scaling accordingly. Consistent players can earn steady income by participating in 5-10 tournaments daily.
               </p>
 
@@ -586,13 +569,13 @@ export default function FreeFireTournamentTips() {
               <h3 className="text-2xl font-bold mb-4">Ready to Win Free Fire Tournaments?</h3>
               <p className="text-dark-300 mb-6">Apply these strategies on BattleZone and start earning today</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
+                <Link
                   href="/register"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-lg transition-colors text-lg"
                 >
                   Create Free Account
                 </Link>
-                <Link 
+                <Link
                   href="/matches"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-dark-700 hover:bg-dark-600 text-white font-bold rounded-lg transition-colors text-lg border border-dark-600"
                 >
@@ -606,7 +589,7 @@ export default function FreeFireTournamentTips() {
 
         {/* FAQ Section */}
         <section className="bg-dark-800/30 py-16">
-          <FAQ 
+          <FAQ
             faqs={articleFAQs}
             title="Free Fire Tournament FAQs"
             subtitle="Common questions about Free Fire tournaments answered"

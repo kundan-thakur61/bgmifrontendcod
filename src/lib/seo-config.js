@@ -30,10 +30,10 @@ export const SITE = {
   tagline: "India's #1 BGMI Esports Tournament Platform - Win Real Cash",
   baseUrl: resolveBaseUrl(),
   // Optimized title for CTR: Primary keyword + benefit + brand (under 60 chars)
-  defaultTitle: 'BGMI Tournament Online India | Win ₹10,000 Cash | Entry ₹10',
+  defaultTitle: 'Play BGMI Tournaments in India & Win Cash | BattleXZone',
   // Optimized description with CTA (under 160 chars)
   defaultDescription:
-    'Join BGMI & Free Fire tournaments online. Win real cash prizes starting ₹10 entry. 50,000+ players. Instant UPI withdrawal. Register Free Now!',
+    'Join daily BGMI tournaments and custom rooms on BattleXZone. Compete with top players in India, showcase your skills, and win real cash prizes today!',
   // Comprehensive keywords from SEO Master Strategy - PILLAR 1
   defaultKeywords: [
     // Primary Keywords (High Priority)
@@ -225,18 +225,18 @@ export function generateSeoMetadata({
     robots: noIndex
       ? { index: false, follow: false }
       : {
+        index: true,
+        follow: true,
+        nocache: false,
+        googleBot: {
           index: true,
           follow: true,
-          nocache: false,
-          googleBot: {
-            index: true,
-            follow: true,
-            noimageindex: false,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
-          },
+          noimageindex: false,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
         },
+      },
 
     // ── App Meta ──
     icons: {
@@ -258,6 +258,51 @@ export function generateSeoMetadata({
   };
 
   return metadata;
+}
+
+// ─── Article / Blog Metadata Generator ──────────────────────
+/**
+ * Generates complete Next.js Metadata for blog/article pages.
+ * Wraps generateSeoMetadata with article-specific OG fields.
+ * Automatically sets alternates.canonical via the slug.
+ *
+ * @param {Object} opts
+ * @param {string}   opts.title          — Article title (will append site name)
+ * @param {string}   opts.excerpt        — Article excerpt / meta description
+ * @param {string}   opts.slug           — URL slug e.g. 'bgmi-tournament-guide-2026'
+ * @param {string}   [opts.image]        — OG image path or full URL
+ * @param {string}   [opts.datePublished]— ISO 8601 publish date
+ * @param {string}   [opts.dateModified] — ISO 8601 modified date
+ * @param {string}   [opts.author]       — Author name
+ * @param {string}   [opts.category]     — Article category / section
+ * @param {string[]} [opts.tags]         — Article keyword tags
+ */
+export function generateArticleMetadata({
+  title,
+  excerpt,
+  slug,
+  image,
+  datePublished,
+  dateModified,
+  author,
+  category = 'Gaming',
+  tags = [],
+} = {}) {
+  return generateSeoMetadata({
+    title,
+    description: excerpt,
+    keywords: tags,
+    url: `/blog/${slug}`,
+    image,
+    type: 'article',
+    article: {
+      publishedTime: datePublished,
+      modifiedTime: dateModified || datePublished,
+      author: author || SITE.author,
+      section: category,
+      tags,
+    },
+  });
 }
 
 // ─── Page-Specific Metadata Presets ─────────────────────────
@@ -294,10 +339,10 @@ export const PAGE_SEO = {
 
   tournaments: generateSeoMetadata({
     // Optimized title: Primary keyword + benefit (under 60 chars)
-    title: 'BGMI Tournament Online India | Win ₹50,000+ | Entry ₹10',
+    title: 'BGMI Daily Scrims & Paid Tournaments | Join BattleXZone',
     // Optimized description with CTA (under 160 chars)
     description:
-      'Join BGMI tournament online India. Solo, Duo & Squad matches. Entry fee ₹10. Win up to ₹50,000 cash. Instant UPI withdrawal. Register Free!',
+      'Register for daily BGMI scrims and paid custom rooms. Check the schedule, entry fees, and prize pools. Squad up and dominate the battlegrounds!',
     keywords: [
       // Primary keyword targeting
       'BGMI tournament online India',
@@ -320,19 +365,11 @@ export const PAGE_SEO = {
     url: '/tournaments',
   }),
 
-  leaderboard: generateSeoMetadata({
-    title: 'BGMI Leaderboard — Top Players & Rankings',
-    description:
-      'See who ranks #1 on BattleZone. Live BGMI leaderboard with player stats, win rates, and tournament earnings. Climb the ranks and earn rewards.',
-    keywords: ['BGMI leaderboard', 'BGMI player rankings', 'top BGMI players India', 'esports leaderboard'],
-    url: '/leaderboard',
-  }),
 
   blog: generateSeoMetadata({
-    // Optimized for gaming content discovery
-    title: 'BGMI Tips, Tournament Strategies & Online Earning Guides',
+    title: 'BGMI Tips & Tricks | Esports News & Tournament Guides',
     description:
-      'Expert BGMI tips, tournament strategies, how to earn money playing BGMI in India. Pro player guides, sensitivity settings, weapon tips. Level up!',
+      'Expert BGMI tips, tricks, and strategies. Learn how to win BGMI tournaments, latest esports news India, pro player guides, and earning guides.',
     keywords: [
       // Primary content keywords
       'BGMI tips and tricks',

@@ -152,7 +152,7 @@ export default function TournamentDetailPage() {
           {/* Tournament Header */}
           <div className="card p-6 mb-6">
             {tournament.banner?.url && (
-              <img src={tournament.banner.url} alt={tournament.title} className="w-full h-48 object-cover rounded-lg mb-4" />
+              <img src={tournament.banner.url} alt={tournament.title} className="w-full h-48 object-cover rounded-lg mb-4" loading="lazy" width="800" height="192" />
             )}
             <div className="flex justify-between items-start mb-4">
               <div>
