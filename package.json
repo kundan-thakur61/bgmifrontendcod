@@ -40,5 +40,14 @@
     "eslint-config-next": "^16.1.1",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18"
-  }
+  },
+  "browserslist": [
+    "chrome >= 80",
+    "edge >= 80",
+    "firefox >= 80",
+    "safari >= 14",
+    "ios_saf >= 14",
+    "and_chr >= 80",
+    "samsung >= 14"
+  ]
 }

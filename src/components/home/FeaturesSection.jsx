@@ -1,5 +1,3 @@
-import '@/styles/hero-styles.css';
-
 const features = [
     {
         icon: '🎮',

@@ -165,7 +165,7 @@ export default function TeamDetailPage() {
                         <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                             {/* Logo */}
                             {team.logo?.url ? (
-                                <img src={team.logo.url} alt={team.name} className="w-24 h-24 rounded-2xl object-cover" />
+                                <img src={team.logo.url} alt={team.name} className="w-24 h-24 rounded-2xl object-cover" width="96" height="96" />
                             ) : (
                                 <div className="w-24 h-24 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-2xl flex items-center justify-center text-4xl font-bold text-white">
                                     {team.tag?.[0] || team.name[0]}
@@ -320,8 +320,8 @@ export default function TeamDetailPage() {
                                 <button
                                     onClick={copyInviteLink}
                                     className={`px-4 py-3 rounded-lg font-semibold transition-all ${copied
-                                            ? 'bg-green-500 text-white'
-                                            : 'bg-cyan-500 text-white hover:bg-cyan-600'
+                                        ? 'bg-green-500 text-white'
+                                        : 'bg-cyan-500 text-white hover:bg-cyan-600'
                                         }`}
                                 >
                                     {copied ? '✓ Copied!' : 'Copy'}

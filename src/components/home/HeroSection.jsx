@@ -1,8 +1,4 @@
-'use client';
-
-import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
-import '@/styles/hero-styles.css';
 
 const stats = [
     { value: '50K+', label: 'Active Players' },
@@ -11,94 +7,64 @@ const stats = [
     { value: '99.9%', label: 'Uptime' },
 ];
 
+const particlePositions = [
+    { left: '8%', delay: 0, duration: 12 },
+    { left: '25%', delay: 2, duration: 14 },
+    { left: '42%', delay: 1, duration: 11 },
+    { left: '58%', delay: 3, duration: 13 },
+    { left: '72%', delay: 4, duration: 12 },
+    { left: '84%', delay: 5, duration: 15 },
+];
+
 export default function HeroSection() {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    const particlePositions = useMemo(() => {
-        const particleCount = typeof window !== 'undefined' ?
-            (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) ? 6 : 12 : 12;
-
-        return Array.from({ length: particleCount }, (_, i) => ({
-            left: ((i * 17 + 13) % 100),
-            delay: ((i * 3 + 7) % 10),
-            duration: 10 + ((i * 2) % 4)
-        }));
-    }, []);
-
     return (
         <section className="relative pt-20 pb-12 sm:pt-32 sm:pb-24 px-3 sm:px-4 overflow-hidden">
-            {/* Animated Background */}
-            <div className="absolute inset-0 cyber-grid opacity-30" />
-            <div className="scanline" />
+            <div className="absolute inset-0 hidden md:block cyber-grid opacity-30" aria-hidden="true" />
+            <div className="hidden lg:block scanline" aria-hidden="true" />
 
-            {/* Particle Effects - Optimized */}
-            <div className="particle-bg hidden sm:block">
-                {mounted && window.innerWidth > 768 && particlePositions.map((pos, i) => (
+            <div className="hidden lg:block particle-bg" aria-hidden="true">
+                {particlePositions.map((pos, index) => (
                     <div
-                        key={i}
+                        key={`particle-${index}`}
                         className="particle"
                         style={{
-                            left: `${pos.left}%`,
+                            left: pos.left,
                             animationDelay: `${pos.delay}s`,
                             animationDuration: `${pos.duration}s`,
-                            willChange: 'transform, opacity'
                         }}
                     />
                 ))}
             </div>
 
-            {/* Gradient Orbs - Optimized */}
-            <div className="absolute top-20 left-1/4 w-[60vw] max-w-[600px] h-[60vw] max-h-[600px] bg-cyan-500/10 sm:bg-cyan-500/20 rounded-full blur-[40px] sm:blur-[120px] animate-pulse will-change-transform translate-z-0" />
-            <div className="absolute top-40 right-1/4 w-[50vw] max-w-[500px] h-[50vw] max-h-[500px] bg-purple-500/10 sm:bg-purple-500/20 rounded-full blur-[40px] sm:blur-[120px] animate-pulse will-change-transform translate-z-0" style={{ animationDelay: '1s' }} />
+            <div className="hero-orb hero-orb--cyan" aria-hidden="true" />
+            <div className="hero-orb hero-orb--purple" aria-hidden="true" />
 
             <div className="relative max-w-7xl mx-auto text-center">
-                {/* Live Indicator Badge */}
                 <div className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-black/60 backdrop-blur-xl rounded-full border border-cyan-500/30 mb-6 sm:mb-10 holographic">
-                    <span className="w-2 h-2 sm:w-3 sm:h-3 bg-cyan-400 rounded-full mr-2 sm:mr-3 live-indicator" style={{ boxShadow: '0 0 10px #00ffff' }} />
+                    <span className="w-2 h-2 sm:w-3 sm:h-3 bg-cyan-400 rounded-full mr-2 sm:mr-3 live-indicator hero-live-dot" aria-hidden="true" />
                     <span className="text-xs sm:text-sm font-semibold text-cyan-300 tracking-wider uppercase">Live Matches Available Now</span>
                 </div>
 
-                {/* Main Heading */}
                 <h1 className="hero-title text-3xl sm:text-5xl md:text-7xl lg:text-8xl mb-6 sm:mb-8">
-                    <span className="block mb-1 sm:mb-2 text-white" style={{
-                        animation: 'fadeInUp 0.8s ease-out',
-                        textShadow: '0 0 30px rgba(255,255,255,0.5)'
-                    }}>
+                    <span className="block mb-1 sm:mb-2 text-white hero-title-line">
                         PLAY DAILY
                     </span>
-                    <span className="block neon-text mb-1 sm:mb-2" style={{ animationDelay: '0.2s' }}>
+                    <span className="block neon-text mb-1 sm:mb-2 hero-title-line hero-title-line-delay">
                         BGMI TOURNAMENTS
                     </span>
-                    <span className="block text-white" style={{
-                        animation: 'fadeInUp 0.8s ease-out 0.4s backwards',
-                        backgroundImage: 'linear-gradient(135deg, #fff, #00ffff, #ff00ff)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text'
-                    }}>
+                    <span className="block text-white gradient-text hero-title-line hero-title-line-delay-lg">
                         & WIN REAL CASH
                     </span>
                 </h1>
 
-                {/* Subtitle */}
-                <p className="text-base sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 sm:mb-12 font-light leading-relaxed px-2" style={{
-                    animation: 'fadeInUp 0.8s ease-out 0.6s backwards'
-                }}>
+                <p className="text-base sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 sm:mb-12 font-light leading-relaxed px-2 hero-fade">
                     Join daily <span className="text-cyan-400 font-semibold">BGMI tournaments</span> and custom rooms on BattleXZone. <span className="text-purple-400">Compete with top players in India, showcase your skills, and win real cash prizes today!</span>
                 </p>
 
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-12 sm:mb-20 px-2" style={{
-                    animation: 'fadeInUp 0.8s ease-out 0.8s backwards'
-                }}>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-12 sm:mb-20 px-2 hero-fade hero-fade-delay">
                     <Link
                         href="/register"
                         className="cta-button w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg text-base sm:text-lg font-bold shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 text-center min-h-[48px]"
-                        style={{ boxShadow: '0 0 30px rgba(0, 255, 255, 0.4)' }}
                         data-track="register"
                     >
                         Register & Play Now
@@ -111,15 +77,12 @@ export default function HeroSection() {
                     </Link>
                 </div>
 
-                {/* Stats Grid */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 max-w-4xl mx-auto px-2">
                     {stats.map((stat, index) => (
                         <div
                             key={stat.label}
-                            className="stat-glow"
-                            style={{
-                                animation: `fadeInUp 0.8s ease-out ${1 + index * 0.1}s backwards`
-                            }}
+                            className="stat-glow hero-fade"
+                            style={{ animationDelay: `${1 + index * 0.1}s` }}
                         >
                             <div className="text-3xl sm:text-5xl md:text-6xl font-black hero-title neon-text mb-1 sm:mb-2">
                                 {stat.value}

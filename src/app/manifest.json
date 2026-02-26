@@ -2,16 +2,26 @@
   "name": "BattleZone — India's #1 BGMI Esports Tournament Platform",
   "short_name": "BattleZone",
   "description": "Play BGMI & Free Fire tournaments, win real cash prizes. Entry from ₹10. Instant UPI withdrawals. Join 50,000+ players on India's top esports platform.",
-  "start_url": "/",
+  "start_url": "/?source=pwa",
   "scope": "/",
+
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
+
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "orientation": "portrait-primary",
   "id": "/",
+  "lang": "en-IN",
+  "dir": "ltr",
+
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+
   "icons": [
-    { "src": "/images/icon-72.png", "sizes": "72x72", "type": "image/png" },
-    { "src": "/images/icon-96.png", "sizes": "96x96", "type": "image/png" },
+    { "src": "/images/icon-72.png",  "sizes": "72x72",   "type": "image/png" },
+    { "src": "/images/icon-96.png",  "sizes": "96x96",   "type": "image/png" },
     { "src": "/images/icon-128.png", "sizes": "128x128", "type": "image/png" },
     { "src": "/images/icon-144.png", "sizes": "144x144", "type": "image/png" },
     { "src": "/images/icon-152.png", "sizes": "152x152", "type": "image/png" },
@@ -19,6 +29,7 @@
     { "src": "/images/icon-384.png", "sizes": "384x384", "type": "image/png" },
     { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ],
+
   "screenshots": [
     {
       "src": "/images/screenshot-wide.jpg",
@@ -35,31 +46,84 @@
       "label": "BattleZone — Mobile esports experience"
     }
   ],
-  "categories": ["games", "entertainment", "sports"],
-  "lang": "en-IN",
-  "dir": "ltr",
-  "prefer_related_applications": false,
+
   "shortcuts": [
     {
       "name": "Browse Matches",
       "short_name": "Matches",
-      "url": "/matches",
+      "url": "/matches?source=pwa-shortcut",
       "description": "Browse and join BGMI & Free Fire matches",
       "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Tournaments",
       "short_name": "Tournaments",
-      "url": "/tournaments",
+      "url": "/tournaments?source=pwa-shortcut",
       "description": "Register for upcoming esports tournaments",
       "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Leaderboard",
       "short_name": "Rankings",
-      "url": "/leaderboard",
+      "url": "/leaderboard?source=pwa-shortcut",
       "description": "View top player rankings",
       "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "My Wallet",
+      "short_name": "Wallet",
+      "url": "/wallet?source=pwa-shortcut",
+      "description": "Check balance and withdraw winnings",
+      "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+
+  "share_target": {
+    "action": "/share-target",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "screenshot",
+          "accept": ["image/png", "image/jpeg", "image/webp", "image/*"]
+        }
+      ]
+    }
+  },
+
+  "file_handlers": [
+    {
+      "action": "/matches/upload",
+      "accept": {
+        "image/*": [".png", ".jpg", ".jpeg", ".webp"]
+      },
+      "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }],
+      "launch_type": "single-client"
+    }
+  ],
+
+  "protocol_handlers": [
+    {
+      "protocol": "web+battlezone",
+      "url": "/?protocol=%s"
+    }
+  ],
+
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
+
+  "categories": ["games", "entertainment", "sports"],
+  "prefer_related_applications": false,
+
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://battlexzone.com/manifest.json"
     }
   ]
 }

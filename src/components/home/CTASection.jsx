@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import '@/styles/hero-styles.css';
 
 export default function CTASection() {
     return (

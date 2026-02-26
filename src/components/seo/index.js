@@ -9,3 +9,6 @@ export {
   VideoObjectSchema,
   ReviewSchema 
 } from './EnhancedSchema';
+export { JsonLd } from './JsonLd';
+export { StrikingDistanceSchema, StrikingDistanceFAQ } from './StrikingDistanceSchema';
+export { OnPageOptimizer, OptimizedHeaders, StrategicInternalLinks, ContentOptimizationInsights } from './OnPageOptimizer';

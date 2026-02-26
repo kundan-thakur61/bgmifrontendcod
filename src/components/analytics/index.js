@@ -7,3 +7,8 @@ export { default as InsightsPanel } from './InsightsPanel';
 export { default as ComparativeStats } from './ComparativeStats';
 export { default as MatchHistory } from './MatchHistory';
 export { default as TimeBasedPerformance } from './TimeBasedPerformance';
+export { SEOPerformanceDashboard, SEOMetricsWidget } from './SEOPerformanceDashboard';
+export { StrikingDistanceTracker, ContentOptimizer, MetaTagTester } from './StrikingDistanceTracker';
+export { default as TrafficSourceAnalyzer } from './TrafficSourceAnalyzer';
+export { default as NextJsOptimizer } from './NextJsOptimizer';
+export { default as EsportsAnalyticsDashboard } from './EsportsAnalyticsDashboard';

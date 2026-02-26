@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./hero-styles.css";
 
 @theme {
   --color-primary-50: #eff6ff;
@@ -32,9 +33,10 @@
   --color-gaming-red: #ef4444;
   --color-gaming-yellow: #f59e0b;
 
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-display: 'Poppins', system-ui, sans-serif;
-  --font-gaming: 'Rajdhani', sans-serif;
+  --font-sans: var(--font-inter, 'Inter'), system-ui, sans-serif;
+  --font-display: var(--font-poppins, 'Poppins'), system-ui, sans-serif;
+  --font-gaming: var(--font-rajdhani, 'Rajdhani'), sans-serif;
+  --font-alt: var(--font-exo2, 'Exo 2'), var(--font-sans);
 }
 
 /* Base styles - Mobile First */
@@ -117,7 +119,8 @@ textarea {
   padding: 0.75rem 1rem;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: all 0.2s;
+  /* Explicit properties: avoids browser computing all props on hover (main-thread layout recalc) */
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, opacity 0.2s, transform 0.2s;
   min-height: 44px;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -219,7 +222,7 @@ textarea {
   background-color: var(--color-dark-800);
   border: 1px solid var(--color-dark-700);
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-  transition: all 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .card-hover:hover {
@@ -539,11 +542,11 @@ textarea {
 
   0%,
   100% {
-    box-shadow: 0 0 5px rgb(59 130 246 / 0.5), 0 0 20px rgb(59 130 246 / 0.3);
+    opacity: 1;
   }
 
   50% {
-    box-shadow: 0 0 10px rgb(59 130 246 / 0.8), 0 0 40px rgb(59 130 246 / 0.5);
+    opacity: 0.7;
   }
 }
 
@@ -552,6 +555,8 @@ textarea {
 }
 
 .animate-pulse-glow {
+  will-change: opacity;
+  box-shadow: 0 0 10px rgb(59 130 246 / 0.8), 0 0 40px rgb(59 130 246 / 0.5);
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
@@ -607,13 +612,11 @@ textarea {
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.04) 2px,
-    rgba(0, 0, 0, 0.04) 4px
-  );
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.04) 2px,
+      rgba(0, 0, 0, 0.04) 4px);
   pointer-events: none;
   z-index: 1;
 }
@@ -700,7 +703,7 @@ textarea {
   border-radius: 3px;
   background: rgba(57, 255, 20, 0.05);
   letter-spacing: 0.02em;
-  transition: all 0.2s;
+  transition: color 0.2s, background-color 0.2s;
   text-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
 }
 
@@ -722,7 +725,7 @@ textarea {
   border-radius: 3px;
   color: rgba(200, 220, 240, 0.9);
   background: rgba(0, 245, 255, 0.04);
-  transition: all 0.2s;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 .bz-btn-outline:hover {
@@ -742,7 +745,7 @@ textarea {
   color: #000;
   background: linear-gradient(90deg, #00f5ff, #00c0cc);
   box-shadow: 0 0 16px rgba(0, 245, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  transition: all 0.2s;
+  transition: color 0.2s, background-color 0.2s;
   border: none;
 }
 
@@ -951,6 +954,7 @@ textarea {
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -959,4 +963,86 @@ textarea {
 
 .bz-slide-down {
   animation: bz-slideDown-anim 0.18s ease-out;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CREATE-MATCH PAGE ANIMATIONS (moved from inline <style jsx>
+   for W3C HTML5 compliance — style elements in body are invalid)
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-slow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Remove number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Custom date input styling */
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
 }

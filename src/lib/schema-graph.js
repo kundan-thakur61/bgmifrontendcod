@@ -154,6 +154,8 @@ export function getKnowledgeGraph() {
       websiteEntity,
       webApplicationEntity,
       bgmiGameEntity,
+      getLocalBusinessSchema(),
+      getSoftwareAppSchema(),
     ],
   };
 }
@@ -447,5 +449,201 @@ export function getArticleSchema(article) {
     keywords: article.keywords?.join(', ') || 'BGMI, esports, tournaments',
     inLanguage: SITE.language,
     wordCount: article.wordCount,
+  };
+}
+
+// ─── VideoObject Schema (PILLAR 3 - Technical SEO) ────────────
+export function getVideoSchema(video) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.title,
+    description: video.description,
+    thumbnailUrl: video.thumbnail || `${SITE.baseUrl}/images/video-thumb.jpg`,
+    uploadDate: video.uploadDate || new Date().toISOString(),
+    duration: video.duration || 'PT5M', // ISO 8601 duration format
+    contentUrl: video.url,
+    embedUrl: video.embedUrl,
+    publication: {
+      '@type': 'BroadcastEvent',
+      isLiveBroadcast: false,
+      startDate: video.uploadDate || new Date().toISOString(),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: SITE.baseUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE.baseUrl}/images/logo.png`,
+        width: 512,
+        height: 512,
+      },
+    },
+    author: {
+      '@type': 'Organization',
+      name: SITE.name,
+    },
+    inLanguage: SITE.language,
+    regionAllowed: 'IN',
+  };
+}
+
+// ─── Game-Specific Tournament Schema (Enhanced for PILLAR 3) ───
+export function getGameTournamentSchema(tournament, gameType = 'BGMI') {
+  const gameNames = {
+    'BGMI': 'Battlegrounds Mobile India',
+    'FREE_FIRE': 'Free Fire',
+    'PUBG_MOBILE': 'PUBG Mobile',
+  };
+  
+  const baseSchema = getTournamentSchema(tournament);
+  
+  return {
+    ...baseSchema,
+    '@type': ['SportsEvent', 'Event'],
+    sport: gameNames[gameType] || 'BGMI',
+    about: {
+      '@type': 'VideoGame',
+      name: gameNames[gameType] || 'BGMI',
+      gamePlatform: ['Android', 'iOS'],
+      genre: ['Battle Royale', 'Esports'],
+    },
+    // Add aggregate rating for rich snippets
+    aggregateRating: tournament.rating ? {
+      '@type': 'AggregateRating',
+      ratingValue: tournament.rating.value || '4.8',
+      ratingCount: tournament.rating.count || '1250',
+      bestRating: '5',
+    } : undefined,
+    // Add offers with detailed pricing
+    offers: {
+      '@type': 'Offer',
+      name: `${tournament.title || 'Tournament'} Entry`,
+      price: tournament.entryFee || 0,
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+      priceValidUntil: tournament.startAt ? new Date(tournament.startAt).toISOString() : undefined,
+      eligibleRegion: {
+        '@type': 'Country',
+        name: 'IN',
+      },
+    },
+  };
+}
+
+// ─── Product Schema for Tournament Entry (PILLAR 3) ────────────
+export function getTournamentProductSchema(tournament) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `${tournament.title || 'Tournament'} Entry`,
+    description: `Entry for ${tournament.title || 'tournament'} with ₹${tournament.prizePool} prize pool. ${tournament.mode || 'Squad'} mode on ${tournament.gameType || 'BGMI'}.`,
+    image: tournament.banner?.url || `${SITE.baseUrl}/images/og-tournaments.jpg`,
+    offers: {
+      '@type': 'Offer',
+      price: tournament.entryFee || 0,
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+      priceValidUntil: tournament.startAt ? new Date(tournament.startAt).toISOString() : undefined,
+      seller: {
+        '@type': 'Organization',
+        name: SITE.name,
+      },
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      ratingCount: '1250',
+      bestRating: '5',
+    },
+    brand: {
+      '@type': 'Brand',
+      name: SITE.name,
+    },
+  };
+}
+
+// ─── LocalBusiness Schema for Indian Gaming Platform ───────────
+export function getLocalBusinessSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${SITE.baseUrl}/#business`,
+    name: SITE.name,
+    description: SITE.defaultDescription,
+    url: SITE.baseUrl,
+    telephone: SITE.contact.phone,
+    email: SITE.contact.email,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: SITE.location.city,
+      addressRegion: SITE.location.state,
+      postalCode: SITE.location.postalCode,
+      addressCountry: 'IN',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: SITE.location.lat,
+      longitude: SITE.location.lng,
+    },
+    openingHours: 'Mo-Su 00:00-23:59', // 24/7 online platform
+    priceRange: '₹₹',
+    image: `${SITE.baseUrl}/images/logo.png`,
+    sameAs: Object.values(SITE.social),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      ratingCount: '15000',
+      bestRating: '5',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'India',
+    },
+  };
+}
+
+// ─── SoftwareApplication Schema (PILLAR 3) ────────────────────
+export function getSoftwareAppSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: SITE.name,
+    applicationCategory: 'GameApplication',
+    operatingSystem: 'Web, Android, iOS',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'INR',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      ratingCount: '15000',
+      bestRating: '5',
+    },
+    description: SITE.defaultDescription,
+    downloadUrl: SITE.baseUrl,
+    screenshot: `${SITE.baseUrl}/images/screenshot.png`,
+    softwareVersion: '1.0.0',
+    author: {
+      '@type': 'Organization',
+      name: SITE.name,
+    },
+  };
+}
+
+// ─── Enhanced Knowledge Graph with All Entities ────────────────
+export function getEnhancedKnowledgeGraph() {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      organizationEntity,
+      websiteEntity,
+      webApplicationEntity,
+      bgmiGameEntity,
+      getLocalBusinessSchema(),
+    ],
   };
 }

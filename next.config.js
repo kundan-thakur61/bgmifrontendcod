@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
+const isDev = process.env.NODE_ENV !== 'production';
+const isProd = !isDev;
+
+const cspConnectSrc = isDev
+  ? "connect-src 'self' http://localhost:5000 ws://localhost:5000 https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com"
+  : "connect-src 'self' https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com";
+
 const nextConfig = {
   turbopack: { root: __dirname },
 
@@ -9,9 +16,33 @@ const nextConfig = {
   trailingSlash: false, // Enforce no trailing slash (canonical consistency)
   httpAgentOptions: { keepAlive: true },
 
+  // ── Compiler: Modern JS targets + Production optimizations ──
+  compiler: {
+    ...(isProd && {
+      removeConsole: { exclude: ['error', 'warn'] },
+    }),
+  },
+
+  // ── Tree-Shaking: Modular imports for heavy libraries ──
+  modularizeImports: {
+    'recharts': {
+      transform: 'recharts/es6/{{member}}',
+      skipDefaultConversion: true,
+    },
+    'react-icons/?(((\\w*)?/?)*)': {
+      transform: 'react-icons/{{ matches.[1] }}/{{member}}',
+    },
+  },
+
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['@/components', '@/lib'],
+    optimizePackageImports: [
+      '@/components',
+      '@/lib',
+      'recharts',
+      'chart.js',
+      'react-chartjs-2',
+    ],
   },
 
   // ── Image Optimization ──
@@ -31,6 +62,15 @@ const nextConfig = {
   // ── Security + Performance Headers ──
   async headers() {
     return [
+      // Service Worker: never cache, allow full scope
+      {
+        source: '/sw.js',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, no-cache, must-revalidate, proxy-revalidate' },
+          { key: 'Service-Worker-Allowed', value: '/' },
+          { key: 'Content-Type', value: 'application/javascript; charset=utf-8' },
+        ],
+      },
       // Static assets: aggressive caching
       {
         source: '/fonts/:path*',
@@ -66,7 +106,7 @@ const nextConfig = {
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(self)' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(self), wake-lock=(self), push=(self), notifications=(self)' },
           { key: 'X-DNS-Prefetch-Control', value: 'on' },
           {
             key: 'Strict-Transport-Security',
@@ -74,7 +114,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.razorpay.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://res.cloudinary.com https://www.googletagmanager.com; connect-src 'self' https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com; frame-src https://api.razorpay.com https://checkout.razorpay.com; object-src 'none'; base-uri 'self';",
+            value: `default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://res.cloudinary.com https://www.googletagmanager.com; ${cspConnectSrc}; frame-src https://api.razorpay.com https://checkout.razorpay.com; worker-src 'self'; object-src 'none'; base-uri 'self';`,
           },
         ],
       },
@@ -100,6 +140,12 @@ const nextConfig = {
       { source: '/signup', destination: '/register', permanent: true },
       { source: '/join', destination: '/register', permanent: true },
       { source: '/bgmi-tips', destination: '/blog', permanent: true },
+      // PILLAR 3: Additional SEO redirects for keyword targeting
+      { source: '/bgmi-tournament', destination: '/tournaments/bgmi', permanent: true },
+      { source: '/free-fire-tournament', destination: '/tournaments/free-fire', permanent: true },
+      { source: '/pubg-tournament', destination: '/tournaments/pubg-mobile', permanent: true },
+      { source: '/earn-money-bgmi', destination: '/blog/how-to-earn-money-playing-bgmi', permanent: true },
+      { source: '/bgmi-earn-money', destination: '/blog/how-to-earn-money-playing-bgmi', permanent: true },
     ];
   },
 
@@ -112,6 +158,10 @@ const nextConfig = {
         { source: '/play', destination: '/matches' },
         { source: '/compete', destination: '/tournaments' },
         { source: '/rankings', destination: '/leaderboard' },
+        // PILLAR 3: Keyword-targeted rewrites
+        { source: '/win-cash', destination: '/tournaments' },
+        { source: '/bgmi-win-match', destination: '/matches' },
+        { source: '/free-fire-earn', destination: '/tournaments/free-fire' },
       ],
       fallback: [],
     };

@@ -184,7 +184,7 @@ export default function CreateMatchPage() {
           >
             Sign In to Continue
           </button>
-          <p className="text-dark-500 text-sm mt-4">Don't have an account? <span className="text-primary-400 cursor-pointer hover:underline" onClick={() => router.push('/register')}>Create one</span></p>
+          <p className="text-dark-500 text-sm mt-4">Don&apos;t have an account? <span className="text-primary-400 cursor-pointer hover:underline" onClick={() => router.push('/register')}>Create one</span></p>
         </div>
       </div>
     );
@@ -250,7 +250,7 @@ export default function CreateMatchPage() {
 
             <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Match Limit Reached</h1>
             <p className="text-dark-300 text-base sm:text-lg mb-6">
-              You've reached the maximum of <span className="text-yellow-400 font-semibold">{MAX_ACTIVE_MATCHES} active challenges</span>. Complete or cancel an existing match to create a new one.
+              You&apos;ve reached the maximum of <span className="text-yellow-400 font-semibold">{MAX_ACTIVE_MATCHES} active challenges</span>. Complete or cancel an existing match to create a new one.
             </p>
 
             {/* Progress Bar */}
@@ -986,85 +986,6 @@ export default function CreateMatchPage() {
             </div>
           </form>
         </div>
-
-        <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-
-        @keyframes pulse-slow {
-          0%, 100% {
-            opacity: 0.5;
-          }
-          50% {
-            opacity: 0.8;
-          }
-        }
-
-        @keyframes shake {
-          0%, 100% {
-            transform: translateX(0);
-          }
-          10%, 30%, 50%, 70%, 90% {
-            transform: translateX(-5px);
-          }
-          20%, 40%, 60%, 80% {
-            transform: translateX(5px);
-          }
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-
-        .animate-pulse-slow {
-          animation: pulse-slow 4s ease-in-out infinite;
-        }
-
-        .animate-shake {
-          animation: shake 0.5s ease-in-out;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-          width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-          background: #1f2937;
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, #8b5cf6, #ec4899);
-          border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(180deg, #a78bfa, #f472b6);
-        }
-
-        /* Remove number input spinners */
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-
-        input[type="number"] {
-          -moz-appearance: textfield;
-        }
-
-        /* Custom date input styling */
-        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-          filter: invert(1);
-          cursor: pointer;
-        }
-      `}</style>
       </div>
     </UserOnly>
   );

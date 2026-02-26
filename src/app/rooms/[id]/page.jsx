@@ -320,7 +320,7 @@ export default function RoomLobby() {
                                                     )}
                                                     <div className="player-avatar">
                                                         {participant.user.avatar ? (
-                                                            <img src={participant.user.avatar} alt={participant.user.username} />
+                                                            <img src={participant.user.avatar} alt={participant.user.username} width="32" height="32" />
                                                         ) : (
                                                             <div className="avatar-placeholder">
                                                                 {participant.user.username.charAt(0).toUpperCase()}
@@ -368,7 +368,7 @@ export default function RoomLobby() {
                                                     )}
                                                     <div className="player-avatar">
                                                         {participant.user.avatar ? (
-                                                            <img src={participant.user.avatar} alt={participant.user.username} />
+                                                            <img src={participant.user.avatar} alt={participant.user.username} width="32" height="32" />
                                                         ) : (
                                                             <div className="avatar-placeholder">
                                                                 {participant.user.username.charAt(0).toUpperCase()}
@@ -411,7 +411,7 @@ export default function RoomLobby() {
                                         )}
                                         <div className="player-avatar">
                                             {participant.user.avatar ? (
-                                                <img src={participant.user.avatar} alt={participant.user.username} />
+                                                <img src={participant.user.avatar} alt={participant.user.username} width="32" height="32" />
                                             ) : (
                                                 <div className="avatar-placeholder">
                                                     {participant.user.username.charAt(0).toUpperCase()}

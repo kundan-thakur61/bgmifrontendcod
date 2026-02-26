@@ -77,7 +77,7 @@ function PlayerCard({ slot, idx, compact }) {
         <div className="relative shrink-0">
           <div className={`${size} rounded-full bg-dark-600 flex items-center justify-center overflow-hidden border-2 border-dark-500 group-hover:border-primary-500/40 transition-colors`}>
             {slot.user?.avatar ? (
-              <img src={slot.user.avatar} alt={slot.user?.name} className="w-full h-full object-cover" />
+              <img src={slot.user.avatar} alt={slot.user?.name} className="w-full h-full object-cover" width="64" height="64" />
             ) : (
               <span className={`${compact ? 'text-xs' : 'text-sm'} font-bold text-dark-300`}>
                 {slot.user?.name?.charAt(0)?.toUpperCase() || '?'}
@@ -349,7 +349,7 @@ export default function MatchDetailPage() {
     if (navigator.share) {
       try {
         await navigator.share({ title: match.title, text, url });
-      } catch {}
+      } catch { }
     } else {
       navigator.clipboard.writeText(`${text}\n${url}`);
       setShareMsg('Link copied!');
@@ -965,9 +965,8 @@ export default function MatchDetailPage() {
                   </span>
                   <span className="text-dark-400 text-xs font-normal">(Optional)</span>
                 </label>
-                <div className={`max-h-52 overflow-y-auto rounded-lg border border-dark-600 p-2.5 ${
-                  match.mode === 'solo' ? 'grid grid-cols-10 gap-1' : 'grid grid-cols-5 gap-1.5'
-                }`}>
+                <div className={`max-h-52 overflow-y-auto rounded-lg border border-dark-600 p-2.5 ${match.mode === 'solo' ? 'grid grid-cols-10 gap-1' : 'grid grid-cols-5 gap-1.5'
+                  }`}>
                   {(() => {
                     const takenSlots = new Set(match.joinedUsers?.map(ju => ju.slotNumber) || []);
                     const totalSlots = match.maxSlots || 100;
@@ -986,13 +985,12 @@ export default function MatchDetailPage() {
                             type="button"
                             disabled={isTaken}
                             onClick={() => setJoinForm({ ...joinForm, slotNumber: isSelected ? null : slot })}
-                            className={`py-1 rounded text-[11px] font-medium transition-all ${
-                              isTaken
+                            className={`py-1 rounded text-[11px] font-medium transition-all ${isTaken
                                 ? 'bg-red-500/15 text-red-400/50 cursor-not-allowed'
                                 : isSelected
-                                ? 'bg-primary-500 text-white ring-2 ring-primary-400 scale-110 shadow-lg shadow-primary-500/20'
-                                : 'bg-dark-700 text-dark-300 hover:bg-dark-600 hover:text-white'
-                            }`}
+                                  ? 'bg-primary-500 text-white ring-2 ring-primary-400 scale-110 shadow-lg shadow-primary-500/20'
+                                  : 'bg-dark-700 text-dark-300 hover:bg-dark-600 hover:text-white'
+                              }`}
                           >
                             {slot}
                           </button>
@@ -1013,15 +1011,14 @@ export default function MatchDetailPage() {
                             type="button"
                             disabled={isGroupFull}
                             onClick={() => setJoinForm({ ...joinForm, slotNumber: isSelected ? null : groupStart })}
-                            className={`py-1.5 rounded text-xs font-medium transition-all relative ${
-                              isGroupFull
+                            className={`py-1.5 rounded text-xs font-medium transition-all relative ${isGroupFull
                                 ? 'bg-red-500/15 text-red-400/50 cursor-not-allowed'
                                 : isSelected
-                                ? 'bg-primary-500 text-white ring-2 ring-primary-400 scale-105 shadow-lg shadow-primary-500/20'
-                                : hasMembers
-                                ? 'bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30'
-                                : 'bg-dark-700 text-dark-300 hover:bg-dark-600 hover:text-white'
-                            }`}
+                                  ? 'bg-primary-500 text-white ring-2 ring-primary-400 scale-105 shadow-lg shadow-primary-500/20'
+                                  : hasMembers
+                                    ? 'bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30'
+                                    : 'bg-dark-700 text-dark-300 hover:bg-dark-600 hover:text-white'
+                              }`}
                             title={isGroupFull ? `${label}${i + 1} is full` : hasMembers ? `${label}${i + 1}: ${takenInGroup}/${modeGroupSize} joined` : `${label}${i + 1}: Empty`}
                           >
                             {label}{i + 1}

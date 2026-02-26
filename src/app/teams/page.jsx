@@ -196,7 +196,7 @@ export default function TeamsPage() {
                                 >
                                     <div className="flex items-center gap-4 mb-4">
                                         {team.logo?.url ? (
-                                            <img src={team.logo.url} alt={team.name} className="w-16 h-16 rounded-xl object-cover" />
+                                            <img src={team.logo.url} alt={team.name} className="w-16 h-16 rounded-xl object-cover" width="64" height="64" />
                                         ) : (
                                             <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-xl flex items-center justify-center text-2xl font-bold text-white">
                                                 {team.tag?.[0] || team.name[0]}
@@ -227,8 +227,8 @@ export default function TeamsPage() {
                                     {/* Role Badge */}
                                     <div className="flex items-center justify-between">
                                         <span className={`text-xs px-3 py-1 rounded-full ${team.captain?._id === user?._id || team.captain === user?._id
-                                                ? 'bg-yellow-500/20 text-yellow-400'
-                                                : 'bg-gray-500/20 text-gray-400'
+                                            ? 'bg-yellow-500/20 text-yellow-400'
+                                            : 'bg-gray-500/20 text-gray-400'
                                             }`}>
                                             {team.captain?._id === user?._id || team.captain === user?._id ? '👑 Captain' : 'Member'}
                                         </span>

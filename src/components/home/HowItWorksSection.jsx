@@ -1,5 +1,3 @@
-import '@/styles/hero-styles.css';
-
 const steps = [
     { step: '1', title: 'Sign Up', desc: 'Create your free account in seconds', color: 'cyan' },
     { step: '2', title: 'Add Funds', desc: 'Deposit money securely via UPI/Cards', color: 'purple' },

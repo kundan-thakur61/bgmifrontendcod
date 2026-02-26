@@ -1,5 +1,3 @@
-import '@/styles/hero-styles.css';
-
 const games = [
     { name: 'PUBG Mobile', icon: '🎯', description: 'Classic, TDM, and Arena matches' },
     { name: 'Free Fire', icon: '🔥', description: 'Battle royale and clash squad' },

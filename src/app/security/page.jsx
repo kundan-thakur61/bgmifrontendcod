@@ -133,8 +133,8 @@ export default function SecurityPage() {
                     <button
                         onClick={() => setActiveTab('2fa')}
                         className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold transition-all whitespace-nowrap text-sm sm:text-base ${activeTab === '2fa'
-                                ? 'bg-red-600 text-white'
-                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                            ? 'bg-red-600 text-white'
+                            : 'bg-white/10 text-gray-300 hover:bg-white/20'
                             }`}
                     >
                         🔒 Two-Factor Auth
@@ -142,8 +142,8 @@ export default function SecurityPage() {
                     <button
                         onClick={() => setActiveTab('devices')}
                         className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold transition-all whitespace-nowrap text-sm sm:text-base ${activeTab === 'devices'
-                                ? 'bg-blue-600 text-white'
-                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white/10 text-gray-300 hover:bg-white/20'
                             }`}
                     >
                         📱 Trusted Devices
@@ -151,8 +151,8 @@ export default function SecurityPage() {
                     <button
                         onClick={() => setActiveTab('logs')}
                         className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold transition-all whitespace-nowrap text-sm sm:text-base ${activeTab === 'logs'
-                                ? 'bg-orange-600 text-white'
-                                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                            ? 'bg-orange-600 text-white'
+                            : 'bg-white/10 text-gray-300 hover:bg-white/20'
                             }`}
                     >
                         📜 Security Logs
@@ -208,7 +208,7 @@ export default function SecurityPage() {
                                     {/* Step 1: Scan QR */}
                                     <div>
                                         <div className="bg-white p-4 rounded-xl mb-4">
-                                            <img src={qrCode} alt="QR Code" className="w-full" />
+                                            <img src={qrCode} alt="QR Code" className="w-full" width="256" height="256" />
                                         </div>
                                         <p className="text-gray-300 text-sm">
                                             Scan this QR code with Google Authenticator, Authy, or any TOTP authenticator app

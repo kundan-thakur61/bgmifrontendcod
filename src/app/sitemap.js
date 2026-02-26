@@ -1,13 +1,20 @@
 import { SITE, getApiBaseUrl } from '@/lib/seo-config';
+import { getBlogSitemapEntries } from '@/lib/content/blog-posts';
 
 /**
- * Dynamic Sitemap Generator
- * ─────────────────────────
+ * Dynamic Sitemap Generator - PILLAR 3 Technical SEO
+ * ─────────────────────────────────────────────────
  * Generates a comprehensive XML sitemap including:
  * - All static pages with correct priorities & change frequencies
  * - Dynamic match pages (fetched from API)
  * - Dynamic tournament pages (fetched from API)
  * - Blog articles & Location-specific SEO pages
+ * - Game-specific tournament pages (BGMI, Free Fire, PUBG)
+ * 
+ * Core Web Vitals Impact:
+ * - Helps search engines discover pages faster
+ * - Improves crawl efficiency with proper priorities
+ * - Supports dynamic content discovery
  *
  * This REPLACES the outdated public/sitemap.xml.
  */
@@ -15,40 +22,54 @@ export default async function sitemap() {
   const baseUrl = SITE.baseUrl;
   const now = new Date().toISOString();
 
-  // ── Static Routes ──────────────────────────────────────────
+  // ── Static Routes with SEO-Optimized Priorities ─────────────
   const staticRoutes = [
+    // Homepage - Highest Priority
     { path: '', changeFrequency: 'daily', priority: 1.0 },
-    { path: '/matches', changeFrequency: 'hourly', priority: 0.95 },
+    
+    // Primary Tournament Pages (Target Keywords)
     { path: '/tournaments', changeFrequency: 'daily', priority: 0.95 },
+    { path: '/tournaments/bgmi', changeFrequency: 'daily', priority: 0.95 },
+    { path: '/tournaments/free-fire', changeFrequency: 'daily', priority: 0.95 },
+    { path: '/tournaments/pubg-mobile', changeFrequency: 'daily', priority: 0.9 },
+    
+    // Matches Page (Target: "BGMI win match online")
+    { path: '/matches', changeFrequency: 'hourly', priority: 0.95 },
+    
+    // Key Conversion Pages
+    { path: '/how-it-works', changeFrequency: 'weekly', priority: 0.9 },
+    { path: '/register', changeFrequency: 'weekly', priority: 0.85 },
+    
+    // Blog hub — individual posts injected dynamically via getBlogSitemapEntries
+    { path: '/blog', changeFrequency: 'daily', priority: 0.9 },
+    
+    // Leaderboard & Community
     { path: '/leaderboard', changeFrequency: 'daily', priority: 0.85 },
-    { path: '/how-it-works', changeFrequency: 'weekly', priority: 0.8 },
-    { path: '/search', changeFrequency: 'weekly', priority: 0.6 },
-    { path: '/register', changeFrequency: 'weekly', priority: 0.8 },
-    { path: '/blog', changeFrequency: 'daily', priority: 0.85 },
-    { path: '/blog/bgmi-tournament-guide-2026', changeFrequency: 'monthly', priority: 0.9 },
-    { path: '/blog/how-to-win-bgmi-tournaments-2024', changeFrequency: 'monthly', priority: 0.8 },
-    { path: '/blog/free-fire-tournament-tips', changeFrequency: 'monthly', priority: 0.8 },
-    { path: '/blog/how-to-earn-money-gaming-india', changeFrequency: 'monthly', priority: 0.85 },
-    { path: '/blog/bgmi-vs-free-fire-which-is-better', changeFrequency: 'monthly', priority: 0.8 },
-    { path: '/blog/pubg-mobile-tips-for-beginners', changeFrequency: 'monthly', priority: 0.7 },
-    { path: '/blog/best-landing-spots-erangel', changeFrequency: 'monthly', priority: 0.7 },
-    { path: '/blog/free-fire-character-guide', changeFrequency: 'monthly', priority: 0.7 },
-    { path: '/blog/how-to-improve-aim-mobile', changeFrequency: 'monthly', priority: 0.7 },
-    { path: '/blog/esports-career-india', changeFrequency: 'monthly', priority: 0.7 },
-    { path: '/blog/bgmi-update-latest-features', changeFrequency: 'monthly', priority: 0.65 },
-    { path: '/locations', changeFrequency: 'weekly', priority: 0.75 },
-    { path: '/locations/mumbai-tournaments', changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/locations/delhi-tournaments', changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/locations/bangalore-tournaments', changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/achievements', changeFrequency: 'daily', priority: 0.6 },
+    { path: '/achievements', changeFrequency: 'daily', priority: 0.7 },
+    
+    // Location Pages for Local SEO
+    { path: '/locations', changeFrequency: 'weekly', priority: 0.8 },
+    { path: '/locations/mumbai-tournaments', changeFrequency: 'weekly', priority: 0.75 },
+    { path: '/locations/delhi-tournaments', changeFrequency: 'weekly', priority: 0.75 },
+    { path: '/locations/bangalore-tournaments', changeFrequency: 'weekly', priority: 0.75 },
+    { path: '/locations/hyderabad-tournaments', changeFrequency: 'weekly', priority: 0.7 },
+    { path: '/locations/kolkata-tournaments', changeFrequency: 'weekly', priority: 0.7 },
+    { path: '/locations/chennai-tournaments', changeFrequency: 'weekly', priority: 0.7 },
+    
+    // Support & Trust Pages
+    { path: '/faq', changeFrequency: 'monthly', priority: 0.75 },
+    { path: '/rules', changeFrequency: 'monthly', priority: 0.65 },
+    { path: '/fair-play', changeFrequency: 'monthly', priority: 0.65 },
+    { path: '/contact', changeFrequency: 'monthly', priority: 0.6 },
     { path: '/about', changeFrequency: 'monthly', priority: 0.6 },
-    { path: '/faq', changeFrequency: 'monthly', priority: 0.7 },
-    { path: '/rules', changeFrequency: 'monthly', priority: 0.6 },
-    { path: '/fair-play', changeFrequency: 'monthly', priority: 0.6 },
-    { path: '/contact', changeFrequency: 'monthly', priority: 0.5 },
-    { path: '/privacy-policy', changeFrequency: 'yearly', priority: 0.3 },
-    { path: '/terms-conditions', changeFrequency: 'yearly', priority: 0.3 },
-    { path: '/refund-policy', changeFrequency: 'yearly', priority: 0.3 },
+    
+    // Search & Discovery
+    { path: '/search', changeFrequency: 'weekly', priority: 0.6 },
+    
+    // Legal Pages (Lower priority but important for trust)
+    { path: '/privacy-policy', changeFrequency: 'yearly', priority: 0.4 },
+    { path: '/terms-conditions', changeFrequency: 'yearly', priority: 0.4 },
+    { path: '/refund-policy', changeFrequency: 'yearly', priority: 0.4 },
   ];
 
   // ── Dynamic Routes (matches + tournaments from API) ────────
@@ -95,6 +116,8 @@ export default async function sitemap() {
     console.error('[Sitemap] Error fetching dynamic routes:', error.message);
   }
 
+  const blogEntries = getBlogSitemapEntries(baseUrl);
+
   return [
     ...staticRoutes.map(route => ({
       url: `${baseUrl}${route.path}`,
@@ -102,6 +125,7 @@ export default async function sitemap() {
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
+    ...blogEntries,
     ...dynamicRoutes,
   ];
 }

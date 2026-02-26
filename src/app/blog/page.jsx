@@ -1,102 +1,12 @@
 import Link from 'next/link';
 import { Navbar, Footer } from '@/components/layout';
 import { BreadcrumbSchema } from '@/components/seo';
-
-const blogPosts = [
-  {
-    slug: 'bgmi-tournament-guide-2026',
-    title: 'BGMI Tournament Guide 2026 - Complete Guide to Winning Real Money',
-    excerpt: 'Master BGMI tournaments in 2026. Learn how to join tournaments, win real money, pro strategies, and step-by-step registration process.',
-    image: '/blog/bgmi-tournament-guide-2026.jpg',
-    category: 'Ultimate Guide',
-    date: '2026-01-15',
-    readTime: '15 min read',
-    featured: true,
-  },
-  {
-    slug: 'free-fire-tournament-tips',
-    title: 'Free Fire Tournament Tips 2026 - Pro Strategies to Win Real Money',
-    excerpt: 'Master Free Fire tournaments with expert tips. Learn character combos, weapon choices, and winning strategies for 1vs1 matches. Win cash prizes daily.',
-    image: '/blog/free-fire-tips.jpg',
-    category: 'Pro Guide',
-    date: '2026-01-20',
-    readTime: '12 min read',
-  },
-  {
-    slug: 'how-to-earn-money-gaming-india',
-    title: 'How to Earn Money Playing Games in India 2026 - Complete Guide',
-    excerpt: 'Learn how to earn real money playing BGMI, Free Fire, and other games in India. Discover tournament platforms, earning methods, and income potential.',
-    image: '/blog/earn-money-gaming.jpg',
-    category: 'Earning Guide',
-    date: '2026-01-22',
-    readTime: '15 min read',
-  },
-  {
-    slug: 'bgmi-vs-free-fire-which-is-better',
-    title: 'BGMI vs Free Fire 2026 - Which is Better for Tournaments & Earning?',
-    excerpt: 'Complete comparison of BGMI vs Free Fire. Graphics, gameplay, earning potential, tournaments, and which game is better for you.',
-    image: '/blog/bgmi-vs-free-fire.jpg',
-    category: 'Comparison',
-    date: '2026-01-25',
-    readTime: '10 min read',
-  },
-  {
-    slug: 'pubg-mobile-tips-for-beginners',
-    title: '10 Essential PUBG Mobile Tips for Beginners',
-    excerpt: 'Master the basics of PUBG Mobile with these essential tips. Learn about landing spots, weapon selection, and survival strategies.',
-    image: '/blog/pubg-tips.jpg',
-    category: 'Tips & Tricks',
-    date: '2025-12-28',
-    readTime: '5 min read',
-  },
-  {
-    slug: 'best-landing-spots-erangel',
-    title: 'Best Landing Spots in Erangel 2025',
-    excerpt: 'Discover the top landing spots in Erangel for high-tier loot and strategic advantage. Updated for the latest season.',
-    image: '/blog/erangel-spots.jpg',
-    category: 'Strategy',
-    date: '2025-12-25',
-    readTime: '7 min read',
-  },
-  {
-    slug: 'free-fire-character-guide',
-    title: 'Free Fire Character Guide: Best Characters for Ranked',
-    excerpt: 'Complete guide to Free Fire characters. Learn which characters are best for different playstyles and team compositions.',
-    image: '/blog/ff-characters.jpg',
-    category: 'Guides',
-    date: '2025-12-22',
-    readTime: '8 min read',
-  },
-  {
-    slug: 'how-to-improve-aim-mobile',
-    title: 'How to Improve Your Aim in Mobile Gaming',
-    excerpt: 'Professional tips to improve your aim and reflexes. Includes sensitivity settings, practice routines, and finger placement.',
-    image: '/blog/aim-guide.jpg',
-    category: 'Tips & Tricks',
-    date: '2025-12-20',
-    readTime: '6 min read',
-  },
-  {
-    slug: 'esports-career-india',
-    title: 'Building an Esports Career in India',
-    excerpt: 'Everything you need to know about pursuing a professional esports career in India. From practice routines to team recruitment.',
-    image: '/blog/esports-career.jpg',
-    category: 'Esports',
-    date: '2025-12-18',
-    readTime: '10 min read',
-  },
-  {
-    slug: 'bgmi-update-latest-features',
-    title: 'BGMI Latest Update: New Features & Changes',
-    excerpt: 'Complete breakdown of the latest BGMI update including new maps, weapons, game modes, and balance changes.',
-    image: '/blog/bgmi-update.jpg',
-    category: 'News',
-    date: '2025-12-15',
-    readTime: '4 min read',
-  },
-];
+import { BLOG_POSTS, FEATURED_BLOG_POST } from '@/lib/content/blog-posts';
 
 const categories = ['All', 'Tips & Tricks', 'Strategy', 'Guides', 'Esports', 'News'];
+
+const featuredPost = FEATURED_BLOG_POST;
+const otherPosts = BLOG_POSTS.filter((post) => post.slug !== featuredPost?.slug);
 
 export default function BlogPage() {
   return (
@@ -143,26 +53,28 @@ export default function BlogPage() {
         {/* Featured Post */}
         <section className="py-12 px-3 sm:px-4">
           <div className="max-w-7xl mx-auto">
-            <Link href={`/blog/${blogPosts[0].slug}`} className="block group">
+            {featuredPost && (
+              <Link href={`/blog/${featuredPost.slug}`} className="block group">
               <div className="card overflow-hidden md:flex">
                 <div className="md:w-1/2 h-64 md:h-auto bg-gradient-to-br from-primary-600 to-gaming-purple flex items-center justify-center">
                   <span className="text-6xl">🎮</span>
                 </div>
                 <div className="p-4 sm:p-6 md:w-1/2 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="badge badge-primary">{blogPosts[0].category}</span>
-                    <span className="text-dark-400 text-sm">{blogPosts[0].date}</span>
+                      <span className="badge badge-primary">{featuredPost.category}</span>
+                      <span className="text-dark-400 text-sm">{featuredPost.publishedAt}</span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary-400 transition-colors">
-                    {blogPosts[0].title}
+                      {featuredPost.title}
                   </h2>
-                  <p className="text-dark-300 mb-4">{blogPosts[0].excerpt}</p>
+                    <p className="text-dark-300 mb-4">{featuredPost.excerpt}</p>
                   <span className="text-primary-400 font-medium">
                     Read more →
                   </span>
                 </div>
               </div>
-            </Link>
+              </Link>
+            )}
           </div>
         </section>
 
@@ -172,7 +84,7 @@ export default function BlogPage() {
             <h2 className="text-2xl font-bold font-display mb-8">Latest Articles</h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {blogPosts.slice(1).map((post) => (
+              {otherPosts.map((post) => (
                 <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
                   <article className="card-hover h-full flex flex-col">
                     <div className="h-48 bg-gradient-to-br from-dark-600 to-dark-700 flex items-center justify-center rounded-t-lg">
@@ -189,7 +101,7 @@ export default function BlogPage() {
                         {post.title}
                       </h3>
                       <p className="text-dark-400 text-sm line-clamp-2 flex-1">{post.excerpt}</p>
-                      <div className="mt-4 text-dark-500 text-sm">{post.date}</div>
+                      <div className="mt-4 text-dark-500 text-sm">{post.publishedAt}</div>
                     </div>
                   </article>
                 </Link>
