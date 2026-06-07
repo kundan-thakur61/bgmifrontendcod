@@ -9,7 +9,6 @@ import { formatCurrency, getCurrencySymbol } from '@/lib/utils';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Chat from '@/components/chat/Chat';
-import { TournamentSchema, BreadcrumbSchema } from '@/components/seo';
 
 export default function TournamentDetailPage() {
   const params = useParams();
@@ -128,16 +127,6 @@ export default function TournamentDetailPage() {
 
   return (
     <>
-      {tournament && (
-        <>
-          <TournamentSchema tournament={tournament} />
-          <BreadcrumbSchema items={[
-            { name: 'Home', url: 'https://www.battlexzone.com' },
-            { name: 'Tournaments', url: 'https://www.battlexzone.com/tournaments' },
-            { name: tournament.title || tournament.name, url: `https://www.battlexzone.com/tournaments/${params.id}` },
-          ]} />
-        </>
-      )}
       <Navbar />
       <main className="min-h-screen bg-dark-900 py-8">
         <div className="container mx-auto px-4 max-w-4xl">

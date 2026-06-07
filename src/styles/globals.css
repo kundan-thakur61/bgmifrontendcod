@@ -2,18 +2,65 @@
 @import "./hero-styles.css";
 
 @theme {
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
-  --color-primary-950: #172554;
-
+  /* ─── Modern Premium Color System ─────────────────────────── */
+  
+  /* Primary - Deep Navy/Slate for backgrounds */
+  --color-primary: #0F172A;
+  --color-primary-light: #1E293B;
+  --color-primary-lighter: #334155;
+  --color-primary-accent: #64748B;
+  
+  /* Surface - Cards and panels */
+  --color-surface: #1E293B;
+  --color-surface-light: #334155;
+  --color-surface-lighter: #475569;
+  
+  /* Accent - Premium Orange for CTAs and highlights */
+  --color-accent: #F97316;
+  --color-accent-hover: #EA580C;
+  --color-accent-light: #FB923C;
+  --color-accent-dark: #C2410C;
+  
+  /* Semantic Colors */
+  --color-success: #10B981;
+  --color-success-hover: #059669;
+  --color-success-light: #34D399;
+  
+  --color-warning: #F59E0B;
+  --color-warning-hover: #D97706;
+  --color-warning-light: #FBBF24;
+  
+  --color-danger: #EF4444;
+  --color-danger-hover: #DC2626;
+  --color-danger-light: #F87171;
+  
+  --color-info: #3B82F6;
+  --color-info-hover: #2563EB;
+  --color-info-light: #60A5FA;
+  
+  /* Special Accents */
+  --color-purple: #A855F7;
+  --color-purple-hover: #9333EA;
+  --color-cyan: #06B6D4;
+  --color-cyan-hover: #0891B2;
+  
+  /* Text Colors */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #CBD5E1;
+  --color-text-muted: #94A3B8;
+  --color-text-disabled: #64748B;
+  
+  /* Borders */
+  --color-border: #334155;
+  --color-border-light: #475569;
+  --color-border-lighter: #64748B;
+  
+  /* Background Variants */
+  --color-bg-dark: #020617;
+  --color-bg-panel: #0F172A;
+  --color-bg-card: #1E293B;
+  
+  /* Legacy compatibility - mapped to new system */
   --color-dark-50: #f8fafc;
   --color-dark-100: #f1f5f9;
   --color-dark-200: #e2e8f0;
@@ -25,13 +72,6 @@
   --color-dark-800: #1e293b;
   --color-dark-900: #0f172a;
   --color-dark-950: #020617;
-
-  --color-gaming-orange: #ff6b35;
-  --color-gaming-purple: #7c3aed;
-  --color-gaming-cyan: #06b6d4;
-  --color-gaming-green: #10b981;
-  --color-gaming-red: #ef4444;
-  --color-gaming-yellow: #f59e0b;
 
   --font-sans: var(--font-inter, 'Inter'), system-ui, sans-serif;
   --font-display: var(--font-poppins, 'Poppins'), system-ui, sans-serif;
@@ -181,21 +221,21 @@ textarea {
 }
 
 .btn-danger {
-  background-color: #dc2626;
+  background-color: var(--color-danger);
   color: white;
 }
 
 .btn-danger:hover {
-  background-color: #b91c1c;
+  background-color: var(--color-danger-hover);
 }
 
 .btn-success {
-  background-color: #16a34a;
+  background-color: var(--color-success);
   color: white;
 }
 
 .btn-success:hover {
-  background-color: #15803d;
+  background-color: var(--color-success-hover);
 }
 
 .btn-lg {
@@ -278,23 +318,23 @@ textarea {
 }
 
 .badge-success {
-  background-color: rgb(34 197 94 / 0.1);
-  color: #4ade80;
+  background-color: rgb(16 185 129 / 0.1);
+  color: var(--color-success-light);
 }
 
 .badge-warning {
-  background-color: rgb(234 179 8 / 0.1);
-  color: #facc15;
+  background-color: rgb(245 158 11 / 0.1);
+  color: var(--color-warning-light);
 }
 
 .badge-danger {
   background-color: rgb(239 68 68 / 0.1);
-  color: #f87171;
+  color: var(--color-danger-light);
 }
 
 .badge-info {
   background-color: rgb(6 182 212 / 0.1);
-  color: #22d3ee;
+  color: var(--color-cyan);
 }
 
 .gradient-text {
@@ -580,15 +620,15 @@ textarea {
    NAVBAR STYLES (moved from inline <style> for W3C compliance)
    ═══════════════════════════════════════════════════════════════ */
 
-/* CSS Variables for Navbar */
+/* Modern Premium Navbar Variables */
 :root {
-  --neon-cyan: #00f5ff;
-  --neon-purple: #bf00ff;
-  --neon-green: #39ff14;
-  --dark-base: #080c14;
-  --dark-panel: #0d1220;
-  --dark-border: rgba(0, 245, 255, 0.12);
-  --dark-border-hover: rgba(0, 245, 255, 0.35);
+  --accent-primary: #F97316;
+  --accent-hover: #EA580C;
+  --accent-light: #FB923C;
+  --dark-base: #0F172A;
+  --dark-panel: #1E293B;
+  --dark-border: rgba(249, 115, 22, 0.12);
+  --dark-border-hover: rgba(249, 115, 22, 0.35);
   --safe-area-inset-bottom: 0px;
 }
 

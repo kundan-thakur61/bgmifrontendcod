@@ -9,7 +9,6 @@ import { formatCurrency, getCurrencySymbol } from '@/lib/utils';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import MatchChat from '@/components/matches/MatchChat';
-import { MatchSchema, BreadcrumbSchema } from '@/components/seo';
 import { io } from 'socket.io-client';
 
 // Countdown Timer Hook
@@ -395,16 +394,6 @@ export default function MatchDetailPage() {
 
   return (
     <>
-      {match && (
-        <>
-          <MatchSchema match={match} />
-          <BreadcrumbSchema items={[
-            { name: 'Home', url: 'https://battlezone.com' },
-            { name: 'Matches', url: 'https://battlezone.com/matches' },
-            { name: match.title, url: `https://battlezone.com/matches/${params.id}` },
-          ]} />
-        </>
-      )}
       <Navbar />
       <main className="min-h-screen bg-dark-900 py-8">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -986,10 +975,10 @@ export default function MatchDetailPage() {
                             disabled={isTaken}
                             onClick={() => setJoinForm({ ...joinForm, slotNumber: isSelected ? null : slot })}
                             className={`py-1 rounded text-[11px] font-medium transition-all ${isTaken
-                                ? 'bg-red-500/15 text-red-400/50 cursor-not-allowed'
-                                : isSelected
-                                  ? 'bg-primary-500 text-white ring-2 ring-primary-400 scale-110 shadow-lg shadow-primary-500/20'
-                                  : 'bg-dark-700 text-dark-300 hover:bg-dark-600 hover:text-white'
+                              ? 'bg-red-500/15 text-red-400/50 cursor-not-allowed'
+                              : isSelected
+                                ? 'bg-primary-500 text-white ring-2 ring-primary-400 scale-110 shadow-lg shadow-primary-500/20'
+                                : 'bg-dark-700 text-dark-300 hover:bg-dark-600 hover:text-white'
                               }`}
                           >
                             {slot}
@@ -1012,12 +1001,12 @@ export default function MatchDetailPage() {
                             disabled={isGroupFull}
                             onClick={() => setJoinForm({ ...joinForm, slotNumber: isSelected ? null : groupStart })}
                             className={`py-1.5 rounded text-xs font-medium transition-all relative ${isGroupFull
-                                ? 'bg-red-500/15 text-red-400/50 cursor-not-allowed'
-                                : isSelected
-                                  ? 'bg-primary-500 text-white ring-2 ring-primary-400 scale-105 shadow-lg shadow-primary-500/20'
-                                  : hasMembers
-                                    ? 'bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30'
-                                    : 'bg-dark-700 text-dark-300 hover:bg-dark-600 hover:text-white'
+                              ? 'bg-red-500/15 text-red-400/50 cursor-not-allowed'
+                              : isSelected
+                                ? 'bg-primary-500 text-white ring-2 ring-primary-400 scale-105 shadow-lg shadow-primary-500/20'
+                                : hasMembers
+                                  ? 'bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30'
+                                  : 'bg-dark-700 text-dark-300 hover:bg-dark-600 hover:text-white'
                               }`}
                             title={isGroupFull ? `${label}${i + 1} is full` : hasMembers ? `${label}${i + 1}: ${takenInGroup}/${modeGroupSize} joined` : `${label}${i + 1}: Empty`}
                           >

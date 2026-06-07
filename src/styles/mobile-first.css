@@ -131,7 +131,7 @@ img {
 /* Reserve space for images without dimensions */
 .img-placeholder,
 .image-container {
-  background-color: #1a1a2e;
+  background-color: var(--color-surface);
   position: relative;
   overflow: hidden;
 }
@@ -156,7 +156,7 @@ img {
 .tournament-card-image,
 .match-card-image {
   aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-light) 100%);
 }
 
 /* Avatar images - square */
@@ -181,7 +181,7 @@ img {
 /* Dynamic content containers */
 .loading-skeleton {
   min-height: 200px;
-  background: linear-gradient(90deg, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%);
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-surface-light) 50%, var(--color-surface) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -304,7 +304,7 @@ body {
   left: 0;
   right: 0;
   z-index: 50;
-  background: #0f172a;
+  background: var(--color-primary);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
@@ -326,7 +326,7 @@ body {
   top: 0;
   z-index: 40;
   /* Prevent content from showing through */
-  background: #0f172a;
+  background: var(--color-primary);
 }
 
 /* ─── Mobile Form Optimizations ──────────────────────────────── */
@@ -417,7 +417,7 @@ select.mobile-select {
   left: 0;
   right: 0;
   padding: 16px;
-  background: linear-gradient(to top, #0f172a 80%, transparent);
+  background: linear-gradient(to top, var(--color-primary) 80%, transparent);
   z-index: 30;
 }
 
