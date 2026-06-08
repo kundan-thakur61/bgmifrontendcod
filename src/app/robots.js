@@ -69,7 +69,10 @@ export default function robots() {
         disallow: ['/admin/', '/api/', '/wallet/'],
       },
     ],
-    sitemap: `${SITE.baseUrl}/sitemap.xml`,
+    sitemap: [
+      `${SITE.baseUrl}/sitemap.xml`,
+      `${SITE.baseUrl}/sitemap-index.xml`,
+    ],
     host: SITE.baseUrl,
   };
 }

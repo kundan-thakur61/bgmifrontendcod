@@ -7,6 +7,7 @@ import { Navbar, Footer } from '@/components/layout';
 import { api } from '@/lib/api';
 import { useAuth } from '@/context/AuthContext';
 import { formatDate } from '@/lib/utils';
+import OptimizedImage from '@/components/seo/OptimizedImage';
 
 export default function TeamDetailPage() {
     const params = useParams();
@@ -52,13 +53,13 @@ export default function TeamDetailPage() {
 
     const shareOnWhatsApp = () => {
         const link = getInviteLink();
-        const message = `🎮 Join my team "${team.name}" [${team.tag}] on BattleZone!\n\n${link}`;
+        const message = `🎮 Join my team "${team.name}" [${team.tag}] on BattleXZone!\n\n${link}`;
         window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
     };
 
     const shareOnTelegram = () => {
         const link = getInviteLink();
-        const message = `🎮 Join my team "${team.name}" [${team.tag}] on BattleZone!`;
+        const message = `🎮 Join my team "${team.name}" [${team.tag}] on BattleXZone!`;
         window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(message)}`, '_blank');
     };
 
@@ -68,7 +69,7 @@ export default function TeamDetailPage() {
             try {
                 await navigator.share({
                     title: `Join Team ${team.name}`,
-                    text: `Join my team "${team.name}" [${team.tag}] on BattleZone!`,
+                    text: `Join my team "${team.name}" [${team.tag}] on BattleXZone!`,
                     url: link,
                 });
             } catch (err) {
@@ -165,7 +166,14 @@ export default function TeamDetailPage() {
                         <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                             {/* Logo */}
                             {team.logo?.url ? (
-                                <img src={team.logo.url} alt={team.name} className="w-24 h-24 rounded-2xl object-cover" width="96" height="96" />
+                                <OptimizedImage
+                                  src={team.logo.url}
+                                  alt={team.name}
+                                  width={96}
+                                  height={96}
+                                  className="w-24 h-24 rounded-2xl object-cover"
+                                  priority={false}
+                                />
                             ) : (
                                 <div className="w-24 h-24 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-2xl flex items-center justify-center text-4xl font-bold text-white">
                                     {team.tag?.[0] || team.name[0]}

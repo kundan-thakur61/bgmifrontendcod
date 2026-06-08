@@ -1,6 +1,6 @@
 /**
  * ============================================================
- * BattleZone SEO Configuration — Single Source of Truth
+ * BattleXZone SEO Configuration — Single Source of Truth
  * ============================================================
  * Unified SEO config replacing the previous dual-system
  * (seo.js + metadata.js). All pages import from here.
@@ -35,6 +35,7 @@ export const SITE = {
   defaultDescription:
     'Join daily BGMI tournaments and custom rooms on BattleXZone. Compete with top players in India, showcase your skills, and win real cash prizes today!',
   // Comprehensive keywords from SEO Master Strategy - PILLAR 1
+  // UPDATED: Merged with full 1,857+ keyword research deliverable (battlezone_10k_keywords.csv)
   defaultKeywords: [
     // Primary Keywords (High Priority)
     'BGMI win match online',
@@ -53,6 +54,15 @@ export const SITE = {
     'BGMI tournament prize pool',
     'BGMI tournament app',
     'BGMI custom room',
+    // New from full research: Time-sensitive & high-intent
+    'bgmi tournament today',
+    'join bgmi tournament today',
+    'bgmi tournament tonight',
+    'bgmi tournament daily',
+    'bgmi tournament this weekend',
+    'bgmi tournament live now',
+    'bgmi tournament 8pm',
+    'bgmi tournament tomorrow',
     // Free Fire Earning Cluster (LSI Keywords)
     'Free Fire tournament',
     'Free Fire tournament app India',
@@ -69,7 +79,7 @@ export const SITE = {
     'gaming tournament app India',
     'esports earning platform',
     'real money gaming India',
-    // Long-Tail Keywords (High Intent)
+    // Long-Tail Keywords (High Intent) - expanded from research
     'BGMI tournament with entry fee 10 rupees',
     'Free Fire tournament free entry real money',
     'how to join BGMI tournament and win money',
@@ -77,6 +87,25 @@ export const SITE = {
     'best BGMI tournament app for beginners',
     'PUBG tournament earn Paytm cash instant',
     'BGMI tournament without investment India',
+    // New high-value from 10k research (Registration, Scrims, Teams, Prize, Local, Hinglish)
+    'bgmi tournament today Delhi',
+    'bgmi tournament tonight Delhi',
+    'bgmi tournament daily Delhi',
+    'bgmi scrims today',
+    'bgmi custom room scrims',
+    'bgmi team recruitment',
+    'looking for bgmi squad',
+    'competitive bgmi team',
+    'bgmi tournament win cash',
+    'earn money from bgmi',
+    'bgmi tournament kaise join kare',
+    'bgmi mein paise kaise kamaye',
+    'bgmi t3 scrims discord',
+    'best bgmi tournament app 2026',
+    'bgmi tournament with 10 rupees entry',
+    'how to join bgmi tournament',
+    'bgmi cash tournament registration',
+    'free entry bgmi tournament',
     // Location & Language Keywords
     'game khelke paise kaise kamaye',
     'esports platform India',
@@ -84,6 +113,11 @@ export const SITE = {
     'BattleXZone',
     'online tournament app',
     'esports app India',
+    // Multi-game expansions (from full list)
+    'free fire tournament india',
+    'valorant tournament prize pool',
+    'cod mobile tournament india cash',
+    'pokemon unite tournament prize pool',
   ],
   author: 'BattleXZone',
   twitterHandle: '@BattleXZone',
@@ -175,7 +209,15 @@ export function generateSeoMetadata({
     // ── Canonical & Alternates ──
     alternates: {
       canonical: metaUrl,
-      languages: { 'en-IN': metaUrl },
+      languages: {
+        'en-IN': metaUrl,
+        'en-AE': metaUrl.replace('www.battlexzone.com', 'www.battlexzone.com/en-ae'),
+        'en-GB': metaUrl.replace('www.battlexzone.com', 'www.battlexzone.com/en-gb'),
+        'en-CA': metaUrl.replace('www.battlexzone.com', 'www.battlexzone.com/en-ca'),
+        'en-US': metaUrl.replace('www.battlexzone.com', 'www.battlexzone.com/en-us'),
+        'en-AU': metaUrl.replace('www.battlexzone.com', 'www.battlexzone.com/en-au'),
+        'x-default': metaUrl,
+      },
     },
 
     // ── Open Graph ──
@@ -310,11 +352,11 @@ export const PAGE_SEO = {
   home: generateSeoMetadata({}),
 
   matches: generateSeoMetadata({
-    // Optimized title: Keyword + benefit + CTA (under 60 chars)
-    title: 'BGMI Win Match Online | Join Live Tournament & Win Cash ₹10,000',
+    // Optimized title: Keyword + benefit + CTA (under 60 chars) - updated with research keywords
+    title: 'BGMI Win Match Online Today | Live Custom Rooms & Scrims',
     // Optimized description with numbers and CTA (under 160 chars)
     description:
-      'Join BGMI match online & win real cash. Entry ₹10. 500+ daily matches. Solo, Duo, Squad. Instant UPI withdrawal. Play Now →',
+      'Join BGMI win match online today or tonight. Entry from ₹10. 500+ daily matches & scrims. Solo, Duo, Squad. Real cash prizes + instant UPI withdrawal. Play Now →',
     keywords: [
       // Primary keyword targeting
       'BGMI win match online',
@@ -329,26 +371,43 @@ export const PAGE_SEO = {
       'PUBG Mobile match join',
       'Free Fire match online',
       'esports matches India',
-      // Long-tail keywords
+      // Long-tail keywords from full research
       'BGMI tournament with entry fee 10 rupees',
       'BGMI match win cash',
       'play BGMI and earn money',
+      'bgmi scrims today',
+      'bgmi custom room today',
     ],
     url: '/matches',
   }),
 
   tournaments: generateSeoMetadata({
     // Optimized title: Primary keyword + benefit (under 60 chars)
-    title: 'BGMI Daily Scrims & Paid Tournaments | Join BattleXZone',
+    title: 'BGMI Tournament Today | Join Daily Scrims & Win Cash | BattleXZone',
     // Optimized description with CTA (under 160 chars)
     description:
-      'Register for daily BGMI scrims and paid custom rooms. Check the schedule, entry fees, and prize pools. Squad up and dominate the battlegrounds!',
+      'Join BGMI tournament today, tonight or this weekend. Free entry & paid custom rooms from ₹10. Daily scrims, real cash prizes, instant UPI withdrawal. Register now!',
     keywords: [
       // Primary keyword targeting
       'BGMI tournament online India',
       'BGMI tournament registration',
       'BGMI tournament 2026',
       'BGMI esports tournament',
+      // High-priority from full keyword research
+      'bgmi tournament today',
+      'join bgmi tournament today',
+      'bgmi tournament tonight',
+      'bgmi tournament daily',
+      'bgmi tournament this weekend',
+      'bgmi tournament live now',
+      'bgmi tournament 8pm',
+      'bgmi tournament tomorrow',
+      'bgmi tournament today Delhi',
+      'bgmi tournament today Mumbai',
+      'bgmi tournament today Bangalore',
+      'bgmi tournament today Hyderabad',
+      'bgmi tournament today Chennai',
+      'bgmi tournament today Kolkata',
       // LSI keywords
       'BGMI tournament prize pool',
       'BGMI solo tournament entry',
@@ -356,11 +415,13 @@ export const PAGE_SEO = {
       'PUBG Mobile tournament India',
       'Free Fire tournament',
       'online gaming tournament',
-      // Long-tail keywords
+      // Long-tail keywords from research
       'how to join BGMI tournament and win money',
       'BGMI tournament without investment India',
       'best BGMI tournament app for beginners',
       'Free Fire tournament free entry real money',
+      'bgmi cash tournament registration',
+      'free entry bgmi tournament',
     ],
     url: '/tournaments',
   }),
@@ -430,7 +491,7 @@ export const PAGE_SEO = {
   fairPlay: generateSeoMetadata({
     title: 'Fair Play Policy — Anti-Cheat & Fraud Prevention',
     description:
-      'BattleZone\'s advanced anti-cheat: screenshot verification, EXIF analysis, device fingerprinting. Zero tolerance for hackers.',
+      'BattleXZone\'s advanced anti-cheat: screenshot verification, EXIF analysis, device fingerprinting. Zero tolerance for hackers.',
     keywords: ['BGMI anti-cheat', 'fair play esports', 'BGMI hack detection', 'esports integrity'],
     url: '/fair-play',
   }),
@@ -438,7 +499,7 @@ export const PAGE_SEO = {
   rules: generateSeoMetadata({
     title: 'Tournament Rules & Match Guidelines',
     description:
-      'Official BattleZone tournament rules: match formats, scoring, prize distribution, player conduct. Read before joining.',
+      'Official BattleXZone tournament rules: match formats, scoring, prize distribution, player conduct. Read before joining.',
     keywords: ['BGMI tournament rules', 'esports rules India', 'gaming competition rules'],
     url: '/rules',
   }),
@@ -446,24 +507,24 @@ export const PAGE_SEO = {
   faq: generateSeoMetadata({
     title: 'FAQ — Frequently Asked Questions About BGMI Tournaments',
     description:
-      'Answers to common questions about BattleZone: registration, payments, withdrawals, fair play, KYC, and more.',
-    keywords: ['BGMI tournament FAQ', 'BattleZone help', 'esports FAQ'],
+      'Answers to common questions about BattleXZone: registration, payments, withdrawals, fair play, KYC, and more.',
+    keywords: ['BGMI tournament FAQ', 'BattleXZone help', 'esports FAQ'],
     url: '/faq',
   }),
 
   contact: generateSeoMetadata({
     title: 'Contact Us — Get Help & Support',
     description:
-      'Need help? Contact BattleZone support via email, Discord, or in-app chat. We respond within 2 hours.',
-    keywords: ['BattleZone support', 'esports help', 'contact gaming platform'],
+      'Need help? Contact BattleXZone support via email, Discord, or in-app chat. We respond within 2 hours.',
+    keywords: ['BattleXZone support', 'esports help', 'contact gaming platform'],
     url: '/contact',
   }),
 
   about: generateSeoMetadata({
-    title: 'About BattleZone — India\'s Leading BGMI Esports Platform',
+    title: 'About BattleXZone — India\'s Leading BGMI Esports Platform',
     description:
-      'BattleZone is India\'s fastest-growing BGMI esports platform. Founded in 2024, we host 1000+ daily matches for 50,000+ players.',
-    keywords: ['about BattleZone', 'BGMI esports company', 'Indian esports startup'],
+      'BattleXZone is India\'s fastest-growing BGMI esports platform. Founded in 2024, we host 1000+ daily matches for 50,000+ players.',
+    keywords: ['about BattleXZone', 'BGMI esports company', 'Indian esports startup'],
     url: '/about',
   }),
 
@@ -484,7 +545,7 @@ export const PAGE_SEO = {
   leaderboard: generateSeoMetadata({
     title: 'BGMI Leaderboard — Top Players & Rankings',
     description:
-      'See who ranks #1 on BattleZone. Live BGMI leaderboard with player stats, win rates, and tournament earnings. Climb the ranks and earn rewards.',
+      'See who ranks #1 on BattleXZone. Live BGMI leaderboard with player stats, win rates, and tournament earnings. Climb the ranks and earn rewards.',
     keywords: ['BGMI leaderboard', 'BGMI player rankings', 'top BGMI players India', 'esports leaderboard', 'BGMI stats'],
     url: '/leaderboard',
   }),
@@ -492,15 +553,31 @@ export const PAGE_SEO = {
   achievements: generateSeoMetadata({
     title: 'Achievements & Badges — Unlock Gaming Rewards',
     description:
-      'Earn achievements and badges on BattleZone. Track your gaming milestones — kills, matches won, earnings, and special challenges.',
+      'Earn achievements and badges on BattleXZone. Track your gaming milestones — kills, matches won, earnings, and special challenges.',
     keywords: ['gaming achievements', 'esports badges', 'BGMI achievements', 'gaming rewards', 'player milestones'],
     url: '/achievements',
+  }),
+
+  teams: generateSeoMetadata({
+    title: 'Esports Teams — Create Squads & Compete in BGMI Tournaments',
+    description:
+      'Create or join professional BGMI and Free Fire teams on BattleXZone. Manage squads, track stats, earn together, and dominate tournaments.',
+    keywords: [
+      'BGMI team',
+      'esports team India',
+      'BGMI squad',
+      'Free Fire team',
+      'gaming team',
+      'create BGMI team',
+      'join esports squad',
+    ],
+    url: '/teams',
   }),
 
   search: generateSeoMetadata({
     title: 'Search — Find BGMI Tournaments, Matches & Gaming Guides',
     description:
-      'Search BattleZone for BGMI tournaments, Free Fire matches, gaming guides, and esports content. Find exactly what you need.',
+      'Search BattleXZone for BGMI tournaments, Free Fire matches, gaming guides, and esports content. Find exactly what you need.',
     keywords: ['search gaming', 'find tournaments', 'BGMI search', 'Free Fire search', 'gaming guides search'],
     url: '/search',
   }),
@@ -508,7 +585,7 @@ export const PAGE_SEO = {
   privacyPolicy: generateSeoMetadata({
     title: 'Privacy Policy — How We Protect Your Data',
     description:
-      'Read BattleZone\'s Privacy Policy. Learn how we collect, use, and protect your personal information on our esports gaming platform.',
+      'Read BattleXZone\'s Privacy Policy. Learn how we collect, use, and protect your personal information on our esports gaming platform.',
     keywords: ['privacy policy', 'data protection', 'user privacy', 'gaming privacy'],
     url: '/privacy-policy',
   }),
@@ -516,7 +593,7 @@ export const PAGE_SEO = {
   termsConditions: generateSeoMetadata({
     title: 'Terms & Conditions — Platform Rules & User Agreement',
     description:
-      'Read BattleZone\'s Terms and Conditions. Understand our rules, policies, and user agreements for the esports gaming platform.',
+      'Read BattleXZone\'s Terms and Conditions. Understand our rules, policies, and user agreements for the esports gaming platform.',
     keywords: ['terms and conditions', 'user agreement', 'platform rules', 'esports terms'],
     url: '/terms-conditions',
   }),
@@ -524,7 +601,7 @@ export const PAGE_SEO = {
   refundPolicy: generateSeoMetadata({
     title: 'Refund Policy — Match & Tournament Refund Guidelines',
     description:
-      'BattleZone refund policy for cancelled matches, disputed results, and wallet transactions. Know your rights as a player.',
+      'BattleXZone refund policy for cancelled matches, disputed results, and wallet transactions. Know your rights as a player.',
     keywords: ['refund policy', 'gaming refund', 'match refund', 'tournament refund', 'esports refund'],
     url: '/refund-policy',
   }),
@@ -535,7 +612,7 @@ export function generateMatchMetadata(match) {
   if (!match) {
     return generateSeoMetadata({
       title: 'Match Details',
-      description: 'View match details and join competitive BGMI matches on BattleZone.',
+      description: 'View match details and join competitive BGMI matches on BattleXZone.',
       url: '/matches',
     });
   }
@@ -547,7 +624,7 @@ export function generateMatchMetadata(match) {
 
   return generateSeoMetadata({
     title: `${match.title} — ₹${match.prizePool} Prize | ${gameLabel} ${mode}`,
-    description: `Join "${match.title}" on BattleZone. Entry: ₹${match.entryFee} | Prize Pool: ₹${match.prizePool} | ${mode} ${match.matchType || 'match'} | ${slotsLeft} slots left. Register now & compete!`,
+    description: `Join "${match.title}" on BattleXZone. Entry: ₹${match.entryFee} | Prize Pool: ₹${match.prizePool} | ${mode} ${match.matchType || 'match'} | ${slotsLeft} slots left. Register now & compete!`,
     keywords: [
       match.title,
       `${gameLabel} match`,
@@ -566,7 +643,7 @@ export function generateTournamentMetadata(tournament) {
   if (!tournament) {
     return generateSeoMetadata({
       title: 'Tournament Details',
-      description: 'View tournament details and register for competitive BGMI tournaments on BattleZone.',
+      description: 'View tournament details and register for competitive BGMI tournaments on BattleXZone.',
       url: '/tournaments',
     });
   }
@@ -576,7 +653,7 @@ export function generateTournamentMetadata(tournament) {
 
   return generateSeoMetadata({
     title: `${name} — ₹${tournament.prizePool} Prize Pool | BGMI Tournament`,
-    description: `Register for "${name}" on BattleZone. Prize: ₹${tournament.prizePool} | Entry: ₹${tournament.entryFee || 'Free'} | ${tournament.format || 'Squad'} format. India's top BGMI tournament.`,
+    description: `Register for "${name}" on BattleXZone. Prize: ₹${tournament.prizePool} | Entry: ₹${tournament.entryFee || 'Free'} | ${tournament.format || 'Squad'} format. India's top BGMI tournament.`,
     keywords: [
       name,
       'BGMI tournament',
@@ -593,7 +670,7 @@ export function generateTournamentMetadata(tournament) {
 export function generateLocationMetadata(city, state) {
   return generateSeoMetadata({
     title: `BGMI & Free Fire Tournaments in ${city} 2026 — Win Cash Prizes`,
-    description: `Join BGMI and Free Fire tournaments in ${city}, ${state}. Play online gaming tournaments, win real cash prizes. Daily matches for ${city} gamers on BattleZone.`,
+    description: `Join BGMI and Free Fire tournaments in ${city}, ${state}. Play online gaming tournaments, win real cash prizes. Daily matches for ${city} gamers on BattleXZone.`,
     keywords: [
       `BGMI tournaments ${city}`,
       `Free Fire tournaments ${city}`,
@@ -603,6 +680,52 @@ export function generateLocationMetadata(city, state) {
       `BGMI ${city}`,
     ],
     url: `/locations/${city.toLowerCase()}-tournaments`,
+  });
+}
+
+// ─── Dynamic Team Metadata (SportsTeam + Squad SEO) ───────────────────────────
+export function generateTeamMetadata(team) {
+  if (!team) {
+    return generateSeoMetadata({
+      title: 'Team Profile',
+      description: 'View esports team profile, members, stats and tournament history on BattleXZone.',
+      url: '/teams',
+    });
+  }
+
+  const teamId = team._id || team.id;
+  const teamName = team.name || 'Esports Team';
+  const tag = team.tag ? ` [${team.tag}]` : '';
+  const game = (team.gameType || 'BGMI').replace('_', ' ');
+
+  return generateSeoMetadata({
+    title: `${teamName}${tag} — ${game} Esports Squad`,
+    description: `${teamName} (${team.tag || ''}) — ${team.members?.length || 0} members. ${team.stats?.matchesWon || 0} wins, ₹${team.stats?.totalEarnings || 0} earned. Join or challenge this squad in BGMI tournaments.`,
+    keywords: [
+      teamName,
+      `${game} team`,
+      'esports squad',
+      'BGMI team',
+      team.tag || '',
+      'gaming clan',
+    ],
+    url: `/teams/${teamId}`,
+    image: team.logo?.url || '/images/og-default.jpg',
+  });
+}
+
+// ─── Dynamic Player / Person Metadata ───────────────────────────
+export function generatePlayerMetadata(player) {
+  if (!player) {
+    return generateSeoMetadata({ title: 'Player Profile', url: '/leaderboard' });
+  }
+  const name = player.name || player.username || 'Player';
+  return generateSeoMetadata({
+    title: `${name} — BGMI Player Profile & Stats`,
+    description: `View ${name}'s BGMI stats, tournament wins, earnings, and achievements on BattleXZone. Level ${player.level || 'N/A'}.`,
+    keywords: [name, 'BGMI player', 'esports player India', 'BGMI stats'],
+    url: `/profile/${player._id || player.id || ''}`.replace(/\/$/, ''),
+    noIndex: true, // Profiles often private or low value until public player pages
   });
 }
 

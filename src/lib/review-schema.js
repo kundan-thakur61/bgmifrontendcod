@@ -1,9 +1,9 @@
 export const reviewSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
-  name: 'BattleZone Esports Platform',
+  name: 'BattleXZone Esports Platform',
   description: 'India\'s premier BGMI and Free Fire tournament platform',
-  brand: { '@type': 'Brand', name: 'BattleZone' },
+  brand: { '@type': 'Brand', name: 'BattleXZone' },
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.8',
@@ -23,7 +23,7 @@ export const reviewSchema = {
 export const softwareAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'BattleZone',
+  name: 'BattleXZone',
   operatingSystem: 'Web, Android, iOS',
   applicationCategory: 'GameApplication',
   aggregateRating: {

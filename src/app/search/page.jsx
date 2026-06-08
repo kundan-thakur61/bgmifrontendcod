@@ -27,7 +27,7 @@ const searchData = [
   { title: 'All Cities', url: '/locations', category: 'City', description: 'Find tournaments in your city' },
   
   // Pages
-  { title: 'How It Works', url: '/how-it-works', category: 'Info', description: 'Learn how BattleZone works' },
+  { title: 'How It Works', url: '/how-it-works', category: 'Info', description: 'Learn how BattleXZone works' },
   { title: 'Leaderboard', url: '/leaderboard', category: 'Info', description: 'Top players and rankings' },
   { title: 'Wallet', url: '/wallet', category: 'Account', description: 'Add money and withdraw winnings' },
   { title: 'KYC Verification', url: '/kyc', category: 'Account', description: 'Verify your identity' },
@@ -72,7 +72,7 @@ export default function SearchPage({ searchParams }) {
         <section className="py-12 px-3 sm:px-4 bg-gradient-to-b from-primary-900/30 to-dark-900">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl sm:text-4xl font-bold font-display mb-6">
-              Search <span className="gradient-text">BattleZone</span>
+              Search <span className="gradient-text">BattleXZone</span>
             </h1>
             
             <form action="/search" method="GET" className="relative max-w-xl mx-auto">

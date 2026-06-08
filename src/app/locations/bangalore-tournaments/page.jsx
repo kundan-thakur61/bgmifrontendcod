@@ -12,7 +12,7 @@ const articleData = {
   excerpt: 'Join BGMI and Free Fire tournaments in Bangalore - India Silicon Valley. Play daily online gaming tournaments. Win real cash prizes. Tech city gaming hub.',
   datePublished: '2026-01-26T00:00:00+05:30',
   dateModified: '2026-01-26T00:00:00+05:30',
-  author: 'BattleZone Team',
+  author: 'BattleXZone Team',
   url: 'https://www.battlexzone.com/locations/bangalore-tournaments',
   image: 'https://www.battlexzone.com/locations/bangalore-tournaments.jpg',
   category: 'Local',
@@ -21,7 +21,7 @@ const articleData = {
 };
 
 const localBusinessData = {
-  name: 'BattleZone Bangalore',
+  name: 'BattleXZone Bangalore',
   description: 'Join BGMI and Free Fire tournaments in Bangalore - India Silicon Valley. Play daily online gaming tournaments and win real cash prizes.',
   url: 'https://www.battlexzone.com/locations/bangalore-tournaments',
   areaServed: {
@@ -37,11 +37,11 @@ const localBusinessData = {
 const bangaloreFAQs = [
   {
     question: 'How can I join BGMI tournaments in Bangalore?',
-    answer: 'To join BGMI tournaments in Bangalore, register on BattleZone, complete KYC verification with Aadhaar/PAN, add money via UPI, and browse available tournaments. Bangalore players from Koramangala, HSR Layout, Whitefield, Electronic City, and all areas can participate. All tournaments are online.',
+    answer: 'To join BGMI tournaments in Bangalore, register on BattleXZone, complete KYC verification with Aadhaar/PAN, add money via UPI, and browse available tournaments. Bangalore players from Koramangala, HSR Layout, Whitefield, Electronic City, and all areas can participate. All tournaments are online.',
   },
   {
     question: 'Is Bangalore good for esports and gaming tournaments?',
-    answer: 'Yes, Bangalore is one of India\'s top gaming hubs with excellent internet infrastructure, a large tech-savvy population, and many gaming enthusiasts. The city has produced numerous professional esports players and hosts a thriving gaming community. BattleZone has a strong Bangalore player base with daily tournaments.',
+    answer: 'Yes, Bangalore is one of India\'s top gaming hubs with excellent internet infrastructure, a large tech-savvy population, and many gaming enthusiasts. The city has produced numerous professional esports players and hosts a thriving gaming community. BattleXZone has a strong Bangalore player base with daily tournaments.',
   },
   {
     question: 'What is the best internet for gaming in Bangalore?',
@@ -49,7 +49,7 @@ const bangaloreFAQs = [
   },
   {
     question: 'Are there gaming cafes in Bangalore for tournaments?',
-    answer: 'Bangalore has numerous gaming cafes in areas like Koramangala, Indiranagar, and MG Road. However, BattleZone tournaments are fully online, allowing you to compete from home with your own setup. Many Bangalore gamers prefer playing from home with their personalized gaming phones and WiFi setups.',
+    answer: 'Bangalore has numerous gaming cafes in areas like Koramangala, Indiranagar, and MG Road. However, BattleXZone tournaments are fully online, allowing you to compete from home with your own setup. Many Bangalore gamers prefer playing from home with their personalized gaming phones and WiFi setups.',
   },
   {
     question: 'How do Bangalore players withdraw winnings?',
@@ -195,7 +195,7 @@ export default function BangaloreTournaments() {
             
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { step: '1', title: 'Register', desc: 'Create free account on BattleZone' },
+                { step: '1', title: 'Register', desc: 'Create free account on BattleXZone' },
                 { step: '2', title: 'Verify KYC', desc: 'Upload Aadhaar/PAN for verification' },
                 { step: '3', title: 'Add Money', desc: 'Deposit via UPI (min Rs.50)' },
                 { step: '4', title: 'Play & Win', desc: 'Join tournaments & withdraw winnings' },

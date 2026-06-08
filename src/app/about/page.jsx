@@ -19,7 +19,7 @@ export default function AboutPage() {
           {/* Hero */}
           <div className="text-center mb-16">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display mb-4">
-              About <span className="gradient-text">BattleZone</span>
+              About <span className="gradient-text">BattleXZone</span>
             </h1>
             <p className="text-lg text-dark-300 max-w-2xl mx-auto">
               India&apos;s fastest-growing BGMI esports platform — where 50,000+ players compete daily for real cash prizes.
@@ -30,10 +30,10 @@ export default function AboutPage() {
           <section className="card p-6 sm:p-8 mb-8">
             <h2 className="text-2xl font-bold text-primary-400 mb-4">🎮 Our Story</h2>
             <p className="text-dark-300 mb-4">
-              Founded in 2024 in Dhanbad, Jharkhand, BattleZone was born from a simple idea: make competitive mobile gaming accessible to every Indian gamer. We saw millions of talented BGMI and Free Fire players with no affordable platform to compete and win real money.
+              Founded in 2024 in Dhanbad, Jharkhand, BattleXZone was born from a simple idea: make competitive mobile gaming accessible to every Indian gamer. We saw millions of talented BGMI and Free Fire players with no affordable platform to compete and win real money.
             </p>
             <p className="text-dark-300">
-              Today, BattleZone hosts <strong className="text-white">500+ daily matches</strong> across Solo, Duo, and Squad formats, with entry fees starting from just <strong className="text-cyan-400">₹10</strong>. Our anti-cheat verified platform ensures fair play for every participant.
+              Today, BattleXZone hosts <strong className="text-white">500+ daily matches</strong> across Solo, Duo, and Squad formats, with entry fees starting from just <strong className="text-cyan-400">₹10</strong>. Our anti-cheat verified platform ensures fair play for every participant.
             </p>
           </section>
 
@@ -75,7 +75,7 @@ export default function AboutPage() {
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4">Ready to Compete?</h2>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 items-center">
-              <Link href="/register" className="btn-primary px-8 py-3 w-full sm:w-auto text-center">Join BattleZone</Link>
+              <Link href="/register" className="btn-primary px-8 py-3 w-full sm:w-auto text-center">Join BattleXZone</Link>
               <Link href="/matches" className="btn-secondary px-8 py-3 w-full sm:w-auto text-center">Browse Matches</Link>
             </div>
           </div>

@@ -31,7 +31,7 @@ const articleData = {
   excerpt: 'Discover legitimate ways to earn money playing BGMI, Free Fire, and other games in India. Tournament platforms, earning methods, income potential, and tax implications covered.',
   datePublished: '2026-01-22T00:00:00+05:30',
   dateModified: '2026-01-22T00:00:00+05:30',
-  author: 'BattleZone Team',
+  author: 'BattleXZone Team',
   url: 'https://www.battlexzone.com/blog/how-to-earn-money-gaming-india',
   image: 'https://www.battlexzone.com/blog/how-to-earn-money-gaming-india.jpg',
   category: 'Earning Guide',
@@ -42,7 +42,7 @@ const articleData = {
 const articleFAQs = [
   {
     question: 'Can I really earn money by playing games in India?',
-    answer: 'Yes, you can earn real money playing games in India through various methods: tournament platforms like BattleZone (Rs.500-50000+ monthly), esports competitions, game streaming, content creation, coaching, and game testing. Games like BGMI, Free Fire, and Valorant offer the best earning opportunities. Earnings depend on skill level, time invested, and chosen method.',
+    answer: 'Yes, you can earn real money playing games in India through various methods: tournament platforms like BattleXZone (Rs.500-50000+ monthly), esports competitions, game streaming, content creation, coaching, and game testing. Games like BGMI, Free Fire, and Valorant offer the best earning opportunities. Earnings depend on skill level, time invested, and chosen method.',
   },
   {
     question: 'How much can I earn from gaming tournaments in India?',
@@ -54,7 +54,7 @@ const articleFAQs = [
   },
   {
     question: 'Is earning money from gaming legal in India?',
-    answer: 'Yes, earning money from gaming is legal in India when based on skill rather than chance. Skill-based games like BGMI, Free Fire, and Valorant tournaments are completely legal. The Supreme Court has ruled that games requiring skill are protected as legitimate business activities. However, gambling-based games are restricted. Always use legitimate platforms like BattleZone that verify player identity and provide proper documentation for tax purposes.',
+    answer: 'Yes, earning money from gaming is legal in India when based on skill rather than chance. Skill-based games like BGMI, Free Fire, and Valorant tournaments are completely legal. The Supreme Court has ruled that games requiring skill are protected as legitimate business activities. However, gambling-based games are restricted. Always use legitimate platforms like BattleXZone that verify player identity and provide proper documentation for tax purposes.',
   },
   {
     question: 'Do I need to pay taxes on gaming earnings in India?',
@@ -66,7 +66,7 @@ const articleFAQs = [
   },
   {
     question: 'How do I withdraw my gaming earnings in India?',
-    answer: 'Gaming earnings can be withdrawn through UPI (fastest, 24-48 hours), bank transfer (NEFT/IMPS, 1-3 days), Paytm, or digital wallets. Most platforms like BattleZone require KYC verification (Aadhaar/PAN) before withdrawals. Minimum withdrawal amounts typically range from Rs.100-500. Ensure your bank account name matches your KYC documents to avoid delays. Withdrawal processing times vary by platform and method chosen.',
+    answer: 'Gaming earnings can be withdrawn through UPI (fastest, 24-48 hours), bank transfer (NEFT/IMPS, 1-3 days), Paytm, or digital wallets. Most platforms like BattleXZone require KYC verification (Aadhaar/PAN) before withdrawals. Minimum withdrawal amounts typically range from Rs.100-500. Ensure your bank account name matches your KYC documents to avoid delays. Withdrawal processing times vary by platform and method chosen.',
   },
   {
     question: 'Can gaming be a full-time career in India?',
@@ -80,7 +80,7 @@ const earningMethods = [
     icon: '🏆',
     earnings: '₹1,000 - ₹50,000+/month',
     difficulty: 'Medium',
-    description: 'Compete in daily tournaments on platforms like BattleZone',
+    description: 'Compete in daily tournaments on platforms like BattleXZone',
     bestFor: 'Competitive players with good gaming skills',
   },
   {
@@ -175,7 +175,7 @@ export default function EarnMoneyGamingIndia() {
                 💰
               </div>
               <div>
-                <p className="font-semibold text-white">BattleZone Team</p>
+                <p className="font-semibold text-white">BattleXZone Team</p>
                 <p className="text-sm text-dark-400">Gaming Industry Experts</p>
               </div>
             </div>
@@ -243,7 +243,7 @@ export default function EarnMoneyGamingIndia() {
               </h2>
 
               <p className="text-dark-300 leading-relaxed mb-6">
-                Tournament platforms like <Link href="/" className="text-primary-400 hover:underline">BattleZone</Link> are the
+                Tournament platforms like <Link href="/" className="text-primary-400 hover:underline">BattleXZone</Link> are the
                 easiest way to start earning from gaming. These platforms host daily tournaments for BGMI, Free Fire,
                 and other popular games with entry fees starting from just <strong>Rs.10</strong>.
               </p>
@@ -526,7 +526,7 @@ export default function EarnMoneyGamingIndia() {
             <div className="bg-gradient-to-r from-primary-900/50 to-green-900/50 rounded-xl p-5 sm:p-8 text-center border border-primary-700/50">
               <h3 className="text-2xl font-bold mb-4">Start Your Gaming Income Journey Today</h3>
               <p className="text-dark-300 mb-6 max-w-2xl mx-auto">
-                Tournament platforms are the easiest way to start earning. Join BattleZone today and compete in your
+                Tournament platforms are the easiest way to start earning. Join BattleXZone today and compete in your
                 first tournament within minutes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

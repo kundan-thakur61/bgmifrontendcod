@@ -1,3 +1,5 @@
+import { logger } from '@/lib/logger';
+
 /**
  * registerSW — registers /sw.js and sets up update checks.
  * Call this once from layout.jsx inside a useEffect.
@@ -34,7 +36,7 @@ export async function registerSW() {
 
     return registration;
   } catch (err) {
-    console.warn('[SW] Registration failed:', err);
+    logger.warn('SW', 'Registration failed:', err);
   }
 }
 
@@ -59,7 +61,7 @@ export async function subscribeToPush(vapidPublicKey) {
     });
     return subscription;
   } catch (err) {
-    console.warn('[Push] Subscribe failed:', err);
+    logger.warn('Push', 'Subscribe failed:', err);
     return null;
   }
 }
@@ -81,7 +83,7 @@ export async function unsubscribeFromPush() {
     const sub = await reg.pushManager.getSubscription();
     if (sub) await sub.unsubscribe();
   } catch (err) {
-    console.warn('[Push] Unsubscribe failed:', err);
+    logger.warn('Push', 'Unsubscribe failed:', err);
   }
 }
 

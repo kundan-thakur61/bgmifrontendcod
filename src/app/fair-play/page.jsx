@@ -17,7 +17,7 @@ export default function FairPlayPage() {
         <div className="container mx-auto px-4 max-w-4xl">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Fair Play Policy</h1>
           <p className="text-dark-400 mb-8">
-            At BattleZone, we are committed to maintaining a fair, competitive, and enjoyable gaming environment for all players.
+            At BattleXZone, we are committed to maintaining a fair, competitive, and enjoyable gaming environment for all players.
           </p>
 
           <div className="space-y-8">

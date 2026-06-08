@@ -35,13 +35,27 @@ export function GoogleAnalytics({ gaId }) {
             event_label: 'BGMI_Tournament_Signup',
             page_location: window.location.href,
           });
+          // SEO-critical funnel start
+          window.gtag('event', 'registration_started', {
+            method: 'click',
+            source: 'organic_search_or_direct',
+            page_location: window.location.href,
+          });
         }
 
-        const joinTarget = event.target.closest('button[data-track="join-match"], a[data-track="join-match"]');
+        const joinTarget = event.target.closest('button[data-track="join-match"], a[data-track="join-match"], button[data-track="join-tournament"]');
         if (joinTarget) {
+          const matchId = joinTarget.dataset.matchId || joinTarget.dataset.tournamentId || 'unknown';
+          const entryFee = joinTarget.dataset.entryFee || '0';
           window.gtag('event', 'join_match_click', {
             event_category: 'engagement',
-            event_label: joinTarget.dataset.matchId || 'unknown',
+            event_label: matchId,
+            page_location: window.location.href,
+          });
+          window.gtag('event', 'tournament_joined', {
+            tournament_id: matchId,
+            entry_fee: parseFloat(entryFee) || 0,
+            source: 'organic_search',
             page_location: window.location.href,
           });
         }
@@ -51,6 +65,13 @@ export function GoogleAnalytics({ gaId }) {
           window.gtag('event', 'blog_click', {
             event_category: 'content',
             event_label: blogTarget.getAttribute('href') || 'unknown',
+          });
+        }
+
+        const walletTarget = event.target.closest('a[href*="/wallet"], button[data-track="deposit"]');
+        if (walletTarget) {
+          window.gtag('event', 'wallet_deposit_initiated', {
+            event_category: 'monetization',
           });
         }
       };
@@ -116,6 +137,37 @@ export function GoogleAnalytics({ gaId }) {
     />
   );
 }
+
+/**
+ * Programmatic SEO + Business Event Tracker
+ * Usage from any page/component after successful actions:
+ *   import { trackSEOEvent } from '@/components/seo/Analytics';
+ *   trackSEOEvent('registration_completed', { user_id: '...', kyc: 'pending' });
+ */
+export function trackSEOEvent(eventName, params = {}) {
+  if (typeof window === 'undefined' || !window.gtag) return;
+
+  const enhancedParams = {
+    ...params,
+    page_location: typeof window !== 'undefined' ? window.location.href : undefined,
+    page_path: typeof window !== 'undefined' ? window.location.pathname : undefined,
+  };
+
+  window.gtag('event', eventName, enhancedParams);
+}
+
+// Pre-defined high-value events for BattleXZone SEO funnel (use these constants)
+export const SEO_EVENTS = {
+  REGISTRATION_STARTED: 'registration_started',
+  REGISTRATION_COMPLETED: 'registration_completed',
+  TOURNAMENT_VIEWED: 'tournament_viewed',
+  TOURNAMENT_JOINED: 'tournament_joined',
+  TOURNAMENT_PAYMENT_COMPLETED: 'tournament_payment_completed',
+  TEAM_CREATED: 'team_created',
+  MATCH_VIEWED: 'match_viewed',
+  CONTACT_FORM_SUBMITTED: 'contact_form_submitted',
+  WALLET_DEPOSIT_COMPLETED: 'wallet_deposit_completed',
+};
 
 export function GoogleSearchConsole({ verificationCode }) {
   if (!verificationCode) return null;

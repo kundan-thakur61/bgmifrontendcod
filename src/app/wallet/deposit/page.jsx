@@ -64,7 +64,7 @@ export default function DepositPage() {
         key: data.key || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: data.order.amount,
         currency: data.order.currency || 'INR',
-        name: 'BattleZone',
+        name: 'BattleXZone',
         description: `Wallet Deposit of ₹${amt}`,
         order_id: data.order.id,
         handler: async function (response) {

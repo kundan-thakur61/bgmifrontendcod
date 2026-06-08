@@ -84,7 +84,7 @@ function FAQItem({ question, answer, isOpen, onToggle, index }) {
 export default function FAQ({
   faqs,
   title = 'Frequently Asked Questions',
-  subtitle = 'Find answers to common questions about BattleZone',
+  subtitle = 'Find answers to common questions about BattleXZone',
   showSchema = true,
   className = '',
 }) {
@@ -157,36 +157,36 @@ export default function FAQ({
 // Pre-built FAQ data for different pages
 export const homepageFAQs = [
   {
-    question: 'How do I join BGMI tournaments on BattleZone?',
-    answer: 'To join BGMI tournaments on BattleZone: 1) Create a free account using your mobile number, 2) Complete KYC verification with Aadhaar or PAN card, 3) Add money to your wallet via UPI or bank transfer, 4) Browse available matches and click "Join", 5) Receive room ID and password 15 minutes before the match starts. Entry fees start from just ₹10.',
+    question: 'How do I join BGMI tournaments on BattleXZone?',
+    answer: 'To join BGMI tournaments on BattleXZone: 1) Create a free account using your mobile number, 2) Complete KYC verification with Aadhaar or PAN card, 3) Add money to your wallet via UPI or bank transfer, 4) Browse available matches and click "Join", 5) Receive room ID and password 15 minutes before the match starts. Entry fees start from just ₹10.',
   },
   {
-    question: 'Is BattleZone legal in India?',
-    answer: 'Yes, BattleZone is completely legal in India. We operate as a skill-based gaming platform, not gambling. BGMI, PUBG Mobile, and Free Fire are classified as games of skill where player expertise determines the outcome. We require mandatory KYC verification and comply with all applicable Indian gaming regulations.',
+    question: 'Is BattleXZone legal in India?',
+    answer: 'Yes, BattleXZone is completely legal in India. We operate as a skill-based gaming platform, not gambling. BGMI, PUBG Mobile, and Free Fire are classified as games of skill where player expertise determines the outcome. We require mandatory KYC verification and comply with all applicable Indian gaming regulations.',
   },
   {
-    question: 'How fast can I withdraw my winnings from BattleZone?',
-    answer: 'Withdrawals on BattleZone are processed within 24-48 hours after your request. You can withdraw via UPI (instant) or direct bank transfer. The minimum withdrawal amount is ₹100. Make sure your KYC verification is complete and your bank details match your KYC documents for smooth processing.',
+    question: 'How fast can I withdraw my winnings from BattleXZone?',
+    answer: 'Withdrawals on BattleXZone are processed within 24-48 hours after your request. You can withdraw via UPI (instant) or direct bank transfer. The minimum withdrawal amount is ₹100. Make sure your KYC verification is complete and your bank details match your KYC documents for smooth processing.',
   },
   {
-    question: 'What anti-cheat systems does BattleZone use?',
-    answer: 'BattleZone employs a multi-layer anti-cheat system: 1) Screenshot verification with EXIF metadata analysis, 2) Duplicate image detection to prevent reused screenshots, 3) Manual admin review for suspicious activities, 4) Player reporting system, 5) Permanent bans for confirmed cheaters. This ensures fair play for all legitimate players.',
+    question: 'What anti-cheat systems does BattleXZone use?',
+    answer: 'BattleXZone employs a multi-layer anti-cheat system: 1) Screenshot verification with EXIF metadata analysis, 2) Duplicate image detection to prevent reused screenshots, 3) Manual admin review for suspicious activities, 4) Player reporting system, 5) Permanent bans for confirmed cheaters. This ensures fair play for all legitimate players.',
   },
   {
     question: 'What is the minimum entry fee for matches?',
-    answer: 'Entry fees on BattleZone start from as low as ₹10 for basic matches. We offer a range of entry fees: ₹10, ₹25, ₹50, ₹100, ₹200, and ₹500 to accommodate players of all budget levels. Higher entry fee matches typically have larger prize pools.',
+    answer: 'Entry fees on BattleXZone start from as low as ₹10 for basic matches. We offer a range of entry fees: ₹10, ₹25, ₹50, ₹100, ₹200, and ₹500 to accommodate players of all budget levels. Higher entry fee matches typically have larger prize pools.',
   },
   {
     question: 'Can I play on both iOS and Android?',
-    answer: 'Yes! BattleZone works on both iOS and Android devices. You can access the platform through our web app on any modern browser, or download our dedicated Android app. The games themselves (BGMI, PUBG Mobile, Free Fire) need to be installed separately from their respective app stores.',
+    answer: 'Yes! BattleXZone works on both iOS and Android devices. You can access the platform through our web app on any modern browser, or download our dedicated Android app. The games themselves (BGMI, PUBG Mobile, Free Fire) need to be installed separately from their respective app stores.',
   },
   {
     question: 'How do I get the room ID and password for matches?',
     answer: 'Room ID and password are shared 15 minutes before the match starts. You will receive them through: 1) In-app notification, 2) Your dashboard on the match details page, 3) SMS (if enabled). Make sure to join the room on time as matches start punctually.',
   },
   {
-    question: 'What games are available on BattleZone?',
-    answer: 'BattleZone currently supports three popular mobile games: 1) BGMI (Battlegrounds Mobile India) - All modes including Classic, TDM, Arena, 2) PUBG Mobile - For players in regions where available, 3) Free Fire - Battle royale and Clash Squad modes. We regularly add new games based on player demand.',
+    question: 'What games are available on BattleXZone?',
+    answer: 'BattleXZone currently supports three popular mobile games: 1) BGMI (Battlegrounds Mobile India) - All modes including Classic, TDM, Arena, 2) PUBG Mobile - For players in regions where available, 3) Free Fire - Battle royale and Clash Squad modes. We regularly add new games based on player demand.',
   },
 ];
 
@@ -212,7 +212,7 @@ export const tournamentFAQs = [
 export const walletFAQs = [
   {
     question: 'What payment methods are accepted?',
-    answer: 'BattleZone accepts multiple payment methods: UPI (Google Pay, PhonePe, Paytm, BHIM), Debit Cards, Credit Cards, Net Banking from all major Indian banks, and popular wallets. All transactions are secured with bank-grade encryption.',
+    answer: 'BattleXZone accepts multiple payment methods: UPI (Google Pay, PhonePe, Paytm, BHIM), Debit Cards, Credit Cards, Net Banking from all major Indian banks, and popular wallets. All transactions are secured with bank-grade encryption.',
   },
   {
     question: 'Is there a minimum deposit amount?',

@@ -5,11 +5,26 @@ import { FAQSchema } from '@/components/seo';
 import MatchList from '@/components/matches/MatchList';
 
 export const dynamic = 'force-dynamic';
-export const metadata = pageMetadata.matches;
+export const metadata = {
+  ...pageMetadata.matches,
+  title: 'BGMI Win Match Online Today | Live Custom Rooms & Scrims | BattleXZone',
+  description: 'Join BGMI win match online today or tonight. 500+ daily matches from ₹10 entry. Free entry options, real cash prizes, instant UPI payouts. Play solo, duo or squad scrims now.',
+  keywords: [
+    ...pageMetadata.matches.keywords,
+    'bgmi win match online',
+    'bgmi matches today',
+    'bgmi custom room match',
+    'bgmi live matches',
+    'bgmi cash match',
+    'join BGMI match',
+    'bgmi scrims today',
+    'bgmi tournament with entry fee 10 rupees',
+  ],
+};
 
 const matchesFAQs = [
   {
-    question: 'How do I join a match on BattleZone?',
+    question: 'How do I join a match on BattleXZone?',
     answer: 'Browse available matches, select one that fits your budget and game mode preference, click Join, and pay the entry fee. Room ID and password are shared 15 minutes before the match starts.',
   },
   {

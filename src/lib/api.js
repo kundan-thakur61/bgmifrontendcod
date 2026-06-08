@@ -7,7 +7,12 @@ const getBaseUrl = () => {
 
     // Safety check: if production build but URL is localhost, ignore it unless intentionally creating a local prod build
     if (process.env.NODE_ENV === 'production' && url.includes('localhost') && !process.env.ALLOW_LOCAL_API) {
-      console.warn('Warning: Using localhost API URL in production environment');
+      // This should not happen in real production
+      if (typeof window !== 'undefined') {
+        import('@/lib/logger').then(({ logger }) => {
+          logger.warn('API', 'Using localhost API URL in production environment');
+        });
+      }
     }
 
     // Remove trailing slash if present

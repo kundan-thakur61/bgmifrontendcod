@@ -32,6 +32,23 @@ const tournamentFAQs = [
     question: 'Can I participate in multiple tournaments?',
     answer: 'Yes, you can register for multiple BGMI and Free Fire tournaments as long as their schedules do not overlap. The system will warn you if there are timing conflicts.',
   },
+  // Additional FAQs targeting high-volume keywords from research (today, tonight, free entry, cities)
+  {
+    question: 'How to join BGMI tournament today?',
+    answer: 'Browse current BGMI tournaments and custom rooms on BattleXZone. Register instantly, pay the small entry fee via UPI, and get room details 15 minutes before the match. Many tournaments run daily including tonight and weekend slots.',
+  },
+  {
+    question: 'BGMI tournament tonight registration?',
+    answer: 'Yes — many BGMI custom room scrims and paid tournaments start in the evening. Filter the list for live or upcoming tonight matches, join with your squad, and compete for real cash prizes with fast payouts.',
+  },
+  {
+    question: 'Free entry BGMI tournament India?',
+    answer: 'BattleXZone regularly runs free entry BGMI tournaments alongside paid ones (from ₹10). Check the schedule for no-entry-fee events with real cash prize pools. Perfect for beginners in Delhi, Mumbai, Bangalore and other cities.',
+  },
+  {
+    question: 'BGMI tournament Delhi or Mumbai today?',
+    answer: 'Our platform is online and open to players across India. Join BGMI tournaments today from anywhere — including Delhi, Mumbai, Bangalore, Hyderabad, Chennai or Kolkata. No location restrictions, just good internet and your BGMI ID.',
+  },
 ];
 
 export default function TournamentsPage() {
@@ -46,14 +63,17 @@ export default function TournamentsPage() {
       
       <main className="min-h-screen pt-16 sm:pt-20">
         <div className="max-w-7xl mx-auto px-4 py-8">
-          {/* Header - H1 optimized for primary keyword */}
+          {/* Header - H1 optimized for primary keyword from research: "bgmi tournament today" + "join bgmi tournament" */}
           <div className="mb-8">
             <h1 className="text-3xl sm:text-4xl font-bold font-display mb-2">
-              BGMI Daily Scrims & Custom Room Tournaments
+              BGMI Tournament Today | Daily Scrims & Custom Rooms
             </h1>
             <p className="text-dark-400 text-lg">
-              Ready to test your skills? Browse our schedule of <strong>BGMI daily scrims</strong> and paid tournaments. We offer a variety of match types including classic battle royale on Erangel and Miramar, as well as intense TDM matchups. Check the entry fee, prize pool, and match timings below. Make sure to read the rules carefully before you <a href="/register" className="text-cyan-400 hover:underline">register for BGMI tournament</a> matches to avoid disqualification.
+              Join <strong>BGMI tournament today</strong>, tonight or this weekend. Free entry options and paid custom rooms starting at just ₹10. Play <strong>BGMI daily scrims</strong>, win real cash prizes, and get instant UPI withdrawal. Squad up for Erangel, Miramar or TDM matches. <a href="/register" className="text-cyan-400 hover:underline">Register for BGMI tournament</a> now and dominate the battlegrounds.
             </p>
+            {/* Additional H2s for long-tail keyword targeting (today, tonight, cities, free entry) */}
+            <h2 className="text-2xl font-semibold mt-6 mb-3 text-white">Join BGMI Tournament Today or Tonight</h2>
+            <p className="text-dark-300">Find live BGMI custom rooms and scrims happening right now. Filter by entry fee, prize pool or game mode. Perfect for players in Delhi, Mumbai, Bangalore, Hyderabad, Chennai and across India looking to win cash playing BGMI.</p>
           </div>
           
           {/* Quick Stats for Trust Signals */}

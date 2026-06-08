@@ -49,7 +49,7 @@ export default function FeaturesSection() {
                             <div className="text-4xl sm:text-6xl mb-4 sm:mb-6 transform hover:rotate-12 transition-transform duration-300 will-change-transform translate-z-0">
                                 {feature.icon}
                             </div>
-                            <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-cyan-400 tracking-wide">
+                            <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-accent-400 tracking-wide">
                                 {feature.title}
                             </h3>
                             <p className="text-gray-400 leading-relaxed font-light">

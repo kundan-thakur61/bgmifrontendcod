@@ -20,11 +20,18 @@ const PWABootstrap = dynamic(
   { ssr: false }
 );
 
+// Only load console cleaner in development to reduce HMR/Fast Refresh spam
+const DevConsoleCleaner =
+  process.env.NODE_ENV === 'development'
+    ? dynamic(() => import('@/components/dev/DevConsoleCleaner'), { ssr: false })
+    : () => null;
+
 export default function ClientShells() {
   return (
     <>
       <PerformanceMonitor />
       <PWABootstrap />
+      <DevConsoleCleaner />
     </>
   );
 }

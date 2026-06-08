@@ -23,7 +23,7 @@ export default function TermsConditionsPage() {
             <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">1. Introduction</h2>
               <p className="mb-4">
-                Welcome to BattleZone (&quot;Platform&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). These Terms and Conditions (&quot;Terms&quot;) govern your use of our website, mobile application, and services (collectively, the &quot;Services&quot;).
+                Welcome to BattleXZone (&quot;Platform&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;). These Terms and Conditions (&quot;Terms&quot;) govern your use of our website, mobile application, and services (collectively, the &quot;Services&quot;).
               </p>
               <p>
                 By accessing or using our Services, you agree to be bound by these Terms. If you do not agree to these Terms, please do not use our Services.
@@ -103,7 +103,7 @@ export default function TermsConditionsPage() {
             <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">6. Intellectual Property</h2>
               <p className="mb-4">
-                All content, features, and functionality of the Platform, including but not limited to text, graphics, logos, icons, images, and software, are the exclusive property of BattleZone and are protected by Indian and international copyright, trademark, and other intellectual property laws.
+                All content, features, and functionality of the Platform, including but not limited to text, graphics, logos, icons, images, and software, are the exclusive property of BattleXZone and are protected by Indian and international copyright, trademark, and other intellectual property laws.
               </p>
               <p>
                 You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Platform without our prior written consent.

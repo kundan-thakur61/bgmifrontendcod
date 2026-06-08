@@ -1,5 +1,5 @@
 /* Modern Premium Hero Section Styles */
-/* Centralized color system for browser caching */
+/* Uses centralized CSS vars from globals.css for the premium orange/slate theme */
 
 :root {
   --accent-primary: #F97316;
@@ -7,6 +7,13 @@
   --accent-tertiary: #06B6D4;
   --accent-light: #FB923C;
   --accent-gradient: linear-gradient(135deg, #F97316, #A855F7);
+}
+
+/* Ensure neon aliases exist here too for any isolated loads */
+:root {
+  --neon-cyan: #F97316;
+  --neon-purple: #A855F7;
+  --neon-magenta: #C026D3;
 }
 
 /* Typography */
@@ -45,7 +52,7 @@
   left: 25%;
   width: min(60vw, 600px);
   height: min(60vw, 600px);
-  background: rgba(6, 182, 212, 0.2);
+  background: rgba(249, 115, 22, 0.18);
 }
 
 .hero-orb--purple {
@@ -53,7 +60,7 @@
   right: 20%;
   width: min(50vw, 500px);
   height: min(50vw, 500px);
-  background: rgba(124, 58, 237, 0.18);
+  background: rgba(168, 85, 247, 0.16);
   animation-delay: 1s;
 }
 
@@ -68,7 +75,7 @@
 
 .hero-title-line-delay-lg {
   animation-delay: 0.4s;
-  background-image: linear-gradient(135deg, #ffffff, #F97316, #A855F7);
+  background-image: linear-gradient(135deg, #ffffff, var(--color-accent), var(--color-purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -100,10 +107,10 @@
   }
 }
 
-/* Neon Text Effect - Compositor-friendly (opacity only) */
+/* Neon Text Effect - Premium accent (opacity only for perf) */
 .neon-text {
-  color: var(--neon-cyan);
-  text-shadow: 0 0 10px var(--neon-cyan);
+  color: var(--color-accent-light);
+  text-shadow: 0 0 10px var(--color-accent);
   will-change: opacity;
   animation: neonPulse 2s ease-in-out infinite alternate;
 }
@@ -111,9 +118,9 @@
 @media (min-width: 768px) {
   .neon-text {
     text-shadow:
-      0 0 10px var(--neon-cyan),
-      0 0 20px var(--neon-cyan),
-      0 0 40px var(--neon-cyan);
+      0 0 10px var(--color-accent),
+      0 0 20px var(--color-accent),
+      0 0 36px var(--color-accent);
   }
 }
 
@@ -127,11 +134,11 @@
   }
 }
 
-/* Cyber Grid Background - Compositor-friendly (transform only) */
+/* Cyber Grid Background - Premium subtle grid (transform only) */
 .cyber-grid {
   background-image:
-    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(249, 115, 22, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249, 115, 22, 0.06) 1px, transparent 1px);
   background-size: 30px 30px;
   will-change: transform;
   animation: gridScroll 20s linear infinite;
@@ -140,8 +147,8 @@
 @media (min-width: 768px) {
   .cyber-grid {
     background-image:
-      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+      linear-gradient(rgba(249, 115, 22, 0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249, 115, 22, 0.09) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 }
@@ -169,7 +176,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta), var(--plasma-purple), var(--electric-blue));
+  background: linear-gradient(45deg, var(--color-accent), var(--color-purple), var(--color-cyan), var(--color-info));
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s;
@@ -183,11 +190,11 @@
 /* Holographic Effect - Compositor-friendly (opacity only) */
 .holographic {
   background: linear-gradient(135deg,
-      rgba(0, 255, 255, 0.1) 0%,
-      rgba(255, 0, 255, 0.1) 25%,
-      rgba(255, 255, 0, 0.1) 50%,
-      rgba(0, 128, 255, 0.1) 75%,
-      rgba(128, 0, 255, 0.1) 100%);
+      rgba(249, 115, 22, 0.10) 0%,
+      rgba(168, 85, 247, 0.10) 25%,
+      rgba(251, 146, 60, 0.10) 50%,
+      rgba(6, 182, 212, 0.10) 75%,
+      rgba(168, 85, 247, 0.10) 100%);
   will-change: opacity;
   animation: holoShift 6s ease infinite;
 }
@@ -208,7 +215,7 @@
 .stat-glow {
   will-change: opacity;
   transform: translateZ(0);
-  filter: drop-shadow(0 0 10px var(--neon-cyan));
+  filter: drop-shadow(0 0 10px var(--color-accent));
 }
 
 @media (min-width: 768px) {
@@ -232,7 +239,7 @@
 /* Game Card */
 .game-card {
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(249, 115, 22, 0.18);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -247,7 +254,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
+  background: linear-gradient(45deg, transparent 30%, rgba(249, 115, 22, 0.12) 50%, transparent 70%);
   transform: rotate(45deg);
   transition: transform 0.6s, opacity 0.6s;
 }
@@ -259,13 +266,13 @@
 .game-card:hover {
   /* translate3d + scale3d: both are GPU-composited transforms */
   transform: translate3d(0, -4px, 0) scale3d(1.01, 1.01, 1);
-  border-color: var(--neon-cyan);
+  border-color: var(--color-accent);
 }
 
 @media (min-width: 768px) {
   .game-card:hover {
     transform: translate3d(0, -8px, 0) scale3d(1.02, 1.02, 1);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4), 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 28px rgba(249, 115, 22, 0.35), 0 20px 40px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -305,22 +312,22 @@
 
 .feature-card:hover {
   transform: translate3d(0, -3px, 0);
-  box-shadow: 0 5px 20px rgba(0, 255, 255, 0.15);
+  box-shadow: 0 5px 20px rgba(249, 115, 22, 0.18);
 }
 
 @media (min-width: 768px) {
   .feature-card:hover {
     transform: translate3d(0, -5px, 0);
-    box-shadow: 0 10px 40px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(249, 115, 22, 0.22);
   }
 }
 
 /* Step Indicator - Compositor-friendly (opacity only) */
 .step-indicator {
   position: relative;
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(128, 0, 255, 0.2));
-  border: 2px solid var(--neon-cyan);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), inset 0 0 20px rgba(0, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(168, 85, 247, 0.18));
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 26px rgba(249, 115, 22, 0.45), inset 0 0 18px rgba(249, 115, 22, 0.18);
   will-change: opacity;
   animation: stepGlow 3s ease-in-out infinite;
 }
@@ -404,9 +411,9 @@
   position: absolute;
   width: 2px;
   height: 2px;
-  background: var(--neon-cyan);
+  background: var(--color-accent);
   border-radius: 50%;
-  box-shadow: 0 0 10px var(--neon-cyan);
+  box-shadow: 0 0 9px var(--color-accent);
   will-change: transform, opacity;
   animation: particleFloat var(--particle-duration, 12s) infinite;
 }
@@ -438,8 +445,8 @@
   top: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-  opacity: 0.3;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.28;
   will-change: transform;
   animation: scan 4s linear infinite;
 }

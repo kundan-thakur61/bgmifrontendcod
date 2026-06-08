@@ -16,6 +16,9 @@
 
 const SW_VERSION = 'bz-sw-v3';
 
+// Set to true to see verbose SW logs in the browser console (DevTools > Application > Service Workers)
+const DEBUG = self.location.hostname === 'localhost' || self.location.hostname === '127.0.0.1';
+
 const STATIC_CACHE   = `${SW_VERSION}-static`;
 const DYNAMIC_CACHE  = `${SW_VERSION}-dynamic`;
 const API_CACHE      = `${SW_VERSION}-api`;
@@ -39,7 +42,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(STATIC_CACHE).then((cache) => {
       return cache.addAll(PRECACHE_ASSETS).catch((err) => {
-        console.warn('[SW] Precache partial failure:', err);
+        if (DEBUG) console.warn('[SW] Precache partial failure:', err);
       });
     }).then(() => self.skipWaiting())
   );
@@ -235,7 +238,7 @@ async function replayQueuedRequests(queueKey) {
         );
       }
     } catch (err) {
-      console.warn('[SW] Background sync failed for', queueKey, err);
+      if (DEBUG) console.warn('[SW] Background sync failed for', queueKey, err);
     }
   }
 }
@@ -259,7 +262,7 @@ async function refreshMatchData() {
       }
     }
   } catch (err) {
-    console.warn('[SW] Periodic sync failed:', err);
+    if (DEBUG) console.warn('[SW] Periodic sync failed:', err);
   }
 }
 
@@ -276,7 +279,7 @@ self.addEventListener('push', (event) => {
     title = 'BattleZone',
     body = '',
     icon = '/images/icon-192.png',
-    badge = '/images/icon-96.png',
+    badge = '/images/icon-192.png',
     url = '/',
     tag = 'default',
     actions = [],

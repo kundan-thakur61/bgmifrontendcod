@@ -31,10 +31,64 @@ const cities = [
     description: 'India\'s Silicon Valley gaming hub. Tournaments in Koramangala, HSR, Whitefield, Electronic City.',
     keywords: ['Koramangala', 'HSR Layout', 'Whitefield', 'Electronic City', 'Indiranagar'],
   },
+  {
+    name: 'Hyderabad',
+    slug: 'hyderabad-tournaments',
+    state: 'Telangana',
+    players: '800+',
+    dailyMatches: '40+',
+    description: 'Play BGMI & Free Fire tournaments in Hyderabad. Available for Gachibowli, HITEC City, Banjara Hills, and all areas.',
+    keywords: ['Gachibowli', 'HITEC City', 'Banjara Hills', 'Kukatpally', 'Secunderabad'],
+  },
+  {
+    name: 'Chennai',
+    slug: 'chennai-tournaments',
+    state: 'Tamil Nadu',
+    players: '700+',
+    dailyMatches: '35+',
+    description: 'Chennai gamers: Join daily BGMI and Free Fire cash tournaments. Play from anywhere in the city.',
+    keywords: ['T Nagar', 'Velachery', 'Anna Nagar', 'Tambaram', 'Porur'],
+  },
+  {
+    name: 'Pune',
+    slug: 'pune-tournaments',
+    state: 'Maharashtra',
+    players: '600+',
+    dailyMatches: '30+',
+    description: 'Pune esports scene is growing fast. Compete in BGMI & Free Fire tournaments from Hinjewadi, Koregaon Park, and more.',
+    keywords: ['Hinjewadi', 'Koregaon Park', 'Viman Nagar', 'Baner', 'Wakad'],
+  },
+  {
+    name: 'Kolkata',
+    slug: 'kolkata-tournaments',
+    state: 'West Bengal',
+    players: '650+',
+    dailyMatches: '35+',
+    description: 'Join BGMI & Free Fire tournaments in Kolkata. Play from Salt Lake, New Town, Park Street, Howrah.',
+    keywords: ['Salt Lake', 'New Town', 'Park Street', 'Howrah', 'Behala'],
+  },
+  {
+    name: 'Ahmedabad',
+    slug: 'ahmedabad-tournaments',
+    state: 'Gujarat',
+    players: '580+',
+    dailyMatches: '28+',
+    description: 'Daily BGMI & Free Fire cash tournaments in Ahmedabad. Play from SG Highway, Vastrapur, Manekbaug.',
+    keywords: ['SG Highway', 'Vastrapur', 'Manekbaug', 'Prahlad Nagar', 'Bodakdev'],
+  },
+  {
+    name: 'Jaipur',
+    slug: 'jaipur-tournaments',
+    state: 'Rajasthan',
+    players: '420+',
+    dailyMatches: '25+',
+    description: 'BGMI & Free Fire tournaments in Jaipur. Compete from Vaishali Nagar, Mansarovar, Malviya Nagar.',
+    keywords: ['Vaishali Nagar', 'Mansarovar', 'Malviya Nagar', 'C-Scheme', 'Tonk Road'],
+  },
 ];
 
 const upcomingCities = [
-  'Hyderabad', 'Chennai', 'Pune', 'Kolkata', 'Ahmedabad', 'Jaipur', 'Lucknow', 'Chandigarh',
+  'Lucknow', 'Chandigarh', 'Kochi', 'Indore', 'Bhopal', 'Visakhapatnam', 'Coimbatore', 'Surat', 'Patna',
 ];
 
 export default function LocationsPage() {

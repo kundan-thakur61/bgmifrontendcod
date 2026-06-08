@@ -40,7 +40,7 @@ export default function RulesPage() {
                 </li>
                 <li className="flex gap-3">
                   <span className="text-primary-400">5.</span>
-                  <span>All decisions made by BattleZone admins are final.</span>
+                  <span>All decisions made by BattleXZone admins are final.</span>
                 </li>
               </ul>
             </section>
@@ -63,7 +63,7 @@ export default function RulesPage() {
                 </li>
                 <li className="flex gap-3">
                   <span className="text-gaming-green">•</span>
-                  <span>Players must use the in-game name registered on BattleZone.</span>
+                  <span>Players must use the in-game name registered on BattleXZone.</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="text-gaming-green">•</span>

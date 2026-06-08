@@ -60,7 +60,7 @@ export default function ContactPage() {
                                     </p>
                                 </div>
                                 <a
-                                    href="https://discord.gg/BattleZone"
+                                    href="https://discord.gg/BattleXZone"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="bg-[#5865F2] hover:bg-[#4752C4] text-white px-6 sm:px-8 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 min-h-[44px] w-full sm:w-auto justify-center"

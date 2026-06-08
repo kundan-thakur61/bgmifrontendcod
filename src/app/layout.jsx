@@ -96,7 +96,7 @@ export default function RootLayout({ children }) {
         <link
           rel="alternate"
           type="application/rss+xml"
-          title="BattleZone Blog RSS Feed"
+          title="BattleXZone Blog RSS Feed"
           href="/rss.xml"
         />
 

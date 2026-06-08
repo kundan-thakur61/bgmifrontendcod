@@ -12,7 +12,7 @@ const articleData = {
   excerpt: 'Join BGMI and Free Fire tournaments in Delhi NCR. Play daily online gaming tournaments in Delhi, Noida, and Gurgaon. Win real cash prizes.',
   datePublished: '2026-01-26T00:00:00+05:30',
   dateModified: '2026-01-26T00:00:00+05:30',
-  author: 'BattleZone Team',
+  author: 'BattleXZone Team',
   url: 'https://www.battlexzone.com/locations/delhi-tournaments',
   image: 'https://www.battlexzone.com/locations/delhi-tournaments.jpg',
   category: 'Local',
@@ -21,7 +21,7 @@ const articleData = {
 };
 
 const localBusinessData = {
-  name: 'BattleZone Delhi NCR',
+  name: 'BattleXZone Delhi NCR',
   description: 'Join BGMI and Free Fire tournaments in Delhi NCR. Play daily online gaming tournaments in Delhi, Noida, and Gurgaon.',
   url: 'https://www.battlexzone.com/locations/delhi-tournaments',
   areaServed: {
@@ -37,11 +37,11 @@ const localBusinessData = {
 const delhiFAQs = [
   {
     question: 'How can I join BGMI tournaments in Delhi NCR?',
-    answer: 'To join BGMI tournaments in Delhi NCR, register on BattleZone, complete KYC verification, add money via UPI, and browse available tournaments. Delhi players from areas like South Delhi, West Delhi, Noida, and Gurgaon can all participate. Matches are online, so you can play from anywhere in the NCR region.',
+    answer: 'To join BGMI tournaments in Delhi NCR, register on BattleXZone, complete KYC verification, add money via UPI, and browse available tournaments. Delhi players from areas like South Delhi, West Delhi, Noida, and Gurgaon can all participate. Matches are online, so you can play from anywhere in the NCR region.',
   },
   {
     question: 'Are there gaming tournaments in Noida and Gurgaon?',
-    answer: 'Yes, BattleZone tournaments are available for all NCR regions including Noida, Gurgaon (Gurugram), Ghaziabad, and Faridabad. Since tournaments are online, players from the entire Delhi NCR region can participate equally. Many top players from these areas compete daily.',
+    answer: 'Yes, BattleXZone tournaments are available for all NCR regions including Noida, Gurgaon (Gurugram), Ghaziabad, and Faridabad. Since tournaments are online, players from the entire Delhi NCR region can participate equally. Many top players from these areas compete daily.',
   },
   {
     question: 'What are the best internet providers for gaming in Delhi?',
@@ -53,11 +53,11 @@ const delhiFAQs = [
   },
   {
     question: 'Is it legal to play cash tournaments in Delhi?',
-    answer: 'Yes, playing skill-based gaming tournaments is completely legal in Delhi NCR. BGMI, Free Fire, and other skill games are protected under Indian law as games of skill, not gambling. BattleZone operates legally with proper verification and tax compliance.',
+    answer: 'Yes, playing skill-based gaming tournaments is completely legal in Delhi NCR. BGMI, Free Fire, and other skill games are protected under Indian law as games of skill, not gambling. BattleXZone operates legally with proper verification and tax compliance.',
   },
   {
     question: 'Are there any offline gaming events in Delhi?',
-    answer: 'While BattleZone focuses on online tournaments (allowing play from anywhere), Delhi NCR occasionally hosts offline gaming events and LAN tournaments in venues across South Delhi, Noida, and Gurgaon. Online tournaments remain the most accessible way to compete daily.',
+    answer: 'While BattleXZone focuses on online tournaments (allowing play from anywhere), Delhi NCR occasionally hosts offline gaming events and LAN tournaments in venues across South Delhi, Noida, and Gurgaon. Online tournaments remain the most accessible way to compete daily.',
   },
 ];
 
@@ -171,7 +171,7 @@ export default function DelhiTournaments() {
             
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { step: '1', title: 'Register', desc: 'Create free account on BattleZone' },
+                { step: '1', title: 'Register', desc: 'Create free account on BattleXZone' },
                 { step: '2', title: 'Verify KYC', desc: 'Upload Aadhaar/PAN for verification' },
                 { step: '3', title: 'Add Money', desc: 'Deposit via UPI (min Rs.50)' },
                 { step: '4', title: 'Play & Win', desc: 'Join tournaments & withdraw winnings' },

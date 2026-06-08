@@ -6,6 +6,7 @@ import { useAuth } from '@/context/AuthContext';
 import { usePathname } from 'next/navigation';
 import SearchBar from '@/components/ui/SearchBar';
 import MessagesLink, { UnreadMessagesProvider } from './MessagesLink';
+import LevelBadge from '@/components/dashboard/LevelBadge';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,6 +24,7 @@ export default function Navbar() {
   ];
 
   const authenticatedNavLinks = [
+    { href: '/dashboard', label: 'Dashboard' },
     { href: '/create-match', label: 'Create Match' },
     ...navLinks,
   ];
@@ -38,7 +40,8 @@ export default function Navbar() {
 
   const mobileNavItems = [
     {
-      href: '/', label: 'Home',
+      href: isAuthenticated ? '/dashboard' : '/',
+      label: isAuthenticated ? 'Dashboard' : 'Home',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -92,7 +95,7 @@ export default function Navbar() {
                 <span className="bz-navbar-font text-black font-bold text-lg leading-none select-none">B</span>
               </div>
               <span className="bz-logo-text bz-navbar-font text-xl font-bold tracking-widest uppercase">
-                BattleZone
+                BattleXZone
               </span>
             </Link>
 
@@ -119,7 +122,13 @@ export default function Navbar() {
                   <Link href="/wallet" className="bz-wallet">
                     ₹{user?.walletBalance || 0}
                   </Link>
-                  <Link href="/profile" className="bz-btn-outline">
+                  <div className="hidden md:flex items-center gap-2">
+                    <LevelBadge level={user?.level} xp={user?.xp} className="text-[9px] px-1.5 py-px" />
+                    <Link href="/profile" className="bz-btn-outline">
+                      {user?.username || 'Profile'}
+                    </Link>
+                  </div>
+                  <Link href="/profile" className="bz-btn-outline md:hidden">
                     {user?.username || 'Profile'}
                   </Link>
                   <button onClick={() => logout()} className="bz-btn-logout">
@@ -147,7 +156,7 @@ export default function Navbar() {
                 <span className="bz-navbar-font text-black font-bold text-base leading-none select-none">B</span>
               </div>
               <span className="bz-logo-text bz-navbar-font text-base font-bold tracking-widest uppercase truncate">
-                BattleZone
+                BattleXZone
               </span>
             </Link>
 
@@ -164,9 +173,9 @@ export default function Navbar() {
                   width: 44, height: 44,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   borderRadius: 6,
-                  border: '1px solid rgba(0,245,255,0.1)',
-                  background: isMenuOpen ? 'rgba(0,245,255,0.07)' : 'transparent',
-                  color: isMenuOpen ? 'var(--neon-cyan)' : 'rgba(160,185,210,0.7)',
+                  border: '1px solid rgba(249,115,22,0.15)',
+                  background: isMenuOpen ? 'rgba(249,115,22,0.08)' : 'transparent',
+                  color: isMenuOpen ? 'var(--color-accent)' : 'rgba(160,185,210,0.7)',
                   transition: 'all 0.2s',
                   cursor: 'pointer',
                 }}

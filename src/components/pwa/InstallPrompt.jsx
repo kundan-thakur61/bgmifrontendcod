@@ -57,18 +57,18 @@ export default function InstallPrompt() {
       <div
         className="max-w-sm mx-auto bg-[#1e293b] border border-yellow-400/40 rounded-2xl p-4 shadow-2xl shadow-black/60 pointer-events-auto animate-slide-up"
         role="dialog"
-        aria-label="Install BattleZone app"
+        aria-label="Install BattleXZone app"
       >
         <div className="flex items-start gap-3">
           {/* App icon */}
           <img
             src="/images/icon-96.png"
-            alt="BattleZone"
+            alt="BattleXZone"
             className="w-12 h-12 rounded-xl shrink-0"
           />
 
           <div className="flex-1 min-w-0">
-            <p className="font-bold text-white text-sm">Install BattleZone</p>
+            <p className="font-bold text-white text-sm">Install BattleXZone</p>
             <p className="text-slate-400 text-xs mt-0.5 leading-relaxed">
               Add to your home screen for faster access, offline support & native feel.
             </p>

@@ -1,14 +1,23 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import { Navbar, Footer } from '@/components/layout';
 import { BreadcrumbSchema } from '@/components/seo';
 import { BLOG_POSTS, FEATURED_BLOG_POST } from '@/lib/content/blog-posts';
 
-const categories = ['All', 'Tips & Tricks', 'Strategy', 'Guides', 'Esports', 'News'];
+const categories = ['All', 'Tips & Tricks', 'Strategy', 'Guides', 'Esports', 'News', 'Ultimate Guide', 'Pro Guide', 'Earning Guide', 'Comparison'];
 
 const featuredPost = FEATURED_BLOG_POST;
-const otherPosts = BLOG_POSTS.filter((post) => post.slug !== featuredPost?.slug);
+const allPosts = BLOG_POSTS.filter((post) => post.slug !== featuredPost?.slug);
 
 export default function BlogPage() {
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const filteredPosts = selectedCategory === 'All'
+    ? allPosts
+    : allPosts.filter(post => post.category === selectedCategory || (selectedCategory === 'Guides' && ['Pro Guide', 'Ultimate Guide', 'Earning Guide'].includes(post.category)));
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -30,15 +39,16 @@ export default function BlogPage() {
           </div>
         </section>
 
-        {/* Categories */}
+        {/* Categories - Functional filters */}
         <section className="py-6 px-3 sm:px-4 border-b border-dark-700">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((category) => (
                 <button
                   key={category}
+                  onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm transition-colors ${
-                    category === 'All'
+                    selectedCategory === category
                       ? 'bg-primary-600 text-white'
                       : 'bg-dark-700 text-dark-300 hover:bg-dark-600 hover:text-white'
                   }`}
@@ -47,6 +57,9 @@ export default function BlogPage() {
                 </button>
               ))}
             </div>
+            {selectedCategory !== 'All' && (
+              <p className="text-center text-xs text-dark-500 mt-3">Showing {filteredPosts.length} articles in {selectedCategory}</p>
+            )}
           </div>
         </section>
 
@@ -84,28 +97,32 @@ export default function BlogPage() {
             <h2 className="text-2xl font-bold font-display mb-8">Latest Articles</h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {otherPosts.map((post) => (
-                <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
-                  <article className="card-hover h-full flex flex-col">
-                    <div className="h-48 bg-gradient-to-br from-dark-600 to-dark-700 flex items-center justify-center rounded-t-lg">
-                      <span className="text-4xl">📝</span>
-                    </div>
-                    <div className="p-5 flex-1 flex flex-col">
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="text-xs px-2 py-1 bg-primary-500/20 text-primary-400 rounded">
-                          {post.category}
-                        </span>
-                        <span className="text-dark-500 text-xs">{post.readTime}</span>
+              {filteredPosts.length > 0 ? (
+                filteredPosts.map((post) => (
+                  <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                    <article className="card-hover h-full flex flex-col">
+                      <div className="h-48 bg-gradient-to-br from-dark-600 to-dark-700 flex items-center justify-center rounded-t-lg">
+                        <span className="text-4xl">📝</span>
                       </div>
-                      <h3 className="font-bold mb-2 group-hover:text-primary-400 transition-colors line-clamp-2">
-                        {post.title}
-                      </h3>
-                      <p className="text-dark-400 text-sm line-clamp-2 flex-1">{post.excerpt}</p>
-                      <div className="mt-4 text-dark-500 text-sm">{post.publishedAt}</div>
-                    </div>
-                  </article>
-                </Link>
-              ))}
+                      <div className="p-5 flex-1 flex flex-col">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="text-xs px-2 py-1 bg-primary-500/20 text-primary-400 rounded">
+                            {post.category}
+                          </span>
+                          <span className="text-dark-500 text-xs">{post.readTime}</span>
+                        </div>
+                        <h3 className="font-bold mb-2 group-hover:text-primary-400 transition-colors line-clamp-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-dark-400 text-sm line-clamp-2 flex-1">{post.excerpt}</p>
+                        <div className="mt-4 text-dark-500 text-sm">{post.publishedAt}</div>
+                      </div>
+                    </article>
+                  </Link>
+                ))
+              ) : (
+                <p className="col-span-full text-center text-dark-400 py-8">No articles found in this category yet. Check back soon!</p>
+              )}
             </div>
 
             {/* Load More */}

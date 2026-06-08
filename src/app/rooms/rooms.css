@@ -1,6 +1,6 @@
 .room-browser {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
     padding: 40px 20px;
     color: #fff;
 }
@@ -17,7 +17,7 @@
     font-size: 36px;
     font-weight: bold;
     margin-bottom: 8px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-purple) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -29,8 +29,8 @@
 }
 
 .create-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+    color: #000;
     border: none;
     border-radius: 8px;
     padding: 14px 28px;
@@ -38,21 +38,21 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
 }
 
 .create-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
 }
 
 /* Filters */
 .filters-container {
     max-width: 1400px;
     margin: 0 auto 32px;
-    background: rgba(26, 31, 58, 0.8);
+    background: var(--color-surface);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--color-border);
     border-radius: 12px;
     padding: 20px;
 }
@@ -74,8 +74,8 @@
 
 .search-input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
 }
 
 .search-input::placeholder {
@@ -106,7 +106,7 @@
 
 .filter-select:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--color-accent);
 }
 
 /* Room Grid */
@@ -119,9 +119,9 @@
 }
 
 .room-card {
-    background: rgba(26, 31, 58, 0.8);
+    background: var(--color-surface);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--color-border);
     border-radius: 12px;
     padding: 24px;
     transition: all 0.3s ease;
@@ -130,7 +130,7 @@
 .room-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    border-color: rgba(102, 126, 234, 0.3);
+    border-color: rgba(249, 115, 22, 0.35);
 }
 
 .room-card-header {
@@ -200,7 +200,7 @@
 
 .join-btn {
     width: 100%;
-    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    background: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-hover) 100%);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -213,7 +213,7 @@
 
 .join-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
 
 .join-btn:disabled {
@@ -245,8 +245,8 @@
 }
 
 .create-btn-alt {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-purple) 100%);
+    color: #000;
     border: none;
     border-radius: 8px;
     padding: 12px 24px;
@@ -258,7 +258,7 @@
 
 .create-btn-alt:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.35);
 }
 
 /* Responsive */

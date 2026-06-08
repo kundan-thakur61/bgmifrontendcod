@@ -1,6 +1,6 @@
 /**
  * ============================================================
- * BattleZone Entity SEO + AI Search Schema System
+ * BattleXZone Entity SEO + AI Search Schema System
  * ============================================================
  * Implements:
  * - @graph-based Knowledge Graph for Google Entity SEO
@@ -29,7 +29,7 @@ export const organizationEntity = {
     contentUrl: `${SITE.baseUrl}/images/logo.png`,
     width: 512,
     height: 512,
-    caption: 'BattleZone Logo',
+    caption: 'BattleXZone Logo',
   },
   image: { '@id': `${SITE.baseUrl}/#logo` },
   description: SITE.defaultDescription,
@@ -230,7 +230,7 @@ export function getTournamentSchema(tournament) {
     '@type': 'SportsEvent',
     '@id': `${SITE.baseUrl}/tournaments/${tournamentId}`,
     name,
-    description: tournament.description || `${name} — BGMI esports tournament with ₹${tournament.prizePool} prize pool on BattleZone.`,
+    description: tournament.description || `${name} — BGMI esports tournament with ₹${tournament.prizePool} prize pool on BattleXZone.`,
     startDate: tournament.startAt ? new Date(tournament.startAt).toISOString() : undefined,
     endDate: tournament.endAt ? new Date(tournament.endAt).toISOString() : undefined,
     eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
@@ -273,7 +273,7 @@ export function getItemListSchema(items, type = 'match') {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: type === 'match' ? 'Live BGMI Matches on BattleZone' : 'Upcoming BGMI Tournaments on BattleZone',
+    name: type === 'match' ? 'Live BGMI Matches on BattleXZone' : 'Upcoming BGMI Tournaments on BattleXZone',
     description: type === 'match'
       ? 'Browse and join competitive BGMI matches with real cash prizes'
       : 'Register for upcoming BGMI tournaments with massive prize pools',
@@ -396,7 +396,7 @@ export function getHowToSchema({ name, description, steps, totalTime = 'PT5M', c
       { '@type': 'HowToSupply', name: 'Valid Aadhaar or PAN card for KYC' },
     ],
     tool: [
-      { '@type': 'HowToTool', name: 'BattleZone account (free)' },
+      { '@type': 'HowToTool', name: 'BattleXZone account (free)' },
       { '@type': 'HowToTool', name: 'UPI payment app (Google Pay, PhonePe, Paytm)' },
     ],
     step: steps.map((step, i) => ({

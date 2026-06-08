@@ -16,6 +16,9 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [googleUrl, setGoogleUrl] = useState(`${API_BASE_URL}/auth/google`);
+  // TEMP debug state for OAuth redirect_uri issue
+  const [debugInfo, setDebugInfo] = useState(null);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   useEffect(() => {
     // Client-side safety: ensure we don't send prod users to localhost
@@ -81,6 +84,39 @@ export default function LoginPage() {
     }
   };
 
+  // TEMP DEBUG helpers for Google OAuth redirect_uri_mismatch
+  const getDebugUrl = () => googleUrl.replace('/auth/google', '/auth/google/debug');
+
+  const handleCopyRedirectUri = async () => {
+    try {
+      const res = await fetch(getDebugUrl());
+      const data = await res.json();
+      if (data.redirect_uri) {
+        await navigator.clipboard.writeText(data.redirect_uri);
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 2000);
+        // Also show full info for convenience
+        setDebugInfo(data);
+      }
+    } catch (e) {
+      alert('Failed to fetch debug info: ' + e.message + '\n\nTry opening the debug link manually.');
+    }
+  };
+
+  const handleShowFullDebug = async () => {
+    try {
+      const res = await fetch(getDebugUrl());
+      const data = await res.json();
+      setDebugInfo(data);
+    } catch (e) {
+      alert('Failed to fetch debug: ' + e.message);
+    }
+  };
+
+  const handleClearDebug = () => {
+    setDebugInfo(null);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center px-3 sm:px-4 py-8 sm:py-12 bg-dark-900">
       <div className="w-full max-w-md">
@@ -89,7 +125,7 @@ export default function LoginPage() {
           <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-gaming-purple rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-2xl">B</span>
           </div>
-          <span className="text-2xl font-bold font-display gradient-text">BattleZone</span>
+          <span className="text-2xl font-bold font-display gradient-text">BattleXZone</span>
         </Link>
 
         {/* Card */}
@@ -181,6 +217,49 @@ export default function LoginPage() {
                 </svg>
                 <span>Continue with Google</span>
               </a>
+
+              {/* TEMP DEBUG: Surfaces the target URL and easy access to exact redirect_uri */}
+              <div className="mt-2 p-2 bg-yellow-900/20 border border-yellow-600/40 rounded text-[10px] text-dark-400">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="font-semibold text-yellow-400">⚠️ OAuth Debug (temp)</span>
+                  <span className="text-[9px] opacity-70">— helps fix redirect_uri_mismatch</span>
+                </div>
+                <div className="font-mono text-[9px] break-all mb-1">
+                  Target: {googleUrl}
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  <button
+                    onClick={handleCopyRedirectUri}
+                    className="px-2 py-0.5 bg-dark-700 hover:bg-dark-600 rounded border border-dark-500 text-[9px] active:scale-95"
+                  >
+                    📋 Copy redirect_uri
+                  </button>
+                  <button
+                    onClick={handleShowFullDebug}
+                    className="px-2 py-0.5 bg-dark-700 hover:bg-dark-600 rounded border border-dark-500 text-[9px] active:scale-95"
+                  >
+                    🔍 Show full debug
+                  </button>
+                  <a
+                    href={getDebugUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2 py-0.5 bg-dark-700 hover:bg-dark-600 rounded border border-dark-500 text-[9px] inline-flex items-center"
+                  >
+                    Open in new tab
+                  </a>
+                  {copySuccess && <span className="text-green-400 text-[9px] self-center">Copied!</span>}
+                </div>
+                {debugInfo && (
+                  <div className="mt-1.5 p-1.5 bg-dark-950 border border-dark-700 rounded text-[8px] font-mono overflow-auto max-h-32">
+                    <div className="flex justify-between items-center mb-0.5">
+                      <span className="text-yellow-300">Debug response:</span>
+                      <button onClick={handleClearDebug} className="text-dark-500 hover:text-dark-300">✕</button>
+                    </div>
+                    <pre className="whitespace-pre-wrap break-all text-dark-300">{JSON.stringify(debugInfo, null, 2)}</pre>
+                  </div>
+                )}
+              </div>
             </form>
           ) : (
             <form onSubmit={handleVerifyOtp} className="space-y-6">

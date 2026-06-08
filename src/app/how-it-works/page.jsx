@@ -7,8 +7,8 @@ export const metadata = PAGE_SEO.howItWorks;
 
 // HowTo Schema data
 const howToData = {
-  name: 'How to Play BGMI Tournaments on BattleZone',
-  description: 'Complete guide to joining and playing BGMI, PUBG Mobile, and Free Fire tournaments on BattleZone for real money prizes.',
+  name: 'How to Play BGMI Tournaments on BattleXZone',
+  description: 'Complete guide to joining and playing BGMI, PUBG Mobile, and Free Fire tournaments on BattleXZone for real money prizes.',
   totalTime: 'PT10M',
   cost: '10',
   steps: [
@@ -121,7 +121,7 @@ export default function HowItWorksPage() {
         <section className="py-16 px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display mb-6">
-              How <span className="gradient-text">BattleZone</span> Works
+              How <span className="gradient-text">BattleXZone</span> Works
             </h1>
             <p className="text-lg text-dark-300 mb-8">
               Start playing competitive esports matches in minutes. Follow these simple steps to begin your journey.
@@ -158,7 +158,7 @@ export default function HowItWorksPage() {
         <section className="py-16 px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold font-display text-center mb-12">
-              Why Players Trust BattleZone
+              Why Players Trust BattleXZone
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {features.map((feature) => (

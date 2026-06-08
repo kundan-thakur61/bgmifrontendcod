@@ -194,7 +194,7 @@ export default function MatchDetailPage() {
       }
     } catch (err) {
       // Credentials not available yet
-      console.log('Room credentials not available yet');
+      // Room credentials not available yet (debug only)
     }
   };
 
@@ -227,14 +227,14 @@ export default function MatchDetailPage() {
 
     // Join the match room to receive room_revealed events
     socket.on('connect', () => {
-      console.log('Socket connected for room credentials');
+      // Socket connected for room credentials (debug)
       // Join the match room to receive updates
       socket.emit('join_match', params.id);
     });
 
     // Listen for room_revealed event
     socket.on('room_revealed', (data) => {
-      console.log('Room revealed event received:', data);
+      // Room revealed event received (debug)
       if (data.matchId === params.id) {
         // Update room credentials immediately
         setRoomCredentials({
@@ -768,7 +768,8 @@ export default function MatchDetailPage() {
           {/* Match full but room credentials loading - SIMPLIFIED CONDITION */}
           {(() => {
             const showLoading = isJoined && !roomCredentials?.roomId && isFull;
-            console.log('🔍 Debug Room Credentials:', {
+            // Debug Room Credentials (only in dev)
+            if (process.env.NODE_ENV === 'development') console.log('🔍 Debug Room Credentials:', {
               isJoined,
               hasRoomId: !!roomCredentials?.roomId,
               isFull,

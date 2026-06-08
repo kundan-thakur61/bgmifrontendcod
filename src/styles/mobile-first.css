@@ -425,7 +425,7 @@ select.mobile-select {
 
 /* Mobile skeleton loader */
 .mobile-skeleton {
-  background: linear-gradient(90deg, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%);
+  background: linear-gradient(90deg, var(--color-primary) 25%, var(--color-primary-light) 50%, var(--color-primary) 75%);
   background-size: 200% 100%;
   animation: mobile-shimmer 1.5s infinite;
   border-radius: 8px;

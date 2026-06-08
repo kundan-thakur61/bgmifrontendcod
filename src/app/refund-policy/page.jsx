@@ -22,11 +22,11 @@ export default function RefundPolicyPage() {
             <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">1. Eligibility for Refunds</h2>
               <p className="mb-4">
-                BattleZone may issue refunds under the following circumstances:
+                BattleXZone may issue refunds under the following circumstances:
               </p>
               <ul className="list-disc list-inside space-y-2">
                 <li>Match cancelled by admin before start time — full refund.</li>
-                <li>Technical issues on BattleZone&apos;s end that prevented participation — full refund.</li>
+                <li>Technical issues on BattleXZone&apos;s end that prevented participation — full refund.</li>
                 <li>Room ID/password not shared within 30 minutes of scheduled time — full refund.</li>
                 <li>Duplicate payment charged — excess amount refunded.</li>
               </ul>
@@ -46,7 +46,7 @@ export default function RefundPolicyPage() {
             <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">3. Refund Process</h2>
               <p className="mb-4">
-                Eligible refunds are automatically credited to your BattleZone wallet within 24 hours. For bank/UPI refunds, the processing time is 5–7 business days.
+                Eligible refunds are automatically credited to your BattleXZone wallet within 24 hours. For bank/UPI refunds, the processing time is 5–7 business days.
               </p>
               <p>
                 To request a refund, raise a support ticket at <a href="/tickets" className="text-primary-400 hover:underline">Support Tickets</a> or email <a href="mailto:support@battlexzone.com" className="text-primary-400 hover:underline">support@battlexzone.com</a>.

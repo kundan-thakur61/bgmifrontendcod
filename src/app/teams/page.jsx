@@ -6,6 +6,7 @@ import { Navbar, Footer } from '@/components/layout';
 import { api } from '@/lib/api';
 import { useAuth } from '@/context/AuthContext';
 import { formatDate } from '@/lib/utils';
+import OptimizedImage from '@/components/seo/OptimizedImage';
 
 export default function TeamsPage() {
     const { user, loading: authLoading } = useAuth();
@@ -196,7 +197,13 @@ export default function TeamsPage() {
                                 >
                                     <div className="flex items-center gap-4 mb-4">
                                         {team.logo?.url ? (
-                                            <img src={team.logo.url} alt={team.name} className="w-16 h-16 rounded-xl object-cover" width="64" height="64" />
+                                            <OptimizedImage
+                                              src={team.logo.url}
+                                              alt={team.name}
+                                              width={64}
+                                              height={64}
+                                              className="w-16 h-16 rounded-xl object-cover"
+                                            />
                                         ) : (
                                             <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-xl flex items-center justify-center text-2xl font-bold text-white">
                                                 {team.tag?.[0] || team.name[0]}

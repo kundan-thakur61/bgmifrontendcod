@@ -16,6 +16,8 @@ export default function Footer() {
       { href: '/blog', label: 'BGMI Tips & Tricks' },
       { href: '/blog/bgmi-tournament-guide-2026', label: 'Tournament Guide 2026' },
       { href: '/blog/how-to-earn-money-gaming-india', label: 'Earn Money Gaming' },
+      { href: '/winners', label: 'Real Winners & Stories' },
+      { href: '/compare', label: 'Compare Platforms' },
       { href: '/about', label: 'About Us' },
       { href: '/contact', label: 'Contact' },
     ],
@@ -34,11 +36,11 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { href: 'https://twitter.com/BattleZone', label: 'Twitter', icon: 'X' },
-    { href: 'https://facebook.com/BattleZone', label: 'Facebook', icon: 'FB' },
-    { href: 'https://instagram.com/BattleZone', label: 'Instagram', icon: 'IG' },
-    { href: 'https://discord.gg/BattleZone', label: 'Discord', icon: 'DC' },
-    { href: 'https://youtube.com/@BattleZone', label: 'YouTube', icon: 'YT' },
+    { href: 'https://twitter.com/BattleXZone', label: 'Twitter', icon: 'X' },
+    { href: 'https://facebook.com/BattleXZone', label: 'Facebook', icon: 'FB' },
+    { href: 'https://instagram.com/BattleXZone', label: 'Instagram', icon: 'IG' },
+    { href: 'https://discord.gg/BattleXZone', label: 'Discord', icon: 'DC' },
+    { href: 'https://youtube.com/@BattleXZone', label: 'YouTube', icon: 'YT' },
   ];
 
   return (
@@ -51,7 +53,7 @@ export default function Footer() {
               <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-500 to-gaming-purple rounded-lg flex items-center justify-center flex-shrink-0">
                 <span className="text-white font-bold text-lg sm:text-xl">B</span>
               </div>
-              <span className="text-lg sm:text-xl font-bold font-display gradient-text">BattleZone</span>
+              <span className="text-lg sm:text-xl font-bold font-display gradient-text">BattleXZone</span>
             </Link>
             <p className="text-dark-400 text-xs sm:text-sm mb-3 sm:mb-4">
               India&apos;s premier <Link href="/tournaments" className="text-cyan-400 hover:underline">BGMI esports platform</Link> for daily scrims and custom room tournaments. Play, win, and withdraw real money instantly via UPI.
@@ -133,10 +135,10 @@ export default function Footer() {
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-dark-800">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
             <p className="text-dark-500 text-xs sm:text-sm">
-              © {currentYear} BattleZone. All rights reserved.
+              © {currentYear} BattleXZone. All rights reserved.
             </p>
             <p className="text-dark-500 text-[10px] sm:text-xs text-center md:text-right">
-              BattleZone is a skill-based gaming platform. All games are competitive and based on player skill.
+              BattleXZone is a skill-based gaming platform. All games are competitive and based on player skill.
               <br />
               Not available in states where prohibited by law.
             </p>

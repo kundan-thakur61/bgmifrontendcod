@@ -5,7 +5,7 @@ export const runtime = 'edge';
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   
-  const title = searchParams.get('title') || 'BattleZone - Esports Platform';
+  const title = searchParams.get('title') || 'BattleXZone - Esports Platform';
   const subtitle = searchParams.get('subtitle') || 'Play BGMI & PUBG Tournaments for Real Money';
   const category = searchParams.get('category') || '';
 
@@ -182,7 +182,7 @@ export async function GET(request) {
               letterSpacing: '-0.02em',
             }}
           >
-            BattleZone
+            BattleXZone
           </span>
         </div>
       </div>

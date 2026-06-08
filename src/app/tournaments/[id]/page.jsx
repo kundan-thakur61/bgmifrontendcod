@@ -9,6 +9,8 @@ import { formatCurrency, getCurrencySymbol } from '@/lib/utils';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Chat from '@/components/chat/Chat';
+import OptimizedImage from '@/components/seo/OptimizedImage';
+import RelatedContent from '@/components/seo/RelatedContent';
 
 export default function TournamentDetailPage() {
   const params = useParams();
@@ -141,7 +143,14 @@ export default function TournamentDetailPage() {
           {/* Tournament Header */}
           <div className="card p-6 mb-6">
             {tournament.banner?.url && (
-              <img src={tournament.banner.url} alt={tournament.title} className="w-full h-48 object-cover rounded-lg mb-4" loading="lazy" width="800" height="192" />
+              <OptimizedImage
+                src={tournament.banner.url}
+                alt={tournament.title}
+                width={800}
+                height={192}
+                className="w-full h-48 object-cover rounded-lg mb-4"
+                priority={false}
+              />
             )}
             <div className="flex justify-between items-start mb-4">
               <div>
@@ -345,6 +354,27 @@ export default function TournamentDetailPage() {
                 This tournament has ended
               </div>
             )}
+          </div>
+
+          {/* PHASE 6: Automated Internal Linking - Related Tournaments / Content */}
+          <div className="max-w-4xl mx-auto px-4">
+            <RelatedContent
+              items={[
+                { title: "BGMI Daily Scrims", prizePool: "5000", id: "daily-bgmi" },
+                { title: "Free Fire Clash Squad", prizePool: "2500", id: "ff-clash" },
+                { title: "Weekend Squad Showdown", prizePool: "15000", id: "weekend-squad" },
+              ]}
+              title="Related Tournaments & Scrims"
+              type="tournament"
+            />
+            <RelatedContent
+              items={[
+                { title: "How to Win BGMI Tournaments", slug: "how-to-win-bgmi-tournaments-2024" },
+                { title: "BGMI Tournament Guide 2026", slug: "bgmi-tournament-guide-2026" },
+              ]}
+              title="Learn & Improve"
+              type="blog"
+            />
           </div>
 
           {/* Tournament Chat */}

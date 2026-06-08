@@ -5,6 +5,7 @@ import { Navbar, Footer } from '@/components/layout';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
 import { formatDate } from '@/lib/utils';
+import LevelBadge from '@/components/dashboard/LevelBadge';
 
 export default function ProfilePage() {
   const { user, updateUser } = useAuth();
@@ -82,6 +83,7 @@ export default function ProfilePage() {
               <div className="flex-1 text-center sm:text-left min-w-0">
                 <div className="flex items-center justify-center sm:justify-start gap-2 mb-1 sm:mb-2">
                   <h2 className="text-xl sm:text-2xl font-bold truncate">{displayUser.username}</h2>
+                  <LevelBadge level={displayUser.level} xp={displayUser.xp} />
                   {displayUser.kycStatus === 'verified' && (
                     <span className="badge badge-success">Verified</span>
                   )}

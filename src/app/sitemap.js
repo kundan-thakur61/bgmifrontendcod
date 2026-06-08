@@ -27,14 +27,18 @@ export default async function sitemap() {
     // Homepage - Highest Priority
     { path: '', changeFrequency: 'daily', priority: 1.0 },
     
-    // Primary Tournament Pages (Target Keywords)
+    // Primary Tournament Pages (Target Keywords) - expanded for research list (today, tonight, city, registration)
     { path: '/tournaments', changeFrequency: 'daily', priority: 0.95 },
     { path: '/tournaments/bgmi', changeFrequency: 'daily', priority: 0.95 },
     { path: '/tournaments/free-fire', changeFrequency: 'daily', priority: 0.95 },
     { path: '/tournaments/pubg-mobile', changeFrequency: 'daily', priority: 0.9 },
+    // Additional high-volume variants from 10k keyword research
+    { path: '/tournaments/today', changeFrequency: 'hourly', priority: 0.9 },
+    { path: '/matches/today', changeFrequency: 'hourly', priority: 0.9 },
     
-    // Matches Page (Target: "BGMI win match online")
+    // Matches Page (Target: "BGMI win match online" + scrims/registration from research)
     { path: '/matches', changeFrequency: 'hourly', priority: 0.95 },
+    { path: '/matches/scrims', changeFrequency: 'hourly', priority: 0.85 },
     
     // Key Conversion Pages
     { path: '/how-it-works', changeFrequency: 'weekly', priority: 0.9 },
@@ -46,15 +50,19 @@ export default async function sitemap() {
     // Leaderboard & Community
     { path: '/leaderboard', changeFrequency: 'daily', priority: 0.85 },
     { path: '/achievements', changeFrequency: 'daily', priority: 0.7 },
+    // High-value SEO pages (E-E-A-T + Comparison)
+    { path: '/winners', changeFrequency: 'weekly', priority: 0.85 },
+    { path: '/compare', changeFrequency: 'monthly', priority: 0.82 },
     
-    // Location Pages for Local SEO
+    // Location Pages for Local SEO (expanded)
     { path: '/locations', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/locations/mumbai-tournaments', changeFrequency: 'weekly', priority: 0.75 },
     { path: '/locations/delhi-tournaments', changeFrequency: 'weekly', priority: 0.75 },
     { path: '/locations/bangalore-tournaments', changeFrequency: 'weekly', priority: 0.75 },
-    { path: '/locations/hyderabad-tournaments', changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/locations/kolkata-tournaments', changeFrequency: 'weekly', priority: 0.7 },
-    { path: '/locations/chennai-tournaments', changeFrequency: 'weekly', priority: 0.7 },
+    { path: '/locations/hyderabad-tournaments', changeFrequency: 'weekly', priority: 0.72 },
+    { path: '/locations/chennai-tournaments', changeFrequency: 'weekly', priority: 0.72 },
+    { path: '/locations/pune-tournaments', changeFrequency: 'weekly', priority: 0.7 },
+    { path: '/locations/kolkata-tournaments', changeFrequency: 'weekly', priority: 0.65 },
     
     // Support & Trust Pages
     { path: '/faq', changeFrequency: 'monthly', priority: 0.75 },
@@ -112,6 +120,28 @@ export default async function sitemap() {
         });
       });
     }
+
+    // Include public teams for entity SEO + internal linking
+    try {
+      const teamsRes = await fetch(`${API_BASE_URL}/teams?limit=100&public=true`, {
+        next: { revalidate: 3600 },
+      });
+      if (teamsRes.ok) {
+        const teamsData = await teamsRes.json();
+        const teams = teamsData.teams || teamsData.data || [];
+        teams.forEach(team => {
+          const tid = team._id || team.id;
+          if (tid) {
+            dynamicRoutes.push({
+              url: `${baseUrl}/teams/${tid}`,
+              lastModified: team.updatedAt || team.createdAt || now,
+              changeFrequency: 'weekly',
+              priority: 0.65,
+            });
+          }
+        });
+      }
+    } catch (_) {}
   } catch (error) {
     console.error('[Sitemap] Error fetching dynamic routes:', error.message);
   }

@@ -31,7 +31,7 @@ const articleData = {
   excerpt: 'Complete comparison of BGMI vs Free Fire covering graphics, gameplay mechanics, tournament scenes, earning potential, and which game suits different player preferences.',
   datePublished: '2026-01-25T00:00:00+05:30',
   dateModified: '2026-01-25T00:00:00+05:30',
-  author: 'BattleZone Team',
+  author: 'BattleXZone Team',
   url: 'https://www.battlexzone.com/blog/bgmi-vs-free-fire-which-is-better',
   image: 'https://www.battlexzone.com/blog/bgmi-vs-free-fire.jpg',
   category: 'Comparison',
@@ -109,7 +109,7 @@ const articleFAQs = [
   },
   {
     question: 'Which game has more tournaments in India?',
-    answer: 'Free Fire has more frequent daily tournaments due to its larger player base and faster match times. However, BGMI tournaments typically have higher prize pools and more prestigious competitions. Both games are well-represented on tournament platforms like BattleZone with multiple daily events for each.',
+    answer: 'Free Fire has more frequent daily tournaments due to its larger player base and faster match times. However, BGMI tournaments typically have higher prize pools and more prestigious competitions. Both games are well-represented on tournament platforms like BattleXZone with multiple daily events for each.',
   },
   {
     question: 'Can my phone run BGMI or Free Fire?',
@@ -183,7 +183,7 @@ export default function BGMIvsFreeFire() {
                 ⚔️
               </div>
               <div>
-                <p className="font-semibold text-white">BattleZone Team</p>
+                <p className="font-semibold text-white">BattleXZone Team</p>
                 <p className="text-sm text-dark-400">Gaming Comparison Experts</p>
               </div>
             </div>
@@ -555,7 +555,7 @@ export default function BGMIvsFreeFire() {
             {/* CTA Box */}
             <div className="bg-gradient-to-r from-primary-600 to-purple-600 rounded-xl p-8 text-center">
               <h3 className="text-2xl font-bold mb-4">Ready to Compete?</h3>
-              <p className="text-white/90 mb-6">Join tournaments for both BGMI and Free Fire on BattleZone</p>
+              <p className="text-white/90 mb-6">Join tournaments for both BGMI and Free Fire on BattleXZone</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/matches"

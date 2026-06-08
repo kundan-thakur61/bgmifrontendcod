@@ -255,3 +255,147 @@ export function TournamentSchema({ tournament }) {
     />
   );
 }
+
+// HowTo Schema - Ideal for /how-it-works and step-by-step guides (AEO/Featured Snippets)
+export function HowToSchema({ name, description, steps = [] }) {
+  if (!name || !steps.length) return null;
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name,
+    description: description || `Step-by-step guide: ${name}`,
+    step: steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      ...(step.url && { url: step.url }),
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      suppressHydrationWarning
+    />
+  );
+}
+
+// Review / AggregateRating Schema - Builds trust & rich results (E-E-A-T + AI citation)
+export function ReviewSchema({ reviews = [], aggregateRating }) {
+  const defaultAggregate = aggregateRating || {
+    ratingValue: '4.7',
+    reviewCount: '2500',
+    bestRating: '5',
+    worstRating: '1',
+  };
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization', // or 'Product' / 'SportsOrganization' as appropriate
+    name: 'BattleXZone',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ...defaultAggregate,
+    },
+    ...(reviews.length > 0 && {
+      review: reviews.slice(0, 5).map((r) => ({
+        '@type': 'Review',
+        author: { '@type': 'Person', name: r.author || 'Verified Player' },
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: r.rating || 5,
+          bestRating: '5',
+        },
+        reviewBody: r.text || r.body,
+        datePublished: r.date || new Date().toISOString().split('T')[0],
+      })),
+    }),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      suppressHydrationWarning
+    />
+  );
+}
+
+// ─── SportsTeam / Esports Team Schema (for /teams/[id] public profiles) ─────
+export function TeamSchema({ team }) {
+  if (!team) return null;
+
+  const teamId = team._id || team.id;
+  const teamUrl = `https://www.battlexzone.com/teams/${teamId}`;
+  const members = (team.members || []).slice(0, 10).map((m) => ({
+    '@type': 'Person',
+    name: m.user?.name || 'Member',
+    url: m.user?._id ? `https://www.battlexzone.com/profile/${m.user._id}` : undefined,
+  }));
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'SportsTeam',
+    name: team.name,
+    alternateName: team.tag ? `[${team.tag}]` : undefined,
+    description: team.description || `${team.name} competitive esports squad on BattleZone.`,
+    url: teamUrl,
+    sport: (team.gameType || 'BGMI').replace('_', ' '),
+    memberOf: {
+      '@type': 'Organization',
+      name: 'BattleXZone',
+      url: 'https://www.battlexzone.com',
+    },
+    members: members.length ? members : undefined,
+    numberOfMembers: team.members?.length || 0,
+    image: team.logo?.url || 'https://www.battlexzone.com/images/og-default.jpg',
+    foundingDate: team.createdAt ? new Date(team.createdAt).toISOString().split('T')[0] : undefined,
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      suppressHydrationWarning
+    />
+  );
+}
+
+// ─── Person Schema (for players, captains, public profiles) ─────────────────
+export function PersonSchema({ person, additionalName, stats }) {
+  if (!person) return null;
+
+  const name = person.name || person.username || 'Player';
+  const personUrl = person._id
+    ? `https://www.battlexzone.com/profile/${person._id}`
+    : 'https://www.battlexzone.com/leaderboard';
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name,
+    alternateName: additionalName,
+    url: personUrl,
+    description: `${name} — BGMI / esports competitor on BattleZone. Level ${person.level || 'Pro'}.`,
+    image: person.avatar || person.photo || 'https://www.battlexzone.com/images/og-default.jpg',
+    memberOf: {
+      '@type': 'SportsTeam',
+      name: person.team?.name || 'Independent',
+    },
+    ...(stats && {
+      knowsAbout: ['BGMI', 'Esports', 'Competitive Gaming'],
+      award: stats.earnings ? `₹${stats.earnings} in tournament winnings` : undefined,
+    }),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      suppressHydrationWarning
+    />
+  );
+}

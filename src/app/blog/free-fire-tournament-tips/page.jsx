@@ -32,7 +32,7 @@ const articleData = {
   excerpt: 'Master Free Fire tournaments with expert tips on character selection, weapon combos, positioning strategies, and winning techniques for 1vs1 matches.',
   datePublished: '2026-01-20T00:00:00+05:30',
   dateModified: '2026-01-20T00:00:00+05:30',
-  author: 'BattleZone Team',
+  author: 'BattleXZone Team',
   url: 'https://www.battlexzone.com/blog/free-fire-tournament-tips',
   image: 'https://www.battlexzone.com/blog/free-fire-tournament-tips.jpg',
   category: 'Guides',
@@ -87,7 +87,7 @@ const articleFAQs = [
   },
   {
     question: 'Are Free Fire tournaments legal in India?',
-    answer: 'Yes, Free Fire tournaments are legal in India as they are classified as skill-based games. The outcome depends on player skill, strategy, and practice rather than chance. Platforms like BattleZone host legal Free Fire cash prize tournaments with proper verification and secure withdrawals.',
+    answer: 'Yes, Free Fire tournaments are legal in India as they are classified as skill-based games. The outcome depends on player skill, strategy, and practice rather than chance. Platforms like BattleXZone host legal Free Fire cash prize tournaments with proper verification and secure withdrawals.',
   },
   {
     question: 'How much can I earn from Free Fire tournaments?',
@@ -98,8 +98,8 @@ const articleFAQs = [
     answer: 'Battle Royale (BR) mode is the classic 50-player survival format where the last team standing wins. Clash Squad (CS) mode is a 4vs4 round-based format with fixed economy. BR requires survival skills and positioning, while CS needs team coordination and round management. Both formats are popular in Free Fire tournaments.',
   },
   {
-    question: 'How do I join Free Fire tournaments on BattleZone?',
-    answer: 'To join Free Fire tournaments on BattleZone: 1) Create an account and verify with KYC, 2) Add money to your wallet via UPI, 3) Browse Free Fire tournaments in the matches section, 4) Select your preferred format (BR or CS), 5) Pay the entry fee and confirm, 6) Receive room credentials before match time, 7) Join and compete for cash prizes.',
+    question: 'How do I join Free Fire tournaments on BattleXZone?',
+    answer: 'To join Free Fire tournaments on BattleXZone: 1) Create an account and verify with KYC, 2) Add money to your wallet via UPI, 3) Browse Free Fire tournaments in the matches section, 4) Select your preferred format (BR or CS), 5) Pay the entry fee and confirm, 6) Receive room credentials before match time, 7) Join and compete for cash prizes.',
   },
 ];
 
@@ -154,7 +154,7 @@ export default function FreeFireTournamentTips() {
                 🔥
               </div>
               <div>
-                <p className="font-semibold text-white">BattleZone Team</p>
+                <p className="font-semibold text-white">BattleXZone Team</p>
                 <p className="text-sm text-dark-400">Free Fire Esports Specialists</p>
               </div>
             </div>
@@ -532,7 +532,7 @@ export default function FreeFireTournamentTips() {
               </div>
 
               <p className="text-dark-300 leading-relaxed mb-6">
-                Free Fire tournaments on <Link href="/" className="text-primary-400 hover:underline">BattleZone</Link> offer
+                Free Fire tournaments on <Link href="/" className="text-primary-400 hover:underline">BattleXZone</Link> offer
                 multiple earning opportunities. Entry fees range from <strong>Rs.10 to Rs.500</strong>, with prize pools
                 scaling accordingly. Consistent players can earn steady income by participating in 5-10 tournaments daily.
               </p>
@@ -567,7 +567,7 @@ export default function FreeFireTournamentTips() {
             {/* CTA Box */}
             <div className="bg-gradient-to-r from-primary-900/50 to-purple-900/50 rounded-xl p-8 text-center border border-primary-700/50">
               <h3 className="text-2xl font-bold mb-4">Ready to Win Free Fire Tournaments?</h3>
-              <p className="text-dark-300 mb-6">Apply these strategies on BattleZone and start earning today</p>
+              <p className="text-dark-300 mb-6">Apply these strategies on BattleXZone and start earning today</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/register"

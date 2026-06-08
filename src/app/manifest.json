@@ -1,6 +1,6 @@
 {
-  "name": "BattleZone — India's #1 BGMI Esports Tournament Platform",
-  "short_name": "BattleZone",
+  "name": "BattleXZone — India's #1 BGMI Esports Tournament Platform",
+  "short_name": "BattleXZone",
   "description": "Play BGMI & Free Fire tournaments, win real cash prizes. Entry from ₹10. Instant UPI withdrawals. Join 50,000+ players on India's top esports platform.",
   "start_url": "/?source=pwa",
   "scope": "/",
@@ -20,31 +20,7 @@
   },
 
   "icons": [
-    { "src": "/images/icon-72.png",  "sizes": "72x72",   "type": "image/png" },
-    { "src": "/images/icon-96.png",  "sizes": "96x96",   "type": "image/png" },
-    { "src": "/images/icon-128.png", "sizes": "128x128", "type": "image/png" },
-    { "src": "/images/icon-144.png", "sizes": "144x144", "type": "image/png" },
-    { "src": "/images/icon-152.png", "sizes": "152x152", "type": "image/png" },
-    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "/images/icon-384.png", "sizes": "384x384", "type": "image/png" },
-    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
-  ],
-
-  "screenshots": [
-    {
-      "src": "/images/screenshot-wide.jpg",
-      "sizes": "1280x720",
-      "type": "image/jpeg",
-      "form_factor": "wide",
-      "label": "BattleZone — Browse and join BGMI tournaments"
-    },
-    {
-      "src": "/images/screenshot-mobile.jpg",
-      "sizes": "750x1334",
-      "type": "image/jpeg",
-      "form_factor": "narrow",
-      "label": "BattleZone — Mobile esports experience"
-    }
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" }
   ],
 
   "shortcuts": [

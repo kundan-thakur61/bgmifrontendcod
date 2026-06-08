@@ -12,7 +12,7 @@ export default function CTASection() {
                     <span className="neon-text">BGMI TOURNAMENTS?</span>
                 </h2>
                 <p className="text-base sm:text-xl text-gray-300 mb-8 sm:mb-12 font-light px-2">
-                    Join <span className="text-cyan-400 font-semibold">thousands of BGMI players</span> competing in daily scrims for real cash prizes
+                    Join <span className="text-accent-400 font-semibold">thousands of BGMI players</span> competing in daily scrims for real cash prizes
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-2">
                     <Link

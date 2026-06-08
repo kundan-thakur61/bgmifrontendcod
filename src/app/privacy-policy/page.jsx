@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
             <section className="card p-4 sm:p-6">
               <h2 className="text-xl font-bold text-white mb-4">1. Introduction</h2>
               <p className="mb-4">
-                BattleZone (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and mobile application (the &quot;Platform&quot;).
+                BattleXZone (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and mobile application (the &quot;Platform&quot;).
               </p>
               <p>
                 Please read this Privacy Policy carefully. By using the Platform, you consent to the practices described in this policy.

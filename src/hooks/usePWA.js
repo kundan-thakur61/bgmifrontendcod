@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { logger } from '@/lib/logger';
 
 /**
  * usePWA — unified hook for all PWA capabilities:
@@ -155,7 +156,7 @@ export function usePWA() {
       await navigator.share({ title, text, url, files });
       return true;
     } catch (err) {
-      if (err.name !== 'AbortError') console.warn('[PWA] Share failed:', err);
+      if (err.name !== 'AbortError') logger.warn('PWA', 'Share failed:', err);
       return false;
     }
   }, []);

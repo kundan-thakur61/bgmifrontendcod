@@ -34,7 +34,7 @@ const articleData = {
   excerpt: 'Complete guide to PUBG FREE FIRE BGMI tournament matches in India. Learn how to join 1vs1, 1vs2, 1vs3, 1vs4 matches, win real money, and dominate the competition.',
   datePublished: '2026-01-15T00:00:00+05:30',
   dateModified: '2026-01-17T00:00:00+05:30',
-  author: 'BattleZone Team',
+  author: 'BattleXZone Team',
   url: 'https://www.battlexzone.com/blog/bgmi-tournament-guide-2026',
   image: 'https://www.battlexzone.com/blog/bgmi-tournament-guide-2026.jpg',
   category: 'Guides',
@@ -45,14 +45,14 @@ const articleData = {
 // HowTo data for schema
 const howToData = {
   name: 'How to Join PUBG FREE FIRE BGMI Tournament Matches and Win Real Money',
-  description: 'Step-by-step guide to joining PUBG FREE FIRE BGMI tournament matches on BattleZone and winning real cash prizes in India.',
+  description: 'Step-by-step guide to joining PUBG FREE FIRE BGMI tournament matches on BattleXZone and winning real cash prizes in India.',
   image: 'https://www.battlexzone.com/blog/bgmi-tournament-guide-2026.jpg',
   totalTime: 'PT15M',
   cost: '10',
   steps: [
     {
-      name: 'Create BattleZone Account',
-      text: 'Sign up on BattleZone using your mobile number. Verify with OTP. Takes less than 30 seconds.',
+      name: 'Create BattleXZone Account',
+      text: 'Sign up on BattleXZone using your mobile number. Verify with OTP. Takes less than 30 seconds.',
       url: 'https://www.battlexzone.com/register',
     },
     {
@@ -100,19 +100,19 @@ const howToData = {
 const articleFAQs = [
   {
     question: 'How do I join PUBG FREE FIRE BGMI tournament matches in India?',
-    answer: 'To join PUBG FREE FIRE BGMI tournament matches in India: Create an account on a trusted platform like BattleZone, complete KYC verification, add money to your wallet, browse available tournaments, pay the entry fee, and receive room credentials before the match starts. Entry fees for 1vs1, 1vs2, 1vs3, 1vs4 matches start from Rs.10. Check our BGMI tournament match India guide for more details.',
+    answer: 'To join PUBG FREE FIRE BGMI tournament matches in India: Create an account on a trusted platform like BattleXZone, complete KYC verification, add money to your wallet, browse available tournaments, pay the entry fee, and receive room credentials before the match starts. Entry fees for 1vs1, 1vs2, 1vs3, 1vs4 matches start from Rs.10. Check our BGMI tournament match India guide for more details.',
   },
   {
     question: 'Which is the best app for BGMI tournament matches in India?',
-    answer: 'BattleZone is the best app for BGMI tournament matches in India, offering fair play verification, instant withdrawals, low entry fees starting at Rs.10, and 1000+ daily matches. Our BGMI cash prize tournament India events are popular among players. Other options include platforms like Rooter and esports-specific apps.',
+    answer: 'BattleXZone is the best app for BGMI tournament matches in India, offering fair play verification, instant withdrawals, low entry fees starting at Rs.10, and 1000+ daily matches. Our BGMI cash prize tournament India events are popular among players. Other options include platforms like Rooter and esports-specific apps.',
   },
   {
     question: 'Can I earn real money from BGMI cash prize tournament India events?',
-    answer: 'Yes, you can earn real money from BGMI cash prize tournament India events. Platforms like BattleZone offer cash prizes for tournament winners. Players can withdraw winnings to their bank accounts via UPI or direct transfer. Top players earn thousands of rupees monthly in BGMI tournament match India competitions.',
+    answer: 'Yes, you can earn real money from BGMI cash prize tournament India events. Platforms like BattleXZone offer cash prizes for tournament winners. Players can withdraw winnings to their bank accounts via UPI or direct transfer. Top players earn thousands of rupees monthly in BGMI tournament match India competitions.',
   },
   {
     question: 'What is the entry fee for BGMI tournament match 1vs1, 1vs2, 1vs3, 1vs4?',
-    answer: 'BGMI tournament match entry fees for 1vs1, 1vs2, 1vs3, 1vs4 formats vary by platform and tournament type. On BattleZone, entry fees start from Rs.10 for basic matches and go up to Rs.500+ for premium tournaments with larger prize pools. Higher entry fees typically mean bigger prizes in BGMI tournament match India events.',
+    answer: 'BGMI tournament match entry fees for 1vs1, 1vs2, 1vs3, 1vs4 formats vary by platform and tournament type. On BattleXZone, entry fees start from Rs.10 for basic matches and go up to Rs.500+ for premium tournaments with larger prize pools. Higher entry fees typically mean bigger prizes in BGMI tournament match India events.',
   },
   {
     question: 'Is playing BGMI tournament match online for money legal in India?',
@@ -124,11 +124,11 @@ const articleFAQs = [
   },
   {
     question: 'What happens if I face cheaters in a BGMI custom room tournament?',
-    answer: 'In BGMI custom room tournament events on reputable platforms like BattleZone, you can report cheaters through the support system. Screenshot verification, EXIF data analysis, and manual review help identify cheaters in BGMI custom room tournament India matches. Confirmed cheaters are permanently banned, and affected matches may be invalidated with refunds issued.',
+    answer: 'In BGMI custom room tournament events on reputable platforms like BattleXZone, you can report cheaters through the support system. Screenshot verification, EXIF data analysis, and manual review help identify cheaters in BGMI custom room tournament India matches. Confirmed cheaters are permanently banned, and affected matches may be invalidated with refunds issued.',
   },
   {
     question: 'How long does it take to withdraw winnings from BGMI paid tournament India events?',
-    answer: 'From BGMI paid tournament India events on BattleZone, withdrawal processing takes 24-48 hours after request. UPI withdrawals are typically faster than bank transfers. Ensure your KYC is complete and bank details match your documents for smooth processing of BGMI cash prize tournament India winnings. Minimum withdrawal is usually Rs.100.',
+    answer: 'From BGMI paid tournament India events on BattleXZone, withdrawal processing takes 24-48 hours after request. UPI withdrawals are typically faster than bank transfers. Ensure your KYC is complete and bank details match your documents for smooth processing of BGMI cash prize tournament India winnings. Minimum withdrawal is usually Rs.100.',
   },
   {
     question: 'What are the different types of BGMI tournament match formats?',
@@ -136,11 +136,11 @@ const articleFAQs = [
   },
   {
     question: 'How do I register for BGMI tournament registration India events?',
-    answer: 'To register for BGMI tournament registration India events: Visit BattleZone platform, create an account with your mobile number, complete KYC verification with Aadhaar or PAN card, add funds to your wallet, browse available tournaments, and pay the entry fee. Our BGMI tournament registration India process is simple and takes just a few minutes. Check our BGMI tournament match today schedule for upcoming events.',
+    answer: 'To register for BGMI tournament registration India events: Visit BattleXZone platform, create an account with your mobile number, complete KYC verification with Aadhaar or PAN card, add funds to your wallet, browse available tournaments, and pay the entry fee. Our BGMI tournament registration India process is simple and takes just a few minutes. Check our BGMI tournament match today schedule for upcoming events.',
   },
   {
     question: 'Are BGMI free tournament India events available?',
-    answer: 'Yes, BGMI free tournament India events are available on platforms like BattleZone. These BGMI free tournament India matches have no entry fees but still offer prizes from the platform or sponsors. You can participate in BGMI tournament match online events without paying anything. Our BGMI free tournament India events are perfect for beginners to practice skills before entering paid tournaments.',
+    answer: 'Yes, BGMI free tournament India events are available on platforms like BattleXZone. These BGMI free tournament India matches have no entry fees but still offer prizes from the platform or sponsors. You can participate in BGMI tournament match online events without paying anything. Our BGMI free tournament India events are perfect for beginners to practice skills before entering paid tournaments.',
   },
 ];
 
@@ -189,7 +189,7 @@ export default function BGMITournamentGuide2026() {
             <div className="bg-dark-800 border-l-4 border-primary-500 rounded-r-lg p-6 mb-8">
               <p className="text-lg text-white leading-relaxed">
                 <strong>PUBG FREE FIRE BGMI tournament matches</strong> are competitive gaming events where players compete for real cash prizes.
-                Join 1vs1, 1vs2, 1vs3, 1vs4 matches in India's top tournaments. Register on platforms like <strong>BattleZone</strong>, complete KYC verification,
+                Join 1vs1, 1vs2, 1vs3, 1vs4 matches in India's top tournaments. Register on platforms like <strong>BattleXZone</strong>, complete KYC verification,
                 add funds to your wallet, and participate in matches starting from <strong>Rs.10 entry fee</strong>.
                 Winners receive prizes directly to their wallet and can withdraw via <strong>UPI within 24-48 hours</strong>.
               </p>
@@ -201,7 +201,7 @@ export default function BGMITournamentGuide2026() {
                 🎮
               </div>
               <div>
-                <p className="font-semibold text-white">BattleZone Team</p>
+                <p className="font-semibold text-white">BattleXZone Team</p>
                 <p className="text-sm text-dark-400">Pro Gaming Experts - 50,000+ tournaments hosted</p>
               </div>
             </div>
@@ -289,7 +289,7 @@ export default function BGMITournamentGuide2026() {
 
               <p className="text-dark-300 leading-relaxed">
                 In 2026, PUBG FREE FIRE BGMI tournament matches have become a legitimate way for skilled players to earn money while doing what they love.
-                Platforms like <Link href="/" className="text-primary-400 hover:underline">BattleZone</Link> host thousands of
+                Platforms like <Link href="/" className="text-primary-400 hover:underline">BattleXZone</Link> host thousands of
                 daily BGMI tournament matches, making it accessible for players of all skill levels to participate and win.
                 For more information on <Link href="/tournaments" className="text-primary-400 hover:underline">BGMI tournament match India</Link> options and
                 <Link href="/tournaments" className="text-primary-400 hover:underline">BGMI cash prize tournament India</Link> events.
@@ -303,7 +303,7 @@ export default function BGMITournamentGuide2026() {
               </h2>
 
               <p className="text-dark-300 leading-relaxed mb-8">
-                Joining PUBG FREE FIRE BGMI tournament matches is straightforward. Follow these steps to start competing in 1vs1, 1vs2, 1vs3, 1vs4 matches for real money on BattleZone:
+                Joining PUBG FREE FIRE BGMI tournament matches is straightforward. Follow these steps to start competing in 1vs1, 1vs2, 1vs3, 1vs4 matches for real money on BattleXZone:
               </p>
 
               {/* Steps */}
@@ -324,7 +324,7 @@ export default function BGMITournamentGuide2026() {
               {/* CTA Box */}
               <div className="bg-gradient-to-r from-primary-900/50 to-purple-900/50 rounded-xl p-8 mt-8 text-center border border-primary-700/50">
                 <h3 className="text-2xl font-bold mb-4">Ready to Start Winning?</h3>
-                <p className="text-dark-300 mb-6">Join BattleZone today and compete in your first BGMI tournament</p>
+                <p className="text-dark-300 mb-6">Join BattleXZone today and compete in your first BGMI tournament</p>
                 <Link
                   href="/register"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-lg transition-colors text-lg"
@@ -417,7 +417,7 @@ export default function BGMITournamentGuide2026() {
               </p>
 
               <div className="bg-gradient-to-r from-primary-900/30 to-dark-800 rounded-xl p-8 border border-primary-700/30 mb-8">
-                <h3 className="text-2xl font-bold mb-4 text-white">Why BattleZone is #1 for BGMI Tournament Matches in India</h3>
+                <h3 className="text-2xl font-bold mb-4 text-white">Why BattleXZone is #1 for BGMI Tournament Matches in India</h3>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex items-center gap-3">
                     <span className="text-primary-400 text-xl">✓</span>
@@ -601,7 +601,7 @@ export default function BGMITournamentGuide2026() {
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold mb-4">Withdrawal Process on BattleZone:</h3>
+              <h3 className="text-xl font-bold mb-4">Withdrawal Process on BattleXZone:</h3>
               <ol className="list-decimal list-inside space-y-3 text-dark-300 mb-6">
                 <li>Ensure KYC verification is complete</li>
                 <li>Go to Wallet then Withdraw section</li>
@@ -680,7 +680,7 @@ export default function BGMITournamentGuide2026() {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary-400 mt-1">✓</span>
-                    <span>Entry fees start from Rs.10 on platforms like BattleZone for 1vs1, 1vs2, 1vs3, 1vs4 matches</span>
+                    <span>Entry fees start from Rs.10 on platforms like BattleXZone for 1vs1, 1vs2, 1vs3, 1vs4 matches</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary-400 mt-1">✓</span>
@@ -718,7 +718,7 @@ export default function BGMITournamentGuide2026() {
               Start Your Tournament Journey Today
             </h2>
             <p className="text-xl text-dark-300 mb-8 max-w-2xl mx-auto">
-              Join 50,000+ players competing daily on BattleZone. Your first tournament is just minutes away.
+              Join 50,000+ players competing daily on BattleXZone. Your first tournament is just minutes away.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

@@ -3,8 +3,8 @@ const isDev = process.env.NODE_ENV !== 'production';
 const isProd = !isDev;
 
 const cspConnectSrc = isDev
-  ? "connect-src 'self' http://localhost:5000 ws://localhost:5000 https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com"
-  : "connect-src 'self' https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com";
+  ? "connect-src 'self' http://localhost:5000 ws://localhost:5000 https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com https://www.googletagmanager.com https://fonts.gstatic.com https://fonts.googleapis.com https://res.cloudinary.com https://checkout.razorpay.com"
+  : "connect-src 'self' https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com https://www.googletagmanager.com https://fonts.gstatic.com https://fonts.googleapis.com https://res.cloudinary.com https://checkout.razorpay.com";
 
 const nextConfig = {
   turbopack: { root: __dirname },
@@ -106,7 +106,7 @@ const nextConfig = {
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(self), wake-lock=(self), push=(self), notifications=(self)' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(self)' },
           { key: 'X-DNS-Prefetch-Control', value: 'on' },
           {
             key: 'Strict-Transport-Security',
@@ -146,6 +146,15 @@ const nextConfig = {
       { source: '/pubg-tournament', destination: '/tournaments/pubg-mobile', permanent: true },
       { source: '/earn-money-bgmi', destination: '/blog/how-to-earn-money-playing-bgmi', permanent: true },
       { source: '/bgmi-earn-money', destination: '/blog/how-to-earn-money-playing-bgmi', permanent: true },
+      // New 2026 high-intent redirects
+      { source: '/winners', destination: '/winners', permanent: false },
+      { source: '/success-stories', destination: '/winners', permanent: true },
+      { source: '/bgmi-winners', destination: '/winners', permanent: true },
+      { source: '/best-bgmi-app', destination: '/compare', permanent: true },
+      { source: '/bgmi-comparison', destination: '/compare', permanent: true },
+      { source: '/bgmi-tournament-today', destination: '/blog/bgmi-tournament-today-how-to-join-and-win-daily-2026', permanent: true },
+      { source: '/withdraw-bgmi-winnings', destination: '/blog/how-to-withdraw-winnings-from-bgmi-tournaments-2026', permanent: true },
+      { source: '/bgmi-guide-2026', destination: '/blog/complete-bgmi-tournament-guide-india-2026', permanent: true },
     ];
   },
 
@@ -162,6 +171,8 @@ const nextConfig = {
         { source: '/win-cash', destination: '/tournaments' },
         { source: '/bgmi-win-match', destination: '/matches' },
         { source: '/free-fire-earn', destination: '/tournaments/free-fire' },
+        { source: '/real-money-gaming', destination: '/tournaments' },
+        { source: '/best-esports-app', destination: '/compare' },
       ],
       fallback: [],
     };

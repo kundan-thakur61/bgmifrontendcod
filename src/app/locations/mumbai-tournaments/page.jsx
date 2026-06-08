@@ -12,7 +12,7 @@ const articleData = {
   excerpt: 'Join BGMI and Free Fire tournaments in Mumbai. Play daily online gaming tournaments, win real cash prizes. Complete guide for Mumbai gamers.',
   datePublished: '2026-01-26T00:00:00+05:30',
   dateModified: '2026-01-26T00:00:00+05:30',
-  author: 'BattleZone Team',
+  author: 'BattleXZone Team',
   url: 'https://www.battlexzone.com/locations/mumbai-tournaments',
   image: 'https://www.battlexzone.com/locations/mumbai-tournaments.jpg',
   category: 'Local',
@@ -21,7 +21,7 @@ const articleData = {
 };
 
 const localBusinessData = {
-  name: 'BattleZone Mumbai',
+  name: 'BattleXZone Mumbai',
   description: 'Join BGMI and Free Fire tournaments in Mumbai. Play daily online gaming tournaments and win real cash prizes.',
   url: 'https://www.battlexzone.com/locations/mumbai-tournaments',
   areaServed: {
@@ -37,19 +37,19 @@ const localBusinessData = {
 const mumbaiFAQs = [
   {
     question: 'How can I join BGMI tournaments in Mumbai?',
-    answer: 'To join BGMI tournaments in Mumbai, register on BattleZone, complete KYC verification with your Aadhaar/PAN, add money to your wallet via UPI, and browse Mumbai-based tournaments. You can participate from anywhere in Mumbai including Andheri, Bandra, Thane, Navi Mumbai, and all suburbs. Room credentials are shared online before match time.',
+    answer: 'To join BGMI tournaments in Mumbai, register on BattleXZone, complete KYC verification with your Aadhaar/PAN, add money to your wallet via UPI, and browse Mumbai-based tournaments. You can participate from anywhere in Mumbai including Andheri, Bandra, Thane, Navi Mumbai, and all suburbs. Room credentials are shared online before match time.',
   },
   {
     question: 'Are there Free Fire tournaments for Mumbai players?',
-    answer: 'Yes, BattleZone hosts daily Free Fire tournaments for Mumbai players. Entry fees start from Rs.10 and you can win cash prizes up to Rs.10,000+ depending on the tournament tier. Both Battle Royale and Clash Squad formats are available. Mumbai players can join from anywhere in the city.',
+    answer: 'Yes, BattleXZone hosts daily Free Fire tournaments for Mumbai players. Entry fees start from Rs.10 and you can win cash prizes up to Rs.10,000+ depending on the tournament tier. Both Battle Royale and Clash Squad formats are available. Mumbai players can join from anywhere in the city.',
   },
   {
     question: 'What is the prize pool for Mumbai gaming tournaments?',
-    answer: 'Mumbai gaming tournaments on BattleZone offer varying prize pools: Entry-level tournaments (Rs.10-20 entry) have prize pools of Rs.500-2000. Mid-tier tournaments (Rs.50-100 entry) offer Rs.2000-10000 prizes. Premium tournaments (Rs.200+ entry) can have prize pools exceeding Rs.50000. Special Mumbai events may have even larger prizes.',
+    answer: 'Mumbai gaming tournaments on BattleXZone offer varying prize pools: Entry-level tournaments (Rs.10-20 entry) have prize pools of Rs.500-2000. Mid-tier tournaments (Rs.50-100 entry) offer Rs.2000-10000 prizes. Premium tournaments (Rs.200+ entry) can have prize pools exceeding Rs.50000. Special Mumbai events may have even larger prizes.',
   },
   {
     question: 'Can I play Mumbai tournaments from anywhere in the city?',
-    answer: 'Yes, all BattleZone tournaments are online, so you can participate from anywhere in Mumbai including South Mumbai, Western Suburbs (Andheri, Bandra, Borivali), Central Suburbs (Thane, Mulund), Navi Mumbai, and beyond. You just need a stable internet connection and your mobile device.',
+    answer: 'Yes, all BattleXZone tournaments are online, so you can participate from anywhere in Mumbai including South Mumbai, Western Suburbs (Andheri, Bandra, Borivali), Central Suburbs (Thane, Mulund), Navi Mumbai, and beyond. You just need a stable internet connection and your mobile device.',
   },
   {
     question: 'How do I withdraw winnings in Mumbai?',
@@ -57,7 +57,7 @@ const mumbaiFAQs = [
   },
   {
     question: 'Are there any gaming cafes in Mumbai for tournaments?',
-    answer: 'While BattleZone tournaments are online and can be played from home, Mumbai has several gaming cafes including in Andheri, Bandra, and Thane. However, for best performance in tournaments, we recommend playing from a location with stable WiFi and minimal distractions.',
+    answer: 'While BattleXZone tournaments are online and can be played from home, Mumbai has several gaming cafes including in Andheri, Bandra, and Thane. However, for best performance in tournaments, we recommend playing from a location with stable WiFi and minimal distractions.',
   },
   {
     question: 'What internet speed do I need for Mumbai tournaments?',
@@ -65,7 +65,7 @@ const mumbaiFAQs = [
   },
   {
     question: 'Is playing tournaments legal in Mumbai?',
-    answer: 'Yes, playing skill-based gaming tournaments is completely legal in Mumbai and Maharashtra. BGMI, Free Fire, and other skill games are protected under Indian law. BattleZone operates legally with proper verification and taxation compliance. Players must be 18+ to participate in cash tournaments.',
+    answer: 'Yes, playing skill-based gaming tournaments is completely legal in Mumbai and Maharashtra. BGMI, Free Fire, and other skill games are protected under Indian law. BattleXZone operates legally with proper verification and taxation compliance. Players must be 18+ to participate in cash tournaments.',
   },
 ];
 
@@ -179,7 +179,7 @@ export default function MumbaiTournaments() {
             
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { step: '1', title: 'Register', desc: 'Create free account on BattleZone' },
+                { step: '1', title: 'Register', desc: 'Create free account on BattleXZone' },
                 { step: '2', title: 'Verify KYC', desc: 'Upload Aadhaar/PAN for verification' },
                 { step: '3', title: 'Add Money', desc: 'Deposit via UPI (min Rs.50)' },
                 { step: '4', title: 'Play & Win', desc: 'Join tournaments & withdraw winnings' },

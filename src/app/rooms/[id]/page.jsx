@@ -93,7 +93,7 @@ export default function RoomLobby() {
         });
 
         newSocket.on('connect', () => {
-            console.log('Socket connected');
+            // Socket connected (debug)
             newSocket.emit('join_room', roomId);
         });
 

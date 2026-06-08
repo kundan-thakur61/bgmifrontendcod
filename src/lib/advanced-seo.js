@@ -1,4 +1,6 @@
 // Advanced SEO utilities for performance and schema
+import { logger } from './logger';
+
 export const fetchSchema = async (type, id = null) => {
   try {
     const endpoint = id ? `/api/seo/schema/${type}/${id}` : `/api/seo/schema/${type}`;
@@ -25,9 +27,9 @@ export const reportWebVitals = (metric) => {
     });
   }
   
-  // Log in development
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`[Web Vitals] ${name}:`, value);
+  // Log in development (use our logger to keep console clean)
+  if (process.env.NODE_ENV === 'development' && window.__DEBUG_LOGS__) {
+    logger.debug('Vitals', `${name}: ${value.toFixed(2)}`);
   }
 };
 
