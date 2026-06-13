@@ -32,8 +32,18 @@ export default function InstallPrompt() {
     };
 
     window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
-  }, []);
+
+    // Allow other parts of the app to force the prompt (e.g. after first join or deposit)
+    const forceShow = () => {
+      if (deferredPrompt) setShow(true);
+    };
+    window.addEventListener('pwa-suggest-install', forceShow);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler);
+      window.removeEventListener('pwa-suggest-install', forceShow);
+    };
+  }, [deferredPrompt]);
 
   const handleInstall = async () => {
     if (!deferredPrompt) return;

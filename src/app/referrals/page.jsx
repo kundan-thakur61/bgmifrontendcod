@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { WhatsappShareButton, TwitterShareButton, FacebookShareButton, TelegramShareButton } from 'react-share';
-import axios from 'axios';
+import { api } from '@/lib/api';
 
 export default function EnhancedReferralPage() {
     const [referralData, setReferralData] = useState(null);
@@ -15,12 +15,8 @@ export default function EnhancedReferralPage() {
 
     const fetchReferralData = async () => {
         try {
-            const response = await axios.get('/api/users/referral-stats', {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            });
-            setReferralData(response.data.data);
+            const response = await api.getReferralStats();
+            setReferralData(response.data?.data || response.data);
         } catch (error) {
             console.error('Error fetching referral data:', error);
         } finally {
@@ -67,8 +63,9 @@ export default function EnhancedReferralPage() {
                         Referral Program
                     </h1>
                     <p className="text-gray-300 text-lg">
-                        Invite friends and earn rewards together!
+                        Invite Friend • <span className="text-green-400 font-semibold">Earn ₹50</span> • Friend Gets <span className="text-cyan-400 font-semibold">₹20 Bonus</span>
                     </p>
+                    <p className="text-sm text-gray-400 mt-1">Plus ongoing 5% commission on their entry fees</p>
                 </div>
 
                 {/* Current Tier */}

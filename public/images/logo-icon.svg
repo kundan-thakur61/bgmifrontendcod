@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" aria-labelledby="icon-title" role="img">
+  <title id="icon-title">BATTLEXZONE Icon</title>
+  <desc>Minimal custom X symbol mark for BATTLEXZONE. Use for app icons, favicons, merchandise, and social avatars.</desc>
+
+  <!-- 
+    BATTLEXZONE — Icon / Monomark
+    Pure custom geometric X only.
+    Flat. Vector. #FFC107 on transparent.
+    Strong symmetry. Premium esports tech identity.
+  -->
+
+  <!-- Custom Hero X centered in square canvas with balanced clearance -->
+  <g transform="translate(128 128)">
+    <!-- Diagonal bar 1 -->
+    <rect 
+      x="-28" 
+      y="-105" 
+      width="56" 
+      height="210" 
+      fill="#FFC107" 
+      transform="rotate(-47)" 
+    />
+    <!-- Diagonal bar 2 -->
+    <rect 
+      x="-28" 
+      y="-105" 
+      width="56" 
+      height="210" 
+      fill="#FFC107" 
+      transform="rotate(47)" 
+    />
+  </g>
+</svg>

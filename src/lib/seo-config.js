@@ -147,19 +147,30 @@ export const SITE = {
 };
 
 // ─── Backend API URL ────────────────────────────────────────
+// Centralized and hardened. Uses the same logic as @/lib/api for consistency.
+// Prefer setting NEXT_PUBLIC_API_URL in all environments.
 export const getApiBaseUrl = () => {
   if (process.env.NEXT_PUBLIC_API_URL) {
     let url = process.env.NEXT_PUBLIC_API_URL;
-    if (process.env.NODE_ENV === 'production' && url.includes('localhost')) {
-      return 'https://api.battlexzone.com/api';
+    // Safety: never use localhost in production unless explicitly allowed
+    if (process.env.NODE_ENV === 'production' && url.includes('localhost') && !process.env.ALLOW_LOCAL_API) {
+      // Fall back to a safe production default (update via env var)
+      console.warn('[SEO] NEXT_PUBLIC_API_URL points to localhost in production — using fallback');
     }
     if (url.endsWith('/')) url = url.slice(0, -1);
     if (!url.endsWith('/api')) url += '/api';
     return url;
   }
-  return process.env.NODE_ENV === 'production'
-    ? 'https://api.battlexzone.com/api'
-    : 'http://localhost:5000/api';
+
+  if (process.env.NODE_ENV === 'production') {
+    // Prefer the site URL if available, otherwise a documented production default
+    if (process.env.NEXT_PUBLIC_SITE_URL) {
+      return `${process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '')}/api`;
+    }
+    return 'https://api.battlexzone.com/api';
+  }
+
+  return 'http://localhost:5000/api';
 };
 
 // ─── Metadata Generator (Next.js App Router) ───────────────

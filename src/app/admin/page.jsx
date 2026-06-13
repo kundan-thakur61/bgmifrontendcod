@@ -164,6 +164,11 @@ export default function AdminDashboard() {
   const [transactions, setTransactions] = useState([]);
   const [txnStats, setTxnStats] = useState(null);
   const [userAnalytics, setUserAnalytics] = useState(null);
+
+  // New: Sponsorships & Clan Wars moderation
+  const [pendingSponsorships, setPendingSponsorships] = useState([]);
+  const [pendingWars, setPendingWars] = useState([]);
+  const [warModerationNote, setWarModerationNote] = useState('');
   const [revenueAnalytics, setRevenueAnalytics] = useState(null);
   const [platformSettings, setPlatformSettings] = useState(null);
   const [notifStats, setNotifStats] = useState(null);
@@ -322,6 +327,16 @@ export default function AdminDashboard() {
           if (ns) setNotifStats(ns.stats);
           break;
         }
+        case 'sponsorships': {
+          const d = await api.getPendingSponsorships({ limit: 50 });
+          setPendingSponsorships(d.pendingSponsorships || []);
+          break;
+        }
+        case 'clan-wars': {
+          const d = await api.getPendingWars({ status: 'pending,accepted', limit: 50 });
+          setPendingWars(d.wars || []);
+          break;
+        }
       }
     } catch (err) {
       console.error(`Failed to load ${tab}:`, err);
@@ -375,6 +390,26 @@ export default function AdminDashboard() {
         case 'sendBroadcast': {
           const result = await api.broadcastNotification({ title: formData.title, message: formData.message, type: formData.notificationType || 'announcement', url: formData.url || '/', targetAudience: formData.targetAudience || 'all', level: formData.level });
           setBroadcastResult(result.results); setSuccess(`Broadcast sent to ${result.results.notificationsCreated} users`); setShowModal(null); break;
+        }
+        case 'approveSponsorship': {
+          await api.approveSponsorship(selectedItem.tournamentId, selectedItem.requestId, { extraPrize: parseInt(formData.extraPrize) || 0, note: formData.note });
+          setSuccess('Sponsorship approved and applied to tournament');
+          setShowModal(null); loadTabData('sponsorships'); break;
+        }
+        case 'rejectSponsorship': {
+          await api.rejectSponsorship(selectedItem.tournamentId, selectedItem.requestId, formData.reason);
+          setSuccess('Sponsorship request rejected');
+          setShowModal(null); loadTabData('sponsorships'); break;
+        }
+        case 'moderateWar': {
+          await api.moderateWar(selectedItem.teamId, selectedItem.warId, {
+            action: formData.action || 'complete',
+            ourScore: formData.ourScore ? parseInt(formData.ourScore) : undefined,
+            opponentScore: formData.opponentScore ? parseInt(formData.opponentScore) : undefined,
+            note: formData.note || warModerationNote
+          });
+          setSuccess('War moderated successfully');
+          setShowModal(null); setWarModerationNote(''); loadTabData('clan-wars'); break;
         }
       }
       fetchDashboard();
@@ -447,6 +482,8 @@ export default function AdminDashboard() {
     { id: 'staff', label: 'Staff', icon: '🛡️', show: isAdmin },
     { id: 'logs', label: 'Activity Logs', icon: '📜', show: isAdmin },
     { id: 'system', label: 'System', icon: '⚙️', show: isAdmin },
+    { id: 'sponsorships', label: 'Sponsorships', icon: '🤝', show: isAdmin },
+    { id: 'clan-wars', label: 'Clan Wars', icon: '⚔️', show: isAdmin },
   ].filter(item => item.show === undefined || item.show);
 
   // ─── Render ──────────────────────────────────────
@@ -1388,6 +1425,110 @@ export default function AdminDashboard() {
                 {adminLogs.length === 0 && <EmptyState icon="📜" message="No logs found" />}
               </div>
               <Pagination page={pagination.page} pages={pagination.pages} total={pagination.total} onPageChange={(p) => setPagination(prev => ({ ...prev, page: p }))} />
+            </div>
+          )}
+
+          {/* ══════════════════ SPONSORSHIPS TAB (Admin UI) ══════════════════ */}
+          {activeTab === 'sponsorships' && isAdmin && (
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg font-bold">Pending Sponsorship Approvals</h2>
+                <button onClick={() => loadTabData('sponsorships')} className="btn-secondary text-xs h-8">🔄 Refresh</button>
+              </div>
+
+              <div className="card overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-dark-700/50">
+                    <tr>
+                      <th className="text-left p-3">Tournament</th>
+                      <th className="text-left p-3">Sponsor</th>
+                      <th className="text-left p-3">Amount</th>
+                      <th className="text-left p-3">Message</th>
+                      <th className="text-left p-3">Date</th>
+                      <th className="text-right p-3">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-dark-700">
+                    {pendingSponsorships.length === 0 && (
+                      <tr><td colSpan={6} className="p-6 text-center text-dark-400">No pending sponsorship requests</td></tr>
+                    )}
+                    {pendingSponsorships.map((s, idx) => (
+                      <tr key={idx} className="hover:bg-dark-800/50">
+                        <td className="p-3 font-medium">{s.tournamentTitle}</td>
+                        <td className="p-3">{s.sponsorName}</td>
+                        <td className="p-3 text-green-400">₹{s.amount || 0}</td>
+                        <td className="p-3 text-dark-400 text-xs max-w-xs truncate">{s.message || '-'}</td>
+                        <td className="p-3 text-xs text-dark-400">{formatDateTime(s.createdAt)}</td>
+                        <td className="p-3 text-right space-x-2">
+                          <button
+                            onClick={() => { setSelectedItem(s); setFormData({ extraPrize: s.amount || 0 }); setShowModal('approveSponsorship'); }}
+                            className="px-3 py-1 text-xs bg-green-600 hover:bg-green-700 rounded">Approve</button>
+                          <button
+                            onClick={() => { setSelectedItem(s); setFormData({}); setShowModal('rejectSponsorship'); }}
+                            className="px-3 py-1 text-xs bg-red-600 hover:bg-red-700 rounded">Reject</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <p className="text-xs text-dark-400">Approving will set the sponsor on the tournament and optionally increase the prize pool.</p>
+            </div>
+          )}
+
+          {/* ══════════════════ CLAN WARS MODERATION TAB ══════════════════ */}
+          {activeTab === 'clan-wars' && isAdmin && (
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg font-bold">Clan War Moderation</h2>
+                <button onClick={() => loadTabData('clan-wars')} className="btn-secondary text-xs h-8">🔄 Refresh</button>
+              </div>
+
+              <div className="card overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-dark-700/50">
+                    <tr>
+                      <th className="text-left p-3">Team</th>
+                      <th className="text-left p-3">Opponent</th>
+                      <th className="text-left p-3">Status</th>
+                      <th className="text-left p-3">Score</th>
+                      <th className="text-left p-3">Prize</th>
+                      <th className="text-right p-3">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-dark-700">
+                    {pendingWars.length === 0 && (
+                      <tr><td colSpan={6} className="p-6 text-center text-dark-400">No active/pending clan wars</td></tr>
+                    )}
+                    {pendingWars.map((w, idx) => (
+                      <tr key={idx} className="hover:bg-dark-800/50">
+                        <td className="p-3 font-medium">{w.teamName} [{w.teamTag}]</td>
+                        <td className="p-3">{w.opponentName} [{w.opponentTag}]</td>
+                        <td className="p-3"><Badge status={w.status} /></td>
+                        <td className="p-3 text-xs">{w.ourScore || 0} - {w.opponentScore || 0}</td>
+                        <td className="p-3 text-green-400">₹{w.prize || 0}</td>
+                        <td className="p-3 text-right">
+                          <button
+                            onClick={() => {
+                              setSelectedItem(w);
+                              setFormData({ action: 'complete', ourScore: w.ourScore || 0, opponentScore: w.opponentScore || 0 });
+                              setShowModal('moderateWar');
+                            }}
+                            className="px-2 py-1 text-xs bg-yellow-600 hover:bg-yellow-700 rounded mr-1">Moderate</button>
+                          <button
+                            onClick={() => {
+                              setSelectedItem(w);
+                              setFormData({ action: 'cancel' });
+                              setShowModal('moderateWar');
+                            }}
+                            className="px-2 py-1 text-xs bg-red-600 hover:bg-red-700 rounded">Cancel</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
 

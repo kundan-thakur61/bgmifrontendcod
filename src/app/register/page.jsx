@@ -28,14 +28,13 @@ function RegisterContent() {
   const [copySuccess, setCopySuccess] = useState(false);
 
   useEffect(() => {
-    // Client-side safety: ensure we don't send prod users to localhost
+    // Client-side safety net only.
     if (typeof window !== 'undefined') {
       const hostname = window.location.hostname;
       const isProduction = hostname !== 'localhost' && hostname !== '127.0.0.1';
 
       if (isProduction && API_BASE_URL.includes('localhost')) {
-        // Force production backend if we are on a real domain but API is localhost
-        setGoogleUrl('https://api.battlexzone.com/api/auth/google');
+        setGoogleUrl('https://bgmibackend-5gu6.onrender.com/api/auth/google');
       }
     }
   }, []);

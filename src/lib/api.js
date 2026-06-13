@@ -26,9 +26,20 @@ const getBaseUrl = () => {
     return url;
   }
 
-  // Production fallback
+  // Production fallback — **strongly prefer NEXT_PUBLIC_API_URL**.
+  // Recommended: Set NEXT_PUBLIC_API_URL=https://your-backend.onrender.com (or your domain) in your hosting (Vercel, etc.).
+  // The getBaseUrl() will append /api automatically.
   if (process.env.NODE_ENV === 'production') {
-    return 'https://api.battlexzone.com/api';
+    // Safer last-resort: use the production site API if available, otherwise fail loudly in logs.
+    // DO NOT hardcode a specific Render URL here long-term.
+    const fallbackProd = process.env.NEXT_PUBLIC_SITE_URL
+      ? `${process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '')}/api`
+      : 'https://api.battlexzone.com/api'; // canonical production backend (update if infrastructure changes)
+    if (typeof window !== 'undefined') {
+      // Warn developers/deployers
+      console.warn('[API] Using fallback production API URL. Set NEXT_PUBLIC_API_URL for reliability.');
+    }
+    return fallbackProd;
   }
 
   // Development fallback
@@ -626,6 +637,32 @@ const api = {
     return { success: true };
   },
 
+  // Sponsorship Moderation (Admin)
+  getPendingSponsorships: async (params = {}) => {
+    const query = new URLSearchParams(params).toString();
+    const response = await axiosInstance.get(`/admin/sponsorships/pending?${query}`);
+    return response.data;
+  },
+  approveSponsorship: async (tournamentId, requestId, data = {}) => {
+    const response = await axiosInstance.post(`/admin/sponsorships/${tournamentId}/${requestId}/approve`, data);
+    return response.data;
+  },
+  rejectSponsorship: async (tournamentId, requestId, reason) => {
+    const response = await axiosInstance.post(`/admin/sponsorships/${tournamentId}/${requestId}/reject`, { reason });
+    return response.data;
+  },
+
+  // War Moderation (Admin / Clan Wars)
+  getPendingWars: async (params = {}) => {
+    const query = new URLSearchParams(params).toString();
+    const response = await axiosInstance.get(`/admin/wars/pending?${query}`);
+    return response.data;
+  },
+  moderateWar: async (teamId, warId, data) => {
+    const response = await axiosInstance.post(`/admin/wars/${teamId}/${warId}/moderate`, data);
+    return response.data;
+  },
+
   // Wallet
   getWalletBalance: async () => {
     const response = await axiosInstance.get('/wallet/balance');
@@ -753,6 +790,20 @@ const api = {
     return response.data;
   },
 
+  getPublicTeam: async (teamId) => {
+    const response = await axiosInstance.get(`/teams/public/${teamId}`);
+    return response.data;
+  },
+
+  uploadTeamLogo: async (teamId, file) => {
+    const formData = new FormData();
+    formData.append('logo', file);
+    const response = await axiosInstance.post(`/teams/${teamId}/logo`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+    return response.data;
+  },
+
   createTeam: async (data) => {
     const response = await axiosInstance.post('/teams', data);
     return response.data;
@@ -790,6 +841,27 @@ const api = {
 
   getTeamInvites: async () => {
     const response = await axiosInstance.get('/teams/invites');
+    return response.data;
+  },
+
+  // Team Leaderboard (from leaderboard routes)
+  getTeamLeaderboard: async (params = {}) => {
+    const query = new URLSearchParams(params).toString();
+    const response = await axiosInstance.get(`/leaderboard/teams?${query}`);
+    return response.data;
+  },
+
+  // Clan Wars basics
+  challengeTeamToWar: async (teamId, opponentTeamId, prize) => {
+    const response = await axiosInstance.post(`/teams/${teamId}/war/challenge`, { opponentTeamId, prize });
+    return response.data;
+  },
+  acceptWarChallenge: async (teamId, warId) => {
+    const response = await axiosInstance.post(`/teams/${teamId}/war/accept`, { warId });
+    return response.data;
+  },
+  recordWarResult: async (teamId, warId, ourScore, opponentScore) => {
+    const response = await axiosInstance.post(`/teams/${teamId}/war/result`, { warId, ourScore, opponentScore });
     return response.data;
   },
 
@@ -843,6 +915,31 @@ const api = {
   // User search (for team invites)
   searchUsers: async (query) => {
     const response = await axiosInstance.get(`/users/search?q=${encodeURIComponent(query)}`);
+    return response.data;
+  },
+
+  // Battle Pass / Premium
+  getPremiumStatus: async () => {
+    const response = await axiosInstance.get('/users/premium/status');
+    return response.data;
+  },
+  subscribePremiumPass: async (data = {}) => {
+    const response = await axiosInstance.post('/users/premium/subscribe', data);
+    return response.data;
+  },
+  verifyPremiumPassPayment: async (data) => {
+    const response = await axiosInstance.post('/users/premium/verify', data);
+    return response.data;
+  },
+
+  // Streaming
+  updateStreaming: async (data) => {
+    const response = await axiosInstance.put('/users/streaming', data);
+    return response.data;
+  },
+  getStreamers: async (params = {}) => {
+    const query = new URLSearchParams(params).toString();
+    const response = await axiosInstance.get(`/users/streamers?${query}`);
     return response.data;
   },
 

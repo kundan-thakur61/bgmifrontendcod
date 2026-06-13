@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { api } from '@/lib/api';
 import './create.css';
-
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
 
 export default function CreateRoom() {
     const router = useRouter();
@@ -38,13 +37,6 @@ export default function CreateRoom() {
         setError(null);
 
         try {
-            const token = localStorage.getItem('token');
-
-            if (!token) {
-                router.push('/login');
-                return;
-            }
-
             const payload = { ...formData };
 
             // Remove password if empty
@@ -57,26 +49,12 @@ export default function CreateRoom() {
                 payload.maxSlots = parseInt(payload.maxSlots);
             }
 
-            const response = await fetch(`${BACKEND_URL}/api/rooms`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(payload)
-            });
-
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.message || 'Failed to create room');
-            }
-
-            const data = await response.json();
+            const data = await api.post('/rooms', payload);
 
             // Redirect to room lobby
-            router.push(`/rooms/${data.room._id}`);
+            router.push(`/rooms/${data.room?._id || data._id}`);
         } catch (err) {
-            setError(err.message);
+            setError(err.response?.data?.message || err.message || 'Failed to create room');
         } finally {
             setLoading(false);
         }

@@ -8,8 +8,9 @@ import { useAuth } from '@/context/AuthContext';
 
 const TABS = [
     { id: 'global', label: 'All Time', icon: '🏆' },
-    { id: 'weekly', label: 'This Week', icon: '📅' },
-    { id: 'monthly', label: 'This Month', icon: '📆' },
+    { id: 'daily', label: 'Daily', icon: '📅' },
+    { id: 'weekly', label: 'Weekly', icon: '🗓️' },
+    { id: 'monthly', label: 'Monthly', icon: '📆' },
     { id: 'kills', label: 'Top Kills', icon: '🎯' },
 ];
 
@@ -41,12 +42,18 @@ export default function LeaderboardPage() {
                 ...(gameFilter && { gameType: gameFilter }),
             };
 
-            const data = await api.getLeaderboard(activeTab, params);
+            // Daily is approximated via weekly (most recent activity). For precise daily a dedicated backend endpoint exists in roadmap.
+            const typeForApi = activeTab === 'daily' ? 'weekly' : activeTab;
+            const data = await api.getLeaderboard(typeForApi, params);
             setLeaderboard(data.leaderboard || []);
             setUserRank(data.userRank);
             setPagination(prev => ({ ...prev, total: data.pagination?.total || 0 }));
         } catch (err) {
             console.error('Failed to fetch leaderboard:', err);
+            // Surface backend error details in dev
+            if (err.response?.data) {
+                console.error('Backend error response:', err.response.data);
+            }
         } finally {
             setLoading(false);
         }
@@ -105,7 +112,7 @@ export default function LeaderboardPage() {
                                     <div className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
                                         #{userRank}
                                     </div>
-                                    <p className="text-gray-400 text-xs sm:text-sm">{activeTab === 'global' ? 'All Time' : activeTab}</p>
+                                    <p className="text-gray-400 text-xs sm:text-sm">{activeTab === 'global' ? 'All Time' : activeTab === 'daily' ? 'Today / Recent' : activeTab}</p>
                                 </div>
                             </div>
                         </div>

@@ -1,12 +1,18 @@
 import { NextResponse } from 'next/server';
 
 /**
- * SEO Middleware — Canonical URL enforcement
- * ───────────────────────────────────────────
- * - Removes trailing slashes (canonical consistency)
- * - Forces lowercase URLs
- * - Redirects www → non-www (when applicable)
- * - Adds X-Robots-Tag for private routes
+ * SEO + Canonical Middleware (Next.js App Router)
+ *
+ * NOTE: Next.js 16+ deprecates the generic "middleware" name for some proxy use cases
+ * in favor of explicit proxy files in certain scenarios.
+ * This file is **intentionally** used for:
+ *   - Trailing slash removal
+ *   - Lowercase enforcement
+ *   - Private route noindex headers
+ *
+ * API routes (/api/*) and static assets are explicitly skipped so they are not affected.
+ * For backend API proxying we rely on `rewrites()` in next.config.js + the centralized
+ * `@/lib/api` client.
  */
 export function middleware(request) {
   const { pathname, search } = request.nextUrl;

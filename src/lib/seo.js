@@ -69,7 +69,7 @@ export function generateStructuredData(type, data) {
       '@type': 'Organization',
       name: seoConfig.siteName,
       url: seoConfig.siteUrl,
-      logo: `${seoConfig.siteUrl}/images/logo.png`,
+      logo: `${seoConfig.siteUrl}/images/logo.svg`,
       sameAs: ['https://twitter.com/battlexzone', 'https://facebook.com/battlexzone', 'https://instagram.com/battlexzone'],
     },
     webSite: {

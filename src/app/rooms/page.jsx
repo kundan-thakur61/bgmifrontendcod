@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { api } from '@/lib/api';
 import './rooms.css';
-
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
 
 export default function RoomBrowser() {
     const router = useRouter();
@@ -19,7 +18,7 @@ export default function RoomBrowser() {
     });
     const [searchCode, setSearchCode] = useState('');
 
-    // Fetch rooms
+    // Fetch rooms (uses centralized api client for correct base URL + auth)
     const fetchRooms = async () => {
         try {
             const queryParams = new URLSearchParams();
@@ -30,17 +29,11 @@ export default function RoomBrowser() {
             if (filters.status) queryParams.append('status', filters.status);
             if (searchCode) queryParams.append('search', searchCode);
 
-            const response = await fetch(`${BACKEND_URL}/api/rooms?${queryParams}`);
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch rooms');
-            }
-
-            const data = await response.json();
-            setRooms(data.rooms);
+            const data = await api.get(`/rooms?${queryParams}`);
+            setRooms(data.rooms || data);
             setLoading(false);
         } catch (err) {
-            setError(err.message);
+            setError(err.message || 'Failed to fetch rooms');
             setLoading(false);
         }
     };

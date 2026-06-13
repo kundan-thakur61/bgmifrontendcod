@@ -3,9 +3,8 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { io } from 'socket.io-client';
+import { api, SOCKET_URL } from '@/lib/api';
 import './room.css';
-
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
 
 export default function RoomLobby() {
     const params = useParams();
@@ -48,22 +47,11 @@ export default function RoomLobby() {
     // Fetch room data
     const fetchRoom = useCallback(async () => {
         try {
-            const token = localStorage.getItem('token');
-            const response = await fetch(`${BACKEND_URL}/api/rooms/${roomId}`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch room');
-            }
-
-            const data = await response.json();
-            setRoom(data.room);
+            const data = await api.get(`/rooms/${roomId}`);
+            setRoom(data.room || data);
             setLoading(false);
         } catch (err) {
-            setError(err.message);
+            setError(err.message || 'Failed to fetch room');
             setLoading(false);
         }
     }, [roomId]);
@@ -86,9 +74,9 @@ export default function RoomLobby() {
     useEffect(() => {
         fetchRoom();
 
-        // Initialize socket
+        // Initialize socket using the centralized SOCKET_URL (derived from NEXT_PUBLIC_API_URL)
         const token = localStorage.getItem('token');
-        const newSocket = io(BACKEND_URL, {
+        const newSocket = io(SOCKET_URL, {
             auth: { token }
         });
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { api } from '@/lib/api';
 
 export default function SecurityPage() {
     const [activeTab, setActiveTab] = useState('2fa'); // '2fa', 'devices', 'logs'
@@ -20,16 +20,14 @@ export default function SecurityPage() {
 
     const fetchSecurityData = async () => {
         try {
-            const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
-
             if (activeTab === '2fa') {
-                const response = await axios.get('/api/security/2fa/status', { headers });
+                const response = await api.get('/security/2fa/status');
                 setTwoFAData(response.data.data);
             } else if (activeTab === 'devices') {
-                const response = await axios.get('/api/security/devices', { headers });
+                const response = await api.get('/security/devices');
                 setDevices(response.data.data || []);
             } else if (activeTab === 'logs') {
-                const response = await axios.get('/api/security/logs?limit=20', { headers });
+                const response = await api.get('/security/logs?limit=20');
                 setLogs(response.data.data || []);
             }
         } catch (error) {
@@ -41,9 +39,7 @@ export default function SecurityPage() {
 
     const setup2FA = async () => {
         try {
-            const response = await axios.post('/api/security/2fa/setup', {}, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
+            const response = await api.post('/security/2fa/setup', {});
             setQrCode(response.data.data.qrCode);
             setSecret(response.data.data.secret);
         } catch (error) {
@@ -57,10 +53,7 @@ export default function SecurityPage() {
             return;
         }
         try {
-            const response = await axios.post('/api/security/2fa/enable',
-                { token: verificationCode },
-                { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-            );
+            const response = await api.post('/security/2fa/enable', { token: verificationCode });
             setBackupCodes(response.data.data.backupCodes);
             setQrCode(null);
             fetchSecurityData();
@@ -73,9 +66,7 @@ export default function SecurityPage() {
     const disable2FA = async () => {
         if (!confirm('Are you sure you want to disable 2FA? This will reduce your account security.')) return;
         try {
-            await axios.post('/api/security/2fa/disable', {}, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
+            await api.post('/security/2fa/disable', {});
             fetchSecurityData();
             alert('2FA disabled');
         } catch (error) {
@@ -86,9 +77,7 @@ export default function SecurityPage() {
     const removeDevice = async (deviceId) => {
         if (!confirm('Remove this trusted device?')) return;
         try {
-            await axios.delete(`/api/security/devices/${deviceId}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
+            await api.delete(`/security/devices/${deviceId}`);
             fetchSecurityData();
         } catch (error) {
             alert('Failed to remove device');

@@ -1,40 +1,22 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+import { api } from '@/lib/api';
+import { useState, useEffect } from 'react';
 
 /**
  * Analytics API utility functions
+ * Now delegates to the centralized @/lib/api client for consistent
+ * base URL (NEXT_PUBLIC_API_URL) + automatic Authorization header.
  */
 
-// Get auth token from localStorage
-const getAuthToken = () => {
-    if (typeof window !== 'undefined') {
-        return localStorage.getItem('token');
-    }
-    return null;
-};
-
-// Generic fetch with auth
+// Generic wrapper (kept for minimal behavior change)
 const fetchWithAuth = async (endpoint, options = {}) => {
-    const token = getAuthToken();
-    const headers = {
-        'Content-Type': 'application/json',
-        ...options.headers,
-    };
+    // The centralized api already prepends /api and adds the token
+    // Endpoints here start with /api/player-analytics — strip the leading /api
+    const cleanEndpoint = endpoint.startsWith('/api') ? endpoint.slice(4) : endpoint;
 
-    if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
+    if (options.method === 'POST' || options.body) {
+        return api.post(cleanEndpoint, options.body ? JSON.parse(options.body) : {});
     }
-
-    const response = await fetch(`${API_URL}${endpoint}`, {
-        ...options,
-        headers,
-    });
-
-    if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'API request failed');
-    }
-
-    return response.json();
+    return api.get(cleanEndpoint);
 };
 
 // Dashboard

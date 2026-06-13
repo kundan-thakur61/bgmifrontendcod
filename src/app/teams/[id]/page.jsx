@@ -165,20 +165,44 @@ export default function TeamDetailPage() {
                     <div className="bg-gray-900/50 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-gray-800 mb-8">
                         <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                             {/* Logo */}
-                            {team.logo?.url ? (
+                            <div className="relative group">
+                              {team.logo?.url ? (
                                 <OptimizedImage
                                   src={team.logo.url}
                                   alt={team.name}
                                   width={96}
                                   height={96}
-                                  className="w-24 h-24 rounded-2xl object-cover"
+                                  className="w-24 h-24 rounded-2xl object-cover border border-gray-700"
                                   priority={false}
                                 />
-                            ) : (
+                              ) : (
                                 <div className="w-24 h-24 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-2xl flex items-center justify-center text-4xl font-bold text-white">
-                                    {team.tag?.[0] || team.name[0]}
+                                  {team.tag?.[0] || team.name[0]}
                                 </div>
-                            )}
+                              )}
+
+                              {isCaptain && (
+                                <label className="absolute -bottom-1 -right-1 cursor-pointer bg-gray-900 border border-gray-700 rounded-full p-1.5 hover:bg-cyan-600 transition">
+                                  <input
+                                    type="file"
+                                    accept="image/*"
+                                    className="hidden"
+                                    onChange={async (e) => {
+                                      const file = e.target.files?.[0];
+                                      if (!file) return;
+                                      try {
+                                        await api.uploadTeamLogo(params.id, file);
+                                        fetchTeam();
+                                        alert('Logo uploaded!');
+                                      } catch (err) {
+                                        alert(err.response?.data?.message || 'Upload failed');
+                                      }
+                                    }}
+                                  />
+                                  <span className="text-xs px-1">📷</span>
+                                </label>
+                              )}
+                            </div>
 
                             <div className="flex-1">
                                 <div className="flex items-center gap-3 mb-2">

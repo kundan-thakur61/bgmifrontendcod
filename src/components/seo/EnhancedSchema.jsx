@@ -87,7 +87,7 @@ export function ArticleSchema({ article, title, description, datePublished, date
       '@type': 'Organization',
       name: articleData.author || 'BattleXZone Team',
       url: 'https://www.battlexzone.com',
-      logo: 'https://www.battlexzone.com/logo.png',
+      logo: 'https://www.battlexzone.com/images/logo.svg',
     },
     publisher: {
       '@type': 'Organization',

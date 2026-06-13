@@ -63,6 +63,10 @@ export default async function sitemap() {
     { path: '/locations/chennai-tournaments', changeFrequency: 'weekly', priority: 0.72 },
     { path: '/locations/pune-tournaments', changeFrequency: 'weekly', priority: 0.7 },
     { path: '/locations/kolkata-tournaments', changeFrequency: 'weekly', priority: 0.65 },
+    { path: '/locations/patna-tournaments', changeFrequency: 'weekly', priority: 0.6 },
+    { path: '/locations/lucknow-tournaments', changeFrequency: 'weekly', priority: 0.6 },
+    { path: '/bgmi-tournaments-india', changeFrequency: 'daily', priority: 0.85 },
+    { path: '/bgmi-scrims-india', changeFrequency: 'daily', priority: 0.8 },
     
     // Support & Trust Pages
     { path: '/faq', changeFrequency: 'monthly', priority: 0.75 },

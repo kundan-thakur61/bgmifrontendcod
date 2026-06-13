@@ -2,9 +2,16 @@
 const isDev = process.env.NODE_ENV !== 'production';
 const isProd = !isDev;
 
+// Dynamic CSP connect-src driven by environment for flexibility across deployments.
+// In production, prefer setting NEXT_PUBLIC_API_URL and FRONTEND_URL.
+// This reduces risk of stale hardcoded backend domains.
+const backendOrigin = process.env.NEXT_PUBLIC_API_URL
+  ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/?$/, '').replace(/\/$/, '')
+  : (isDev ? 'http://localhost:5000' : 'https://api.battlexzone.com');
+
 const cspConnectSrc = isDev
-  ? "connect-src 'self' http://localhost:5000 ws://localhost:5000 https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com https://www.googletagmanager.com https://fonts.gstatic.com https://fonts.googleapis.com https://res.cloudinary.com https://checkout.razorpay.com"
-  : "connect-src 'self' https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com https://www.googletagmanager.com https://fonts.gstatic.com https://fonts.googleapis.com https://res.cloudinary.com https://checkout.razorpay.com";
+  ? `connect-src 'self' ${backendOrigin} ws://localhost:5000 wss://${backendOrigin.replace('http://','').replace('https://','')} https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com https://www.googletagmanager.com https://fonts.gstatic.com https://fonts.googleapis.com https://res.cloudinary.com https://checkout.razorpay.com`
+  : `connect-src 'self' ${backendOrigin} https://api.battlexzone.com https://lux.razorpay.com wss://api.battlexzone.com https://www.google-analytics.com https://www.googletagmanager.com https://fonts.gstatic.com https://fonts.googleapis.com https://res.cloudinary.com https://checkout.razorpay.com`;
 
 const nextConfig = {
   turbopack: { root: __dirname },
@@ -54,6 +61,9 @@ const nextConfig = {
       { protocol: 'https', hostname: 'cdn.battlexzone.com' },
       { protocol: 'https', hostname: 'res.cloudinary.com' },
       { protocol: 'https', hostname: 'api.battlexzone.com' },
+      // Common CDNs and user content hosts for gaming platform
+      { protocol: 'https', hostname: '**.cloudinary.com' },
+      { protocol: 'https', hostname: '**.googleusercontent.com' },
     ],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000, // 1 year
@@ -147,7 +157,6 @@ const nextConfig = {
       { source: '/earn-money-bgmi', destination: '/blog/how-to-earn-money-playing-bgmi', permanent: true },
       { source: '/bgmi-earn-money', destination: '/blog/how-to-earn-money-playing-bgmi', permanent: true },
       // New 2026 high-intent redirects
-      { source: '/winners', destination: '/winners', permanent: false },
       { source: '/success-stories', destination: '/winners', permanent: true },
       { source: '/bgmi-winners', destination: '/winners', permanent: true },
       { source: '/best-bgmi-app', destination: '/compare', permanent: true },
@@ -158,10 +167,27 @@ const nextConfig = {
     ];
   },
 
-  // ── URL Rewrites for SEO-friendly paths ──
+  // ── URL Rewrites for SEO-friendly paths + API proxy to backend ──
   async rewrites() {
+    // Proxy certain /api/* namespaces to the Express backend so that
+    // any remaining relative calls or future code don't 404 at the Next.js layer.
+    // Most of the app uses the centralized axios client in @/lib/api which talks
+    // directly to the backend (via NEXT_PUBLIC_API_URL or localhost:5000).
+    let apiTarget = process.env.NEXT_PUBLIC_API_URL
+      ? process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, '')
+      : 'http://localhost:5000';
+
+    // Strip a trailing /api (or /api/) so we don't double it in the proxy destination.
+    apiTarget = apiTarget.replace(/\/api$/, '');
+
     return {
-      beforeFiles: [],
+      beforeFiles: [
+        // Backend-owned API prefixes (proxy in both dev and prod if needed)
+        { source: '/api/gamification/:path*', destination: `${apiTarget}/api/gamification/:path*` },
+        { source: '/api/social/:path*', destination: `${apiTarget}/api/social/:path*` },
+        { source: '/api/security/:path*', destination: `${apiTarget}/api/security/:path*` },
+        { source: '/api/analytics/:path*', destination: `${apiTarget}/api/analytics/:path*` },
+      ],
       afterFiles: [
         // Allow clean SEO URLs
         { source: '/play', destination: '/matches' },

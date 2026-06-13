@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { api } from '@/lib/api';
 
 export default function FriendsPage() {
     const [activeTab, setActiveTab] = useState('friends'); // 'friends', 'online', 'requests', 'search'
@@ -20,12 +20,8 @@ export default function FriendsPage() {
     const fetchFriends = async () => {
         try {
             const [friendsRes, onlineRes] = await Promise.all([
-                axios.get('/api/social/friends', {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                }),
-                axios.get('/api/social/friends/online', {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                })
+                api.get('/social/friends'),
+                api.get('/social/friends/online'),
             ]);
             setFriends(friendsRes.data.data || []);
             setOnlineFriends(onlineRes.data.data || []);
@@ -38,9 +34,7 @@ export default function FriendsPage() {
 
     const fetchRequests = async () => {
         try {
-            const response = await axios.get('/api/social/friends/requests?type=received', {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
+            const response = await api.get('/social/friends/requests?type=received');
             setRequests(response.data.data || []);
         } catch (error) {
             console.error('Error fetching requests:', error);
@@ -50,9 +44,7 @@ export default function FriendsPage() {
     const searchUsers = async () => {
         if (searchQuery.length < 2) return;
         try {
-            const response = await axios.get(`/api/social/users/search?query=${searchQuery}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
+            const response = await api.get(`/social/users/search?query=${searchQuery}`);
             setSearchResults(response.data.data || []);
         } catch (error) {
             console.error('Error searching users:', error);
@@ -61,10 +53,7 @@ export default function FriendsPage() {
 
     const sendFriendRequest = async (userId) => {
         try {
-            await axios.post('/api/social/friends/request',
-                { recipientId: userId },
-                { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-            );
+            await api.post('/social/friends/request', { recipientId: userId });
             alert('Friend request sent!');
             searchUsers(); // Refresh results
         } catch (error) {
@@ -74,10 +63,7 @@ export default function FriendsPage() {
 
     const respondToRequest = async (friendshipId, action) => {
         try {
-            await axios.put(`/api/social/friends/request/${friendshipId}`,
-                { action },
-                { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-            );
+            await api.put(`/social/friends/request/${friendshipId}`, { action });
             fetchRequests();
             fetchFriends();
         } catch (error) {
@@ -88,9 +74,7 @@ export default function FriendsPage() {
     const removeFriend = async (friendshipId) => {
         if (!confirm('Are you sure you want to remove this friend?')) return;
         try {
-            await axios.delete(`/api/social/friends/${friendshipId}`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
+            await api.delete(`/social/friends/${friendshipId}`);
             fetchFriends();
         } catch (error) {
             alert('Failed to remove friend');
@@ -99,10 +83,7 @@ export default function FriendsPage() {
 
     const inviteToMatch = async (friendId, friendName) => {
         try {
-            await axios.post('/api/social/invite/match',
-                { friendId, message: `Hey! Join me for a match!` },
-                { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-            );
+            await api.post('/social/invite/match', { friendId, message: `Hey! Join me for a match!` });
             alert(`Invitation sent to ${friendName}!`);
         } catch (error) {
             alert('Failed to send invitation');

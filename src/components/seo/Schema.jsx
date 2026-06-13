@@ -8,7 +8,7 @@ export function OrganizationSchema() {
     '@type': 'Organization',
     name: 'BattleXZone',
     url: 'https://www.battlexzone.com',
-    logo: 'https://www.battlexzone.com/logo.png',
+    logo: 'https://www.battlexzone.com/images/logo.svg',
     description: "India's premier esports gaming platform for PUBG Mobile and Free Fire tournaments.",
     foundingDate: '2024',
     foundingLocation: {

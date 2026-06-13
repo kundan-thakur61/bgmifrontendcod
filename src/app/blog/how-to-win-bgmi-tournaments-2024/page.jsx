@@ -28,7 +28,7 @@ export default function BlogPost() {
     '@type': 'Article',
     headline: 'How to Win BGMI Tournaments in 2026 - Expert Guide',
     author: { '@type': 'Organization', name: 'BattleXZone' },
-    publisher: { '@type': 'Organization', name: 'BattleXZone', logo: { '@type': 'ImageObject', url: 'https://www.battlexzone.com/images/logo.png' } },
+    publisher: { '@type': 'Organization', name: 'BattleXZone', logo: { '@type': 'ImageObject', url: 'https://www.battlexzone.com/images/logo.svg' } },
     datePublished: '2024-01-15',
     dateModified: '2026-02-22',
     description: 'Master BGMI tournaments with pro tips and winning strategies',

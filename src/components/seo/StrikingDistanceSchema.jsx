@@ -30,7 +30,7 @@ export function StrikingDistanceSchema({
         name: SITE.name,
         logo: {
           '@type': 'ImageObject',
-          url: `${SITE.baseUrl}/images/logo.png`,
+          url: `${SITE.baseUrl}/images/logo.svg`,
         },
       },
       datePublished: new Date().toISOString(),

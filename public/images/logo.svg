@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="260" viewBox="0 0 1200 260" aria-labelledby="logo-title" role="img">
+  <title id="logo-title">BATTLEXZONE</title>
+  <desc>Premium minimal flat vector wordmark logo for BATTLEXZONE esports platform. The X is the custom hero element in esports yellow.</desc>
+
+  <!-- 
+    BATTLEXZONE — Premium Esports Logo
+    - Pure vector, flat design
+    - No shadows, gradients, 3D, or effects
+    - Custom geometric X in #FFC107 (hero element)
+    - All other letters #111111
+    - Bold geometric sans-serif, all uppercase
+    - Strong symmetry & balanced proportions
+    - Optimized for web, app, print, merch, social
+  -->
+
+  <!-- BATTLE -->
+  <text 
+    x="68" 
+    y="172" 
+    font-family="Arial Black, 'Helvetica Neue', Helvetica, Arial, sans-serif" 
+    font-size="150" 
+    font-weight="900" 
+    fill="#111111" 
+    letter-spacing="-5.5"
+  >BATTLE</text>
+
+  <!-- Custom Hero X (geometric, powerful, perfectly symmetrical) -->
+  <g id="custom-x" transform="translate(705 87)">
+    <!-- 
+      Two precisely rotated rectangles form the iconic X.
+      Thickness and angle tuned for visual power while matching the weight of the bold lettering.
+      Sharp flat ends via centered rotation.
+    -->
+    <!-- Diagonal bar 1 -->
+    <rect 
+      x="-13" 
+      y="-108" 
+      width="26" 
+      height="216" 
+      fill="#FFC107" 
+      transform="rotate(-47)" 
+    />
+    <!-- Diagonal bar 2 -->
+    <rect 
+      x="-13" 
+      y="-108" 
+      width="26" 
+      height="216" 
+      fill="#FFC107" 
+      transform="rotate(47)" 
+    />
+  </g>
+
+  <!-- ZONE -->
+  <text 
+    x="816" 
+    y="172" 
+    font-family="Arial Black, 'Helvetica Neue', Helvetica, Arial, sans-serif" 
+    font-size="150" 
+    font-weight="900" 
+    fill="#111111" 
+    letter-spacing="-5.5"
+  >ZONE</text>
+</svg>

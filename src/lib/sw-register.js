@@ -88,6 +88,17 @@ export async function unsubscribeFromPush() {
 }
 
 /**
+ * suggestPWAInstall — call this after important user actions
+ * (e.g. first match join, successful deposit, profile complete)
+ * to gently suggest installing the app.
+ */
+export function suggestPWAInstall() {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('pwa-suggest-install'));
+  }
+}
+
+/**
  * cacheCriticalUrls — pre-cache important URLs via the SW.
  */
 export function cacheCriticalUrls(urls = []) {

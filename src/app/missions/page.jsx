@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { api } from '@/lib/api';
 
 export default function MissionsPage() {
     const [activeTab, setActiveTab] = useState('missions'); // 'missions', 'seasonpass'
@@ -17,15 +17,9 @@ export default function MissionsPage() {
     const fetchData = async () => {
         try {
             const [missionsRes, progressRes, passRes] = await Promise.all([
-                axios.get('/api/gamification/missions', {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                }),
-                axios.get('/api/gamification/progress', {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                }),
-                axios.get('/api/gamification/season-pass', {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                })
+                api.get('/gamification/missions'),
+                api.get('/gamification/progress'),
+                api.get('/gamification/season-pass'),
             ]);
 
             setMissions(missionsRes.data.data || []);
@@ -40,9 +34,7 @@ export default function MissionsPage() {
 
     const claimMissionReward = async (missionId) => {
         try {
-            await axios.post(`/api/gamification/missions/${missionId}/claim`, {}, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
+            await api.post(`/gamification/missions/${missionId}/claim`, {});
             fetchData();
             alert('Reward claimed! 🎉');
         } catch (error) {
@@ -52,10 +44,8 @@ export default function MissionsPage() {
 
     const claimPassReward = async (tier) => {
         try {
-            await axios.post('/api/gamification/season-pass/claim',
-                { tier },
-                { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-            );
+            // Backend expects tier as path param: /season-pass/claim/:tier
+            await api.post(`/gamification/season-pass/claim/${tier}`);
             fetchData();
             alert('Season Pass reward claimed! 🎁');
         } catch (error) {
@@ -66,9 +56,7 @@ export default function MissionsPage() {
     const purchasePremium = async () => {
         if (!confirm('Purchase Premium Season Pass for 999 coins?')) return;
         try {
-            await axios.post('/api/gamification/season-pass/purchase', {}, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            });
+            await api.post('/gamification/season-pass/purchase', {});
             fetchData();
             alert('Premium Season Pass activated! 🌟');
         } catch (error) {

@@ -15,7 +15,7 @@ import {
     Legend,
     Filler
 } from 'chart.js';
-import axios from 'axios';
+import { api } from '@/lib/api';
 
 // Register ChartJS components
 ChartJS.register(
@@ -45,12 +45,8 @@ export default function AnalyticsPage() {
         setLoading(true);
         try {
             const [statsRes, trendsRes] = await Promise.all([
-                axios.get('/api/analytics/me', {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                }),
-                axios.get(`/api/analytics/trends?period=${period}`, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                })
+                api.get('/analytics/me'),
+                api.get(`/analytics/trends?period=${period}`),
             ]);
 
             setStats(statsRes.data.data);

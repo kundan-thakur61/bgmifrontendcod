@@ -14,10 +14,17 @@ export default function CreateListingPage() {
   const { user, loading: authLoading } = useAuth();
   
   const [formData, setFormData] = useState({
+    type: 'popularity_points',
     characterId: '',
     characterName: '',
     popularityPoints: '',
     pricePerThousand: '4',
+    title: '',
+    description: '',
+    price: '',
+    assetUrl: '',
+    durationMinutes: '',
+    availableSlots: '1',
     sellerNotes: ''
   });
   const [pricePreview, setPricePreview] = useState(null);
@@ -57,33 +64,33 @@ export default function CreateListingPage() {
       return;
     }
 
-    // Validation
-    if (!formData.characterId || !formData.characterName || !formData.popularityPoints) {
-      setError('Please fill all required fields');
-      return;
-    }
-
-    if (parseInt(formData.popularityPoints) < 1000) {
-      setError('Minimum 1,000 popularity points required');
-      return;
-    }
-
-    if (parseInt(formData.popularityPoints) > 1000000) {
-      setError('Maximum 10,00,000 popularity points allowed');
-      return;
+    const isPoints = formData.type === 'popularity_points';
+    if (isPoints) {
+      if (!formData.characterId || !formData.characterName || !formData.popularityPoints) {
+        setError('Please fill character and points fields');
+        return;
+      }
+    } else {
+      if (!formData.title || !formData.price) {
+        setError('Title and price are required for this item type');
+        return;
+      }
     }
 
     try {
       setLoading(true);
       setError(null);
       
-      const response = await createPopularityListing({
-        characterId: formData.characterId,
-        characterName: formData.characterName,
-        popularityPoints: parseInt(formData.popularityPoints),
-        pricePerThousand: parseFloat(formData.pricePerThousand),
-        sellerNotes: formData.sellerNotes
-      });
+      const payload = { ...formData };
+      if (isPoints) {
+        payload.popularityPoints = parseInt(formData.popularityPoints);
+        payload.pricePerThousand = parseFloat(formData.pricePerThousand);
+      } else {
+        payload.price = parseFloat(formData.price);
+        if (formData.availableSlots) payload.availableSlots = parseInt(formData.availableSlots);
+      }
+      
+      const response = await createPopularityListing(payload);
 
       if (response.success) {
         router.push('/popularity/my-listings');
@@ -129,7 +136,8 @@ export default function CreateListingPage() {
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-          <h1 className="text-2xl font-bold mb-6">Sell Popularity Points</h1>
+          <h1 className="text-2xl font-bold mb-6">Create Marketplace Listing</h1>
+          <p className="text-sm text-gray-400 mb-4">Sell team logos, graphics, coaching sessions or popularity points.</p>
           
           {error && (
             <div className="bg-red-900/50 border border-red-700 text-red-200 px-4 py-3 rounded-lg mb-6">
@@ -138,41 +146,86 @@ export default function CreateListingPage() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Character Details */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Character ID <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="characterId"
-                  value={formData.characterId}
-                  onChange={handleChange}
-                  placeholder="Enter your BGMI Character ID"
-                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"
-                  required
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  This is where you'll transfer popularity from
-                </p>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Character Name <span className="text-red-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="characterName"
-                  value={formData.characterName}
-                  onChange={handleChange}
-                  placeholder="Enter your BGMI Character Name"
-                  className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500"
-                  required
-                />
-              </div>
+            {/* Category Selector */}
+            <div>
+              <label className="block text-sm font-medium mb-2">Listing Type</label>
+              <select name="type" value={formData.type} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3">
+                <option value="popularity_points">Popularity Points</option>
+                <option value="team_logo">Team Logo (Digital File)</option>
+                <option value="tournament_graphic">Tournament Graphics Pack</option>
+                <option value="coaching_session">Coaching Session</option>
+              </select>
             </div>
+
+            {/* Dynamic fields based on type */}
+            {formData.type === 'popularity_points' && (
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Character ID *</label>
+                  <input type="text" name="characterId" value={formData.characterId} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Character Name *</label>
+                  <input type="text" name="characterName" value={formData.characterName} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Points to Sell *</label>
+                  <input type="number" name="popularityPoints" value={formData.popularityPoints} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" min="1000" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Price per 1000 Points</label>
+                  <input type="number" name="pricePerThousand" value={formData.pricePerThousand} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" />
+                </div>
+              </div>
+            )}
+
+            {(formData.type === 'team_logo' || formData.type === 'tournament_graphic') && (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Title *</label>
+                  <input type="text" name="title" value={formData.title} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" placeholder="e.g. Pro Squad Logo Pack" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Description</label>
+                  <textarea name="description" value={formData.description} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" rows="3" placeholder="High quality custom design..." />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Price (₹) *</label>
+                  <input type="number" name="price" value={formData.price} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Asset URL (Cloudinary or upload link)</label>
+                  <input type="text" name="assetUrl" value={formData.assetUrl} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" placeholder="https://... logo file" />
+                </div>
+              </div>
+            )}
+
+            {formData.type === 'coaching_session' && (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Session Title *</label>
+                  <input type="text" name="title" value={formData.title} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" placeholder="BGMI Squad Coaching - 60 mins" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Description & What You'll Learn</label>
+                  <textarea name="description" value={formData.description} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" rows="3" />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Price (₹) *</label>
+                    <input type="number" name="price" value={formData.price} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" required />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Duration (minutes)</label>
+                    <input type="number" name="durationMinutes" value={formData.durationMinutes} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Available Slots</label>
+                  <input type="number" name="availableSlots" value={formData.availableSlots} onChange={handleChange} className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3" />
+                </div>
+              </div>
+            )}
 
             {/* Popularity Points */}
             <div>

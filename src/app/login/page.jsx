@@ -21,15 +21,14 @@ export default function LoginPage() {
   const [copySuccess, setCopySuccess] = useState(false);
 
   useEffect(() => {
-    // Client-side safety: ensure we don't send prod users to localhost
+    // Client-side safety net only. The correct value should come from NEXT_PUBLIC_API_URL at build time.
     if (typeof window !== 'undefined') {
       const hostname = window.location.hostname;
       const isProduction = hostname !== 'localhost' && hostname !== '127.0.0.1';
 
       if (isProduction && API_BASE_URL.includes('localhost')) {
-        // Force production backend if we are on a real domain but API is localhost
-        // This fixes the issue if Vercel env vars are missing
-        setGoogleUrl('https://api.battlexzone.com/api/auth/google');
+        // Use the known production backend as last resort.
+        setGoogleUrl('https://bgmibackend-5gu6.onrender.com/api/auth/google');
       }
     }
   }, []);
